@@ -1,0 +1,76 @@
+body{
+	font-family:verdana;
+}
+ 
+.container{
+	width:320px;
+	margin:0 auto;
+	margin-top:100px;
+	padding:10px;
+	border-radius:4px;
+	-webkit-box-shadow: -1px 0px 21px -8px rgba(0,0,0,0.75);
+	-moz-box-shadow: -1px 0px 21px -8px rgba(0,0,0,0.75);
+	box-shadow: -1px 0px 21px -8px rgba(0,0,0,0.75);
+}
+ 
+.heading{
+	font-size:26px;
+	line-height:28px;
+	margin:0px 0px 15px 0px;
+	color: #4387fd;
+ 
+}
+ 
+label{
+	font-size:14px;
+	margin:10px 0px 3px 0px;	
+	display:block;
+	font-weight:600;
+}
+ 
+.form-cont input[type=text], .form-cont input[type=password]{
+	display:block;
+	height:30px;
+	width:300px;
+	margin-bottom:8px;
+	border:1px solid #eeeeee;
+	border-radius:2px;
+	padding-left:2px;
+}
+ 
+.form-cont input[type=submit]{
+	background:#4387fd;
+	color:#ffffff;
+	border:1px solid #4387fd;
+	height:30px;
+}
+ 
+.form-cont input[type=submit]:hover{
+	box-shadow:0 1px 0 rgba(0,0,0,0.30);
+}
+ 
+.disable-btn{
+	background:red !important;
+	color:#ffffff !important;
+	border:1px solid red !important;
+	height:30px !important;	
+}
+ 
+.success_msg{
+	font-size:14px;
+	background:#34d58e;
+	border:1px solid #34d58e;
+	font-size:12px;
+	margin:5px 0 5px 0;
+	padding:3px;
+	color:#ffffff;
+}
+ 
+.error_msg{
+	background:#EE5A5B;
+	border:1px solid #ee0000;
+	font-size:12px;
+	margin:5px 0 5px 0;
+	padding:3px;
+	color:#ffffff;
+}
