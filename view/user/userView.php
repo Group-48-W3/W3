@@ -47,7 +47,7 @@ else{
 ?>
 </br>
     <h2>Add User</h2>
-    <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
+    <form method="post" action="./../../controller/user/userController.php">
         User Role ID:<br>
 		<input type="text" name="user_role">
 		<br>

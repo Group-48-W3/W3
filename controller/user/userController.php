@@ -9,11 +9,11 @@ if(preg_match('/dashboard/', $url)){
 	require_once("./../../model/userModel.php");
 }
 
-function __construct(){
-	if(isset($_POST['userdetails'])){
-		addUser();
-	}
+
+if(isset($_POST['userdetails'])){
+	addUser();
 }
+
 
 
 //create a user

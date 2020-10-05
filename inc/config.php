@@ -14,6 +14,6 @@
 	{
 		die(mysqli_error());
 	}
-
+	// take the access token of the user when login
 	
 ?>
