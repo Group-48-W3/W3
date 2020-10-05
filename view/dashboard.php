@@ -7,13 +7,11 @@
 		exit;
 	}		
 	
-	require_once('../inc/config.php');
+	require_once('../controller/user/userController.php');
 	require_once('header.php'); 
-	require_once('left_sidebar.php'); 
-	
-	
+	require_once('left_sidebar.php'); 	
 ?>
-
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <div class="content-wrapper">
     <div class="container-fluid">
       <!-- Breadcrumbs-->
@@ -36,7 +34,7 @@
 		</ul>	
 
       
-      <div style="height: 1000px;"></div>
+      <div style="height: 600px;"></div>
     </div>
     <!-- /.container-fluid-->
 	
