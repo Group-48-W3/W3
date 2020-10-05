@@ -1,5 +1,20 @@
 <?php
-require_once("../model/userModel.php");
+
+$url = rawurldecode($_SERVER['REQUEST_URI']);
+
+//match the request url with above urls. 
+if(preg_match('/dashboard/', $url)){ 
+	require_once("./../model/userModel.php");
+}else{
+	require_once("./../../model/userModel.php");
+}
+
+function __construct(){
+	if(isset($_POST['userdetails'])){
+		addUser();
+	}
+}
+
 
 //create a user
 function createUser(){
@@ -53,9 +68,29 @@ function createUser(){
 		
 	}
 }
-//get all users
-function getAllUsers(){
+function addUser(){
+	
+	$user_role = $_POST['user_role'];
+	$first_name = $_POST['first_name'];
+	$last_name = $_POST['last_name'];
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+	$con_password = $_POST['cpassword'];
 
+	if($password == $con_password){
+		addUserDB($user_role,$first_name,$last_name,$email,$password);
+	}else{
+		echo("Password Mismatched");
+	}
+	
+	 
+}
+//get all users
+function getAll(){
+	//Do the query
+	$res = getAllUsers();
+	return $res;
+	
 }
 //update a user
 function updateUser(){
