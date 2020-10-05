@@ -204,52 +204,81 @@
     if($_SESSION['user_role_id'] == 1 || $_SESSION['user_role_id'] == 4){?>
       <li class="nav-item">
         <a href="#" class="nav-link">
-        <svg 
+          <svg 
             aria-hidden="true" 
             focusable="false" 
             data-prefix="fas" 
-            data-icon="home" 
-            class="svg-inline--fa fa-home fa-w-18" 
-            role="img" xmlns="http://www.w3.org/2000/svg" 
+            data-icon="warehouse" 
+            class="svg-inline--fa fa-warehouse fa-w-20" 
+            role="img" 
+            xmlns="http://www.w3.org/2000/svg" 
+            viewBox="0 0 640 512"
+          >
+            <path 
+              fill="currentColor" 
+              d="M504 352H136.4c-4.4 0-8 3.6-8 8l-.1 48c0 4.4 3.6 8 8 8H504c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm0 96H136.1c-4.4 0-8 3.6-8 8l-.1 48c0 4.4 3.6 8 8 8h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm0-192H136.6c-4.4 0-8 3.6-8 8l-.1 48c0 4.4 3.6 8 8 8H504c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm106.5-139L338.4 3.7a48.15 48.15 0 0 0-36.9 0L29.5 117C11.7 124.5 0 141.9 0 161.3V504c0 4.4 3.6 8 8 8h80c4.4 0 8-3.6 8-8V256c0-17.6 14.6-32 32.6-32h382.8c18 0 32.6 14.4 32.6 32v248c0 4.4 3.6 8 8 8h80c4.4 0 8-3.6 8-8V161.3c0-19.4-11.7-36.8-29.5-44.3z">
+            </path>
+          </svg>
+          <span class="link-text">Inventory</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <svg 
+            aria-hidden="true" 
+            focusable="false" 
+            data-prefix="fas" 
+            data-icon="hand-holding" 
+            class="svg-inline--fa fa-hand-holding fa-w-18" 
+            role="img" 
+            xmlns="http://www.w3.org/2000/svg" 
             viewBox="0 0 576 512"
           >
             <path 
               fill="currentColor" 
-              d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z">
+              d="M565.3 328.1c-11.8-10.7-30.2-10-42.6 0L430.3 402c-11.3 9.1-25.4 14-40 14H272c-8.8 0-16-7.2-16-16s7.2-16 16-16h78.3c15.9 0 30.7-10.9 33.3-26.6 3.3-20-12.1-37.4-31.6-37.4H192c-27 0-53.1 9.3-74.1 26.3L71.4 384H16c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h356.8c14.5 0 28.6-4.9 40-14L564 377c15.2-12.1 16.4-35.3 1.3-48.9z">
+            </path>
+          </svg>         
+          <span class="link-text">Issue</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <svg 
+            aria-hidden="true" 
+            focusable="false" 
+            data-prefix="fas" 
+            data-icon="plus" 
+            class="svg-inline--fa fa-plus fa-w-14" 
+            role="img" 
+            xmlns="http://www.w3.org/2000/svg" 
+            viewBox="0 0 448 512"
+          >
+            <path 
+              fill="currentColor" 
+              d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
             </path>
           </svg>
-          <span class="link-text">Home</span>
+          <span class="link-text report-menu">Replenish</span>
         </a>
       </li>
       <li class="nav-item">
         <a href="#" class="nav-link">
-        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="hand-holding" class="svg-inline--fa fa-hand-holding fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M565.3 328.1c-11.8-10.7-30.2-10-42.6 0L430.3 402c-11.3 9.1-25.4 14-40 14H272c-8.8 0-16-7.2-16-16s7.2-16 16-16h78.3c15.9 0 30.7-10.9 33.3-26.6 3.3-20-12.1-37.4-31.6-37.4H192c-27 0-53.1 9.3-74.1 26.3L71.4 384H16c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h356.8c14.5 0 28.6-4.9 40-14L564 377c15.2-12.1 16.4-35.3 1.3-48.9z"></path></svg>         
-            <span class="link-text">Issue</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link">
-        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" class="svg-inline--fa fa-plus fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
-            <span class="link-text report-menu">Replenish</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link">
-        <svg 
-              aria-hidden="true" 
-              focusable="false" 
-              data-prefix="fas" 
-              data-icon="chart-line" 
-              class="svg-inline--fa fa-chart-line fa-w-16" 
-              role="img" xmlns="http://www.w3.org/2000/svg" 
-              viewBox="0 0 512 512"
-            >
-              <path 
-                fill="currentColor" 
-                d="M496 384H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v336c0 17.67 14.33 32 32 32h464c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16zM464 96H345.94c-21.38 0-32.09 25.85-16.97 40.97l32.4 32.4L288 242.75l-73.37-73.37c-12.5-12.5-32.76-12.5-45.25 0l-68.69 68.69c-6.25 6.25-6.25 16.38 0 22.63l22.62 22.62c6.25 6.25 16.38 6.25 22.63 0L192 237.25l73.37 73.37c12.5 12.5 32.76 12.5 45.25 0l96-96 32.4 32.4c15.12 15.12 40.97 4.41 40.97-16.97V112c.01-8.84-7.15-16-15.99-16z">
-              </path>
-            </svg>
-            <span class="link-text report-menu">Reports</span>
+          <svg 
+            aria-hidden="true" 
+            focusable="false" 
+            data-prefix="fas" 
+            data-icon="chart-line" 
+            class="svg-inline--fa fa-chart-line fa-w-16" 
+            role="img" xmlns="http://www.w3.org/2000/svg" 
+            viewBox="0 0 512 512"
+          >
+            <path 
+              fill="currentColor" 
+              d="M496 384H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v336c0 17.67 14.33 32 32 32h464c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16zM464 96H345.94c-21.38 0-32.09 25.85-16.97 40.97l32.4 32.4L288 242.75l-73.37-73.37c-12.5-12.5-32.76-12.5-45.25 0l-68.69 68.69c-6.25 6.25-6.25 16.38 0 22.63l22.62 22.62c6.25 6.25 16.38 6.25 22.63 0L192 237.25l73.37 73.37c12.5 12.5 32.76 12.5 45.25 0l96-96 32.4 32.4c15.12 15.12 40.97 4.41 40.97-16.97V112c.01-8.84-7.15-16-15.99-16z">
+            </path>
+          </svg>
+          <span class="link-text report-menu">Reports</span>
         </a>
       </li>
 		<?php } ?>
