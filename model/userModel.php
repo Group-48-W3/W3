@@ -4,10 +4,30 @@
 -->
 <?php
 // import database settings
-require_once('./../inc/config.php'); 
+if(preg_match('/userView/', $url)){ 
+	require_once("./../../inc/config.php");
+}else{
+	require_once("./../inc/config.php");
+}
 
-function getUser($email,$password){
+function addUserDB($user_role,$first_name,$last_name,$email,$password){
+	global $conn;
+	$hash = password_hash($password, PASSWORD_DEFAULT);
+	$sql = "insert into tbl_user VALUES ('$user_role','$first_name','$last_name','$email','$hash')";
+	 if (mysqli_query($conn, $sql)) {
+		echo "New record created successfully !";
+	 } else {
+		echo "Error: " . $sql . " " . mysqli_error($conn);
+	 }
+	 mysqli_close($conn);
 
+}
+function getAllUsers(){
+	global $conn;
+	$query = "select * from tbl_users";
+	$result = mysqli_query($conn,$query);
+
+	return $result;
 }
 function getUserRoleID($id){
 	global $conn;
