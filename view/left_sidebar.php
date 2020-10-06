@@ -69,7 +69,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="./contract/contractHome.php" class="nav-link">
             <svg 
               aria-hidden="true" 
               focusable="false" 
@@ -133,7 +133,7 @@
 		<?php 
 		if($user_role == 2 ){?>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="./contract/contractHome.php" class="nav-link">
           <svg 
             aria-hidden="true" 
             focusable="false" 
@@ -152,7 +152,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="./contract/contractHome.php" class="nav-link">
           <svg 
             aria-hidden="true" 
             focusable="false" 
