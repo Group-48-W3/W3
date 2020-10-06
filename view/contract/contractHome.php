@@ -5,10 +5,10 @@
         <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
     </div>
     <h3>Summary</h3>
-  <div class="row">
-    
-    <div class="col-sm">
+  <!-- Start the card View  -->
+<div class="row">
     <!-- 1st card -->
+    <div class="col-sm">
     <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
       <!-- <div class="card-header">Header</div> -->
       <div class="card-body">
@@ -16,10 +16,10 @@
         <p class="card-text">Contracts</p>
       </div>
     </div>
-    <!-- end card 1 -->
     </div>
+    <!-- end card 1 -->
+    <!-- 2nd card -->
     <div class="col-sm">
-     <!-- 1st card -->
      <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
       <!-- <div class="card-header">Header</div> -->
       <div class="card-body">
@@ -27,10 +27,10 @@
         <p class="card-text">Activities</p>
       </div>
     </div>
-    <!-- end card 2 -->
     </div>
+    <!-- end card 2 -->
+    <!--3rd card  -->
     <div class="col-sm">
-     <!--2nd card  -->
     <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
       <!-- <div class="card-header">Header</div> -->
       <div class="card-body">
@@ -38,10 +38,10 @@
         <p class="card-text">Quotations</p>
       </div>
     </div>
-    <!-- end card 3 -->
     </div>
+    <!-- end card 3 -->
+    <!-- 4th card  -->
     <div class="col-sm">
-    <!--2nd card  -->
     <div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
       <!-- <div class="card-header">Header</div> -->
       <div class="card-body">
@@ -49,9 +49,11 @@
         <p class="card-text">OnGoing</p>
       </div>
     </div>
-    <!-- end 4 -->
     </div>
+    <!-- end 4 -->
   </div>
+  <!-- end of row -->
+
    <!--Contrat Summary Details  -->
    <h3>Ongoing Contracts</h3>
 </div>

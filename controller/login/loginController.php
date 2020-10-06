@@ -19,9 +19,9 @@ function loginUser(){
 			$email 		= trim($_POST['email']);
 			$password 	= trim($_POST['password']);
 			
-			$md5Password = md5($password);//secure password
+			$hash = md5($password);
 			
-			$sql = "select * from user where u_email = '".$email."' and u_password = '".$password."'";
+			$sql = "select * from user where u_email = '".$email."' and u_password = '".$hash."'";
 			$rs = mysqli_query($conn,$sql);
 			$getNumRows = mysqli_num_rows($rs);
 			
