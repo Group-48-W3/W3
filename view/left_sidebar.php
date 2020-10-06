@@ -22,8 +22,9 @@
 
 <!--===================================================================================-->
 		<?php 
-		//only visible to admin
-		if($_SESSION['user_role_id'] == 1){?>
+    //only visible to admin
+    $user_role = $_SESSION['r_id'];
+		if($user_role == 1){?>
 
 		<?php }?>
 <!--===================================================================================-->
@@ -31,7 +32,7 @@
 <!--===================================================================================-->
 		<?php 
 		//only visible to admin and owner
-		if($_SESSION['user_role_id'] == 1 || $_SESSION['user_role_id'] == 2 ){?>
+		if($user_role == 1 || $user_role == 2 ){?>
       <li class="nav-item">
         <a href="#" class="nav-link">
           <svg 
@@ -131,7 +132,7 @@
 <!--===================================================================================-->
 		<?php 
 		//only visible to admin/accountant
-		if($_SESSION['user_role_id'] == 1 || $_SESSION['user_role_id'] == 3){?>
+		if($user_role || $user_role == 3){?>
       <li class="nav-item">
         <a href="#" class="nav-link">
           <svg 
@@ -201,7 +202,7 @@
 <!--===================================================================================-->
     <?php
     //only visible to admin/stock keeper
-    if($_SESSION['user_role_id'] == 1 || $_SESSION['user_role_id'] == 4){?>
+    if($user_role || $user_role == 4){?>
       <li class="nav-item">
         <a href="#" class="nav-link">
           <svg 
@@ -285,6 +286,15 @@
 <!--===================================================================================-->
 
   </ul>
+  <!-- logout icon  -->
+  <ul class="navbar-nav ml-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.php?logout=true">
+      <i class="fa fa-fw fa-sign-out"></i>Logout
+    </a>
+  </li>
+  </ul>
+  <!-- logout ends -->
 </nav>
 
 <main>
