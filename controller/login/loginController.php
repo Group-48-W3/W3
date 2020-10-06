@@ -21,7 +21,7 @@ function loginUser(){
 			
 			$md5Password = md5($password);//secure password
 			
-			$sql = "select * from tbl_users where email = '".$email."' and password = '".$password."'";
+			$sql = "select * from user where u_email = '".$email."' and u_password = '".$password."'";
 			$rs = mysqli_query($conn,$sql);
 			$getNumRows = mysqli_num_rows($rs);
 			

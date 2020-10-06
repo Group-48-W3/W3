@@ -36,7 +36,7 @@
         <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input class="form-control" id="exampleInputEmail1" name="email" type="email" placeholder="Enter email" required>
+            <input class="form-control" id="exampleInputEmail1" name="email" type="email" placeholder="Enter Email" required>
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>

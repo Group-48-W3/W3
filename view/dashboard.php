@@ -1,7 +1,7 @@
 <?php 
 	session_start();
 	
-	if(!isset($_SESSION['id'],$_SESSION['user_role_id']))
+	if(!isset($_SESSION['u_id'],$_SESSION['r_id']))
 	{
 		header('location:index.php?lmsg=true');
 		exit;
@@ -23,7 +23,7 @@
       </ol>
       <h1>Welcome to Dashboard</h1>
       <hr>
-      <h3>You are login as <strong><?php echo getUserAccessRoleByID($_SESSION['user_role_id']); ?></strong></h3>
+      <h3>You are login as <strong><?php echo getUserAccessRoleByID($_SESSION['r_id']); ?></strong></h3>
 	  
 		<ul>
 			<li><strong>John Doe</strong> has <strong>Administrator</strong> rights so all the left bar items are visible to him</li>
