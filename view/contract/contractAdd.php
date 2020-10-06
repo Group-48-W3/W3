@@ -41,26 +41,32 @@
     </form>
   </div>
 </nav>
-    <!--Navbar ends  -->
-    <div class="alert alert-dismissible alert-success">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
-    </div>
-    <!-- 1st card -->
-    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-      <div class="card-header">Header</div>
-      <div class="card-body">
-        <h4 class="card-title">Primary card title</h4>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-    </div>
-    <!--2nd card  -->
-    <div class="card border-primary mb-3" style="max-width: 20rem;">
-      <div class="card-header">Header</div>
-      <div class="card-body">
-        <h4 class="card-title">Primary card title</h4>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-    </div>
+<!-- Content Starts -->
+<div class="container">
+<h2>Create New Contracts</h2>
+    <form method="post" action="./../../controller/contract/contractController.php">
+        User Role ID:<br>
+		<input type="text" name="user_role">
+		<br>
+        First name:<br>
+		<input type="text" name="first_name">
+		<br>
+		Last name:<br>
+		<input type="text" name="last_name">
+		<br>
+		Email:<br>
+		<input type="text" name="email">
+		<br>
+		Password:<br>
+		<input type="password" name="password">
+        <br>
+		Confirm Password:<br>
+		<input type="password" name="cpassword">
+        <br>
+		<input type="submit" name="userdetails" value="submit">
+	</form>
+</div>
+
+<!-- Content Ends -->
 </body>
 </html>
