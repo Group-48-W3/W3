@@ -47,7 +47,9 @@
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
     </div>
-<div class="row">
+    <h3>Summary</h3>
+  <div class="row">
+    
     <div class="col-sm">
     <!-- 1st card -->
     <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
@@ -93,11 +95,10 @@
     <!-- end 4 -->
     </div>
   </div>
+   <!--Contrat Summary Details  -->
+   <h3>Ongoing Contracts</h3>
 </div>
 
-    
-    
-</div>
    
 </body>
 </html>
