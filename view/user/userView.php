@@ -6,13 +6,14 @@ $result = getAll();
 <html>
  <head>
  <title>Retrive Users</title>
+ <link href="./../../assets/css/style_darkly.css" rel="stylesheet" type="text/css">
  </head>
 <body>
 <h1>Users</h1>    
 <?php
 if (mysqli_num_rows($result) > 0) {
 ?>
-  <table>
+  <table class="table table-hover">
   
   <tr>
     <td>User ID</td>
