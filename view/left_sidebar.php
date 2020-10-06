@@ -50,7 +50,7 @@
     $user_role = $_SESSION['r_id'];
 		if($user_role == 1){?>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="./user/userView.php" class="nav-link">
           <svg 
             aria-hidden="true" 
             focusable="false" 
