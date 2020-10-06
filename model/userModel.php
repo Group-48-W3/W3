@@ -14,7 +14,7 @@ function addUserDB($user_role,$first_name,$last_name,$email,$password){
 	// echo("This add user function");
 	global $conn;
 	$hash = password_hash($password, PASSWORD_DEFAULT);
-	$sql = "insert into tbl_users VALUES ('','$user_role','$first_name','$last_name','$email','$hash')";
+	$sql = "insert into user VALUES ('','$user_role','$first_name','$last_name','$email','$hash')";
 	 if (mysqli_query($conn, $sql)) {
 		echo "New record created successfully !";
 	 } else {
@@ -25,7 +25,7 @@ function addUserDB($user_role,$first_name,$last_name,$email,$password){
 }
 function getAllUsers(){
 	global $conn;
-	$query = "select * from tbl_users";
+	$query = "select * from user";
 	$result = mysqli_query($conn,$query);
 
 	return $result;
@@ -33,12 +33,12 @@ function getAllUsers(){
 function getUserRoleID($id){
 	global $conn;
     
-    $query = "select user_role from tbl_user_role where  id = ".$id;
+    $query = "select r_name from role where  r_id = ".$id;
 
     $rs = mysqli_query($conn,$query);
 	$row = mysqli_fetch_assoc($rs);
 	
-	return $row['user_role'];
+	return $row['r_name'];
 }
 
 ?>
