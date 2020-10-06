@@ -8,7 +8,7 @@
 <body>
  <!--Navbar starts -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="../dashboard.php">W3</a>
+  <a class="navbar-brand" href="../dashboard.php">W3 DASHBOARD</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -41,26 +41,63 @@
     </form>
   </div>
 </nav>
-    <!--Navbar ends  -->
-    <div class="alert alert-dismissible alert-success">
+<!--Navbar ends  -->
+<div class="container">
+    <div class="alert alert-dismissible alert-warning">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
     </div>
+<div class="row">
+    <div class="col-sm">
     <!-- 1st card -->
     <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-      <div class="card-header">Header</div>
+      <!-- <div class="card-header">Header</div> -->
       <div class="card-body">
-        <h4 class="card-title">Primary card title</h4>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <h1 class="card-title">5</h1>
+        <p class="card-text">Contracts</p>
       </div>
     </div>
+    <!-- end card 1 -->
+    </div>
+    <div class="col-sm">
+     <!-- 1st card -->
+     <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+      <!-- <div class="card-header">Header</div> -->
+      <div class="card-body">
+        <h1 class="card-title">45</h1>
+        <p class="card-text">Activities</p>
+      </div>
+    </div>
+    <!-- end card 2 -->
+    </div>
+    <div class="col-sm">
+     <!--2nd card  -->
+    <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+      <!-- <div class="card-header">Header</div> -->
+      <div class="card-body">
+        <h1 class="card-title">29</h1>
+        <p class="card-text">Quotations</p>
+      </div>
+    </div>
+    <!-- end card 3 -->
+    </div>
+    <div class="col-sm">
     <!--2nd card  -->
-    <div class="card border-primary mb-3" style="max-width: 20rem;">
-      <div class="card-header">Header</div>
+    <div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
+      <!-- <div class="card-header">Header</div> -->
       <div class="card-body">
-        <h4 class="card-title">Primary card title</h4>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <h1 class="card-title">3</h1>
+        <p class="card-text">OnGoing</p>
       </div>
     </div>
+    <!-- end 4 -->
+    </div>
+  </div>
+</div>
+
+    
+    
+</div>
+   
 </body>
 </html>
