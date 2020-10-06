@@ -14,13 +14,13 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <div class="content-wrapper">
     <div class="container-fluid">
-      <!-- Breadcrumbs-->
+      <!-- Breadcrumbs
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="#">Dashboard</a>
         </li>
         
-      </ol>
+      </ol> -->
       <h1>Welcome to Dashboard</h1>
       <hr>
       <h3>You are login as <strong><?php echo getUserAccessRoleByID($_SESSION['r_id']); ?></strong></h3>

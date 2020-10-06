@@ -1,47 +1,4 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contract</title>
-    <link href="./../../assets/css/style_darkly.css" rel="stylesheet" type="text/css">
-</head>
-<body>
- <!--Navbar starts -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="../dashboard.php">W3 DASHBOARD</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarColor02">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="./contractHome.php">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./contractAdd.php">Add Contract</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Add Activity</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Add Quotation</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Reports</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Invoice</a>
-      </li>
-      
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-<!--Navbar ends  -->
+<?php require_once('./contractHeader.php');?>
 <div class="container">
     <div class="alert alert-dismissible alert-warning">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -88,7 +45,7 @@
     <div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
       <!-- <div class="card-header">Header</div> -->
       <div class="card-body">
-        <h1 class="card-title">3</h1>
+        <h1 id="value" class="card-title">0</h1>
         <p class="card-text">OnGoing</p>
       </div>
     </div>
@@ -99,6 +56,23 @@
    <h3>Ongoing Contracts</h3>
 </div>
 
-   
+<script>
+function animateValue(id, start, end, duration) {
+    var range = end - start;
+    var current = start;
+    var increment = end > start? 1 : -1;
+    var stepTime = Math.abs(Math.floor(duration / range));
+    var obj = document.getElementById(id);
+    var timer = setInterval(function() {
+        current += increment;
+        obj.innerHTML = current;
+        if (current == end) {
+            clearInterval(timer);
+        }
+    }, stepTime);
+}
+
+animateValue("value", 0, 4, 3000);
+</script>   
 </body>
 </html>

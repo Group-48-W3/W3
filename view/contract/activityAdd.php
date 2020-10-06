@@ -1,11 +1,11 @@
 <?php require_once('./contractHeader.php');?>
 <!-- Content Starts -->
 <div class="container">
-<h2>Create New Contracts</h2>
+<h2>Activities</h2>
   <div class="row">
     <div class="col-8">
     
-      <h4>Add Contract Details</h4>
+      <h4>Contract Activity Details</h4>
       <form method="post" action="./../../controller/contract/contractController.php">
         <div class="form-group">
           <label for="exampleInputEmail1">Contract Name : </label>
@@ -34,25 +34,7 @@
             <br>
         <input type="submit" name="userdetails" value="submit">
       </form>
-      <h4>Add Client Details</h4>
-      <form method="post" action="./../../controller/contract/contractController.php">
-        Client Name :<br>
-        <input type="text" name="user_role">
-        <br>
-        Client Address :<br>
-        <input type="text" name="first_name">
-        <br>
-        Client Company :<br>
-        <input type="text" name="last_name">
-        <br>
-        Client Mobile :<br>
-        <input type="text" name="email">
-        <br>
-        Client Email :<br>
-        <input type="password" name="password">
-        <br><br>
-        <input type="submit" name="userdetails" value="submit">
-      </form>
+      
     </div>
     <div class="col-4">
     <div class="alert alert-dismissible alert-info">
@@ -70,5 +52,18 @@
 </div>
 
 <!-- Content Ends -->
+<script>
+$('.count').each(function () {
+    $(this).prop('Counter',0).animate({
+        Counter: $(this).text()
+    }, {
+        duration: 4000,
+        easing: 'swing',
+        step: function (now) {
+            $(this).text(Math.ceil(now));
+        }
+    });
+});
+</script>
 </body>
 </html>
