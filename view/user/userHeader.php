@@ -16,16 +16,16 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="./userView.php">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="./userHome.php">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Users</a>
+        <a class="nav-link" href="./userView.php">Users</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Notes</a>
+        <a class="nav-link" href="./employeeView.php">Employees</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Notifications</a>
+        <a class="nav-link" href="./userMessage.php">Message</a>
       </li>
       
     </ul>
