@@ -1,18 +1,15 @@
 <?php require_once('./../../controller/user/userController.php');?> 
+<?php require_once('./userHeader.php');?> 
 <?php
 $result = getAll();
 ?>
-<!DOCTYPE html>
-<html>
- <head>
- <title>Retrive Users</title>
- <link href="./../../assets/css/style_darkly.css" rel="stylesheet" type="text/css">
- </head>
-<body>
-<h1>Users</h1>    
+
+<div class="container">
 <?php
 if (mysqli_num_rows($result) > 0) {
 ?>
+<div class="container"> 
+  <h3>System Users</h3>
   <table class="table table-hover">
   
   <tr>
@@ -28,18 +25,23 @@ $i=0;
 while($row = mysqli_fetch_array($result)) {
 ?>
 <tr>
-    <td><?php echo $row["id"]; ?></td>
-    <td><?php echo $row["user_role_id"]; ?></td>
-    <td><?php echo $row["first_name"]; ?></td>
-    <td><?php echo $row["last_name"]; ?></td>
-    <td><?php echo $row["email"]; ?></td>
-    <td>Actions</td>
+    <td><?php echo $row["u_id"]; ?></td>
+    <td><?php echo $row["r_id"]; ?></td>
+    <td><?php echo $row["u_firstname"]; ?></td>
+    <td><?php echo $row["u_lastname"]; ?></td>
+    <td><?php echo $row["u_email"]; ?></td>
+    <td>
+    <a class="btn btn-info" href="./../../controller/user/userController.php?viewid=<?php echo $row["u_id"]; ?>">View</a>
+    <a class="btn btn-warning" href="./../../controller/user/userController.php?updateid=<?php echo $row["u_id"]; ?>">Update</a>
+    <a class="btn btn-danger" href="./../../controller/user/userController.php?userid=<?php echo $row["u_id"]; ?>">Delete</a>
+    </td>
 </tr>
 <?php
 $i++;
 }
 ?>
 </table>
+
  <?php
 }
 else{
@@ -47,12 +49,12 @@ else{
 }
 ?>
 </br>
-    <h2>Add User</h2>
+    <h2>Add User Account</h2>
     <form method="post" action="./../../controller/user/userController.php">
-        User Role ID:<br>
+    User Role ID:<br>
 		<input type="text" name="user_role">
 		<br>
-        First name:<br>
+    First name:<br>
 		<input type="text" name="first_name">
 		<br>
 		Last name:<br>
@@ -68,6 +70,7 @@ else{
 		<input type="password" name="cpassword">
         <br>
 		<input type="submit" name="userdetails" value="submit">
-	</form>
- </body>
+	  </form>
+    </div>
+    </body>
 </html>
