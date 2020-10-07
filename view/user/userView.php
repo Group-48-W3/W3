@@ -47,7 +47,7 @@ $result = getAll();
       <!-- <div class="card-header">Header</div> -->
       <div class="card-body">
         <h1 id="value" class="card-title">8</h1>
-        <p class="card-text">Permission</p>
+        <p class="card-text">Permissions</p>
       </div>
     </div>
     </div>
@@ -82,8 +82,8 @@ while($row = mysqli_fetch_array($result)) {
     <td><?php echo $row["u_lastname"]; ?></td>
     <td><?php echo $row["u_email"]; ?></td>
     <td>
-    <button type="button" class="btn btn-info">View</button>
-    <button type="button" class="btn btn-warning">Update</button>
+    <a class="btn btn-info" href="./../../controller/user/userController.php?viewid=<?php echo $row["u_id"]; ?>">View</a>
+    <a class="btn btn-warning" href="./../../controller/user/userController.php?updateid=<?php echo $row["u_id"]; ?>">Update</a>
     <a class="btn btn-danger" href="./../../controller/user/userController.php?userid=<?php echo $row["u_id"]; ?>">Delete</a>
     </td>
 </tr>
@@ -100,7 +100,7 @@ else{
 }
 ?>
 </br>
-    <h2>Add User</h2>
+    <h2>Add User Account</h2>
     <form method="post" action="./../../controller/user/userController.php">
     User Role ID:<br>
 		<input type="text" name="user_role">
