@@ -46,7 +46,7 @@
       <!-- <div class="card-header">Header</div> -->
       <div class="card-body">
         <h1 id="value" class="card-title">0</h1>
-        <p class="card-text">OnGoing</p>
+        <p class="card-text">Invoices</p>
       </div>
     </div>
     </div>
@@ -56,6 +56,24 @@
 
    <!--Contrat Summary Details  -->
    <h3>Ongoing Contracts</h3>
+   <table class="table table-hover">
+          <thead>
+              <tr>
+              <th scope="col">Contract</th>
+              <th scope="col">Name</th>
+              <th scope="col">Weight</th>
+              <th scope="col">Description</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr class="table-active">
+              <th scope="row">Bentota 360 Hotel</th>
+              <td>Beach Chairs</td>
+              <td>3 Units</td>
+              <td>High Comfortable Chair Model for Hotels</td>
+              </tr>
+          </tbody>
+    </table>
 </div>
 
 <script>
