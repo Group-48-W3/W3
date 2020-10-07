@@ -46,7 +46,7 @@
       <!-- <div class="card-header">Header</div> -->
       <div class="card-body">
         <h1 id="value" class="card-title">0</h1>
-        <p class="card-text">OnGoing</p>
+        <p class="card-text">Invoices</p>
       </div>
     </div>
     </div>
