@@ -74,6 +74,20 @@
           <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Email" name="">
           
         </div>
+
+        <h4>Step 03 : Initial Step Record(Quotation Selection)</h4>
+        <!-- Form Step 03 -->
+        <div class="form-group">
+          <label for="exampleSelect2">Select Quotation</label>
+          <select multiple="" class="form-control" id="exampleSelect2">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <!-- Form Step 03 ends -->
         <input type="submit" name="userdetails" value="submit">
       </form>
     </div>
@@ -83,7 +97,7 @@
         <strong>Please Be Noticed!</strong> This is about adding contract
         <h5>Step 01 :- Add Contract Settings</h5>
         <h5>Step 02 :- Add Client Details</h5>
-        <h5>Step 03 :- Initial Step Record</h5>
+        <h5>Step 03 :- Initial Step Record (Quotation Selection)</h5>
       </div>
       <div class="alert alert-dismissible alert-warning">
         
