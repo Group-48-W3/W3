@@ -37,6 +37,7 @@
       <h2>
 	  Special Notices:
 	  </h2>
+	  
       <div style="height: 600px;"></div>
     </div>
     <!-- /.container-fluid-->
