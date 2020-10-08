@@ -33,7 +33,8 @@ while($row = mysqli_fetch_array($result)) {
     <td>
     <a class="btn btn-info" href="./../../controller/user/userController.php?viewid=<?php echo $row["u_id"]; ?>">View</a>
     <a class="btn btn-warning" href="./../../controller/user/userController.php?updateid=<?php echo $row["u_id"]; ?>">Update</a>
-    <a class="btn btn-danger" href="./../../controller/user/userController.php?userid=<?php echo $row["u_id"]; ?>">Delete</a>
+    <a class="btn btn-danger" href="./../../controller/user/userController.php?userid=<?php echo $row["u_id"]; ?>">Delete</a>  
+    
     </td>
 </tr>
 <?php
@@ -49,6 +50,16 @@ else{
 }
 ?>
 </br>
+<div class="container">
+<div class="row">
+<div class="col-sm">
+
+</div>
+<div class="col-sm">
+
+</div>
+</div>
+</div>
     <h2>Add User Account</h2>
     <form method="post" action="./../../controller/user/userController.php">
     User Role ID:<br>

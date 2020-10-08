@@ -26,7 +26,13 @@
 			<li><strong>Supun</strong> has <strong>Dashboard Faility</strong> rights and he has only access Relevant</li>
 		</ul>	
 
+
       
+      <h2>
+	  Special Notices:
+	  </h2>
+	  
+
       <div style="height: 600px;"></div>
     </div>
 <?php 
