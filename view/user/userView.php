@@ -50,6 +50,16 @@ else{
 }
 ?>
 </br>
+<div class="container">
+<div class="row">
+<div class="col-sm">
+
+</div>
+<div class="col-sm">
+
+</div>
+</div>
+</div>
     <h2>Add User Account</h2>
     <form method="post" action="./../../controller/user/userController.php">
     User Role ID:<br>
