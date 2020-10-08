@@ -1,7 +1,9 @@
+
  <!-- /.content-wrapper-->
+ <br>
     <footer>
-      <div class="container">
-          <small>Copyright © <a href=""></a></small>
+      <div class="container center">
+          <small>Copyright © <a href="#">W3 (1993-2020)</a></small>
       </div>
     </footer>
     <!-- Scroll to Top Button-->
