@@ -23,6 +23,7 @@
       </ol> -->
       <h1>Welcome to Dashboard</h1>
       <hr>
+	  <center><img src="./../assets/img/w3.png" alt="icon" width ="100px" height="100px"></center>
       <h3>You are login as <strong><?php echo getUserAccessRoleByID($_SESSION['r_id']); ?></strong></h3>
 	  
 		<ul>
@@ -33,7 +34,9 @@
 			<li><strong>Supun</strong> has <strong>Dashboard Faility</strong> rights and he has only access Relevant</li>
 		</ul>	
 
-      
+      <h2>
+	  Special Notices:
+	  </h2>
       <div style="height: 600px;"></div>
     </div>
     <!-- /.container-fluid-->
