@@ -1,0 +1,29 @@
+.badge-success, .badge-error, .badge-warning {
+    display: inline-block;
+    min-width: 10px;
+    width: 20px;
+    padding: 0;
+    line-height: 20px;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: baseline;
+    border-radius: 10px;
+    position: relative;
+    top: -15px;
+    left: -15px;
+}
+
+.badge-success {
+    background-color: var(--success);
+    color: #fff;
+}
+
+.badge-error {
+    background-color: var(--error);
+    color: #fff;
+}
+
+.badge-warning {
+    background-color: var(--warning);
+    color: #000;
+}
