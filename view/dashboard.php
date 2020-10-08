@@ -9,21 +9,13 @@
 	
 	require_once('../controller/user/userController.php');
 	require_once('header.php'); 
-	require_once('left_sidebar.php'); 	
+	
 ?>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <div class="content-wrapper">
     <div class="container-fluid">
-      <!-- Breadcrumbs
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="#">Dashboard</a>
-        </li>
-        
-      </ol> -->
       <h1>Welcome to Dashboard</h1>
       <hr>
-	  <center><img src="./../assets/img/w3.png" alt="icon" width ="100px" height="100px"></center>
       <h3>You are login as <strong><?php echo getUserAccessRoleByID($_SESSION['r_id']); ?></strong></h3>
 	  
 		<ul>
@@ -34,11 +26,9 @@
 			<li><strong>Supun</strong> has <strong>Dashboard Faility</strong> rights and he has only access Relevant</li>
 		</ul>	
 
-      <h2>
-	  Special Notices:
-	  </h2>
+      
       <div style="height: 600px;"></div>
     </div>
-    <!-- /.container-fluid-->
-	
-<?php require_once('footer.php'); ?>	
+<?php 
+require_once('left_sidebar.php'); 	
+require_once('footer.php'); ?>	

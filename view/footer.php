@@ -1,10 +1,7 @@
-</main>
  <!-- /.content-wrapper-->
-    <footer class="sticky-footer">
+    <footer>
       <div class="container">
-        <div class="text-center">
           <small>Copyright © <a href=""></a></small>
-        </div>
       </div>
     </footer>
     <!-- Scroll to Top Button-->
