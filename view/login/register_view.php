@@ -1,15 +1,11 @@
-<?php
-// require_once('view/header.php'); 
-// require_once('view/left_sidebar.php'); 
-?>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
 <div class="container">
-	<h3 class="heading">Registration Form</h3>
+	<h3 class="heading">User Registration w3</h3>
 	<?php 
 		if(isset($errorMsg))
 		{
@@ -29,6 +25,9 @@
 		
 	?>
 	<div class="form-cont">
+		<button>
+		<a href="../dashboard.php">Back to Admin Panel</a>
+		</button>
 		<form name="myForm" id="registrationForm" method="POST" action="<?php echo $_SERVER['PHP_SELF']?>">
 			<label for="firstName">First Name</label>
 			<input type="text" name="first_name" placeholder="Type your First Name" id="firstName"/> 
@@ -53,4 +52,3 @@
 <script src="../assets/js/reg-script.js"></script>
 </body>
 </html>
-<!-- <?php require_once('view/footer.php'); ?>	 -->
