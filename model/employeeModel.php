@@ -33,6 +33,13 @@ function getAllEmployeeDB(){
 
 	return $result;
 }
+function getSingleEmployeeDB($id){
+    global $conn;
+    $query = "select * from employee WHERE emp_id = '".$id."'";
+    $result = mysqli_query($conn,$query);
+
+    return $result;
+}
 function deleterUserByNic($nic){
 	global $conn;
 	$sql = "delete from employee WHERE nic='" . $nic . "'";

@@ -8,6 +8,7 @@ if (isset($_GET['deleteid'])) {
     $emp = new Employee();
     $emp->deleteEmployee($_GET['deleteid']);
 }
+
 class Employee{
 
     function __construct(){
@@ -40,6 +41,10 @@ class Employee{
         
         return $res;
         
+    }
+    function getSingleEmployee($id){
+        $res = getSingleEmployeeDB($id);
+        return $res;
     }
     function deleteEmployee($nic){
         //delete the employee
