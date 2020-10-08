@@ -18,7 +18,7 @@ if (isset($_GET['userid'])) {
 }
 
 function addUser(){
-	echo "here we are";
+	// echo "here we are";
 	$user_role = $_POST['user_role'];
 	$first_name = $_POST['first_name'];
 	$last_name = $_POST['last_name'];
