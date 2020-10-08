@@ -33,7 +33,8 @@ while($row = mysqli_fetch_array($result)) {
     <td>
     <a class="btn btn-info" href="./../../controller/user/userController.php?viewid=<?php echo $row["u_id"]; ?>">View</a>
     <a class="btn btn-warning" href="./../../controller/user/userController.php?updateid=<?php echo $row["u_id"]; ?>">Update</a>
-    <a class="btn btn-danger" href="./../../controller/user/userController.php?userid=<?php echo $row["u_id"]; ?>">Delete</a>
+    <a class="btn btn-danger" href="./../../controller/user/userController.php?userid=<?php echo $row["u_id"]; ?>">Delete</a>  
+    
     </td>
 </tr>
 <?php
