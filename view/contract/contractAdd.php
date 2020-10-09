@@ -3,7 +3,7 @@
 <div class="container">
 <h2>Create New Contracts</h2>
   <div class="row">
-    <div class="col-8">
+    <div class="col-7">
     
       <h4>step 01 : Add Contract Details</h4>
       <form method="post" action="./../../controller/contract/contractController.php">

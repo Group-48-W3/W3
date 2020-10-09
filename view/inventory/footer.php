@@ -1,10 +1,9 @@
+
  <!-- /.content-wrapper-->
+ <br>
     <footer>
-      <div class="container">
-        <center>Done By : Team48 of 16th Batch University of Colombo School of Computing</center>
-          <center>
-          <small>Copyright © <a href=""></a></small>
-          </center>
+      <div class="container center">
+          <small>Copyright © <a href="#">W3 (1993-2020)</a></small>
       </div>
     </footer>
     <!-- Scroll to Top Button-->

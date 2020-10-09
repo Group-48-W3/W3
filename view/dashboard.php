@@ -1,3 +1,4 @@
+<!-- This is dashboard page -->
 <?php 
 	session_start();
 	
@@ -14,19 +15,29 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <div class="content-wrapper">
     <div class="container-fluid">
-      <h1>Welcome to Dashboard</h1>
-      <hr>
+      <h1>Welcome to W3 Contract Management System</h1>
+	  <hr>
+	  <center>
+		  <img src="./../assets/img/logo.png" alt="icon" height="150px" width="150px">
+	  </center>
       <h3>You are login as <strong><?php echo getUserAccessRoleByID($_SESSION['r_id']); ?></strong></h3>
+	  <hr>
+      <h2>
+	  Special Notices:
+	  </h2>
+	  <div class="container"style="border-style: solid">
+		  <h4>Salary Payments of Month October/November 2020</h4>
+		  <p>Members of staff and employees in contract #6 and #13 and receive their paysheets in this week</p>
+		  <p><?php echo "Posted: ".date("Y/m/d")." At ".date("h:i:sa") ?></p>
+	  </div>
+	  <br>
+	  <div class="container"style="border-style: solid">
+		  <h4>Annual General Meeting Year 2020</h4>
+		  <p>Please be noted that 25th of October due to have the company AGM virtually in Zoom.</p>
+		  <p><?php echo "Posted: ".date("Y/m/d")." At ".date("h:i:sa") ?></p>
+	  </div>
 	  
-		<ul>
-			<li><strong>John Doe</strong> has <strong>Administrator</strong> rights so all the left bar items are visible to him</li>
-			<li><strong>Sahan</strong> has <strong>Contract</strong> rights and he doesn't have access to Settings</li>
-			<li><strong>Shanuka</strong> has <strong>Accountant</strong> rights and she can't have access to Appearance, Components and Settings</li>
-			<li><strong>Udara</strong> has <strong>Stock Keeper</strong> rights and he has only access Relevant</li>
-			<li><strong>Supun</strong> has <strong>Dashboard Faility</strong> rights and he has only access Relevant</li>
-		</ul>	
 
-      
       <div style="height: 600px;"></div>
     </div>
 <?php 
