@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard - Multi user role based login</title>
+  <title>W3</title>
   <link href="./../../assets/css/styles/style.css" rel="stylesheet">
   <script type="text/javascript" src="./../../assets/js/scripts/main.js"></script>
 </head>
