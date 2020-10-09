@@ -43,6 +43,13 @@ function getEmailUser($email){
 		return 0;
 	}
 }
+function getSingleUserDB($id){
+	global $conn;
+	$sql  = "select * from user WHERE u_id='".$id."'";
+	$result = mysqli_query($conn,$sql);
+
+	return $result;
+}
 function deleterUserById($id){
 	global $conn;
 	$sql = "delete from user WHERE u_id='" . $id . "'";

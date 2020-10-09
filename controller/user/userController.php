@@ -16,9 +16,11 @@ if(isset($_POST['userdetails'])){
 if (isset($_GET['userid'])) {
     deleteUser($_GET['userid']);
 }
+if (isset($_POST['userUpdateDetails'])) {
+    updateUser($_GET['userid']);
+}
 
 function addUser(){
-	// echo "here we are";
 	$user_role = $_POST['user_role'];
 	$first_name = $_POST['first_name'];
 	$last_name = $_POST['last_name'];
@@ -51,9 +53,16 @@ function getAll(){
 	return $res;
 	
 }
+function getSingleUser($id){
+	//get a single entry of a particular user
+	$res = getSingleUserDB($id);
+	return $res;
+}
 //update a user
-function updateUser(){
-
+function updateUser($id){
+	// update a particular user
+	header('location:./../../view/user/userView.php');
+	exit;
 }
 //delete a user
 function deleteUser($id){

@@ -26,7 +26,7 @@
 	?>
 	<div class="form-cont">
 		<button>
-		<a href="../dashboard.php">Back to Admin Panel</a>
+		<a href="./../dashboard.php">Back to Admin Panel</a>
 		</button>
 		<form name="myForm" id="registrationForm" method="POST" action="<?php echo $_SERVER['PHP_SELF']?>">
 			<label for="firstName">First Name</label>
@@ -49,6 +49,6 @@
 </div>
  
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="../assets/js/reg-script.js"></script>
+<script src="./../assets/js/reg-script.js"></script>
 </body>
 </html>
