@@ -31,7 +31,7 @@
       <!-- <div class="card-header">Header</div> -->
       <div class="card-body">
         <h1 class="card-title">24</h1>
-        <p class="card-text">Notification</p>
+        <p class="card-text">Notification/Message</p>
       </div>
     </div>
     </div>
@@ -49,6 +49,8 @@
     <!-- end 4 -->
   </div>
   <!-- end of row -->
+  <br>
+  <h5>Welcome to the Admin Panel, These are some details you need to consider</h5>
 </div> 
 <!-- end of container  -->
 </div>

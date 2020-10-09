@@ -34,7 +34,7 @@ $result = $employee->getAllEmployee();
         <td><?php echo $row["contact_num"]; ?></td>
         <td><?php echo $row["emp_type"]; ?></td>
         <td>
-        <a class="btn btn-info" href="./../../controller/user/employeeController.php?viewid=<?php echo $row["emp_id"]; ?>">View</a>
+        
         <a class="btn btn-warning" href="./employeeUpdate.php?updateid=<?php echo $row["emp_id"]; ?>">Update</a>
         <a class="btn btn-danger" href="./../../controller/user/employeeController.php?deleteid=<?php echo $row["nic"]; ?>">Delete</a>
         </td>
