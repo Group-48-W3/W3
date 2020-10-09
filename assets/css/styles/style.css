@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap");
+
+@import url("variables.css");
+@import url("components/avatar.css");
+@import url("components/navigation.css");
+@import url("components/button.css");
+@import url("components/dropdown.css");
+@import url("components/card.css");
+@import url("components/grid.css");
+@import url("components/badge.css");
+@import url("components/banner.css");
+@import url("components/tabs.css");
+@import url("components/form.css");
+
+body {
+  color: black;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+
+body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #6649b8;
+}
+
+main {
+  margin-left: 7rem;
+  margin-right: 2rem;
+  padding: 1rem;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+tr:nth-of-type(odd){
+  background: #eee;
+}
+
+th {
+  background: #333;
+  color: white;
+  font-weight: bold;
+}
+
+td, th {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+a {
+  text-decoration: none;
+}
+
+td {
+  padding: 1rem;
+}
+
+select{
+  cursor: pointer;
+}
+
+textarea {
+  overflow: auto;
+  resize: none;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Small Screens */
+@media only screen and (max-width: 600px) {
+  main {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+  footer {
+    margin-bottom: 6rem;
+  }
+  table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	td:before { 
+    position: absolute;
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+  }
+  
+  td:before { content: attr(data-label); }
+}
+
+/* Large screens */
+@media only screen and (min-width: 700px) {
+  footer {
+    margin-left: 7rem;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+  }
+}

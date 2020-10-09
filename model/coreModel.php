@@ -8,7 +8,7 @@ if(isset($_POST['login']))
 		
 		$md5Password = md5($password);
 		
-		$sql = "select * from tbl_users where email = '".$email."' and password = '".$password."'";
+		$sql = "select * from user where u_email = '".$email."' and u_password = '".$password."'";//update query
 		$rs = mysqli_query($conn,$sql);
 		$getNumRows = mysqli_num_rows($rs);
 		
