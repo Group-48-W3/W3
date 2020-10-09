@@ -9,7 +9,7 @@
 <div class="row">
     <!-- 1st card -->
     <div class="col-sm">
-    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+    <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
       <!-- <div class="card-header">Header</div> -->
       <div class="card-body">
         <h1 class="card-title">5</h1>
