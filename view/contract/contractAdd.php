@@ -1,110 +1,98 @@
-<?php require_once('./contractHeader.php');?>
+<?php 
+require_once('./contractHeader.php');
+require_once('./../../controller/contract/contractController.php');
+
+?>
 <!-- Content Starts -->
 <div class="container">
 <h2>Create New Contracts</h2>
   <div class="row">
     <div class="col-7">
-    
+    <!-- Step 01 -->
       <h4>step 01 : Add Contract Details</h4>
       <form method="post" action="./../../controller/contract/contractController.php">
         <div class="form-group">
-          <label for="exampleInputEmail1">Contract Name : </label>
-          <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Contract" name="c_id">
-          <small id="" class="form-text text-muted">Give a suitable name for your project</small>
+          <label>StartDate : </label>
+          <input type="text" class="form-control" placeholder="Contract Name" name="con_name" required>
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">StartDate : </label>
-          <input type="text" class="form-control" id="" placeholder="StartDate" name="start_date">
+          <label>StartDate : </label>
+          <input type="text" class="form-control" placeholder="StartDate" name="con_start_date" required>
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">End Date : </label>
-          <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="End Date" name="end_date">
+          <label>End Date : </label>
+          <input type="text" class="form-control" placeholder="End Date" name="con_end_date" required>
           
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Location : </label>
-          <input type="text" class="form-control" id="" placeholder="Location eg:- Colombo 7" name="location">
+          <label>Location : </label>
+          <input type="text" class="form-control" placeholder="Location eg:- Colombo 7" name="con_location" required>
           <small id="" class="form-text text-muted">Provide the location by nearest main town</small>
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">Description : </label>
-          <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Description" name="description">
+          <label>Description : </label>
+          <input type="text" class="form-control" placeholder="Description" name="con_description" required>
           
         </div>
         <div class="form-group">
-        <label for="exampleInputEmail1">Status : </label>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" checked="">
-            <label class="custom-control-label" for="customRadio1">Active</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio2">Inactive</label>
-          </div>
+        <label>Status : </label><br>
+        <input type="radio" name="con_status" value="Active"> Active<br>
+        <input type="radio" name="con_status" value="Inactive"> Inactive<br>
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">Payment Method : </label>
-          <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Contract" name="">
+          <label>Payment Method : </label>
+          <input type="text" class="form-control" placeholder="Payment Method" name="con_payment" required>
           
         </div>
-      
+        <input type="submit" name="contractadd" value="Create Contract">
+      </form>
+      <form method="post" action="./../../controller/contract/contractController.php">
+      <!-- Step 02 -->
       <h4>Step 02 : Add Client Details</h4>
       
         <div class="form-group">
-          <label for="exampleInputEmail1">Client Name : </label>
-          <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Client Name" name="">
+          <label >Client Name : </label>
+          <input type="text" class="form-control" placeholder="Client Name" name="c_name">
           <small id="" class="form-text text-muted">Give a suitable name for your client</small>
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Client Address : </label>
-          <input type="text" class="form-control" id="" placeholder="eg:- Reid Avenue, Colombo 7">
+          <label >Client Address : </label>
+          <input type="text" class="form-control"  placeholder="eg:- Reid Avenue, Colombo 7" namr="c_address">
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">Client Company : </label>
-          <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Company" name="">
+          <label >Client Company : </label>
+          <input type="text" class="form-control" placeholder="Company" name="c_company">
           
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Client Mobile: </label>
-          <input type="text" class="form-control" id="" placeholder="+94123456789">
+          <label >Client Mobile: </label>
+          <input type="text" class="form-control"  placeholder="+94123456789" name="c_mobile">
           <small id="" class="form-text text-muted">provide a number +94 notation</small>
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">Client Email : </label>
-          <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Email" name="">
+          <label >Client Email : </label>
+          <input type="text" class="form-control"  placeholder="Email" name="c_email">
           
         </div>
 
-        <h4>Step 03 : Initial Step Record(Quotation Selection)</h4>
-        <!-- Form Step 03 -->
-        <div class="form-group">
-          <label for="exampleSelect2">Select Quotation</label>
-          <select multiple="" class="form-control" id="exampleSelect2">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-        </div>
-        <!-- Form Step 03 ends -->
-        <input type="submit" name="userdetails" value="submit">
+        <input type="submit" name="clientadd" value="Create Client">
       </form>
     </div>
     <div class="col-4">
       <div class="alert alert-dismissible alert-info">
         
-        <strong>Please Be Noticed!</strong> This is about adding contract
+        <strong>Please Be Noticed!</strong>
         <h5>Step 01 :- Add Contract Settings</h5>
         <h5>Step 02 :- Add Client Details</h5>
         <h5>Step 03 :- Initial Step Record (Quotation Selection)</h5>
+        <h5>Step 04 :- Employee Selection</h5>
       </div>
       <div class="alert alert-dismissible alert-warning">
         
         <strong>Please Add the correct status!</strong>
-        <h5>Green :- Ongoing</h5>
-        <h5>Yellow :- Fresh</h5>
-        <h5>Red :- Already Finished</h5>
+        <h5>Page 01 :- Step 01 & Step 02</h5>
+        <h5>Page 02 :- Step 03 & Step 04</h5>
+        <h5>Already Finished</h5>
       </div>
     </div>
   </div>

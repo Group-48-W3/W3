@@ -3,7 +3,7 @@
 <div class="container">
 <h2>Activities</h2>
   <div class="row">
-    <div class="col-8">
+    <div class="col-7">
     
       <h4>Contract Activity Details</h4>
       <!-- Form Starts -->
@@ -55,7 +55,7 @@
           </tbody>
       </table>
     </div>
-    <div class="col-4">
+    <div class="col-3">
     <div class="alert alert-dismissible alert-info">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <strong>What is a Activity?</strong> Activity improves contract progress
