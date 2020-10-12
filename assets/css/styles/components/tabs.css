@@ -1,49 +1,35 @@
-.tabs{
-    background: #1c1c1c;
-    color: white#000;
-    padding: 0.5rem 0.5rem 0 0.5rem;
-    border-radius: 1rem 1rem 0 0;
-    display: flex;
-}
-
-.tab-item{
-    flex: 1 0 auto;
-    background: #777;
-    text-align: center;
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+  }
+  
+  /* Style the buttons inside the tab */
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
     cursor: pointer;
-    transition: 0.1s ease;
-}
-
-.tab-item:hover{
-    opacity: 0.8;
-}
-
-.tab-item:first-child{
-    border-radius: 1rem 0 0 0;
-}
-.tab-item:last-child{
-    border-radius: 0 1rem 0 0;
-}
-.tab-item h3{
-    font-weight: bold;
-    margin-bottom: 0;
-}
-
-.tab-item p{
-    font-weight: lighter;
-    margin-top: 0.2rem;
-}
-
-.tab-item.active{
-    background: white;
-}
-
-@media only screen and (max-width: 800px) {
-    .tab-item p{
-        display: none;
-    }
-    .tab-item h3{
-        font-weight: bold;
-        padding-bottom: 0.8rem;
-    }
-}
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    background-color: #ccc;
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
