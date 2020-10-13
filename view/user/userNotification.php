@@ -21,13 +21,13 @@
 
 <h6>Input your details and select and press Push Notifcation into the User</h6>
 <form action="">
-    <label for="exampleInputEmail1">Select Role</label>
+    <label for="">Select Role</label>
     <br>
-    <select name="Country" multiple size="5">
-    <option value="USA">Admin</option>
-    <option value="Russia">Owner</option>
-    <option value="India">Accountant</option>
-    <option value="Britain">Stock Keeper</option>
+    <select name="member" id="member">
+        <option value="USA">Admin</option>
+        <option value="Russia">Owner</option>
+        <option value="India">Accountant</option>
+        <option value="Britain">Stock Keeper</option>
     </select>
     <br>
     <label for="exampleInputEmail1">Message Header</label>

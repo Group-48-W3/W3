@@ -9,27 +9,27 @@
       <!-- Form Starts -->
       <form method="post" action="./../../controller/contract/contractController.php">
         <div class="form-group">
-          <label for="exampleInputEmail1">Contract Name : </label>
-          <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Select Contract" name="c_id">
+          <label>Contract Name : </label>
+          <input type="text" class="form-control" placeholder="Select Contract" name="c_id">
           <small id="" class="form-text text-muted">Select Contract: </small>
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Activity Name : </label>
+          <label>Activity Name : </label>
           <input type="text" class="form-control" id="" placeholder="Activity Name" name="start_date">
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">Activity Description : </label>
-          <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Description" name="end_date">
+          <label>Activity Description : </label>
+          <input type="text" class="form-control" placeholder="Description" name="end_date">
           
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Activity Weight : </label>
-          <input type="text" class="form-control" id="" placeholder="Weight eg:- 2 Units put as 2" name="location">
-          <small id="" class="form-text text-muted">Weight describes the work load of the work done</small>
+          <label >Activity Weight : </label>
+          <input type="text" class="form-control" placeholder="Weight eg:- 2 Units put as 2" name="location">
+          <small class="form-text text-muted">Weight describes the work load of the work done</small>
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">Date: </label>
-          <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Date" name="description">  
+          <label>Date: </label>
+          <input type="text" class="form-control" placeholder="Date" name="description">  
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
