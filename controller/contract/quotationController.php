@@ -3,8 +3,8 @@ require_once("./../../model/quotationModel.php");
 
 class Quotation{
     function __construct(){
-            //echo "here is constructor";
-            $this->index();
+        //echo "here is constructor";
+        $this->index();
     }
     function index(){
         //echo "index quotation";
@@ -37,12 +37,12 @@ class Quotation{
     echo "Your add has been submited, you will be redirected to your account page in 3 seconds....";
     header( "Refresh:3; url=account.php", true, 303);
     }
+    // get all quotations
     function getAllQuotation(){
-        // get all quotations
         $res =  getAllQuotationDB();
-        
         return $res;
         
     }
+    
 }
 ?>

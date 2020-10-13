@@ -9,73 +9,52 @@ require_once('./../../controller/contract/contractController.php');
   <div class="row">
     <div class="col-7">
     <!-- Step 01 -->
-      <h4>step 01 : Add Contract Details</h4>
+      <h4>Step 01 : Add Contract Details</h4>
       <form method="post" action="./../../controller/contract/contractController.php">
-        <div class="form-group">
-          <label>StartDate : </label>
+        
+          <label>Contract Name : </label>
           <input type="text" class="form-control" placeholder="Contract Name" name="con_name" required>
-        </div>
-        <div class="form-group">
+        
           <label>StartDate : </label>
           <input type="text" class="form-control" placeholder="StartDate" name="con_start_date" required>
-        </div>
-        <div class="form-group">
+        
           <label>End Date : </label>
           <input type="text" class="form-control" placeholder="End Date" name="con_end_date" required>
           
-        </div>
-        <div class="form-group">
           <label>Location : </label>
           <input type="text" class="form-control" placeholder="Location eg:- Colombo 7" name="con_location" required>
           <small id="" class="form-text text-muted">Provide the location by nearest main town</small>
-        </div>
-        <div class="form-group">
+        
           <label>Description : </label>
           <input type="text" class="form-control" placeholder="Description" name="con_description" required>
+       
+          <label>Status : </label><br>
+          <input type="radio" name="con_status" value="Active">Active<br>
+          <input type="radio" name="con_status" value="Inactive">Inactive<br>
           
-        </div>
-        <div class="form-group">
-        <label>Status : </label><br>
-        <input type="radio" name="con_status" value="Active"> Active<br>
-        <input type="radio" name="con_status" value="Inactive"> Inactive<br>
-        </div>
-        <div class="form-group">
           <label>Payment Method : </label>
           <input type="text" class="form-control" placeholder="Payment Method" name="con_payment" required>
           
-        </div>
-        <input type="submit" name="contractadd" value="Create Contract">
-      </form>
-      <form method="post" action="./../../controller/contract/contractController.php">
-      <!-- Step 02 -->
-      <h4>Step 02 : Add Client Details</h4>
-      
-        <div class="form-group">
+          <!-- Step 02 -->
+          <h4>Step 02 : Add Client Details</h4>
+          
           <label >Client Name : </label>
           <input type="text" class="form-control" placeholder="Client Name" name="c_name">
-          <small id="" class="form-text text-muted">Give a suitable name for your client</small>
-        </div>
-        <div class="form-group">
+          <small id="" class="form-text text-muted">Give a fullname name for your client in lower case eg:- nipun fernando</small>
           <label >Client Address : </label>
-          <input type="text" class="form-control"  placeholder="eg:- Reid Avenue, Colombo 7" namr="c_address">
-        </div>
-        <div class="form-group">
+          <input type="text" class="form-control"  placeholder="eg:- Reid Avenue, Colombo 7" name="c_address">
+        
           <label >Client Company : </label>
           <input type="text" class="form-control" placeholder="Company" name="c_company">
           
-        </div>
-        <div class="form-group">
           <label >Client Mobile: </label>
           <input type="text" class="form-control"  placeholder="+94123456789" name="c_mobile">
-          <small id="" class="form-text text-muted">provide a number +94 notation</small>
-        </div>
-        <div class="form-group">
+          <small class="form-text text-muted">provide mobile number +94 notation</small>
+        
           <label >Client Email : </label>
           <input type="text" class="form-control"  placeholder="Email" name="c_email">
           
-        </div>
-
-        <input type="submit" name="clientadd" value="Create Client">
+          <input type="submit" name="contractadd" value="Create Contract">
       </form>
     </div>
     <div class="col-4">
