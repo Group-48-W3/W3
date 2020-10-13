@@ -1,9 +1,6 @@
 <?php
 require_once("./../../model/employeeModel.php");
-if(isset($_POST['empDetails'])){
-    $emp = new Employee();
-    $emp->addEmployee();
-}
+
 if(isset($_POST['empUpdateDetails'])){
     $emp = new Employee();
     $emp->UpdateEmployee();
@@ -13,14 +10,21 @@ if (isset($_GET['deleteid'])) {
     $emp = new Employee();
     $emp->deleteEmployee($_GET['deleteid']);
 }
+if(isset($_POST['empDetails'])){
+    $emp = new Employee();
+    $emp->addEmployee();
+}
 
 class Employee{
 
     function __construct(){
-       
+      $this->index();
+    }
+    function index(){
+      // $this->getAllEmployee();
     }
     function addEmployee(){
-        // echo "in the function";
+        
         $emp_nic = $_POST['emp_nic'];
         $emp_name = $_POST['emp_name'];
         $emp_dob = $_POST['emp_dob'];

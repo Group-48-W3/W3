@@ -8,6 +8,7 @@
 @import url("components/card.css");
 @import url("components/grid.css");
 @import url("components/badge.css");
+@import url("components/search.css");
 @import url("components/banner.css");
 @import url("components/tabs.css");
 @import url("components/form.css");
@@ -17,6 +18,8 @@ body {
   background-color: white;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 body::-webkit-scrollbar {
@@ -32,6 +35,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 main {
+  position: relative;
   margin-left: 7rem;
   margin-right: 2rem;
   padding: 1rem;
@@ -76,9 +80,8 @@ textarea {
 }
 
 footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  bottom: 0pt;
 }
 
 /* Small Screens */

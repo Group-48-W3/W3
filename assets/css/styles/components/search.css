@@ -1,0 +1,26 @@
+.search {
+    position: relative;
+    display: grid;
+    grid-template-columns: 95% 5%;
+    grid-template-rows: 5rem 10rem;
+    grid-template-areas: 
+        "search-bar     search-icon"
+        "search-result  search-result";
+}
+
+.search-text {
+    grid-area: search-bar;
+}
+
+.search-button {
+    grid-area: search-icon;
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    width: 1.5rem;
+    min-width: 1.5rem;
+}
+
+.search-result {
+    grid-area: search-result;
+}
