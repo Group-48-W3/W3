@@ -58,18 +58,21 @@
         }
         ?>
         </select>
-        <small class="form-text text-muted">Provide a suitable quotation name</small>
     </div>
     <label>Quantity :</label>
-    <input type="text" class="form-control" placeholder="Description" name="q_quantity">  
-    <button class="btn btn-info">Create New Quotation</button>
+    <input type="text" class="form-control" placeholder="Description" name="q_quantity">
+     
+    <button type="submit" name="quotation_contract">Add Quotation</button>
     
     </form>
-    
+    <p>Need to create a need one? click the following</p> 
+    <a class="btn btn-info" href="./../../view/contract/quotationAdd.php">Quotation Gallery</a>
     <br>
     <hr>
     <h3>Set Activities</h3>
+
     <br>
-    <h3>Contract Employees Details</h3>
+    <hr>
+    
     <br>
 </div>
