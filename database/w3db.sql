@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2020 at 02:44 PM
+-- Generation Time: Oct 13, 2020 at 03:38 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
 
@@ -72,11 +72,21 @@ CREATE TABLE `category` (
 CREATE TABLE `client` (
   `c_id` int(10) NOT NULL,
   `c_name` varchar(50) NOT NULL,
-  `c_address` varchar(50) NOT NULL,
+  `c_address` varchar(225) NOT NULL,
   `c_company` varchar(50) NOT NULL,
   `c_mobile` varchar(20) NOT NULL,
   `c_email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `client`
+--
+
+INSERT INTO `client` (`c_id`, `c_name`, `c_address`, `c_company`, `c_mobile`, `c_email`) VALUES
+(1, 'dumidu perera', 'Collombo 5, Colombo', 'Access Construction', '+94112786543', 'access@con.org'),
+(4, 'sumedha gamage', '75/7 Chandrasekara Road,Horethuduwa', 'TechNed Pvt Ltd', '0775365565', 'sumedha@example.com'),
+(7, 'rajindu cooray', 'no 10, Willorawatte', 'CircleCI Pvt Ltd', '+94775365565', 'rajindu@example.com'),
+(9, 'hill top', 'no 11, Udunuwara, Kandy', 'Hill Top Hotel', '+945678901', 'hilltop@example.com');
 
 -- --------------------------------------------------------
 
@@ -86,6 +96,7 @@ CREATE TABLE `client` (
 
 CREATE TABLE `contract` (
   `con_id` int(10) NOT NULL,
+  `con_name` varchar(100) NOT NULL,
   `startdate` date NOT NULL,
   `enddate` date NOT NULL,
   `location` varchar(50) NOT NULL,
@@ -96,6 +107,18 @@ CREATE TABLE `contract` (
   `u_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `contract`
+--
+
+INSERT INTO `contract` (`con_id`, `con_name`, `startdate`, `enddate`, `location`, `con_desc`, `status`, `payment_method`, `c_id`, `u_id`) VALUES
+(1, 'Bentota Beach', '2020-04-20', '2021-04-20', 'Bentota South Coastal ,Bentota', 'Hotel Renovation', 'Active', 'Pay As You Go', 1, 1),
+(2, 'Araliya Tangalle', '2019-08-29', '2020-08-29', 'Tangalle', 'Wood Floor', 'Active', 'Pay As You Go', 1, 1),
+(3, 'Kandy City Center', '2020-06-11', '2020-12-01', 'Kandy', 'Movie Complex', 'Active', 'Pay As You Go', 1, 1),
+(7, 'Project Euler', '2020-06-11', '2020-12-31', 'Moratuwa', 'Wood Floor', 'Inactive', 'Fixed Point', 4, 2),
+(10, 'Project MatrixWood', '2018-10-27', '2020-10-27', 'Panadura', 'Wood Floor', 'Inactive', 'Fixed Point', 7, 2),
+(12, 'Kandy HillTop', '2018-10-30', '2020-12-01', 'Kandy', 'veranda chairs', 'Active', 'Fixed Point', 9, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -105,12 +128,22 @@ CREATE TABLE `contract` (
 CREATE TABLE `employee` (
   `emp_id` int(10) NOT NULL,
   `nic` varchar(15) NOT NULL,
-  `emp_name` varchar(20) NOT NULL,
+  `emp_name` varchar(255) NOT NULL,
   `dob` date NOT NULL,
   `emp_address` varchar(50) NOT NULL,
   `contact_num` varchar(20) NOT NULL,
   `emp_type` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `employee`
+--
+
+INSERT INTO `employee` (`emp_id`, `nic`, `emp_name`, `dob`, `emp_address`, `contact_num`, `emp_type`) VALUES
+(1, '781992345V', 'dharman', '1980-09-11', 'willorawatte', '+94728543217', 'permanent'),
+(2, '661234567V', 'sumith mendis', '1966-08-05', 'horana gelanigama', '+94123456789', 'permanent'),
+(3, '751234784V', 'sunil perera', '1978-04-29', 'koralawella east', '+94567897686', 'temporary'),
+(7, '569001234V', 'Mallawaarchchi', '1980-07-20', 'rawatawatta dharamathne', '+94567897659', 'contract');
 
 -- --------------------------------------------------------
 
@@ -231,11 +264,19 @@ CREATE TABLE `permission` (
 
 CREATE TABLE `quotation` (
   `q_id` int(10) NOT NULL,
-  `q_budget` varchar(10) NOT NULL,
-  `q_desc` varchar(50) NOT NULL,
-  `q_img` varchar(10) NOT NULL,
-  `q_name` varchar(50) NOT NULL
+  `q_budget` varchar(255) NOT NULL,
+  `q_desc` varchar(255) NOT NULL,
+  `q_img` varchar(255) NOT NULL,
+  `q_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `quotation`
+--
+
+INSERT INTO `quotation` (`q_id`, `q_budget`, `q_desc`, `q_img`, `q_name`) VALUES
+(1, '25000', 'Luxury Chair Outdoor for 5 Star Hotels ', '', 'Weesa Chair'),
+(2, '38000', 'Outside Table Model', '', 'Weesa Table');
 
 -- --------------------------------------------------------
 
@@ -351,7 +392,6 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`u_id`, `r_id`, `u_firstname`, `u_lastname`, `u_email`, `u_password`) VALUES
 (1, 1, 'john', 'doe', 'john_doe@example.com', '827ccb0eea8a706c4c34a16891f84e7b'),
 (2, 2, 'Sahan', 'Dissanayaka', 'sahan@example.com', '827ccb0eea8a706c4c34a16891f84e7b'),
-(3, 3, 'shanuka', 'fernando', 'shanuka@example.com', '827ccb0eea8a706c4c34a16891f84e7b'),
 (4, 4, 'udara', 'weerasinghe', 'udara@example.com', '827ccb0eea8a706c4c34a16891f84e7b'),
 (5, 4, 'supun', 'akalanka', 'supun@example.com', '827ccb0eea8a706c4c34a16891f84e7b');
 
@@ -534,19 +574,19 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `c_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `c_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `contract`
 --
 ALTER TABLE `contract`
-  MODIFY `con_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `con_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `emp_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `emp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `item`
@@ -576,7 +616,7 @@ ALTER TABLE `permission`
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `q_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `q_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `raw_material`
@@ -618,7 +658,7 @@ ALTER TABLE `tool_detail`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `u_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `u_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
