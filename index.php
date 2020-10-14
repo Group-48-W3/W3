@@ -1,6 +1,7 @@
 <?php 
 //default start location of the program
 //redirect to the login view page
+//start the session
 session_start();
 
 // import database settings
