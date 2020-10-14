@@ -1,4 +1,5 @@
 <?php
+// include model
 require_once("./../../model/employeeModel.php");
 
 if(isset($_POST['empUpdateDetails'])){
@@ -14,7 +15,7 @@ if(isset($_POST['empDetails'])){
     $emp = new Employee();
     $emp->addEmployee();
 }
-
+// employee class
 class Employee{
 
     function __construct(){
@@ -42,8 +43,8 @@ class Employee{
         }else{
             echo 'All fields are required';
         }
-        header('location:./../../view/user/employeeView.php');
-        exit;
+        header('location:./../../view/user/employeeView.php');//redirection
+        exit;//break;
     }
     function getAllEmployee(){
         // get all employee controller
