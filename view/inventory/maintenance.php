@@ -10,16 +10,17 @@
 	 
 ?>
 <?php include_once('header.php'); ?>
-<h2>Check Quantity</h2>
-<div>
-<div class="row">
+<h2>Maintenance</h2>
+<div class="container">
+  <div class="row">
     <div class="col-12">
+      <h3>Add tool/machine to maintenance</h3>
       <form action="#">
         <div class="search">
           <div class="search-text">
             <div class="form-group field">
                 <input class="form-field" id="search">
-                <label for="search" class="form-label">Search Item</label>
+                <label for="search" class="form-label">Search tool/machine</label>
               </div>
           </div>
           <div class="search-button">
@@ -44,14 +45,14 @@
                 <tr>
                   <th width="40%">Item</th>
                   <th width="45%">Description</th>
-                  <th width="15%">Quantity</th>
+                  <th width="15%">Option</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td data-label="Item"><i>Search result</i></td>
                   <td data-label="Description"><i>Description of item</i></td>
-                  <td data-label="Quantity"><i>Quantity</i></td>
+                  <td data-label="Option"><button class="btn-secondary">+ Add to maintenance</button></td>
                 </tr>
               </tbody>
             </table>
@@ -60,7 +61,35 @@
       </form>
     </div>
   </div>
+  <div class="row">
+    <div class="col-12">
+      <h3>Items in maintenance</h3>
+      <table>
+        <thead>
+          <tr>
+            <th width="25%">Item Code</th>
+            <th width="20%">Maintaner</th>
+            <th width="20%">Cost</th>
+            <th width="20%">Date of pickup</th>
+            <th width="15%">Option</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Item Code"><i>Item ID</i></td>
+            <td data-label="Maintaner"><i>Who is repairing</i></td>
+            <td data-label="Cost Code"><i>Repairing cost</i></td>
+            <td data-label="Date of Pickup"><i>Pickup date</i></td>
+            <td data-label="Option"><button class="btn-secondary">Remove from maintenance</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-    <?php
-    require_once('left_sidebar.php'); 
-    require_once('footer.php'); ?>	
+
+
+<?php
+  require_once('left_sidebar.php'); 
+  require_once('footer.php'); 
+?>	
