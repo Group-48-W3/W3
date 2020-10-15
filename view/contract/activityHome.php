@@ -4,36 +4,6 @@
 <h2>Activities</h2>
   <div class="row">
     <div class="col-7">
-    
-      <h4>Contract Activity Details</h4>
-      <!-- Form Starts -->
-      <form method="post" action="./../../controller/contract/contractController.php">
-        <div class="form-group">
-          <label>Contract Name : </label>
-          <input type="text" class="form-control" placeholder="Select Contract" name="c_id">
-          <small id="" class="form-text text-muted">Select Contract: </small>
-        </div>
-        <div class="form-group">
-          <label>Activity Name : </label>
-          <input type="text" class="form-control" id="" placeholder="Activity Name" name="start_date">
-        </div>
-        <div class="form-group">
-          <label>Activity Description : </label>
-          <input type="text" class="form-control" placeholder="Description" name="end_date">
-          
-        </div>
-        <div class="form-group">
-          <label >Activity Weight : </label>
-          <input type="text" class="form-control" placeholder="Weight eg:- 2 Units put as 2" name="location">
-          <small class="form-text text-muted">Weight describes the work load of the work done</small>
-        </div>
-        <div class="form-group">
-          <label>Date: </label>
-          <input type="text" class="form-control" placeholder="Date" name="description">  
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-      <!-- Form Ends -->
       <h3>Today Activities</h3>
       <!-- Today Activity Table -->
       <table class="table table-hover">
@@ -54,6 +24,9 @@
               </tr>
           </tbody>
       </table>
+      <hr>
+      <h3>Activity Log</h3>
+      <p>Input a contract to show activity logs of the contract</p>
     </div>
     <div class="col-3">
     <div class="alert alert-dismissible alert-info">
