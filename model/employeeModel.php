@@ -1,5 +1,5 @@
 <?php
-
+// connection
 require_once("./../../inc/config.php");
 
 function addEmployeeDB($emp_nic,$emp_name,$emp_dob,$emp_address,$emp_contact,$emp_type){

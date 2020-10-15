@@ -2,7 +2,7 @@
 
 
 <div class="container">
-<h1>Statistics</h1>
+<h1>Reports & Statistics</h1>
 <div class="row">
 
 <div class="col-sm">

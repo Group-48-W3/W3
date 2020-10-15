@@ -65,12 +65,38 @@
     <button type="submit" name="quotation_contract">Add Quotation</button>
     
     </form>
-    <p>Need to create a need one? click the following</p> 
-    <a class="btn btn-info" href="./../../view/contract/quotationAdd.php">Quotation Gallery</a>
+    <h6>Need to create a need one? click the following button</h6> 
+    <a class="btn btn-primary" href="./../../view/contract/quotationAdd.php">Quotation Gallery</a>
     <br>
     <hr>
     <h3>Set Activities</h3>
-
+        <!-- Activity Form -->
+        <form method="post" action="./../../controller/contract/contractController.php">
+        <div class="form-group">
+          <label>Contract Name : </label>
+          <input type="text" class="form-control" placeholder="Select Contract" name="c_id">
+          <small id="" class="form-text text-muted">Select Contract: </small>
+        </div>
+        <div class="form-group">
+          <label>Activity Name : </label>
+          <input type="text" class="form-control" id="" placeholder="Activity Name" name="start_date">
+        </div>
+        <div class="form-group">
+          <label>Activity Description : </label>
+          <input type="text" class="form-control" placeholder="Description" name="end_date">
+          
+        </div>
+        <div class="form-group">
+          <label >Activity Weight : </label>
+          <input type="text" class="form-control" placeholder="Weight eg:- 2 Units put as 2" name="location">
+          <small class="form-text text-muted">Weight describes the work load of the work done</small>
+        </div>
+        <div class="form-group">
+          <label>Date: </label>
+          <input type="text" class="form-control" placeholder="Date" name="description">  
+        </div>
+        <button type="submit" class="btn btn-primary">Add Activity</button>
+      </form>
     <br>
     <hr>
     

@@ -115,7 +115,8 @@ a {
 
 a:hover {
   color: #007053;
-  text-decoration: underline;
+  text-decoration: none;
+  background-color: transparent;
 }
 
 img {
@@ -1111,6 +1112,7 @@ a > code {
     max-width: 100%;
   }
 }
+/* End of Grid System */
 /* Table Style w3 css library */
 .table {
   width: 100%;
@@ -1251,7 +1253,7 @@ a > code {
 .table-responsive > .table-bordered {
   border: 0;
 }
-/* Finished */
+/* Finished table */
 /* Form control */
 .form-control {
   display: block;

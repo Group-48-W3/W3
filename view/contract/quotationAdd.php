@@ -10,33 +10,21 @@ $result = $quo->getAllQuotation();
 <h1>Quotation</h1>
 <h2>Quotation Gallery</h2>
 <h6>Quotation gallery includes the main product quotation samples inside the business environment which may important for the future reference</h6>
-<table class="table table-hover">
-    <thead>
-        <tr>
-        <th>ID</th>
-        <th >Name</th>
-        <th >Description</th>
-        <th >Budget</th>
-        <th >Image</th>
-        <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
+
     <?php
     $i=0;
     while($row = mysqli_fetch_array($result)) {
     ?>
-    <tr>
-        <td><?php echo $row["q_id"]; ?></td>
-        <td><?php echo $row["q_name"]; ?></td>
-        <td><?php echo $row["q_desc"]; ?></td>
-        <td><?php echo $row["q_budget"]; ?></td>
-        <td><?php echo $row["q_img"]; ?></td>
-        <td>
-        <a class="btn btn-warning" href="./employeeUpdate.php?updateid=<?php echo $row["emp_id"]; ?>">Update</a>
-        <a class="btn btn-danger" href="./../../controller/user/employeeController.php?deleteid=<?php echo $row["nic"]; ?>">Delete</a>
-        </td>
-    </tr>
+    <!-- Quotation Item Starts-->
+    <div class="container card text-white bg-primary" onclick="location.href='./quotationSinglePage.php?q_id=<?php echo $row["q_id"]; ?>';" style="cursor: pointer;">
+        <br>
+        <h4><?php echo $row["q_name"]; ?></h4>
+        <h6>Description :<?php echo $row["q_desc"]; ?></h6>
+        <h6>Budget : <?php echo $row["q_budget"]; ?></h6>
+        <h6>Item Count : </h6>
+        <br>
+      </div>
+      <!-- Quotation Item Ends -->
     <?php
     $i++;
     }
@@ -44,8 +32,7 @@ $result = $quo->getAllQuotation();
         echo "No results ";
     }
     ?>
-    </tbody>
-</table>
+    
 <h2>Create Custom Quotation</h2>
 <!-- Form Starts -->
 <form method="post" action="./../../controller/contract/quotationController.php">

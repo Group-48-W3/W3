@@ -147,7 +147,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="./contract/reportAdd.php" class="nav-link">
+        <a href="./contract/reportHome.php" class="nav-link">
           <svg 
             aria-hidden="true" 
             focusable="false" 
