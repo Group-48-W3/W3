@@ -3,10 +3,11 @@
     font-family: 'Open Sans';
     --text-primary: #b6b6b6;
     --text-secondary: #ececec;
-    --bg-primary: #1c1c1c;
-    --bg-secondary: #282828;
-    --error: #e04d4d;
-    --success: #49b852;
-    --warning: #e6e951;
+    --bg-primary:hsla(0, 0%, 11%, 1);
+    --bg-secondary:  hsla(0, 0%, 16%, 1);
+    --error:  hsla(350, 70%, 53%, 1);
+    --success: hsla(158, 82%, 47%, 1);
+    --warning:hsla(9, 4%, 62%, 1);
+    --default:hsla(256, 44%, 50%, 1);
     --transition-speed: 600ms;
   }

@@ -8,16 +8,20 @@
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
+.card-default {
+    background: var(--default);
+}
+
 .card-success {
-    background:linear-gradient(135deg, #b1ea4d 0%,#459522 100%);
+    background: var(--success);
 }
 
 .card-danger {
-    background:linear-gradient(135deg, #F5515F 0%,#A1051D 100%);
+    background: var(--error);
 }
 
 .card-warning {
-    background:linear-gradient(135deg, #fad961 0%,#f76b1c 100%);
+    background: var(--warning);
 }
 
 .card-category {
