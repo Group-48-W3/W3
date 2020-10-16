@@ -16,7 +16,7 @@
 	<h3>Quick Details</h3>
 	<div class="row center">
 		<div class="col-3">
-			<div class="card card-success">
+			<div class="card card-default">
 				<div class="card-category">
 					<h4>Inventory Status</h4>
 				</div>
@@ -26,7 +26,7 @@
 			</div>
 		</div>
 		<div class="col-3">
-			<div class="card card-warning">
+			<div class="card card-success">
 				<div class="card-category">
 					<h4>Items in contracts</h4>
 				</div>
