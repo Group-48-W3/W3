@@ -4,7 +4,7 @@
     <ul class="navbar-nav">
       <li class="logo">
         <a href="#" class="nav-link">
-          <span class="link-text logo-text">W3</span>
+          <span class="link-text logo-text">Dashboard</span>
           <svg 
             aria-hidden="true" 
             focusable="false"
