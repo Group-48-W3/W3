@@ -1,4 +1,12 @@
-<?php require_once('./contractHeader.php');?>
+<?php 
+
+require_once('./contractHeader.php');
+require_once('./../../controller/contract/contractController.php');
+
+$con = new Contract();
+$result = $con->getAllActiveContracts();
+
+?>
 <!-- Content Starts -->
 <div class="container">
 <h2>Activities</h2>
@@ -26,7 +34,44 @@
       </table>
       <hr>
       <h3>Activity Log</h3>
-      <p>Input a contract to show activity logs of the contract</p>
+      <p>Select a contract to show activity logs of the contract</p>
+      <select name="contract" id="con">
+            <?php
+            $i=0;
+            while($row_quo = mysqli_fetch_array($result)) {
+
+            ?>
+            <option value="<?php echo $row_quo["con_id"];?>"><?php echo $row_quo["con_name"];?></option>
+
+        
+        <?php
+        $i++;
+        }
+        if($i==0){
+            echo "No results ";
+        }
+        ?>
+        </select>
+        <table class="table table-hover">
+          <thead>
+              <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Contract</th>
+              <th scope="col">Name</th>
+              <th scope="col">Weight</th>
+              <th scope="col">Description</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr class="table-active">
+              <td>2020-10-18</td>
+              <td>Bentota 360 Hotel</td>
+              <td>Beach Chairs</td>
+              <td>3 Units</td>
+              <td>High Comfortable Chair Model for Hotels</td>
+              </tr>
+          </tbody>
+      </table>
     </div>
     <div class="col-3">
     <div class="alert alert-dismissible alert-info">
