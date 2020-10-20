@@ -42,12 +42,12 @@
 <div class="container center">
   <div class="row">
     <div class="col-12">
-      <a class="btn-primary" href="replenish_newitem_submit.php">+ Add new items to stock</a> 
+      <a class="btn-primary" href="replenishNewItemSubmit.php">+ Add new items to stock</a> 
     </div>
   </div>
 </div>
 
 <?php
-  require_once('left_sidebar.php'); 
+  require_once('leftSidebar.php'); 
   require_once('footer.php'); 
 ?>	

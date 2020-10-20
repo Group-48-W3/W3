@@ -16,13 +16,13 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Incomes & Expenses<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="./expenseHome.php">Incomes & Expenses<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="./addIncome.php">Income</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Expense</a>
+        <a class="nav-link" href="./addExpense.php">Expense</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="./expenseCategory.php">Category</a>

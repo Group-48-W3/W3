@@ -84,6 +84,11 @@
   .top-item {
     cursor: pointer;
   }
+
+  .top-item-last {
+    margin-right: auto;
+    display: none;
+  }
   
   .top-link {
     display: flex;
@@ -120,7 +125,7 @@
     text-align: center;
     color: var(--text-secondary);
     background: var(--bg-secondary);
-    font-size: 1.5rem;
+    font-size: 1rem;
     letter-spacing: 0.3ch;
     width: 100%;
   }
@@ -187,6 +192,16 @@
     .top-link svg{
       width: 1rem;
       min-width: 1rem;
+    }
+
+    .top-item-last {
+      margin-right: auto;
+      display: block;
+    }
+    
+    .top-item-last svg {
+      transform: rotate(-180deg);
+      margin-right: 0.5rem;
     }
   }  
   

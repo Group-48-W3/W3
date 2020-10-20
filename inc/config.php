@@ -8,7 +8,7 @@
 	// create connection mysqli
 	$conn = mysqli_connect(HOST,DB_USER,DB_PASS,DB_NAME);
 	
-	// corrupted connection
+	// if a corrupted connection
 	// exeception handling
 	if(!$conn)
 	{

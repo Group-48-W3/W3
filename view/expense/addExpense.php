@@ -2,7 +2,7 @@
 <!-- Content Starts -->
 <div class="container">
     <div class="row">
-        <div class="col-6">
+        <div class="col-5">
         
             <h4>Add Daily Expense</h4>
             <!-- Form Starts -->
@@ -55,7 +55,7 @@
             <!-- Form Ends -->
         </div>
     
-        <div class="col-6">
+        <div class="col-5">
             <h4>Exployee Payment</h4>
             <!-- Form Starts -->
             <form method="post" action="./../../controller/expense/expensetController.php">
@@ -96,9 +96,27 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
              <!-- Form Ends -->
-            <a class="btn-success">View expenses</a>
-            <a class="btn-success">View employee payments</a>
-            <a class="btn-success">View scheduled expenses</a>
+
+             <div class="row">
+                <div class="col-3">
+                    <div class="alert alert-dismissible alert-warning">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <a href="#" class="alert-link">view daily expenses </a>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="alert alert-dismissible alert-warning">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <a href="#" class="alert-link">view employee payments</a>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="alert alert-dismissible alert-warning">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <a href="#" class="alert-link">view scheduled expenses</a>
+                    </div>
+                </div>      
+             </div>   
 
         </div>
     </div>

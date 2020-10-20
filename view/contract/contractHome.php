@@ -1,15 +1,24 @@
 <?php 
+
+session_start();
+	
+	if(!isset($_SESSION['u_id'],$_SESSION['r_id'])){
+		header('location:index.php?lmsg=true');
+		exit;
+	}	
 require_once('./contractHeader.php');
 require_once('./../../controller/contract/contractController.php');
 $con = new Contract();
 $result = $con->getAllActiveContracts();
 ?>
   <div class="container">
-      <div class="alert alert-dismissible alert-warning">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
-      </div>
-      <h3>Summary</h3>
+      <!-- Heading  -->
+      <h2>Contract Home</h2>
+     
+      <input type="text" placeholder="Find a Repostory">
+      <a class="btn btn-primary" href="./contractAdd.php">Add New Contract</a>
+      <br>
+      <br>
       <!-- Start the card View  -->
     <div class="row">
         <!-- 1st card -->
@@ -61,22 +70,23 @@ $result = $con->getAllActiveContracts();
 
       <!--Contrat Summary Details  -->
       <h3>Ongoing Contracts</h3>
-
+      <p>Contracts that are Active</p>
       <?php
       $i=0;
       while($row = mysqli_fetch_array($result)) {
 
       ?>
+      <!-- Contract Item -->
       <div class="container card text-white bg-primary" onclick="location.href='./contractSinglePage.php?con_id=<?php echo $row["con_id"]; ?>';" style="cursor: pointer;">
-      <br>
-      <h4><?php echo $row["con_name"]; ?></h4>
-      <h6><?php echo $row["con_desc"]; ?></h6>
-      <h6>Start Date :<?php echo $row["startdate"]; ?>Upto End date : <?php echo $row["enddate"]; ?></h6>
-      <h6><?php echo $row["location"]; ?></h6>
-      <p style="text-align:right;"><?php echo $row["status"]; ?></p>
-      <br>
-
+        <br>
+        <h4><?php echo $row["con_name"]; ?></h4>
+        <h6><?php echo $row["con_desc"]; ?></h6>
+        <h6>Start Date :<?php echo $row["startdate"]; ?>Upto End date : <?php echo $row["enddate"]; ?></h6>
+        <h6><?php echo $row["location"]; ?></h6>
+        <p style="text-align:right;"><?php echo $row["status"]; ?></p>
+        <br>
       </div>
+      <!-- Contract Item Ends -->
       <?php
       $i++;
       }
