@@ -33,8 +33,6 @@
     <h5>Email : <?php echo $row_client["c_email"]; ?></h5>
     <h5>Contact : <?php echo $row_client["c_mobile"]; ?></h5>
 
-    <button class="btn btn-warning">Update</button>
-    <button class="btn btn-danger">Set Inactive</button>
     <br>
     <hr>
     <h3>Quotation Details</h3>
@@ -99,6 +97,18 @@
       </form>
     <br>
     <hr>
+    <h3>Contract Settings</h3>
+    <h5>Want to update contract?</h5>
+    <!-- Update Navigation -->
+    <a href="./contractUpdate.php?con_id=<?php echo $row["con_id"]; ?>" class="btn btn-warning">Update</a><br>
+    <!-- Sset Inactive Navigation -->
+    <h5>Want to set to inactive state contract?</h5>
+    <button class="btn btn-danger">Set Inactive</button><br>
+    <!-- Delete Navigation to home -->
+    <h5>Want to delete this particular contract?</h5>
+    <a href="./contractUpdate.php?con_id=<?php echo $row["con_id"]; ?>" class="btn btn-danger">Delete <?php echo $row["con_name"]; ?></a>
     
+    
+    <br>
     <br>
 </div>
