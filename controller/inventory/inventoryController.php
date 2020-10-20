@@ -1,6 +1,6 @@
 <?php
 // include model
-    require_once("./../../model/employeeModel.php");
+    require_once("./../../model/inventoryModel.php");
 
 
     if(isset($_POST['addNewRawMaterial'])){
@@ -61,7 +61,7 @@
             exit;
         } 
 
-        
+
         function addTool(){
             $toolName = $_POST['toolName'];
             $toolPrice = $_POST['toolPrice'];
