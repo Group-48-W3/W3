@@ -50,7 +50,7 @@
 </div>
 <div id="newTool" class="tabcontent">
     <h2>Add new tool</h2>
-    <form>
+    <form method="post" action="./../../controller/user/inventoryController.php">
         <div class="form-group field">
             <div class="form-group field">
                 <input class="form-field" id="name" name="toolName">

@@ -15,7 +15,7 @@
   <div class="row">
     <div class="col-6">
     <h3>Replenish Row Materials</h3>
-      <form>
+      <form method="post" action="./../../controller/user/inventoryController.php">
         <div class="container">
           <div class="form-group field">
             <select class="form-field" id="item" name="replenishMaterialId" placeholder="Select">  
@@ -43,7 +43,7 @@
 
     <div class="col-6">
       <h3>Replenish Tools</h3>
-      <form>
+      <form method="post" action="./../../controller/user/inventoryController.php">
         <div class="container">
           <div class="form-group field">
             <select class="form-field" id="item" name="replenishToolId" placeholder="Select">  
