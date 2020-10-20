@@ -12,7 +12,7 @@
 <?php include_once('header.php'); ?>
 <h2>Issue Item</h2>
 <div class="container">
-  <form>
+  <form method="post" action="./../../controller/user/inventoryController.php">
     <div class="form-group field">
         <select class="form-field" id="item" name="materialId">
           <option value="">Select from list</option>  
