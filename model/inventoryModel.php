@@ -24,4 +24,19 @@
         global $conn;
     }
 
+    //update commands
+    function updateRawMaterial(){
+        global $conn;
+        //
+    }
+
+    function updateTool(){
+        global $conn;
+    }
+
+    //delete commands
+    function removeFromMaintenance(){
+        global $conn;
+    }
+
 ?>
