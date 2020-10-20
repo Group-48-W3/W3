@@ -57,6 +57,16 @@
         }
     }
 
+    function getColumnFromRowMaterial($materialId, $columnName){
+        global $conn;
+        $sql = "select ".$columnName." from row_material_details where mat_id = '".$materialId."'";
+
+        $result = mysqli_query($conn, $sql);
+        $resultArray = mysqli_fetch_array($result);
+
+        return $resultArray[$columnName];
+    }
+
     //read commands
     function selectFromRawMaterial(){
         global $conn;
