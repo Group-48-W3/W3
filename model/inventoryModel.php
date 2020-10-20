@@ -15,6 +15,20 @@
         global $conn;
     }
 
+    function isInRawMaterial($materialName){
+        global $conn;
+        $sql = "select * from row_material where mat_name = '".$materialName."'";
+				
+	    $result = mysqli_query($conn, $sql);
+        $numRows = mysqli_num_rows($result);
+
+        if($numRows == 0){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+
     //read commands
     function selectFromRawMaterial(){
         global $conn;
