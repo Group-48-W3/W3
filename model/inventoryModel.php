@@ -15,4 +15,13 @@
         global $conn;
     }
 
+    //read commands
+    function selectFromRawMaterial(){
+        global $conn;
+    }
+
+    function selectFromRawMaterial(){
+        global $conn;
+    }
+
 ?>
