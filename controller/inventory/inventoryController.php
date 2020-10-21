@@ -22,8 +22,12 @@
     if(isset($_POST['replenishTool'])){
         $inv = new Inventory();
         $inv->replenishTool();
-    }
+    } 
 
+    if(isset($_POST['issueRawMaterial'])){
+        $inv = new Inventory();
+        $inv->issueRawMaterial();
+    }
 
 
     class Inventory{
@@ -57,8 +61,7 @@
             exit;
         } 
 
-
-
+        
         function addTool(){
             $toolName = $_POST['toolName'];
             $toolPrice = $_POST['toolPrice'];
@@ -109,30 +112,41 @@
             exit;
         }
 
+        function issueRawMaterial(){
+            $materialId = $_POST['materialId'];
+            $quantity = $_POST['issueAmount'];
+            $contract = $_POST['issueContract'];
+            $employeeDetails = $_POST['employeeDetails'];
 
+            if(!empty($materialId) && !empty($quantity) && !empty($contract) && !empty($employeeDetails)){
+                $availableQuantity = getColumnFromRawMaterial($materialId, "mat_qty");
+                $reorderValue = getColumnFromRawMaterial($materialId, "min_qty");
 
+                if($availableQuantity - $quantity > $reorderValue){
+                    //issue
+                }else if($availableQuantity - $quantity <= $reorderValue){
+                    if($availableQuantity - $quantity < 0){
+                        //issue_failed
+                    }else{
+                        //warning
+                    }
+                }
+            }else{
+                echo 'All fields are required';
+            }
+            header('location:./../../view/inventory/issueConfirm.php');//redirection
+            exit;
+        }  
 
+        function addToMaintenance($toolId){
+            //
+        }
 
-
-
-
-
-
-
-
+        function removeFromMaintenance($maintenanceId){
+            //
+        }
 
     }
-
-
-    
-   
-
-
-
-
-
-
-
 
 ?>
 
