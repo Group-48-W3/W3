@@ -12,6 +12,11 @@
     if(isset($_POST['addNewTool'])){
         $inv = new Inventory();
         $inv->addTool();
+    } 
+
+    if(isset($_POST['replenishRawMaterial'])){
+        $inv = new Inventory();
+        $inv->replenishRawMaterial();
     }
 
 
@@ -72,19 +77,32 @@
             exit;
         }
     
-
-
-
-
-
-
-
-
-
-
-
-
         
+        function replenishRawMaterial(){
+            $replenishMaterialId = $_POST['replenishRawMaterialId'];
+            $replenishMaterialAmount = $_POST['replenishMaterialAmount'];
+
+            if(!empty($replenishMaterialId) && !empty($replenishMaterialAmount)){
+                //update database
+            }else{
+                echo 'All fields are required';
+            }
+            header('location:./../../view/inventory/replenishConfirm.php');//redirection
+            exit;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 
