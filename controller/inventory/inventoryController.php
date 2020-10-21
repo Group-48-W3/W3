@@ -7,10 +7,12 @@
         $inv = new Inventory();
         $inv->addRawMaterial();
     }
+ 
 
-
-
-
+    if(isset($_POST['addNewTool'])){
+        $inv = new Inventory();
+        $inv->addTool();
+    }
 
 
 
@@ -43,9 +45,51 @@
             }
             header('location:./../../view/inventory/replenishOwnerPermission.php');//redirection
             exit;
+        } 
+
+
+
+        function addTool(){
+            $toolName = $_POST['toolName'];
+            $toolPrice = $_POST['toolPrice'];
+            $toolManufacturer = $_POST['toolManufacturer'];
+            $toolQuantity = $_POST['toolQuantity'];
+            $toolReorderValue = $_POST['toolReorderValue'];
+    
+            if(!empty($toolName) && !empty($toolPrice) && !empty($toolManufacturer) && !empty($toolQuantity) && !empty($toolReorderValue)){
+                if(isInTool($toolName)){
+                    echo "Material already exist";
+                    header('location:./../../view/inventory/issue.php');//redirection
+                    exit;
+                }else{
+                    //get owner permission to execute following command
+                    insertToTool($toolName, $toolPrice, $toolManufacturer, $toolQuantity, $toolReorderValue);
+                }
+            }else{
+                echo 'All fields are required';
+            }
+            header('location:./../../view/inventory/replenishOwnerPermission.php');//redirection
+            exit;
         }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+        
     }
 
+
+    
+   
 
 
 
