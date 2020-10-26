@@ -62,5 +62,5 @@
   </div>
 </div>
     <?php
-    require_once('left_sidebar.php'); 
+    require_once('leftSidebar.php'); 
     require_once('footer.php'); ?>	

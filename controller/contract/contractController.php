@@ -38,7 +38,12 @@ class Contract{
         
         $id = $this->getContractIdByName($con_name);
         echo $id;
-        header('location: ./../../view/contract/contractSinglePage.php?con_id='.$id);
+        if($con_status == "Active"){
+            header('location: ./../../view/contract/contractSinglePage.php?con_id='.$id);
+        }else{
+            header('location: ./../../view/contract/contractHome.php');
+        }
+        
        
     }
     function getContractIdByName($name){ 
@@ -58,16 +63,16 @@ class Contract{
         
         return $res;
     }
-    function updateContract(){
-
-    }
-    function deleteContract(){
-
-    }
     function getSingleClient($id){
         $res =  getSingleClientDB($id);
         
         return $res;
+
+    }
+    function updateContract(){
+
+    }
+    function deleteContract(){
 
     }
 }
