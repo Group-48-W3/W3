@@ -12,6 +12,9 @@
 
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
+      <li>
+        <a class="nav-link" href="./contractDashboard.php">Overview</a>
+      </li>
       <li class="nav-item active">
         <a class="nav-link" href="./contractHome.php">Contract</a>
       </li>

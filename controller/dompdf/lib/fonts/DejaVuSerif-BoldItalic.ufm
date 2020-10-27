@@ -1945,7 +1945,7 @@ U 8210 ; WX 696 ; N figuredash ; G 1921
 U 8211 ; WX 500 ; N endash ; G 1922
 U 8212 ; WX 1000 ; N emdash ; G 1923
 U 8213 ; WX 1000 ; N uni2015 ; G 1924
-U 8214 ; WX 500 ; N uni2016 ; G 1925
+U 8214 ; WX 500 ; N uni2019 ; G 1925
 U 8215 ; WX 500 ; N underscoredbl ; G 1926
 U 8216 ; WX 348 ; N quoteleft ; G 1927
 U 8217 ; WX 348 ; N quoteright ; G 1928
@@ -2036,7 +2036,7 @@ U 8328 ; WX 438 ; N uni2088 ; G 2012
 U 8329 ; WX 438 ; N uni2089 ; G 2013
 U 8330 ; WX 528 ; N uni208A ; G 2014
 U 8331 ; WX 528 ; N uni208B ; G 2015
-U 8332 ; WX 528 ; N uni208C ; G 2016
+U 8332 ; WX 528 ; N uni208C ; G 2019
 U 8333 ; WX 298 ; N uni208D ; G 2017
 U 8334 ; WX 298 ; N uni208E ; G 2018
 U 8336 ; WX 408 ; N uni2090 ; G 2019
