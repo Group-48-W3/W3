@@ -1,5 +1,6 @@
 <?php require_once('./contractHeader.php');?>
     <div class="container">
+    <h2>Statistics and Analytics</h2>
     <h3>Contract Overview</h3>
     <div class="container">
     <div id="contractBurndown" style="height: 370px; width: 80%;"></div>
@@ -10,6 +11,7 @@
     <!-- Body starts -->
     <div class="container">
       <div id="chartContainer" style="height:200px; width: 80%; background-color:#363332; "></div>
+      <div id="monthExpenseCtaegory" style="height: 370px; width: 40%;"></div>
       
     </div>
     <!-- Body ends -->
@@ -192,7 +194,46 @@
                 ]
             }]
         });
-        chart.render(); 
+        chart.render();
+        // Monthly Expense via category
+        var chart = new CanvasJS.Chart("monthExpenseCtaegory", {
+            theme: "dark2",
+            exportFileName: "Doughnut Chart",
+            exportEnabled: true,
+            animationEnabled: true,
+            title:{
+                text: "Monthly Expense via Categories"
+            },
+            legend:{
+                cursor: "pointer",
+                itemclick: explodePie
+            },
+            data: [{
+                type: "doughnut",
+                innerRadius: 90,
+                showInLegend: true,
+                toolTipContent: "<b>{name}</b>: ${y} (#percent%)",
+                indexLabel: "{name} - #percent%",
+                dataPoints: [
+                    { y: 450, name: "Food" },
+                    { y: 120, name: "Insurance" },
+                    { y: 300, name: "Employee" },
+                    { y: 800, name: "Rent" },
+                    { y: 150, name: "Tools" },
+                    { y: 150, name: "Machinary"},
+                    { y: 250, name: "Others" }
+                ]
+            }]
+        });
+        chart.render();
+        function explodePie (e) {
+            if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+                e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+            } else {
+                e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+            }
+            e.chart.render();
+        } 
       }
       </script>
       
