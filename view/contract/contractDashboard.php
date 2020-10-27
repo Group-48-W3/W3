@@ -4,6 +4,7 @@
     <h3>Contract Overview</h3>
     <div class="container">
     <div id="contractBurndown" style="height: 370px; width: 80%;"></div>
+    <br>
     <div id="chartContainerpie" style="height:320px; width: 40%;"></div>
     </div>
     <br>
@@ -11,12 +12,14 @@
     <!-- Body starts -->
     <div class="container">
       <div id="chartContainer" style="height:200px; width: 80%; background-color:#363332; "></div>
+      <br>
       <div id="monthExpenseCtaegory" style="height: 370px; width: 40%;"></div>
       
     </div>
     <!-- Body ends -->
     <br>
     <h3>Inventory Overview</h3>
+    <div id="itemDistribution" style="height: 300px; width: 70%;"></div>
     </div>
     <br>
 
@@ -233,7 +236,34 @@
                 e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
             }
             e.chart.render();
-        } 
+        }
+        // Item Distribution
+        var chart = new CanvasJS.Chart("itemDistribution", {
+            animationEnabled: true,
+            theme: "dark2", // "light1", "light2", "dark1", "dark2"
+            title:{
+                text: "Inventory Distribution"
+            },
+            axisY: {
+                title: "Inventory Graph"
+            },
+            data: [{        
+                type: "column",  
+                showInLegend: true, 
+                legendMarkerColor: "grey",
+                legendText: "Item Count",
+                dataPoints: [      
+                    { y: 300878, label: "Furniture " },
+                    { y: 266455,  label: "Glue" },
+                    { y: 169709,  label: "Blade" },
+                    { y: 158400,  label: "Nuts and bolts 2mm" },
+                    { y: 142503,  label: "Paint" },
+                    { y: 101500, label: "Waterbase" },
+                    { y: 97800,  label: "JAT" },
+                    { y: 80000,  label: "Locks and Handles" }
+                ]
+            }]
+        }); 
       }
       </script>
       
