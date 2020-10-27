@@ -1568,7 +1568,7 @@ U 2012 ; WX 625 ; N uni07DC ; G 1544
 U 2013 ; WX 734 ; N uni07DD ; G 1545
 U 2014 ; WX 530 ; N uni07DE ; G 1546
 U 2015 ; WX 724 ; N uni07DF ; G 1547
-U 2016 ; WX 473 ; N uni07E0 ; G 1548
+U 2019 ; WX 473 ; N uni07E0 ; G 1548
 U 2017 ; WX 625 ; N uni07E1 ; G 1549
 U 2018 ; WX 594 ; N uni07E2 ; G 1550
 U 2019 ; WX 530 ; N uni07E3 ; G 1551
@@ -2036,7 +2036,7 @@ U 5430 ; WX 781 ; N uni1536 ; G 2012
 U 5431 ; WX 844 ; N uni1537 ; G 2013
 U 5432 ; WX 781 ; N uni1538 ; G 2014
 U 5433 ; WX 816 ; N uni1539 ; G 2015
-U 5434 ; WX 818 ; N uni153A ; G 2016
+U 5434 ; WX 818 ; N uni153A ; G 2019
 U 5435 ; WX 816 ; N uni153B ; G 2017
 U 5436 ; WX 818 ; N uni153C ; G 2018
 U 5437 ; WX 816 ; N uni153D ; G 2019
@@ -2829,7 +2829,7 @@ U 8210 ; WX 636 ; N figuredash ; G 2805
 U 8211 ; WX 500 ; N endash ; G 2806
 U 8212 ; WX 1000 ; N emdash ; G 2807
 U 8213 ; WX 1000 ; N uni2015 ; G 2808
-U 8214 ; WX 500 ; N uni2016 ; G 2809
+U 8214 ; WX 500 ; N uni2019 ; G 2809
 U 8215 ; WX 500 ; N underscoredbl ; G 2810
 U 8216 ; WX 318 ; N quoteleft ; G 2811
 U 8217 ; WX 318 ; N quoteright ; G 2812
