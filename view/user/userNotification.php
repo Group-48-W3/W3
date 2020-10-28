@@ -14,7 +14,7 @@
     <label for="exampleInputEmail1">Date/Time</label>
     <input type="text" class="form-control" placeholder="<?php echo " ".date("Y/m/d")." ".date("h:i:sa") ?>">
 
-    <input type="submit" value="Push Message" name="#">
+    <input class="btn btn-primary" type="submit" value="Push Message" name="#">
 </form>
 <h1>Admin/Owner Notifications</h1>
 <p>Admin or Owner can push notifications into the specifically for a user role to notify some details</p>
@@ -38,7 +38,7 @@
     <label for="exampleInputEmail1">Date/Time</label>
     <input type="text" class="form-control" placeholder="<?php echo " ".date("Y/m/d")." ".date("h:i:sa") ?>">
 
-    <input type="submit" value="Push Notification" name="#">
+    <input class="btn btn-primary" type="submit" value="Push Notification" name="#">
 </form>
 
 </div>
