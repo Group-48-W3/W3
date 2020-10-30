@@ -91,7 +91,7 @@
         </div>
         <div class="form-group">
           <label>Date: </label>
-          <input type="text" class="form-control" placeholder="Date" name="description">  
+          <input type="Date" class="form-control" placeholder="Date" name="description">  
         </div>
         <button type="submit" class="btn btn-primary">Add Activity</button>
       </form>
