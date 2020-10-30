@@ -20,7 +20,8 @@
 	  <center>
 		  <img src="./../assets/img/logo.png" alt="icon" height="150px" width="150px">
 	  </center>
-      <h3>You are login as <strong><?php echo getUserAccessRoleByID($_SESSION['r_id']); ?></strong></h3>
+      
+	  <h1><small>You are login as :</small><?php echo getUserAccessRoleByID($_SESSION['r_id']); ?></h1>
 	  <hr>
       <h2>
 	  Special Notices:
