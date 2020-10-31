@@ -2036,7 +2036,7 @@ U 7580 ; WX 370 ; N uni1D9C ; G 2012
 U 7581 ; WX 370 ; N uni1D9D ; G 2013
 U 7582 ; WX 414 ; N uni1D9E ; G 2014
 U 7583 ; WX 360 ; N uni1D9F ; G 2015
-U 7584 ; WX 296 ; N uni1DA0 ; G 2016
+U 7584 ; WX 296 ; N uni1DA0 ; G 2019
 U 7585 ; WX 233 ; N uni1DA1 ; G 2017
 U 7586 ; WX 405 ; N uni1DA2 ; G 2018
 U 7587 ; WX 405 ; N uni1DA3 ; G 2019
@@ -2581,7 +2581,7 @@ U 8210 ; WX 636 ; N figuredash ; G 2557
 U 8211 ; WX 500 ; N endash ; G 2558
 U 8212 ; WX 1000 ; N emdash ; G 2559
 U 8213 ; WX 1000 ; N uni2015 ; G 2560
-U 8214 ; WX 500 ; N uni2016 ; G 2561
+U 8214 ; WX 500 ; N uni2019 ; G 2561
 U 8215 ; WX 500 ; N underscoredbl ; G 2562
 U 8216 ; WX 318 ; N quoteleft ; G 2563
 U 8217 ; WX 318 ; N quoteright ; G 2564

@@ -1,4 +1,11 @@
-<?php require_once('./contractHeader.php');?>
+<?php require_once('./contractHeader.php');
+
+
+require_once('./../../controller/contract/contractController.php');
+
+$con = new Contract();
+$result = $con->getAllActiveContracts();
+?>
 
 <div class="container">
 <h1>Invoice</h1>
@@ -10,13 +17,29 @@
         <h3>Step 01 : Contract Details</h3>
         <div class="form-group">
           <label>Contract Name : </label>
-          <input type="text" class="form-control" placeholder="Contract" name="c_id">
+          <select name="contract" id="con">
+              <?php
+              $i=0;
+              while($row_quo = mysqli_fetch_array($result)) {
+
+              ?>
+              <option value="<?php echo $row_quo["con_id"];?>"><?php echo $row_quo["con_name"];?></option>
+
+          
+          <?php
+          $i++;
+          }
+          if($i==0){
+              echo "No results ";
+          }
+          ?>
+          </select>
           <small id="" class="form-text text-muted">Select the Contract Name</small>
         </div>
         <h3>Step 02 : Client Details</h3>
         <div class="form-group">
           <label>Client Name : </label>
-          <input type="text" class="form-control" placeholder="Client Name" name="">
+          <input type="text" class="form-control" placeholder="Client Name" name="" value=<?php echo $row_quo["con_name"]; ?>>
           <small id="" class="form-text text-muted">Select the client</small>
         </div>
         <h3>Step 03 : Invoice Details</h3>

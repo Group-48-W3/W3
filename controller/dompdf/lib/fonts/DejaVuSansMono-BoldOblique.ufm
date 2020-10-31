@@ -1742,7 +1742,7 @@ U 8210 ; WX 602 ; N figuredash ; G 1720
 U 8211 ; WX 602 ; N endash ; G 1721
 U 8212 ; WX 602 ; N emdash ; G 1722
 U 8213 ; WX 602 ; N uni2015 ; G 1723
-U 8214 ; WX 602 ; N uni2016 ; G 1724
+U 8214 ; WX 602 ; N uni2019 ; G 1724
 U 8215 ; WX 602 ; N underscoredbl ; G 1725
 U 8216 ; WX 602 ; N quoteleft ; G 1726
 U 8217 ; WX 602 ; N quoteright ; G 1727
@@ -2034,7 +2034,7 @@ U 8748 ; WX 602 ; N uni222C ; G 2012
 U 8749 ; WX 602 ; N uni222D ; G 2013
 U 8756 ; WX 602 ; N therefore ; G 2014
 U 8757 ; WX 602 ; N uni2235 ; G 2015
-U 8758 ; WX 602 ; N uni2236 ; G 2016
+U 8758 ; WX 602 ; N uni2236 ; G 2019
 U 8759 ; WX 602 ; N uni2237 ; G 2017
 U 8760 ; WX 602 ; N uni2238 ; G 2018
 U 8761 ; WX 602 ; N uni2239 ; G 2019

@@ -45,7 +45,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="./contract/contractHome.php" class="nav-link">
+        <a href="./contract/contractDashboard.php" class="nav-link">
             <svg 
               aria-hidden="true" 
               focusable="false" 
@@ -128,7 +128,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="./contract/contractHome.php" class="nav-link">
+        <a href="./contract/contractDashboard.php" class="nav-link">
           <svg 
             aria-hidden="true" 
             focusable="false" 
