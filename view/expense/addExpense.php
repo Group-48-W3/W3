@@ -90,7 +90,7 @@
                 <input type="text" class="form-control" placeholder="cash">
                 </div>
                 <div class="form-group">
-                <label for="payment description">Expense description : </label>
+                <label for="payment description">Payment description : </label>
                 <input type="text" class="form-control" id="" placeholder="description" >
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -101,13 +101,13 @@
                 <div class="col-3">
                     <div class="alert alert-dismissible alert-warning">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <a href="#" class="alert-link">view daily expenses </a>
+                        <a href="./viewExpense.php" class="alert-link">view daily expenses </a>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="alert alert-dismissible alert-warning">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <a href="#" class="alert-link">view employee payments</a>
+                        <a href="./viewEmpPayment.php" class="alert-link">view employee payments</a>
                     </div>
                 </div>
                 <div class="col-3">
