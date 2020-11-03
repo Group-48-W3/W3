@@ -3,7 +3,7 @@
 <div class="container">
     <div class="alert alert-dismissible alert-warning">
         <button type="button" class="close" data-dismiss="alert"></button>
-        View <a href="#" class="alert-link" style="text-decoration: none">scheduled expenses</a>.
+        View <a href="./viewSchedule.php" class="alert-link" style="text-decoration: none">scheduled expenses</a>.
     </div>
     <h3>Summary expenses</h3>
   <!-- Start the card View  -->
