@@ -3,14 +3,14 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-    
+      <h3>Income</h3>
       <h4>Add Income</h4>
       <!-- Form Starts -->
       <form method="post" action="./../../controller/expense/expensetController.php">
       <div class="form-group">
         <label for="Contract's Name">Contract's Name : </label>
         <select id="" name="Select contract name :">
-            <option value="default">...Select contract name....</option>
+            <option value="default">Select contract name</option>
             <option value="cid1">Sanken Lanka pvt Ltd</option>
             <option value="cid2">Hotel Shrangrilla</option>
             <option value="cid2">Hotel Romi</option>

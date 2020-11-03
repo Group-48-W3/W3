@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-    
+      <h3>Category</h3>
       <h4>Add expense category</h4>
       <!-- Form Starts -->
       <form method="post" action="./../../controller/expense/expensetController.php">
