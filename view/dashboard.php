@@ -39,7 +39,7 @@
 	  </div>
 	  
 
-      <div style="height: 600px;"></div>
+      <div style="height: 200px;"></div>
     </div>
 <?php 
 require_once('left_sidebar.php'); 	

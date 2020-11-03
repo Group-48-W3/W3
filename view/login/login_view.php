@@ -31,6 +31,7 @@
 					<div class="form-group">
 						<label for="exampleInputPassword1">Password</label>
 						<input class="form-control" id="exampleInputPassword1" name="password" type="password" placeholder="Password" required>
+						<a href="#" style="text-decoration:none;">Forget your password?</a>
 					</div>
 					<button class="btn btn-primary btn-block" type="submit" name="login">Login</button>
 				</form>
