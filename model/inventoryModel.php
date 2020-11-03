@@ -1,5 +1,5 @@
 <?php
-    require_once("./../../inc/config.php");
+    require_once("./../../config/config.php");
 
     //insert commands
     function insertToRawMaterial($materialName, $materialType, $materialPrice, $materialQuantity, $materialReorderValue){
