@@ -23,7 +23,7 @@
           </thead>
           <tbody>
               <tr class="table-active">
-              <td>Shammi Fernando</td>
+              <td>John Doe</td>
               <td>Sanken Lanka (pvt) LTD</td>
               <td>3,500</td>
               <td>31.10.2020</td>
