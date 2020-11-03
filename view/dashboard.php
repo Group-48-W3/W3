@@ -18,7 +18,7 @@
       <h1>Welcome to W3 Contract Management System</h1>
 	  <hr>
 	  <center>
-		  <img src="./../assets/img/logo.png" alt="icon" height="150px" width="150px">
+		  <img src="./../public/img/logo.png" alt="icon" height="150px" width="150px">
 	  </center>
       
 	  <h1><small>You are login as :</small><?php echo getUserAccessRoleByID($_SESSION['r_id']); ?></h1>
