@@ -16,7 +16,7 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="./expenseHome.php">Incomes & Expenses<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="./expenseHome.php">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="./addIncome.php">Income</a>
@@ -28,7 +28,7 @@
         <a class="nav-link" href="./expenseCategory.php">Category</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Tools</a>
+        <a class="nav-link" href="./calculator.php">Tools</a>
       </li>
     </ul>
     
