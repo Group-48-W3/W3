@@ -18,7 +18,7 @@
       <h1>Welcome to W3 Contract Management System</h1>
 	  <hr>
 	  <center>
-		  <img src="./../assets/img/logo.png" alt="icon" height="150px" width="150px">
+		  <img src="./../public/img/logo.png" alt="icon" height="150px" width="150px">
 	  </center>
       
 	  <h1><small>You are login as :</small><?php echo getUserAccessRoleByID($_SESSION['r_id']); ?></h1>
@@ -39,7 +39,7 @@
 	  </div>
 	  
 
-      <div style="height: 600px;"></div>
+      <div style="height: 200px;"></div>
     </div>
 <?php 
 require_once('left_sidebar.php'); 	

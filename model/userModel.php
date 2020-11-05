@@ -5,9 +5,9 @@
 <?php
 // import database settings
 if(preg_match('/dashboard/', $url)){ 
-	require_once("./../inc/config.php");
+	require_once("./../config/config.php");
 }else{
-	require_once("./../../inc/config.php");
+	require_once("./../../config/config.php");
 }
 
 function addUserDB($user_role,$first_name,$last_name,$email,$password){
