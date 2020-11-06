@@ -1,17 +1,23 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap");
 
 @import url("variables.css");
+@import url("components/variables.css");
 @import url("components/avatar.css");
+@import url("components/alert.css");
 @import url("components/navigation.css");
-@import url("components/button.css");
+@import url("components/button0.css");
 @import url("components/dropdown.css");
 @import url("components/card.css");
+@import url("components/color.css");
+@import url("components/text.css");
 @import url("components/grid.css");
+@import url("components/flex.css");
 @import url("components/badge.css");
 @import url("components/search.css");
 @import url("components/banner.css");
 @import url("components/tabs.css");
 @import url("components/form.css");
+
 
 body {
   color: black;

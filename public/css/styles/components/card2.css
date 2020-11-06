@@ -1,0 +1,45 @@
+.card{
+    width: 15rem;
+    height: 10rem;
+    color: white;
+    border-radius: 1rem;
+    position: relative;
+    margin-right: 2rem;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.card-default {
+    background: var(--default);
+}
+
+.card-success {
+    background: var(--success);
+}
+
+.card-danger {
+    background: var(--error);
+}
+
+.card-warning {
+    background: var(--warning);
+}
+
+.card-category {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
+
+.card-description {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    font-weight: lighter;
+    font-size: xx-large;
+}
+
+.card-avatar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
