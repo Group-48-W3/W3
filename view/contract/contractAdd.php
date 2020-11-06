@@ -16,10 +16,10 @@ require_once('./../../controller/contract/contractController.php');
           <input type="text" class="form-control" placeholder="Contract Name" name="con_name" required>
         
           <label>StartDate : </label>
-          <input type="text" class="form-control" placeholder="StartDate" name="con_start_date" required>
+          <input type="Date" class="form-control" placeholder="StartDate" name="con_start_date" required>
         
           <label>End Date : </label>
-          <input type="text" class="form-control" placeholder="End Date" name="con_end_date" required>
+          <input type="Date" class="form-control" placeholder="End Date" name="con_end_date" required>
           
           <label>Location : </label>
           <input type="text" class="form-control" placeholder="Location eg:- Colombo 7" name="con_location" required>
