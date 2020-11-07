@@ -1,4 +1,5 @@
-<?php require_once('./userHeader.php');?> 
+<?php include_once('header.php'); ?>
+
 <div class="container">
 <h1>Admin Panel</h1>
 <!-- Start the card View  -->
@@ -54,5 +55,9 @@
 </div> 
 <!-- end of container  -->
 </div>
-</body>
-</html>
+
+
+<?php
+  require_once('leftSidebar.php'); 
+  require_once('footer.php'); 
+?>	

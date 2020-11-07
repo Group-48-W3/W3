@@ -49,8 +49,8 @@
         <label for="emlpoyeeDetails" class="form-label">Enter employee details</label>
       </div>
       <div class="right">
-        <button class="btn-primary" type="submit" value="Submit" name="issueRawMaterial">Issue</button>
-        <button class="btn-secondary" type="cancel" value="cancel">Cancel</button>
+        <button class="btn btn-primary" type="submit" value="Submit" name="issueRawMaterial">Issue</button>
+        <button class="btn btn-secondary" type="cancel" value="cancel">Cancel</button>
       </div>
   </form>
 </div>

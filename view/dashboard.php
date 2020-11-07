@@ -12,7 +12,7 @@
 	require_once('header.php'); 
 	
 ?>
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<body class="fixed-nav sticky-footer" id="page-top">
   <div class="content-wrapper">
     <div class="container-fluid">
       <h1>Welcome to W3 Contract Management System</h1>

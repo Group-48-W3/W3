@@ -1,0 +1,69 @@
+.bg-secondary {
+    background-color: #444 !important;
+  }
+  
+  a.bg-secondary:hover, a.bg-secondary:focus,
+  button.bg-secondary:hover,
+  button.bg-secondary:focus {
+    background-color: #2b2a2a !important;
+  }
+  
+  .bg-success {
+    background-color: #00bc8c !important;
+  }
+  
+  a.bg-success:hover, a.bg-success:focus,
+  button.bg-success:hover,
+  button.bg-success:focus {
+    background-color: #008966 !important;
+  }
+  
+  .bg-info {
+    background-color: #3498db !important;
+  }
+  
+  a.bg-info:hover, a.bg-info:focus,
+  button.bg-info:hover,
+  button.bg-info:focus {
+    background-color: #217dbb !important;
+  }
+  
+  .bg-warning {
+    background-color: #f39c12 !important;
+  }
+  
+  a.bg-warning:hover, a.bg-warning:focus,
+  button.bg-warning:hover,
+  button.bg-warning:focus {
+    background-color: #c87f0a !important;
+  }
+  
+  .bg-danger {
+    background-color: #e74c3c !important;
+  }
+  
+  a.bg-danger:hover, a.bg-danger:focus,
+  button.bg-danger:hover,
+  button.bg-danger:focus {
+    background-color: #d62c1a !important;
+  }
+  
+  
+  .bg-dark {
+    background-color: #303030 !important;
+  }
+  
+  a.bg-dark:hover, a.bg-dark:focus,
+  button.bg-dark:hover,
+  button.bg-dark:focus {
+    background-color: #171616 !important;
+  }
+  
+  .bg-white {
+    background-color: #fff !important;
+  }
+  
+  .bg-transparent {
+    background-color: transparent !important;
+  }
+  

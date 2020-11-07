@@ -1,65 +1,78 @@
 <?php 
-require_once('./contractHeader.php');
-require_once('./../../controller/contract/contractController.php');
-
+  require_once('./../../controller/contract/contractController.php');
 ?>
+
+<?php include_once('header.php'); ?>
+
 <!-- Content Starts -->
 <div class="container">
-<h2>Create New Contracts</h2>
+  <h2>Create New Contracts</h2>
   <div class="row">
     <div class="col-7">
     <!-- Step 01 -->
       <h4>Step 01 : Add Contract Details</h4>
       <form method="post" action="./../../controller/contract/contractController.php">
-        
-          <label>Contract Name : </label>
-          <input type="text" class="form-control" placeholder="Contract Name" name="con_name" required>
-        
-          <label>StartDate : </label>
-          <input type="Date" class="form-control" placeholder="StartDate" name="con_start_date" required>
-        
-          <label>End Date : </label>
-          <input type="Date" class="form-control" placeholder="End Date" name="con_end_date" required>
-          
-          <label>Location : </label>
-          <input type="text" class="form-control" placeholder="Location eg:- Colombo 7" name="con_location" required>
-          <small id="" class="form-text text-muted">Provide the location by nearest main town</small>
-        
-          <label>Description : </label>
-          <input type="text" class="form-control" placeholder="Description" name="con_description" required>
-       
-          <label>Status : </label><br>
-          <input type="radio" name="con_status" value="Active">Active<br>
+        <div class="form-group field">
+          <input type="text" class="form-field" name="con_name" id="con_name" required>
+          <label for="con_name" class="form-label">Contract Name</label>
+        </div>
+        <div class="form-group field">
+          <input type="text" class="form-field" name="con_start_date" id="con_start_date" required>
+          <label for="con_start_date" class="form-label">Start Date</label>
+        </div>
+        <div class="form-group field">
+          <input type="text" class="form-field" name="con_end_date" id="con_end_date" required>
+          <label for="con_end_date" class="form-label">End Date</label>
+        </div>
+        <div class="form-group field">
+          <input type="text" class="form-field" name="con_location" id="con_location" required>
+          <label for="con_location" class="form-label">Location</label>
+          <small id="" class="form-text text-muted">Provide the location by nearest main town (Location eg:- Colombo 7)</small>
+        </div>
+        <div class="form-group field">
+          <input type="text" class="form-field" name="con_description" id="con_description" required>
+          <label for="con_description" class="form-label">Description</label>
+        </div>
+        <div class="form-group field">
+        <label class="form-label">Status</label><br>
+          <input type="radio" name="con_status" value="Active">Active
           <input type="radio" name="con_status" value="Inactive">Inactive<br>
-          
-          <label>Payment Method : </label>
-          <input type="text" class="form-control" placeholder="Payment Method" name="con_payment" required>
-          
+        </div>
+        <div class="form-group field">
+          <input type="text" class="form-field" name="con_payment" id="con_payment" required>
+          <label for="con_payment" class="form-label">Payment Method</label>
+        </div>
+        
           <!-- Step 02 -->
-          <h4>Step 02 : Add Client Details</h4>
-          
-          <label >Client Name : </label>
-          <input type="text" class="form-control" placeholder="Client Name" name="c_name">
-          <small id="" class="form-text text-muted">Give a fullname name for your client in lower case eg:- nipun fernando</small>
-          <label >Client Address : </label>
-          <input type="text" class="form-control"  placeholder="eg:- Reid Avenue, Colombo 7" name="c_address">
-        
-          <label >Client Company : </label>
-          <input type="text" class="form-control" placeholder="Company" name="c_company">
-          
-          <label >Client Mobile: </label>
-          <input type="text" class="form-control"  placeholder="+94123456789" name="c_mobile">
-          <small class="form-text text-muted">provide mobile number +94 notation</small>
-        
-          <label >Client Email : </label>
-          <input type="text" class="form-control"  placeholder="Email" name="c_email">
-          
-          <input type="submit" name="contractadd" value="Create Contract">
+        <h4>Step 02 : Add Client Details</h4>
+        <div class="form-group field">
+          <input type="text" class="form-field" name="c_name" id="c_name">
+          <label for="c_name" class="form-label">Client Name</label>
+          <small id="" class="form-text text-muted">Give a fullname name for your client in lower case (eg:- nipun fernando)</small>
+        </div>
+        <div class="form-group field">
+          <input type="text" class="form-field" name="c_address" id="c_address">
+          <label for="c_address" class="form-label">Client Address</label>
+          <small id="" class="form-text text-muted">eg:- Reid Avenue, Colombo 7</small>
+        </div>
+        <div class="form-group field">
+          <input type="text" class="form-field" name="c_company" id="c_company">
+          <label for="c_company" class="form-label">Client Company</label>
+        </div>
+        <div class="form-group field">
+          <input type="text" class="form-field" name="c_mobile" id="c_mobile">
+          <label for="c_mobile" class="form-label">Client Mobile</label>
+          <small class="form-text text-muted">provide mobile number +94 notation (eg:- +94123456789)</small>
+        </div>
+        <div class="form-group field">
+          <input type="text" class="form-field" name="c_email" id="c_email">
+          <label for="c_email" class="form-label">Client Email</label>
+        </div> 
+        <input type="submit" class="btn-primary" name="contractadd" value="Create Contract">
       </form>
     </div>
     <div class="col-4">
       <div class="alert alert-dismissible alert-info">
-        
         <strong>Please Be Noticed!</strong>
         <h5>Step 01 :- Add Contract Settings</h5>
         <h5>Step 02 :- Add Client Details</h5>
@@ -67,7 +80,6 @@ require_once('./../../controller/contract/contractController.php');
         <h5>Step 04 :- Employee Selection</h5>
       </div>
       <div class="alert alert-dismissible alert-warning">
-        
         <strong>Please Add the correct status!</strong>
         <h5>Page 01 :- Step 01 & Step 02</h5>
         <h5>Page 02 :- Step 03 & Step 04</h5>
@@ -75,11 +87,10 @@ require_once('./../../controller/contract/contractController.php');
       </div>
     </div>
   </div>
-
-
-
 </div>
-
 <!-- Content Ends -->
-</body>
-</html>
+
+<?php
+  require_once('leftSidebar.php'); 
+  require_once('footer.php'); 
+?>	

@@ -1,0 +1,112 @@
+/* Alert in w3 CSS library */
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+  }
+  
+  .alert-heading {
+    color: inherit;
+  }
+  
+  .alert-link {
+    font-weight: 700;
+  }
+  
+  .alert-dismissible {
+    padding-right: 3.90625rem;
+  }
+  
+  .alert-dismissible .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.75rem 1.25rem;
+    color: inherit;
+  }
+  
+  .alert-success {
+    color: #006249;
+    background-color: #ccf2e8;
+    border-color: #b8ecdf;
+  }
+  
+  .alert-success hr {
+    border-top-color: #a4e7d6;
+  }
+  
+  .alert-success .alert-link {
+    color: #002f23;
+  }
+  
+  .alert-info {
+    color: #1b4f72;
+    background-color: #d6eaf8;
+    border-color: #c6e2f5;
+  }
+  
+  .alert-info hr {
+    border-top-color: #b0d7f1;
+  }
+  
+  .alert-info .alert-link {
+    color: #113249;
+  }
+  
+  .alert-warning {
+    color: #7e5109;
+    background-color: #fdebd0;
+    border-color: #fce3bd;
+  }
+  
+  .alert-warning hr {
+    border-top-color: #fbd9a5;
+  }
+  
+  .alert-warning .alert-link {
+    color: #4e3206;
+  }
+  
+  .alert-danger {
+    color: #78281f;
+    background-color: #fadbd8;
+    border-color: #f8cdc8;
+  }
+  
+  .alert-danger hr {
+    border-top-color: #f5b8b1;
+  }
+  
+  .alert-danger .alert-link {
+    color: #4f1a15;
+  }
+  
+  .alert {
+    border: none;
+    color: #fff;
+  }
+  
+  .alert a,
+  .alert .alert-link {
+    color: #fff;
+    text-decoration: underline;
+  }
+  
+  .alert-success {
+    background-color: #00bc8c;
+  }
+  
+  .alert-info {
+    background-color: #3498db;
+  }
+  
+  .alert-warning {
+    background-color: #f39c12;
+  }
+  
+  .alert-danger {
+    background-color: #e74c3c;
+  }
+    

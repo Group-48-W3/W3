@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contract</title>
-    <link href="./../../public/css/style_darkly.css" rel="stylesheet" type="text/css">
+    <link href="./../../assets/css/style_darkly.css" rel="stylesheet" type="text/css">
 </head>
 <body>
  <!--Navbar starts -->
@@ -13,9 +13,9 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li>
-        <a class="nav-link active" href="./contractDashboard.php">Overview</a>
+        <a class="nav-link" href="./contractDashboard.php">Overview</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="./contractHome.php">Contract</a>
       </li>
       <li class="nav-item">
