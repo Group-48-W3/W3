@@ -83,7 +83,12 @@ $result = $employee->getAllEmployee();
         </div>
 
         <div class="form-group field">
-            <input type="text" class="form-field" name="emp_type" id="emp_type" >
+            <!-- <input type="text" class="form-field" name="emp_type" id="emp_type" > -->
+            <select id="emp_type" name="emp_type" class="form-field">
+                <option value="permanent">permanent</option>
+                <option value="temporary">temporary</option>
+                <option value="contract">contract</option>
+            </select>
             <label for="emp_type" class="form-label">Employee Type</label>
             <small class="form-text text-muted">permanent/temporary/contract</small>
         </div>
