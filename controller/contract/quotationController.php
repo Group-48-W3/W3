@@ -1,8 +1,7 @@
 <?php
 require_once("./../../model/quotationModel.php");
-require_once("./../controller.php");
 
-class Quotation extends Controller{
+class Quotation{
     function __construct(){
         //echo "here is constructor";
         $this->index();

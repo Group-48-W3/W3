@@ -1,7 +1,6 @@
 <?php
 require_once("./../../model/contractModel.php");
-require_once("./../controller.php");
-
+// require_once("./../controller.php");
 
 if(isset($_POST['contractadd'])){
    // echo "condition";
@@ -9,10 +8,10 @@ if(isset($_POST['contractadd'])){
     $con->addContract();
     
 }
-class Contract extends Controller{
+class Contract{
     // contract class
     function __construct(){
-        echo "This is contract control section";
+        //echo "This is contract control section";
         
     }
     function addContract(){
