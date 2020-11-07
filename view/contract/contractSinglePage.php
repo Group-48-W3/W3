@@ -1,9 +1,8 @@
 <?php
- require_once('./contractHeader.php');
- require_once('./../../controller/contract/contractController.php');
- require_once('./../../controller/contract/quotationController.php');
+  require_once('./../../controller/contract/contractController.php');
+  require_once('./../../controller/contract/quotationController.php');
 
- if (isset($_GET['con_id'])) {
+  if (isset($_GET['con_id'])) {
     $con = new Contract();
     $quo = new Quotation();
     $con_details = $con->getSingleActiveContract($_GET['con_id']);
@@ -15,10 +14,11 @@
     $row_client = mysqli_fetch_array($client_details);
 
     $quo_details = $quo->getAllQuotation();
-
-    
-}
+  }
 ?>
+
+<?php include_once('header.php'); ?>
+
 <div class="container">
     <h2>Contract <?php echo $row["con_name"]; ?></h2>
     <h5>Description    : <?php echo $row["con_desc"]; ?></h5>
@@ -37,64 +37,70 @@
     <hr>
     <h3>Quotation Details</h3>
     <form action="./../../controller/contract/quotationController.php">
-    <div class="form-group">
-        <label>Select Quotation :</label>
-        <select name="quotation" id="quotation">
+      <div class="form-group field">
+          <select name="quotation" id="quotation" class="form-field">
             <?php
-            $i=0;
-            while($row_quo = mysqli_fetch_array($quo_details)) {
-
+              $i=0;
+              while($row_quo = mysqli_fetch_array($quo_details)) {
             ?>
-            <option value="<?php echo $row_quo["q_id"];?>"><?php echo $row_quo["q_name"];?></option>
-
-        
-        <?php
-        $i++;
-        }
-        if($i==0){
-            echo "No results ";
-        }
-        ?>
-        </select>
-    </div>
-    <label>Quantity :</label>
-    <input type="text" class="form-control" placeholder="Description" name="q_quantity">
-     
-    <button type="submit" name="quotation_contract">Add Quotation</button>
-    
+              <option value="<?php echo $row_quo["q_id"];?>"><?php echo $row_quo["q_name"];?></option>
+            <?php
+              $i++;
+              }
+              if($i==0){
+                  echo "No results ";
+              }
+            ?>
+          </select>
+          <label for="quotation" class="form-label">Select Quotation</label>
+      </div>
+      <div class="form-group field">
+        <input type="text" class="form-field" name="q_quantity" id="q_quantity">
+        <label for="q_quantity" class="form-label">Quantity</label>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <small>Need to create a need one? click the following button</small>
+            <button class="btn-secondary" href="./../../view/contract/quotationAdd.php">Quotation Gallery</button>
+          </div>
+          <div class="col right">
+            <button type="submit" name="quotation_contract" class="btn-primary">Add Quotation</button>
+          </div>
+        </div>
+      </div>
     </form>
-    <h6>Need to create a need one? click the following button</h6> 
-    <a class="btn btn-primary" href="./../../view/contract/quotationAdd.php">Quotation Gallery</a>
+    
     <br>
     <hr>
     <h3>Set Activities</h3>
-        <!-- Activity Form -->
-        <form method="post" action="./../../controller/contract/contractController.php">
-        <div class="form-group">
-          <label>Contract Name : </label>
-          <input type="text" class="form-control" placeholder="Select Contract" name="c_id">
-          <small id="" class="form-text text-muted">Select Contract: </small>
-        </div>
-        <div class="form-group">
-          <label>Activity Name : </label>
-          <input type="text" class="form-control" id="" placeholder="Activity Name" name="start_date">
-        </div>
-        <div class="form-group">
-          <label>Activity Description : </label>
-          <input type="text" class="form-control" placeholder="Description" name="end_date">
-          
-        </div>
-        <div class="form-group">
-          <label >Activity Weight : </label>
-          <input type="text" class="form-control" placeholder="Weight eg:- 2 Units put as 2" name="location">
-          <small class="form-text text-muted">Weight describes the work load of the work done</small>
-        </div>
-        <div class="form-group">
-          <label>Date: </label>
-          <input type="Date" class="form-control" placeholder="Date" name="description">  
-        </div>
+    <!-- Activity Form -->
+    <form method="post" action="./../../controller/contract/contractController.php">
+      <div class="form-group">
+        <input type="text" class="form-field" name="c_id" id="c_id">
+        <label for="c_id" class="form-label">Contract Name</label>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-field" id="activityName" name="start_date">
+        <label for="activityName" class="form-label">Activity Name</label>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-field" name="end_date" id="activityDescription">
+        <label for="activityDescription" class="form-label">Activity Description</label>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-field" name="location" id="activityWeight">
+        <label for="activityWeight" class="form-label">Activity Weight</label>
+        <small class="form-text text-muted">Weight describes the work load of the work done (Weight eg:- 2 Units put as 2)</small>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-field" name="description" id="activityDate">  
+        <label for="activityDate" class="form-label">Date</label>
+      </div>
+      <div class="right">
         <button type="submit" class="btn btn-primary">Add Activity</button>
-      </form>
+      </div>
+    </form>
     <br>
     <hr>
     <h3>Contract Settings</h3>
@@ -112,3 +118,8 @@
     <br>
     <br>
 </div>
+
+<?php
+  require_once('leftSidebar.php'); 
+  require_once('footer.php'); 
+?>	
