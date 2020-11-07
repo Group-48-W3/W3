@@ -42,14 +42,14 @@ if (isset($_GET['updateid'])) {
 			<input type="password" class="form-field" id="pPwd" name="emp_type" placeholder="permanent/temporary/contract" value="<?php echo $row["u_password"]; ?>">
 			<label for="pPwd" class="form-label">Previous Password</label>
 		</div>
-		<div class="form-group field">
+		<!-- <div class="form-group field">
 			<input type="password" class="form-field" id="u_new_pass" name="u_new_pass" value="">
 			<label for="u_new_pass" class="form-label">New Password(if changing)</label>
 		</div>
 		<div class="form-group field">
 			<input type="password" class="form-field" id="u_new_pass_con" name="u_new_pass_con" value="">
 			<label for="u_new_pass_con" class="form-label">Confirm New Password</label>
-		</div>
+		</div> -->
 		<div class="right">
 			<input type="submit" class="btn-primary" name="userUpdateDetails" value="Update User Info">
 		</div>
