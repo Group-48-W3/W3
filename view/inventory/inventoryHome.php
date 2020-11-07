@@ -15,44 +15,36 @@
 <div class="container">
 	<h3>Quick Details</h3>
 	<div class="row center">
-		<div class="col-3">
-			<div class="card card-default">
-				<div class="card-category">
-					<h4>Inventory Status</h4>
-				</div>
-				<div class="card-description">
-					<span>95%</span>
-				</div>
+		<div class="col-sm">
+			<div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+			<div class="card-body">
+				<h1 class="card-title">5</h1>
+				<p class="card-text">Contracts</p>
+			</div>
 			</div>
 		</div>
-		<div class="col-3">
-			<div class="card card-success">
-				<div class="card-category">
-					<h4>Items in contracts</h4>
-				</div>
-				<div class="card-description">
-					<span>10,154</span>
-				</div>
+		<div class="col-sm">
+			<div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+			<div class="card-body">
+				<h1 class="card-title">45</h1>
+				<p class="card-text">Activities</p>
+			</div>
 			</div>
 		</div>
-		<div class="col-3">
-			<div class="card card-danger">
-				<div class="card-category">
-					<h4>Items in contracts</h4>
-				</div>
-				<div class="card-description">
-					<span>10,154</span>
-				</div>
+		<div class="col-sm">
+			<div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+			<div class="card-body">
+				<h1 class="card-title">29</h1>
+				<p class="card-text">Quotations</p>
+			</div>
 			</div>
 		</div>
-		<div class="col-3">
-			<div class="card card-warning">
-				<div class="card-category">
-					<h4>Items in contracts</h4>
-				</div>
-				<div class="card-description">
-					<span>10,154</span>
-				</div>
+		<div class="col-sm">
+			<div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
+			<div class="card-body">
+				<h1 id="value" class="card-title">0</h1>
+				<p class="card-text">Invoices</p>
+			</div>
 			</div>
 		</div>
 	</div>

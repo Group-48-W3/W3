@@ -12,23 +12,30 @@
 <?php include_once('header.php'); ?>
 <h2>Issue Item</h2>
 <div class="container">
-  <form>
+  <form method="post" action="./../../controller/user/inventoryController.php">
     <div class="form-group field">
-        <select class="form-field" id="item" name="item">
+        <select class="form-field" id="item" name="materialId">
           <option value="">Select from list</option>  
-          <option value="nails">nails</option>
-          <option value="woodtype1">t1wood</option>
-          <option value="woodtype2">t2wood</option>
-          <option value="woodtype3">t3wood</option>      
+      <!--
+          <//?php while($row = mysqli_fetch_array($result)) ?>
+              <option value="<//?php echo $row["materialId"];">
+                  <//?php echo $row["materialId"]." - ".$row["materialName"]; ?>
+              </option>
+          <//?php } ?> 
+      -->
+          <option value="m_1201">nails</option>
+          <option value="m_1202">t1wood</option>
+          <option value="m_1203">t2wood</option>
+          <option value="m_1204">t3wood</option>      
         </select>
         <label for="item" class="form-label">Select item to issue</label>
       </div>
       <div class="form-group field">
-        <input class="form-field" id="amount">
+        <input class="form-field" id="amount" name="issueAmount">
         <label for="amount" class="form-label">Enter amount</label>
       </div>
       <div class="form-group field">
-        <select class=form-field id="contract" name="contract">
+        <select class=form-field id="contract" name="issueContract">
           <option value="">Select from list</option>  
           <option value="contractA">contractA</option>
           <option value="contractB">contractB</option>
@@ -42,8 +49,8 @@
         <label for="emlpoyeeDetails" class="form-label">Enter employee details</label>
       </div>
       <div class="right">
-        <button class="btn-primary" type="submit" value="Submit">Issue</button>
-        <button class="btn-secondary" type="cancel" value="cancel">Cancel</button>
+        <button class="btn btn-primary" type="submit" value="Submit" name="issueRawMaterial">Issue</button>
+        <button class="btn btn-secondary" type="cancel" value="cancel">Cancel</button>
       </div>
   </form>
 </div>

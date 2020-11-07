@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../public/css/style.css">
 </head>
 <body>
 <div class="container">
@@ -49,6 +49,6 @@
 </div>
  
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="./../assets/js/reg-script.js"></script>
+<script src="./../public/js/reg-script.js"></script>
 </body>
 </html>

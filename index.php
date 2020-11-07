@@ -6,7 +6,7 @@
 session_start();
 
 // import database settings
-require_once('inc/config.php'); 
+require_once('config/config.php'); 
 // import login controller
 require_once('controller/login/loginController.php');
 // import login page
