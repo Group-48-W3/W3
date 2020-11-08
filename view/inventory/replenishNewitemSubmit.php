@@ -16,7 +16,7 @@
     <button class="tablinks" onclick="openTab(event, 'newRawMaterial')">Raw Material</button>
     <button class="tablinks" onclick="openTab(event, 'newTool')">Tool</button>
 </div>
-<div id="newRawMaterial" class="tabcontent">
+<div id="newRawMaterial" class="tabcontent col-6">
     <h2>Add new raw material</h2>
     <form method="post" action="./../../controller/user/inventoryController.php">
         <div class="form-group field">
@@ -44,7 +44,7 @@
         <br>
         <div class="container right">
             <button class="btn-secondary" type="" value="Cancel">Cancel</button>
-            <button class="btn-primary" type="submit" value="Submit" name="addNewRawMaterial">Submit</button> 
+            <button class="btn btn-primary" type="submit" value="Submit" name="addNewRawMaterial">Submit</button> 
         </div>
     </form>
 </div>
