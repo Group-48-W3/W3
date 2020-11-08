@@ -9,6 +9,7 @@
   }
   
   .form-field {
+    color: #fff;
     font-family: inherit;
     width: 100%;
     border: 0;
@@ -36,14 +37,14 @@
     display: block;
     transition: 0.2s;
     font-size: 1rem;
-    color: #9b9b9b;
+    color: #c7c7c7;
   }
   
   .form-field:focus {
     padding-bottom: 6px;
     font-weight: 700;
     border-width: 3px;
-    border-color: #1c1c1c;
+    border-color: #fcfcfc;
   }
   .form-field:focus ~ .form-label {
     position: absolute;
@@ -51,7 +52,7 @@
     display: block;
     transition: 0.2s;
     font-size: 0.8rem;
-    color: #1c1c1c;
+    color: #eeeeee;
     font-weight: 700;
   }
   

@@ -9,10 +9,11 @@
 	}		
 	
 	require_once('./../../controller/user/userController.php');
-	require_once('./userHeader.php'); 
 	
 ?>
-<body class="fixed-nav sticky-footer" id="page-top">
+
+<?php include_once('header.php'); ?>
+
   <div class="content-wrapper">
     <div class="container-fluid">
       <h1>User Profile</h1>
@@ -33,6 +34,8 @@
 
       <div style="height: 200px;"></div>
     </div>
-<?php  	
-require_once('footer.php'); 
-?>
+
+<?php
+  require_once('leftSidebar.php'); 
+  require_once('footer.php'); 
+?>	
