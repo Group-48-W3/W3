@@ -13,7 +13,34 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet"/>
   <script type="text/javascript" src="../../public/js/scripts/main.js"></script>
 </head>
+<!-- Temp code  -->
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
 
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111111;
+}
+</style>
+
+<!--  -->
 <body>
 <!--Top Bar--> 
 <nav class="topbar">
@@ -46,23 +73,26 @@
 <main>
 <!--Navbar starts -->
 <nav class="navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="../dashboard.php">W3 DASHBOARD</a>
+  <!-- <a class="navbar-brand" href="../dashboard.php">W3 DASHBOARD</a> -->
   <div class="" id="navbarColor02">
-    <ul class="">
-      <li>
-        <a class="" href="./contractDashboard.php">Overview</a>
+    <ul class="nav-li">
+      <li class="nav-ul">
+      <a class="nav-a" href="./../dashboard.php">Dashboard</a>
       </li>
-      <li class="">
-        <a class="" href="./contractHome.php">Contract</a>
+      <li class="nav-li">
+        <a class="nav-a" href="./contractDashboard.php">Overview</a>
       </li>
-      <li class="">
-        <a class="" href="./activityHome.php">Activity</a>
+      <li class="nav-li">
+        <a class="nav-a" href="./contractHome.php">Contract</a>
       </li>
-      <li class="">
-        <a class="" href="./quotationAdd.php">Quotation</a>
+      <li class="nav-li">
+        <a class="nav-a" href="./activityHome.php">Activity</a>
       </li>
-      <li class="">
-        <a class="" href="./invoiceAdd.php">Invoice</a>
+      <li class="nav-li">
+        <a class="nav-a" href="./quotationAdd.php">Quotation</a>
+      </li>
+      <li class="nav-li">
+        <a class="nav-a" href="./invoiceAdd.php">Invoice</a>
       </li>
       
     </ul>

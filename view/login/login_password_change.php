@@ -2,20 +2,21 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Login</title>
-<link href="./public/css/styles/login.css" rel="stylesheet">
+<title>Password Change</title>
+<link href="./../../public/css/styles/login.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 </head>
 
 <body>
 	<div class="box">
 		<div class="column left">
-			<img src="./public/img/logo.png">
+			<img src="./../../public/img/logo.png">
 			<p>© W3 Contracts, Willorawatta. 1993-2020</p>
 		</div>
 		<div class="column right">
-			<img src="./public/img/wave.svg" width="68px" height="68px">
-			<h2>Welcome Back</h2>
+			<img src="./../../public/img/wave.svg" width="68px" height="68px">
+			<h2>Change your password</h2>
+            <h6>Input the code below which you get into your email</h6>
 			<div class="form-container">
 				<?php 
 					if(isset($errorMsg)){
@@ -28,12 +29,12 @@
 						<label for="exampleInputEmail1">Email address</label>
 						<input class="form-control" id="exampleInputEmail1" name="email" type="email" placeholder="Enter Email" required>
 					</div>
+                    <button type="submit" name="login">Send Code</button>
 					<div class="form-group">
-						<label for="exampleInputPassword1">Password</label>
-						<input class="form-control" id="exampleInputPassword1" name="password" type="password" placeholder="Password" required>
-						<a href="./view/login/login_password_change.php" style="text-decoration:none;" onclick="<?php $flag = 2;?>">Forget your password?</a>
+						<label for="exampleInputPassword1">Verify Code</label>
+						<input class="form-control" id="exampleInputCode1" name="password" type="text" placeholder="Code" required>
 					</div>
-					<button class="btn btn-primary btn-block" type="submit" name="login">Login</button>
+					<button type="submit" name="login">Change Password</button>
 				</form>
 			</div>
 		</div>
