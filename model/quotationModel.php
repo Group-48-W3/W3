@@ -1,5 +1,5 @@
 <?php
-require_once("./../../quotation/config.php");
+require_once("./../../config/config.php");
 
 function getAllQuotationDB(){
     global $conn;
