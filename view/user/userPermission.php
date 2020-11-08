@@ -1,6 +1,5 @@
-<?php
-require_once('./userHeader.php');
-?>
+<?php include_once('header.php'); ?>
+
 <div class="container">
 <h1>Permissions</h1>
 <h4>Following Details will be Important to identify results and approving the notifications</h4>
@@ -11,29 +10,29 @@ require_once('./userHeader.php');
     <ul>Role ID #4 - Stock Keeper</ul>
 </li>
 
-<table class="table table-hover">
+<table>
     <thead>
     <tr>
-        <td>Permission</td>
-        <td>Description</td>  
-        <td>Module</td>
-        <td>User ID</td>
-        <td>Role ID</td>
-        <td>UserName</td>
-        <td>Action</td>
+        <th>Permission</th>
+        <th>Description</th>  
+        <th>Module</th>
+        <th>User ID</th>
+        <th>Role ID</th>
+        <th>UserName</th>
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <td>Delete</td>
-        <td>expense #12</td>  
-        <td>expense</td>
-        <td>3</td>
-        <td>3</td>
-        <td>supun</td>
-        <td>
-        <a class="btn btn-success" href="#">Approve</a>
-        <a class="btn btn-danger" href="#">Decline</a>  
+        <td data-label="Permission">Delete</td>
+        <td data-label="Description">expense #12</td>  
+        <td data-label="Module">expense</td>
+        <td data-label="User ID">3</td>
+        <td data-label="Role ID">3</td>
+        <td data-label="UserName">supun</td>
+        <td data-label="Action">
+            <a class="btn btn-success" href="#">Approve</a>
+            <a class="btn btn-danger" href="#">Decline</a>  
         </td>
     </tr>
     </tbody>
@@ -41,5 +40,8 @@ require_once('./userHeader.php');
 </table>
 
 </div>
-</body>
-</html>
+
+<?php
+  require_once('leftSidebar.php'); 
+  require_once('footer.php'); 
+?>	

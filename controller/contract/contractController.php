@@ -1,5 +1,7 @@
 <?php
 require_once("./../../model/contractModel.php");
+// require_once("./../controller.php");
+
 if(isset($_POST['contractadd'])){
    // echo "condition";
     $con = new Contract();     
@@ -9,11 +11,12 @@ if(isset($_POST['contractadd'])){
 class Contract{
     // contract class
     function __construct(){
-        //echo "constrctor";
+        //echo "This is contract control section";
         
     }
     function addContract(){
         // contract
+       
         $con_name = $_POST['con_name'];
         $con_start_date = $_POST['con_start_date'];
         $con_end_date = $_POST['con_end_date'];
@@ -27,6 +30,7 @@ class Contract{
         $c_company = $_POST['c_company'];
         $c_mobile = $_POST['c_mobile'];
         $c_email = $_POST['c_email'];
+        
        
         // adding data in order fill up all columns
         $client = addClientDB($c_name,$c_address,$c_company,$c_mobile,$c_email);

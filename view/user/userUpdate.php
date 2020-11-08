@@ -1,7 +1,6 @@
 <?php 
 
 require_once('./../../controller/user/userController.php');
-require_once('./userHeader.php');
 if (isset($_GET['updateid'])) {
 
 	$user_detail = getSingleUser($_GET['updateid']);
@@ -9,43 +8,57 @@ if (isset($_GET['updateid'])) {
 }
 ?>
 
+<?php include_once('header.php'); ?>
+
 <div class="container">
     <div class="row">
     <div class="col-7">
     <h3>User Information to Update</h3>
     <h6>Use Update User to Change Passwords and Update only for immediate actions</h6>
     <form method="post" action="./../../controller/user/userController.php">
-        User ID:<br>
-		<input type="text" class="form-control" name="u_nic" value="<?php echo $row["u_id"]; ?>">
-		<br>
-        Role ID:<br>
-		<input type="text" class="form-control" name="r_id" value="<?php echo $row["r_id"]; ?>">
-		<br>
-		DOB:<br>
-		<input type="text" class="form-control" name="u_firstname" value="<?php echo $row["u_firstname"]; ?>">
-		<br>
-		Address:<br>
-		<input type="textarea" class="form-control" name="u_lastname" value="<?php echo $row["u_lastname"]; ?>">
-		<br>
+		<div class="form-group field">
+			<input type="text" class="form-field" id="u_nic" name="u_nic" value="<?php echo $row["u_id"]; ?>">
+			<label for="u_nic" class="form-label">NIC</label>
+		</div>
+		<div class="form-group field">
+			<input type="text" class="form-field" id="r_id" name="r_id" value="<?php echo $row["r_id"]; ?>">
+			<label for="r_id" class="form-label">Role ID</label>
+		</div>
+		<div class="form-group field">
+			<input type="text" class="form-field" id="u_firstname" name="u_firstname" value="<?php echo $row["u_firstname"]; ?>">
+			<label for="u_firstname" class="form-label">DOB</label>
+		</div>
+		<div class="form-group field">
+			<input type="textarea" class="form-field" id="u_lastname" name="u_lastname" value="<?php echo $row["u_lastname"]; ?>">
+			<label for="u_lastname" class="form-label">Address</label>
+		</div>
 		<br>
 		<h4>User Account Details</h4>
-		<br>
-		Email:<br>
-		<input type="text" class="form-control" name="u_email" placeholder="+94123456789" value="<?php echo $row["u_email"]; ?>">
-        <br>
-		Previous Password :<br>
-		<input type="password" class="form-control" name="emp_type" placeholder="permanent/temporary/contract" value="<?php echo $row["u_password"]; ?>">
-		<br>
-		New Password(if changing):<br>
-		<input type="text" class="form-control" name="u_new_pass" value="">
-		<br>
-        Confirm New Password:<br>
-		<input type="text" class="form-control" name="u_new_pass_con" value="">
-		<br>
-		<input type="submit" name="userUpdateDetails" value="Update User Info">
+		<div class="form-group field">
+			<input type="text" class="form-field" id="u_email" name="u_email" value="<?php echo $row["u_email"]; ?>">
+			<label for="u_email" class="form-label">Email</label>
+        </div>
+		<div class="form-group field">
+			<input type="password" class="form-field" id="pPwd" name="emp_type" placeholder="permanent/temporary/contract" value="<?php echo $row["u_password"]; ?>">
+			<label for="pPwd" class="form-label">Previous Password</label>
+		</div>
+		<!-- <div class="form-group field">
+			<input type="password" class="form-field" id="u_new_pass" name="u_new_pass" value="">
+			<label for="u_new_pass" class="form-label">New Password(if changing)</label>
+		</div>
+		<div class="form-group field">
+			<input type="password" class="form-field" id="u_new_pass_con" name="u_new_pass_con" value="">
+			<label for="u_new_pass_con" class="form-label">Confirm New Password</label>
+		</div> -->
+		<div class="right">
+			<input type="submit" class="btn-primary" name="userUpdateDetails" value="Update User Info">
+		</div>
 	</form>
     </div>
     </div>
     </div>
-</body>
-</html>
+
+	<?php
+  require_once('leftSidebar.php'); 
+  require_once('footer.php'); 
+?>	

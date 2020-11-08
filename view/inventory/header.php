@@ -9,8 +9,8 @@
   <meta name="author" content="">
 
   <title>W3</title>
-  <link href="./../../assets/css/styles/style.css" rel="stylesheet">
-  <script type="text/javascript" src="./../../assets/js/scripts/main.js"></script>
+  <link href="./../../public/css/styles/style.css" rel="stylesheet">
+  <script type="text/javascript" src="./../../public/js/scripts/main.js"></script>
 </head>
 
 <body>
