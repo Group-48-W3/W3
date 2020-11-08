@@ -15,6 +15,7 @@
 
     $quo_details = $quo->getAllQuotation();
   }
+  require_once('./../../controller/user/userController.php');
 ?>
 
 <?php include_once('header.php'); ?>

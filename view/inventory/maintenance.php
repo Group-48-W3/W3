@@ -49,7 +49,7 @@
           <tr>
             <td data-label="Item"><i>Search result</i></td>
             <td data-label="Description"><i>Description of item</i></td>
-            <td data-label="Option"><button class="btn-secondary">+ Add to maintenance</button></td>
+            <td data-label="Option"><button class="btn btn-secondary">+ Add to maintenance</button></td>
           </tr>
         </tbody>
       </table>
@@ -75,7 +75,7 @@
         <td data-label="Maintaner"><i>Who is repairing</i></td>
         <td data-label="Cost Code"><i>Repairing cost</i></td>
         <td data-label="Date of Pickup"><i>Pickup date</i></td>
-        <td data-label="Option"><button class="btn-secondary">Remove from maintenance</button></td>
+        <td data-label="Option"><button class="btn btn-secondary">Remove from maintenance</button></td>
       </tr>
     </tbody>
   </table>

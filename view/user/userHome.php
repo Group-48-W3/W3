@@ -1,4 +1,7 @@
-<?php include_once('header.php'); ?>
+<?php
+require_once('../../controller/user/userController.php');
+ include_once('header.php'); 
+ ?>
 
 <div class="container">
 <h1>Admin Panel</h1>
