@@ -51,7 +51,7 @@
                     </div>
                     <br>
                     <div class="right">
-                        <input type="submit" name="empDetails" value="Add Item" class="btn-primary">
+                        <input type="submit" name="empDetails" value="Add Item" class="btn btn-primary">
                     </div>
                 </form>
             </div>
