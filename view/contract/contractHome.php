@@ -15,7 +15,7 @@
       <!-- Heading  -->
       <h2>Contract Home</h2>
     <div class="form-group field">
-      <input type="text" class="form-field" id="find-repo">
+      <input type="text" class="form-field" id="find-repo" placeholder="Find a Contract by Name">
       <label for="find-repo" class="form-label">Find a Contract</label>
     </div>
       <a class="btn btn-primary" href="./contractAdd.php">Add New Contract</a>

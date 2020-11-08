@@ -70,11 +70,11 @@ li a:hover {
 <main>
 <!--Navbar starts -->
 <nav class="navbar-expand-lg navbar-dark bg-dark">
-  <a class="" href="../dashboard.php">W3 DASHBOARD</a>
+  <!-- <a class="" href="../dashboard.php">W3 DASHBOARD</a> -->
   <div id="">
     <ul class="">
       <li class="">
-        <a class="" href="./userHome.php">Home<span class="sr-only">(current)</span></a>
+        <a class="" href="./userHome.php">Home<span class="sr-only"></span></a>
       </li>
       <li class="">
         <a class="" href="./userView.php">Users</a>
