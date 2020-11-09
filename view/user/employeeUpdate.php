@@ -6,6 +6,7 @@ if (isset($_GET['updateid'])) {
 
     $row = mysqli_fetch_array($emp_details);
 }
+require_once('../../controller/user/userController.php');
 ?>
 
 <?php include_once('header.php'); ?>

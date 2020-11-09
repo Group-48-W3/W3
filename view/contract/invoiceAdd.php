@@ -1,4 +1,7 @@
-<?php include_once('header.php'); ?>
+<?php
+ include_once('header.php'); 
+require_once('./../../controller/user/userController.php');
+?>
 
 <div class="container">
   <h1>Invoice</h1>
@@ -37,7 +40,7 @@
             <label for="amount" class="form-label">Amount</label>
           </div>
           <h3>Item Details to be included:</h3>
-          <button type="submit" class="btn btn-primary"><a href="./invoicePrint.php">Create Invoice</a></button>
+          <a class="btn btn-primary" href="./invoicePrint.php">Create Invoice</a>
         </form>
         <!-- Form Ends -->
       </div>

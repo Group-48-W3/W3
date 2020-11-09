@@ -1,4 +1,7 @@
-<?php include_once('header.php'); ?>
+<?php
+ include_once('header.php');
+require_once('./../../controller/user/userController.php');
+ ?>
 
 <div class="container">
     <h1>Print Invoice</h1>

@@ -1,4 +1,5 @@
 <?php 
+require_once('./../../controller/user/userController.php');
   require_once('./../../controller/contract/contractController.php');
 ?>
 
