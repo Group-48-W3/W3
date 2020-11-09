@@ -76,6 +76,9 @@
   <!-- <a class="" href="../dashboard.php">W3 DASHBOARD</a> -->
   <div id="nav-temp">
     <ul class="">
+    <li class="">
+        <a class="" href="./../dashboard.php">Dashboard</span></a>
+      </li>
       <li class="">
         <a class="" href="./contractDashboard.php">Home<span class="sr-only"></span></a>
       </li>

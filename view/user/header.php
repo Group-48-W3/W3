@@ -81,6 +81,9 @@ session_start();
   <!-- <a class="" href="../dashboard.php">W3 DASHBOARD</a> -->
   <div id="nav-temp">
     <ul class="">
+    <li class="">
+        <a class="" href="./dashboard.php">Dashboard<span class="sr-only"></span></a>
+      </li>
       <li class="">
         <a class="" href="./userHome.php">Home<span class="sr-only"></span></a>
       </li>
