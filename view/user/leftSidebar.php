@@ -122,7 +122,7 @@
       </ul>
 
       <li class="nav-item">
-        <a href="./expense/expenseHome.php" class="nav-link">
+        <a href="./../expense/expenseHome.php" class="nav-link">
           <svg 
             aria-hidden="true" 
             focusable="false" 
@@ -141,7 +141,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="./inventory/inventoryHome.php" class="nav-link">
+        <a href="./../inventory/inventoryHome.php" class="nav-link">
           <svg 
             aria-hidden="true" 
             focusable="false" 
@@ -287,7 +287,7 @@
 		<?php 
 		if($user_role == 3){?>
       <li class="nav-item">
-        <a href="../expense/expenseCategory.php" class="nav-link">
+        <a href="./../expense/expenseCategory.php" class="nav-link">
           <svg aria-hidden="true" 
           focusable="false" 
           data-prefix="fas" 
