@@ -4,7 +4,6 @@
     <h3>Expenses</h3>
     <div class="row">
         <div class="col-5">
-        
             <h4>Add Daily Expense</h4>
             <!-- Form Starts -->
             <form method="post" action="./../../controller/expense/expensetController.php">
@@ -27,29 +26,26 @@
                     </select>
                 </div>
                 <div class="form-group">
-                <label for="amount">Amount(LKR) : </label>
-                <input type="text" class="form-control"  placeholder="amount">
+                    <label for="amount">Amount(LKR) : </label>
+                    <input type="text" class="form-control"  placeholder="amount">
                 </div>
                 <div class="form-group">
-                <label for="date">Date : </label>
-                <input type="Date" class="form-control"  placeholder="">
+                    <label for="date">Date : </label>
+                    <input type="Date" class="form-control"  placeholder="">
                 </div>
                 <div class="form-group">
-                <label for="amount">Payment type : </label>
-                <input type="text" class="form-control" placeholder="cash">
+                    <label for="amount">Payment type : </label>
+                    <input type="text" class="form-control" placeholder="cash">
                 </div>
                 <label for="status">Status : </label>
-                <div class="custom-control custom-radio">
-                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" checked="">
-                <label class="custom-control-label" >Paid</label>
-                </div>
-                <div class="custom-control custom-radio">
-                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input"  onclick="getConfirmation() ">
-                <label class="custom-control-label">Pending</label>
+                <div class="form-group field">
+                <label class="form-label">Schedule Status:</label><br>
+                <input type="radio" name="pay_status" value="Active">Paid
+                <input type="radio" name="pay_status" value="Inactive">Pending<br>
                 </div>
                 <div class="form-group">
-                <label for="expense description">Expense description : </label>
-                <input type="text" class="form-control" id="" placeholder="description" >
+                    <label for="expense description">Expense description : </label>
+                    <input type="text" class="form-control" id="" placeholder="description" >
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
@@ -79,26 +75,28 @@
                     </select>
                 </div>
                 <div class="form-group">
-                <label for="amount">Amount(LKR) : </label>
-                <input type="text" class="form-control"  placeholder="amount">
+                    <label for="amount">Amount(LKR) : </label>
+                    <input type="text" class="form-control"  placeholder="amount">
                 </div>
                 <div class="form-group">
-                <label for="date">Date : </label>
-                <input type="Date" class="form-control"  placeholder="">
+                    <label for="date">Date : </label>
+                    <input type="Date" class="form-control"  placeholder="">
                 </div>
                 <div class="form-group">
-                <label for="amount">Payment type : </label>
-                <input type="text" class="form-control" placeholder="cash">
+                    <label for="amount">Payment type : </label>
+                    <input type="text" class="form-control" placeholder="cash">
                 </div>
                 <div class="form-group">
-                <label for="payment description">Payment description : </label>
-                <input type="text" class="form-control" id="" placeholder="description" >
+                    <label for="payment description">Payment description : </label>
+                    <input type="text" class="form-control" id="" placeholder="description" >
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
              <!-- Form Ends -->
-
-             <div class="row">
+        </div>
+    </div>
+    
+    <div class="row">
                 <div class="col-3">
                     <div class="alert alert-dismissible alert-warning">
                         <button type="button" class="close" data-dismiss="alert"></button>
@@ -114,14 +112,10 @@
                 <div class="col-3">
                     <div class="alert alert-dismissible alert-warning">
                         <button type="button" class="close" data-dismiss="alert"></button>
-                        <a href="./viewSchedule" class="alert-link" style="text-decoration: none">view scheduled expenses</a>
+                        <a href="./viewSchedule.php" class="alert-link" style="text-decoration: none">view scheduled expenses</a>
                     </div>
                 </div>      
-             </div>   
-
-        </div>
-    </div>
-
+    </div>   
 </div>
 <!-- Content Ends -->
 

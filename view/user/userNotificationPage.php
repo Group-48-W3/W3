@@ -8,26 +8,28 @@
 		exit;
 	}		
 	
-	require_once('../controller/user/userController.php');
-	require_once('header.php'); 
+	require_once('./../../controller/user/userController.php');
+	require_once('./userHeader.php'); 
 	
 ?>
 <body class="fixed-nav sticky-footer" id="page-top">
   <div class="content-wrapper">
     <div class="container-fluid">
-      <h1>Welcome to W3 Contract Management System</h1>
+      <h1>My Notification</h1>
 	  <hr>
 	  <center>
-		  <img src="./../public/img/logo.png" alt="icon" height="150px" width="150px">
+		  <img src="./../../public/img/user_avatar.png" alt="icon" height="150px" width="150px">
 	  </center>
       
+	  <h3><small>You are login as :</small><?php echo getUserAccessRoleByID($_SESSION['r_id']); ?></h3>
 	  <hr>
-      <h2>
-	  Special Notices:
-	  </h2>
-	  <div class="container"style="border-style: solid">
-		  <h4>Salary Payments of Month October/November 2020</h4>
-		  <p>Members of staff and employees in contract #6 and #13 and receive their paysheets in this week</p>
+      <h4>
+	  Notification List:
+	  </h4>
+      <div class="container">
+      <div class="container"style="border-style: solid">
+		  <h4>Meeting Date</h4>
+		  <p>Prepare report for next week meeting</p>
 		  <p><?php echo "Posted: ".date("Y/m/d")." At ".date("h:i:sa") ?></p>
 	  </div>
 	  <br>
@@ -36,10 +38,11 @@
 		  <p>Please be noted that 25th of October due to have the company AGM virtually in Zoom.</p>
 		  <p><?php echo "Posted: ".date("Y/m/d")." At ".date("h:i:sa") ?></p>
 	  </div>
+      </div>
 	  
 
       <div style="height: 200px;"></div>
     </div>
-<?php 
-require_once('left_sidebar.php'); 	
-require_once('footer.php'); ?>	
+<?php  	
+require_once('footer.php'); 
+?>

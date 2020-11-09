@@ -19,14 +19,16 @@
         <a class="nav-link" href="./expenseHome.php">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./addIncome.php">Income</a>
+        <a class="nav-link" href="./expenseCategory.php">Category</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="./addExpense.php">Expense</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./expenseCategory.php">Category</a>
+        <a class="nav-link" href="./addIncome.php">Income</a>
       </li>
+      
+      
       <li class="nav-item">
         <a class="nav-link" href="./calculator.php">Tools</a>
       </li>

@@ -2,6 +2,7 @@
   require_once('./../../controller/contract/quotationController.php');
   $quo = new Quotation();
   $result = $quo->getAllQuotation();
+  require_once('./../../controller/user/userController.php');
 ?>
 
 <?php include_once('header.php'); ?>

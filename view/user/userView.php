@@ -1,4 +1,5 @@
 <?php require_once('./../../controller/user/userController.php');?> 
+
 <?php
 $result = getAll();
 ?>
