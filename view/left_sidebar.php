@@ -3,7 +3,7 @@
  <nav class="navbar">
     <ul class="navbar-nav">
       <li class="logo">
-        <a href="#" class="nav-link">
+        <a href="./dashboard.php" class="nav-link">
           <span class="link-text logo-text">Dashboard</span>
           <svg 
             aria-hidden="true" 
@@ -47,27 +47,27 @@
       </li>
       <ul class="navbar-sub-nav" id="admin-menu">
         <li class="nav-sub-item">
-          <a href="userHome.php" class="nav-sub-link">
+          <a href="./user/userHome.php" class="nav-sub-link">
             <span class="link-text">Home</span>
           </a>
         </li>
         <li class="nav-sub-item">
-          <a href="userView.php" class="nav-sub-link">
+          <a href="./user/userView.php" class="nav-sub-link">
             <span class="link-text">Users</span>
           </a>
         </li>
         <li class="nav-sub-item">
-          <a href="employeeView.php" class="nav-sub-link">
+          <a href="./user/employeeView.php" class="nav-sub-link">
             <span class="link-text">Employees</span>
           </a>
         </li>
         <li class="nav-sub-item">
-          <a href="userNotification.php" class="nav-sub-link">
+          <a href="./user/userNotification.php" class="nav-sub-link">
             <span class="link-text">Notification</span>
           </a>
         </li>
         <li class="nav-sub-item">
-          <a href="userPermission.php" class="nav-sub-link">
+          <a href="./user/userPermission.php" class="nav-sub-link">
             <span class="link-text">Permission</span>
           </a>
         </li>
@@ -95,27 +95,27 @@
       </li>
       <ul class="navbar-sub-nav" id="contracts-menu">
         <li class="nav-sub-item">
-          <a href="../contract/contractDashboard.php" class="nav-sub-link">
+          <a href="./contract/contractDashboard.php" class="nav-sub-link">
             <span class="link-text">Overview</span>
           </a>
         </li>
         <li class="nav-sub-item">
-          <a href="../contract/contractHome.php" class="nav-sub-link">
+          <a href="./contract/contractHome.php" class="nav-sub-link">
             <span class="link-text">Contract</span>
           </a>
         </li>
         <li class="nav-sub-item">
-          <a href="../contract/activityHome.php" class="nav-sub-link">
+          <a href="./contract/activityHome.php" class="nav-sub-link">
             <span class="link-text">Activity</span>
           </a>
         </li>
         <li class="nav-sub-item">
-          <a href="../contract/quotationAdd.php" class="nav-sub-link">
+          <a href="./contract/quotationAdd.php" class="nav-sub-link">
             <span class="link-text">Quotation</span>
           </a>
         </li>
         <li class="nav-sub-item">
-          <a href="../contract/invoiceAdd.php" class="nav-sub-link">
+          <a href="./contract/invoiceAdd.php" class="nav-sub-link">
             <span class="link-text">Invoice</span>
           </a>
         </li>

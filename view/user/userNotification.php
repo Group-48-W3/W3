@@ -1,17 +1,16 @@
 <?php 
 
 require_once('./../../controller/user/userController.php');
-require_once('./../../controller/user/testController.php');
+require_once('./../../controller/user/testController.php');// controller
 include_once('header.php');
 
 if(isset($_POST['noticeMsg']))
 {
    $test = new TestController();
-   $test->index($_POST['msgHeader'],$_POST['msgNotice'],$_POST['msgDate']);
+   $test->index($_POST['msgHeader'],$_POST['msgNotice'],$_POST['msgDate']);// controller calling
 } 
 
 ?> 
-
 
 <div class="container">
     <div class="row">

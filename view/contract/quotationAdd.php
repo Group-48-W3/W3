@@ -20,9 +20,9 @@
   <div class="container card text-white bg-primary" onclick="location.href='./quotationSinglePage.php?q_id=<?php echo $row["q_id"]; ?>';" style="cursor: pointer;">
     <br>
     <h4><?php echo $row["q_name"]; ?></h4>
-    <h6>Description :<?php echo $row["q_desc"]; ?></h6>
-    <h6>Budget : <?php echo $row["q_budget"]; ?></h6>
-    <h6>Item Count : </h6>
+    <h6 style="margin: 0px">Description :<?php echo $row["q_desc"]; ?></h6>
+    <h6 style="margin: 0px">Budget : <?php echo $row["q_budget"]; ?></h6>
+    <h6 style="margin: 0px">Item Count : </h6>
     <br>
   </div>
   <!-- Quotation Item Ends -->
