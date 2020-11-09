@@ -3,7 +3,7 @@
  <nav class="navbar">
     <ul class="navbar-nav">
       <li class="logo">
-        <a href="../dashboard.php" class="nav-link">
+        <a href="./../dashboard.php" class="nav-link">
           <span class="link-text logo-text">Dashboard</span>
           <svg 
             aria-hidden="true" 
