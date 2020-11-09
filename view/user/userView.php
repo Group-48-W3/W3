@@ -1,4 +1,5 @@
 <?php require_once('./../../controller/user/userController.php');?> 
+
 <?php
 $result = getAll();
 ?>
@@ -64,8 +65,14 @@ if (mysqli_num_rows($result) > 0) {
   <h6><strong>Notice : </strong>Making a user account allow to use the system in order to add/update/delete/search in certain user role are providing</h6>
   <form method="post" action="./../../controller/user/userController.php">
     <div class="form-group field">
-      <input type="text" class="form-field" id="user_role" name="user_role">
+      <!-- <input type="text" class="form-field" id="user_role" name="user_role"> -->
       <label for="user_role" class="form-label">User Role ID</label>
+      <select id="user_role" name="user_role" class="form-field">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
     </div>
 
     <div class="form-group field">
@@ -85,13 +92,13 @@ if (mysqli_num_rows($result) > 0) {
     
     <div class="form-group field">
       <input type="password" class="form-field" id="password" name="password">
-      <label for="password" class="form-label">Password</label>
-      <small class="form-text text-muted">Provide more than 8 characters</small>
+      <label for="password" class="form-label">Password(Temporary)</label>
+      <small class="form-text text-muted">Provide more than 8 characters(Only for creating account)</small>
     </div>
     
     <div class="form-group field">
       <input type="password" class="form-field" id="cpassword" name="cpassword">
-      <label for="cpassword" class="form-label">Confirm Password</label>
+      <label for="cpassword" class="form-label">Confirm Password(Temporary)</label>
     </div>
     
     <div class="right">
