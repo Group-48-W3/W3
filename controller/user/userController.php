@@ -64,6 +64,7 @@ function updateUser($id){
 	header('location:./../../view/user/userView.php');
 	exit;
 }
+
 //delete a user
 function deleteUser($id){
 	//echo "here we are";
@@ -79,6 +80,13 @@ function getUserAccessRoleByID($id){
 	$result = getUserRoleID($id);
 	
 	return $result;
-} 
- 
+}
+// change password
+function changepassword($password){
+	$hash_pass = md5($password);//sha1
+	$user_email = $_SESSION['sender_mail'];
+	
+	changePasswordDB($hash_pass,$user_email);// call the model method
+}
+
 ?>
