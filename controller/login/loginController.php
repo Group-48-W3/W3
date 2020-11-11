@@ -31,7 +31,7 @@ function loginUser(){
 				unset($getUserRow['password']);
 				
                 $_SESSION = $getUserRow;//get user id
-                echo($_SESSION);
+                //echo($_SESSION);
 							
 				header('location:view/dashboard.php');
 				exit;

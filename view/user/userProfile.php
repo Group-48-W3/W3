@@ -8,7 +8,8 @@
 		header('location:index.php?lmsg=true');
 		exit;
 	}		
-	
+	$details = mysqli_fetch_array(getSingleUser($_SESSION['u_id']));
+
 ?>
 	<!DOCTYPE html>
 	<html lang="en">
@@ -70,11 +71,10 @@
 		
 		<h3><small>You are login as :</small><?php echo getUserAccessRoleByID($_SESSION['r_id']); ?></h3>
 		<hr>
-		<h4>
-		User Settings:
-		</h4>
+		<h4>User Details:</h4>
 		<div class="container">
-		
+			<h6>First Name:<?php echo $details['u_firstname']; ?></h6>
+			
 		</div>
 		
 
