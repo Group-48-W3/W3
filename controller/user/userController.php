@@ -79,6 +79,11 @@ function getUserAccessRoleByID($id){
 	$result = getUserRoleID($id);
 	
 	return $result;
+}
+// change password
+function changepassword($password){
+	$hash = md5($password);//sha1
+	
 } 
  
 ?>

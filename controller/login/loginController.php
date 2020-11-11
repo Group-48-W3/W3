@@ -53,6 +53,6 @@ function userLogout(){
 function userAccess(){
     $errorMsg = "Login required to access dashboard";
     
-}    
+}
 
 ?>
