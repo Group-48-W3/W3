@@ -53,7 +53,7 @@
         </div>
     
         <div class="col-5">
-            <h4>Exployee Payment</h4>
+            <h4>Employee Payment</h4>
             <!-- Form Starts -->
             <form method="post" action="./../../controller/expense/expensetController.php">
                 <div class="form-group">
