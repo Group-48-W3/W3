@@ -8,6 +8,7 @@ if(isset($_POST['catDetails']))
     $cat = new Category();
     $cat->addCategory();
 }
+
 if(isset($_POST['catUpdateDetails']))
 {
     $cat = new Category();
@@ -31,17 +32,15 @@ class Category
 
         if(!empty($cat_name) && !empty($cat_desc))
         {
-            // check for validation
-            {
-                addCatergoryDB($cat_id, $cat_name, $cat_desc, $cat_type);
-            }
-            //else
-            //{
-              //  echo 'Fill all required feilds';
-            //}
+        // check for validation
+            addCategoryDB($cat_name, $cat_desc, $cat_type);
+            header('location:./../../view/expense/expenseCategory.php');//redirection
+            exit;//break;
         }
-        header('location:./../../view/expense/expenseCategory.php');//redirection
-        exit;//break;
+        else
+        {
+           echo 'Fill all required feilds';
+        }
     }
     function viewCategory()
     {

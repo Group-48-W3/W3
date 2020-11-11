@@ -19,18 +19,20 @@ $result = $category->viewCategory();
         <form method="post" action="./../../controller/expense/categoryController.php">
           <div class="form-group feild">
             <label for="name">Category name : </label>
-            <input type="text" class="form-control" id="cat_name" aria-describedby="emailHelp" placeholder="ex:- *Food">
+            <input type="text" class="form-control" name="cat_name" id="cat_name"  placeholder="ex:- *Food">
           </div>
           <div class="form-group">
             <label for="category description">Category description : </label>
-            <input type="text" class="form-control" id="cat_desc" placeholder="*description" >
+            <input type="text" class="form-control" name="cat_desc" id="cat_desc" placeholder="*description" >
           </div>
           <div class="form-group">
             <label for="category type">Category Type : </label>
-            <input type="text" class="form-control" id="cat_type" aria-describedby="emailHelp" placeholder="optional">
+            <input type="text" class="form-control" name="cat_type" id="cat_type"  placeholder="optional">
             
           </div>
-          <button type="submit" class="btn btn-primary">Add category</button>
+          <div class="right">
+		        <input class="btn btn-primary" type="submit" name="catDetails" id="catDetails" value="Add category">
+          </div>
         </form>
       <!-- Form Ends -->
 
