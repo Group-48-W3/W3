@@ -1,44 +1,49 @@
-<?php require_once('./expenseHeader.php');?>
+<?php 
+session_start();
+require_once('../../controller/user/userController.php');
+include_once('header.php'); ?>
 <!-- Content Starts -->
 <div class="container">
-    <h3>Schedule</h3>
+    <h1>Schedule</h1>
     <div class="row">
         <div class="col-12">
         
-            <h4>Schedule an Expense</h4>
+            <h2>Schedule an Expense</h2>
             <!-- Form Starts -->
             <form method="post" action="./../../controller/expense/expensetController.php">
-                <div class="form-group">
-                    <label for="Contract's Name">Contract's Name : </label>
-                    <select id="" name="Select contract name :">
+                <div class="form-group field">
+                    <select class="form-field" id="conName" name="Select contract name :">
                         <option value="default">Select contract name</option>
                         <option value="cid1">Sanken Lanka pvt Ltd</option>
                         <option value="cid2">Hotel Shrangrilla</option>
                         <option value="cid3">Hotel Romi</option>
                     </select>
+                    <label class="form-label" for="conName">Contract's Name : </label>
                 </div>
-                <div class="form-group">
-                    <label for="Select expense category">Select expense category : </label>
-                    <select id="" name="Select expense category :">
+                <div class="form-group field">
+                    <select class="form-field" id="expCat" name="Select expense category :">
                         <option value="default">Select expense category</option>
                         <option value="catid1">Food</option>
                         <option value="catid2">Transport</option>
                         <option value="catid3">Wood stock</option>
                     </select>
+                    <label class="form-label" for="expCat">Select expense category : </label>
                 </div>
-                <div class="form-group">
-                <label for="amount">Amount(LKR) : </label>
-                <input type="text" class="form-control"  placeholder="amount">
+                <div class="form-group field">
+                    <input type="text" class="form-field" id="expAmount">
+                    <label class="form-label" for="expAmount">Amount(LKR) : </label>
                 </div>
-                <div class="form-group">
-                <label for="date"> Due Date : </label>
-                <input type="Date" class="form-control"  placeholder="">
+                <div class="form-group field">
+                    <input type="Date" class="form-field" id="expDate">
+                    <label class="form-label" for="expDate"> Due Date : </label>
                 </div>
-                <div class="form-group">
-                <label for="expense description">Schedule note : </label>
-                <input type="text" class="form-control" id="" placeholder="optional" >
+                <div class="form-group field">
+                    <input type="text" class="form-field" id="expDesc">
+                    <label class="form-label" for="expDesc">Schedule note : </label>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="right">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
             </form>
             <!-- Form Ends -->
         </div>
@@ -46,5 +51,7 @@
 
 </div>
 <!-- Content Ends -->
-</body>
-</html>
+<?php
+  require_once('leftSidebar.php'); 
+  require_once('footer.php'); 
+?>	
