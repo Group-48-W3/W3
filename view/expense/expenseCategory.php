@@ -1,33 +1,36 @@
 <?php 
+session_start();
 //controller calling
 require_once('./../../controller/expense/categoryController.php');
 //employee object
 $category = new Category();
 $result = $category->viewCategory();
+require_once('../../controller/user/userController.php');
 ?>
 
-<?php require_once('./expenseHeader.php');?>
+<?php include_once('header.php'); ?>
 
 <!-- Content Starts -->
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h3>Category</h3>
-      <h4>Add expense category</h4>
+      <h1>Category</h1>
+      <h2>Add expense category</h2>
 
       <!-- Form Starts -->
         <form method="post" action="./../../controller/expense/categoryController.php">
-          <div class="form-group feild">
-            <label for="name">Category name : </label>
-            <input type="text" class="form-control" name="cat_name" id="cat_name"  placeholder="ex:- *Food">
+          <div class="form-group field">
+            <input type="text" class="form-field" name="cat_name" id="cat_name">
+            <label class="form-label" for="cat_name">Category name : </label>
+            <small class="form-text text-muted">ex:- *Food</small>
           </div>
-          <div class="form-group">
-            <label for="category description">Category description : </label>
-            <input type="text" class="form-control" name="cat_desc" id="cat_desc" placeholder="*description" >
+          <div class="form-group field">
+            <input type="text" class="form-field" name="cat_desc" id="cat_desc">
+            <label class="form-label" for="cat_desc">Category description : </label>
           </div>
-          <div class="form-group">
-            <label for="category type">Category Type : </label>
-            <input type="text" class="form-control" name="cat_type" id="cat_type"  placeholder="optional">
+          <div class="form-group field">
+            <input type="text" class="form-field" name="cat_type" id="cat_type">
+            <label class="form-label" for="cat_type">Category Type : </label>
             
           </div>
           <div class="right">
@@ -36,17 +39,15 @@ $result = $category->viewCategory();
         </form>
       <!-- Form Ends -->
 
-      <h3>Expense Categories</h3>
+      <h2>Expense Categories</h2>
       <!-- Show Expense Categories -->
-      <table class="table table-hover">
+      <table>
           <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">Type</th>
-                <th scope="col">Action</th>
-              </tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Action</th>
           </thead>
           <?php
             $i=0;
@@ -79,3 +80,9 @@ $result = $category->viewCategory();
 
 </div>
 <!-- Content Ends -->
+
+
+<?php
+  require_once('leftSidebar.php'); 
+  require_once('footer.php'); 
+?>	
