@@ -6,12 +6,24 @@
 		exit;
 	}		
 	
-	require_once('../../controller/user/userController.php');
+  require_once('../../controller/user/userController.php');
+  require_once('header.php');
    
-  
-  if()
+  require_once('./../../controller/inventory/inventoryController.php');
+  if(isset( $_POST['addNewRawMaterial'])){
+    $materialName = $_POST['materialName'];
+    $materialType = $_POST['materialType'];
+    $materialPrice = $_POST['materialPrice'];
+    $materialQuantity = $_POST['materialQuantity'];
+    $materialReorderValue = $_POST['materialReorderValue'];
+
+    $inv = new Inventory();
+
+    $inv->addRawMaterial($materialName,$materialType,$materialPrice,$materialQuantity,$materialReorderValue);
+    
+  }
 ?>
-<?php include_once('header.php'); ?>
+
 
 <h2>Replenish Stock(Add New Stock)</h2>
 <div class="container">
@@ -35,8 +47,8 @@
         </div>
         <div class="row">
           <div class="container right">
-            <button class="btn btn-primary" type="cancel" value="cancel">Submit</button> 
-            <button class="btn btn-secondary" type="submit" value="Submit" name="replenishRawMaterial">Cancel</button>
+            <button class="btn btn-primary" type="submit" value="Submit" name="replenishRawMaterial">Submit</button>
+            <button class="btn btn-secondary" type="cancel" value="cancel">Cancel</button>  
           </div>
         </div>
       </form>
@@ -76,10 +88,11 @@
     <button class="tablinks" onclick="openTab(event, 'newRawMaterial')">Raw Material</button>
     <button class="tablinks" onclick="openTab(event, 'newTool')">Tool</button>
 </div>
+<!-- Adding Raw materials -->
 <div id="newRawMaterial" class="tabcontent">
     <h2>Add new raw material</h2>
     <div class="container">
-      <form method="post" action="./../../controller/user/inventoryController.php">
+      <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
           <div class="form-group field">
               <div class="form-group field">
                   <input class="form-field" id="name" name="materialName">
@@ -99,13 +112,13 @@
               </div>
               <div class="form-group field">
                   <input class="form-field" id="reorderValue" name="materialReorderValue">
-                  <label for="reorderValue" class="form-label">Re-Order Value</label>
+                  <label for="reorderValue" class="form-label">Re-Order Value(minimum stock level)</label>
               </div>
           </div>
           <br>
           <div class="container right">
-              <button class="btn btn-secondary" type="" value="Cancel">Cancel</button>
-              <button class="btn btn-primary" type="submit" value="Submit" name="addNewRawMaterial">Submit</button> 
+              <!-- <button class="btn btn-secondary" type="" value="Cancel">Cancel</button> -->
+              <button class="btn btn-primary" type="submit" name="addNewRawMaterial">Submit</button>
           </div>
       </form>
     </div>

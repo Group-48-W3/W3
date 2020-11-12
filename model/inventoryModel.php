@@ -5,6 +5,14 @@
     function insertToRawMaterial($materialName, $materialType, $materialPrice, $materialQuantity, $materialReorderValue){
         global $conn;
         //insert to database
+        $sql = "insert into raw_material_details VALUES ('','$materialName','$materialType','$materialPrice','$materialQuantity','1')";
+        if (mysqli_query($conn, $sql)) {
+            echo "raw material created successfully !";
+            
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+        }
+        mysqli_close($conn);
     }
 
     function insertToTool($toolName, $toolPrice, $toolManufacturer, $toolQuantity, $toolReorderValue){
@@ -17,7 +25,7 @@
 
     function isInRawMaterial($materialName){
         global $conn;
-        $sql = "select * from row_material where mat_name = '".$materialName."'";
+        $sql = "select * from raw_material where mat_name = '".$materialName."'";
 				
 	    $result = mysqli_query($conn, $sql);
         $numRows = mysqli_num_rows($result);
@@ -68,10 +76,6 @@
     }
 
     //read commands
-    function selectFromRawMaterial(){
-        global $conn;
-    }
-
     function selectFromRawMaterial(){
         global $conn;
     }
