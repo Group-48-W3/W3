@@ -37,7 +37,45 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet"/>
 	<script type="text/javascript" src="./../../public/js/scripts/main.js"></script>
 	</head>
+	<style>
+	/* Style all input fields */
 
+	/* The message box is shown when the user clicks on the password field */
+	#message {
+	display:none;
+	
+	position: relative;
+	padding: 20px;
+	margin-top: 10px;
+	}
+
+	#message p {
+	padding: 10px 35px;
+	font-size: 18px;
+	}
+
+	/* Add a green text color and a checkmark when the requirements are right */
+	.valid {
+	color: green;
+	}
+
+	.valid:before {
+	position: relative;
+	left: -35px;
+	content: "✔";
+	}
+
+	/* Add a red text color and an "x" when the requirements are wrong */
+	.invalid {
+	color: red;
+	}
+
+	.invalid:before {
+	position: relative;
+	left: -35px;
+	content: "✖";
+	}
+	</style>
 	<body>
 	<!--Top Bar--> 
 	<nav class="topbar">
@@ -101,24 +139,92 @@
 			</div>
 			<h4>Change Password</h4>
 			<div class="form-group field">
-				<input type="password" class="form-field" " name="prev_pass" value="">
+				<input type="password" class="form-field" " name="prev_pass" value="" required>
 				<label for="u_new_pass" class="form-label">Current Password</label>
 			</div>
 			<div class="form-group field">
-				<input type="password" class="form-field" name="u_new_pass" value="">
+				<input type="password" class="form-field" name="u_new_pass" value=""
+				 id="u_new_pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+				 title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" 
+				 required
+				>
 				<label for="u_new_pass" class="form-label">New Password(if changing)</label>
 			</div>
 			<div class="form-group field">
-				<input type="password" class="form-field" name="u_new_pass_con" value="">
+				<input type="password" class="form-field" name="u_new_pass_con" value="" required>
 				<label for="u_new_pass_con" class="form-label">Confirm New Password</label>
 			</div>
 			<div class="right">
 				<input type="submit" class="btn btn-primary" name="userUpdateAccount" value="Update User Account">
 			</div>
 		</form>
-	
+		<div id="message">
+			<h3>Password must contain the following(Password Tips):</h3>
+			<p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+			<p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+			<p id="number" class="invalid">A <b>number</b></p>
+			<p id="length" class="invalid">Minimum <b>8 characters</b></p>
+		</div>
 	</div>
+	<script>
+		var myInput = document.getElementById("u_new_pass");
+		var letter = document.getElementById("letter");
+		var capital = document.getElementById("capital");
+		var number = document.getElementById("number");
+		var length = document.getElementById("length");
 
+		// When the user clicks on the password field, show the message box
+		myInput.onfocus = function() {
+		document.getElementById("message").style.display = "block";
+		}
+
+		// When the user clicks outside of the password field, hide the message box
+		myInput.onblur = function() {
+		document.getElementById("message").style.display = "none";
+		}
+
+		// When the user starts to type something inside the password field
+		myInput.onkeyup = function() {
+		// Validate lowercase letters
+		var lowerCaseLetters = /[a-z]/g;
+		if(myInput.value.match(lowerCaseLetters)) {  
+			letter.classList.remove("invalid");
+			letter.classList.add("valid");
+		} else {
+			letter.classList.remove("valid");
+			letter.classList.add("invalid");
+		}
+		
+		// Validate capital letters
+		var upperCaseLetters = /[A-Z]/g;
+		if(myInput.value.match(upperCaseLetters)) {  
+			capital.classList.remove("invalid");
+			capital.classList.add("valid");
+		} else {
+			capital.classList.remove("valid");
+			capital.classList.add("invalid");
+		}
+
+		// Validate numbers
+		var numbers = /[0-9]/g;
+		if(myInput.value.match(numbers)) {  
+			number.classList.remove("invalid");
+			number.classList.add("valid");
+		} else {
+			number.classList.remove("valid");
+			number.classList.add("invalid");
+		}
+		
+		// Validate length
+		if(myInput.value.length >= 8) {
+			length.classList.remove("invalid");
+			length.classList.add("valid");
+		} else {
+			length.classList.remove("valid");
+			length.classList.add("invalid");
+		}
+		}
+	</script>
 <?php
   require_once('leftSidebar.php'); 
   require_once('footer.php'); 
