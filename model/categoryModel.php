@@ -1,10 +1,10 @@
 <?php
 require_once("./../../config/config.php");
 
-function addCatergoryDB($cat_id, $cat_name, $cat_desc, $cat_type)
+function addCategoryDB($cat_name, $cat_desc, $cat_type)
 {
     global $conn;
-    $sql = "insert into category VALUES ('','$cat_name','$cat_name','$cat_desc','$cat_type')";
+    $sql = "insert into category (cat_name, cat_desc, cat_type) Values ('$cat_name','$cat_desc','$cat_type')";
      if (mysqli_query($conn, $sql)) 
      {
 		echo "category added successfully !";
@@ -18,19 +18,13 @@ function addCatergoryDB($cat_id, $cat_name, $cat_desc, $cat_type)
 	 mysqli_close($conn);
 }
 
-function getCatId($cat_id)
+function getCatIdDB($cat_id)
 {
 	global $conn;
-	$sql = "select * from employee where cat_id = '".$cat_id."'";
-				
-	$result = mysqli_query($conn, $sql);
-	$numRows = mysqli_num_rows($result);
+    $query = "select * from category WHERE cat_id = '".$cat_id."'";
+    $result = mysqli_query($conn,$query);
 
-	if($numRows == 0){
-		return 1;
-	}else{
-		return 0;
-	}
+    return $result;
 }
 
 function viewCategoryDB()
@@ -56,9 +50,17 @@ function deleterCategoryById($cat_id)
 	}
 }
 
-function updateCategoryDB($cat_id, $cat_name, $cat_desc, $cat_type){
+function updateCategoryDB($cat_id, $cat_name, $cat_desc, $cat_type)
+{
     global $conn;
-	$sql = "update category SET cat_name='".$cat_name."',cat_desc='".$cat_desc."',cat_type='".$cat_type."' WHERE cat_id='".$cat_id."'";
+    $sql = "update category SET cat_name='".$cat_name."',cat_desc='".$cat_desc."',cat_type='".$cat_type."' WHERE cat_id='".$cat_id."'";
+    if (mysqli_query($conn, $sql))
+    {
+    } 
+    else 
+    {
+		echo "Error updating category: " . mysqli_error($conn);
+	}
 }
 
 ?>

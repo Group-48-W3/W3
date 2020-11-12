@@ -1,4 +1,7 @@
-<?php require_once('./expenseHeader.php');?>
+<?php 
+session_start();
+require_once('../../controller/user/userController.php');
+include_once('header.php'); ?>
 <!-- Content Starts -->
 <div class="container">
   <div class="row">
@@ -45,5 +48,8 @@
 
 </div>
 <!-- Content Ends -->
-</body>
-</html>
+
+<?php
+  require_once('leftSidebar.php'); 
+  require_once('footer.php'); 
+?>	
