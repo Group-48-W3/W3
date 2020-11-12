@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../../controller/user/userController.php');
+require_once('./../../controller/user/userController.php');
 include_once('header.php'); ?>
 
 <div class="container">

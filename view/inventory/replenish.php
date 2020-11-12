@@ -7,11 +7,13 @@
 	}		
 	
 	require_once('../../controller/user/userController.php');
-	 
+   
+  
+  if()
 ?>
 <?php include_once('header.php'); ?>
 
-<h2>Replenish Stock</h2>
+<h2>Replenish Stock(Add New Stock)</h2>
 <div class="container">
   <div class="row">
     <div class="col">
@@ -59,8 +61,8 @@
         </div>
         <div class="row">
           <div class="container right">
-            <button class="btn btn-primary" type="cancel" value="cancel">Submit</button> 
-            <button class="btn btn-secondary" type="submit" value="Submit" name="replenishTool">Cancel</button>
+            <button class="btn btn-primary" type="submit" value="Submit" name="replenishTool">Submit</button> 
+            <button class="btn btn-secondary" type="cancel" value="cancel">Cancel</button>
           </div>
         </div>
       </form>
