@@ -1,3 +1,5 @@
+@import url("components/loginGrid.css");
+
 *{
     box-sizing: border-box;
 }
@@ -77,16 +79,32 @@ h2{
     width: 50%;
     z-index: 1;
 }
-.btn{
+.btn-primary{
+    cursor: pointer;
     background: #282828;
     border-radius: 5px;
     font-size: 16px;
     line-height: 2rem;
-    width: 5rem;
     color: #FFFFFF;
     margin: 0.5rem 0;
+    padding-left: 10px;
+    padding-right: 10px;
 }
+
+.btn-small{
+    cursor: pointer;
+    background: #282828;
+    border-radius: 5px;
+    font-size: 11px;
+    line-height: 2rem;
+    color: #FFFFFF;
+    margin: 0.5rem 0;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .btn:active{
+    background: #414141;
     transform: scale(0.95);
 }
 button:focus{
