@@ -62,12 +62,34 @@ function deleterUserById($id){
 function getUserRoleID($id){
 	global $conn;
     
-    $query = "select r_name from role where  r_id = ".$id;
+    $query = "select r_name from role where r_id = ".$id;
 
     $rs = mysqli_query($conn,$query);
 	$row = mysqli_fetch_assoc($rs);
 	
 	return $row['r_name'];
+}
+function changePasswordDB($pass,$email){
+	global $conn;
+
+	$sql = "update user set u_password ='".$pass."' where u_email ='".$email."'";
+	 if (mysqli_query($conn, $sql)) {
+		echo "password changes successfully !";
+	 } else {
+		echo "Error: " . $sql . " " . mysqli_error($conn);
+	 }
+	 mysqli_close($conn);
+}
+function updateAccountDB($email,$pass,$id){
+	global $conn;
+
+	$sql = "update user set u_password ='".$pass."',u_email ='".$email."' where u_id ='".$id."'";
+	 if (mysqli_query($conn, $sql)) {
+		echo "account changes successfully !";
+	 } else {
+		echo "Error: " . $sql . " " . mysqli_error($conn);
+	 }
+	 mysqli_close($conn);
 }
 
 ?>
