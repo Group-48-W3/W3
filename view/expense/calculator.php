@@ -1,69 +1,73 @@
-<?php require_once('./expenseHeader.php');?>
-<body>
+<?php 
+session_start();
+require_once('../../controller/user/userController.php');
+include_once('header.php'); ?>
        
 <div class="container">
-    <h2>Tool Calculator</h2>
-    <div class="body m-3 card" style="padding:10px">
+    <h1>Tool Calculator</h1>
+    <div class="col center" style="width:40%">
         <div class="text-center">
-            <p class="lead">Calculator</p>
-            </div>
-            <div class="input my-2">
-                <input type="text" name="writespace" readonly class="form-control form-control-lg" id="writespace">
-            </div>
-            <div class="past">
-                <small>Result : </small><small id="past-val">0</small>
-            </div>
-            <div class="input my-2">
-                <input type="text" value="0" name="printspace" class="form-control form-control-sm" readonly id="printspace">
-            </div>
-            <div class="buttons">
+            <h2>Calculator</h2>
+        </div>
+        <div class="form-group field">
+            <input type="text" name="writespace" readonly class="form-field" id="writespace" placeholder="Input">
+            <label class="form-label" for="writespace">Input</label>
+        </div>
+        <div class="right">
+            <small class="form-text text-muted">Result : </small><small id="past-val">0</small>
+        </div>
+        <div class="form-group field">
+            <input type="text" value="0" name="printspace" class="form-field" readonly id="printspace" placeholder="Answer">
+            <label class="form-label" for="printspace">Answer</label>
+        </div>
+        <div class="container">
             <table style="width:100%">
-                    <tr>
-                        <td><button class="btn btn-outline-primary w-100">1</button></td>
-                        <td><button class="btn btn-outline-primary w-100">2</button></td>
-                        <td><button class="btn btn-outline-primary w-100">3</button></td>
-                        <td>
-                            <div class="btn-group w-100">
-                                    <button class="btn btn-primary w-100">+</button>
-                                    <button class="btn btn-outline-info w-100">-</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><button class="btn btn-outline-primary w-100">4</button></td>
-                        <td><button class="btn btn-outline-primary w-100">5</button></td>
-                        <td><button class="btn btn-outline-primary w-100">6</button></td>
-                        <td>
-                            <div class="btn-group w-100">
-                                    <button class="btn btn-primary w-100">x</button>
-                                    <button class="btn btn-outline-info w-100">/</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><button class="btn btn-outline-primary w-100">7</button></td>
-                        <td><button class="btn btn-outline-primary w-100">8</button></td>
-                        <td><button class="btn btn-outline-primary w-100">9</button></td>
-                        <td>
-                            <div class="btn-group w-100">
-                                    <button class="btn btn-primary w-100">(</button>
-                                    <button class="btn btn-outline-info w-100">)</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><button class="btn btn-outline-primary w-100">0</button></td>
-                        <td><button class="btn btn-outline-danger w-100" >C</button></td>
-                        <td>
-                            <button class="btn btn-outline-success w-100">=</button>
-                        </td>
-                        <td>
-                                <div class="btn-group w-100">
-                                        <button class="btn btn-primary w-100" >^</button>
-                                        <button class="btn btn-outline-info w-100" >Ans</button>
-                                </div>
-                        </td>
-                    </tr>
+                <tr>
+                    <td><button class="btn btn-outline-light w-100">1</button></td>
+                    <td><button class="btn btn-outline-light w-100">2</button></td>
+                    <td><button class="btn btn-outline-light w-100">3</button></td>
+                    <td>
+                        <div class="btn-group w-100">
+                            <button class="btn btn-outline-info w-100">+</button>
+                            <button class="btn btn-outline-info w-100">-</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-outline-light w-100">4</button></td>
+                    <td><button class="btn btn-outline-light w-100">5</button></td>
+                    <td><button class="btn btn-outline-light w-100">6</button></td>
+                    <td>
+                        <div class="btn-group w-100">
+                            <button class="btn btn-outline-info w-100">x</button>
+                            <button class="btn btn-outline-info w-100">/</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-outline-light w-100">7</button></td>
+                    <td><button class="btn btn-outline-light w-100">8</button></td>
+                    <td><button class="btn btn-outline-light w-100">9</button></td>
+                    <td>
+                        <div class="btn-group w-100">
+                            <button class="btn btn-outline-info w-100">(</button>
+                            <button class="btn btn-outline-info w-100">)</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-outline-light w-100">0</button></td>
+                    <td><button class="btn btn-outline-danger w-100" >C</button></td>
+                    <td>
+                        <button class="btn btn-outline-success w-100">=</button>
+                    </td>
+                    <td>
+                        <div class="btn-group w-100">
+                            <button class="btn btn-outline-info w-100" >^</button>
+                            <button class="btn btn-outline-info w-100" >Ans</button>
+                        </div>
+                    </td>
+                </tr>
             </table>
         </div>
     </div>
@@ -114,5 +118,7 @@
     });
 </script>
 
-    </body>
-</html>
+<?php
+  require_once('leftSidebar.php'); 
+  require_once('footer.php'); 
+?>	
