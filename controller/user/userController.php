@@ -19,7 +19,7 @@ if (isset($_GET['userid'])) {
 if (isset($_POST['userUpdateDetails'])) {
     updateUser($_GET['userid']);
 }
-
+//////////// class functions//////////////
 function addUser(){
 	$user_role = $_POST['user_role'];
 	$first_name = $_POST['first_name'];
@@ -61,10 +61,13 @@ function getSingleUser($id){
 //update a user
 function updateUser($id){
 	// update a particular user
-	header('location:./../../view/user/userView.php');
+	
 	exit;
 }
-
+function updateAccount($email,$password,$id){
+	echo "metana";
+	updateAccountDB($email,md5($password),$id);
+}
 //delete a user
 function deleteUser($id){
 	//echo "here we are";

@@ -9,6 +9,17 @@
 		exit;
 	}		
 	$details = mysqli_fetch_array(getSingleUser($_SESSION['u_id']));
+	$user_detail = getSingleUser($_SESSION['u_id']);
+	$row = mysqli_fetch_array($user_detail);
+	//////////////////
+	if(isset($_POST['userUpdateAccount'])){
+		
+		if(md5($_POST['prev_pass']) == $_SESSION['u_password'] && $_POST['u_new_pass'] == $_POST['u_new_pass_con']){
+			updateAccount($_POST['u_email'],$_POST['u_new_pass'],$_SESSION['u_id']);
+			header('location:./../../');
+		}
+	}
+
 
 ?>
 	<!DOCTYPE html>
@@ -71,14 +82,41 @@
 		
 		<h3><small>You are login as :</small><?php echo getUserAccessRoleByID($_SESSION['r_id']); ?></h3>
 		<hr>
-		<h4>User Details:</h4>
-		<div class="container">
-			<h6>First Name:<?php echo $details['u_firstname']; ?></h6>
-			
-		</div>
 		
-
-		<div style="height: 200px;"></div>
+		<h4>Change Profile</h4>
+		<form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
+			<div class="form-group field">
+				<input type="text" class="form-field" id="u_firstname" name="u_firstname" value="<?php echo $row["u_firstname"]; ?>">
+				<label for="u_firstname" class="form-label">First Name</label>
+			</div>
+			<div class="form-group field">
+				<input type="textarea" class="form-field" id="u_lastname" name="u_lastname" value="<?php echo $row["u_lastname"]; ?>">
+				<label for="u_lastname" class="form-label">Last Name</label>
+			</div>
+			<br>
+			<h4>User Account Details</h4>
+			<div class="form-group field">
+				<input type="text" class="form-field" id="u_email" name="u_email" value="<?php echo $row["u_email"]; ?>">
+				<label for="u_email" class="form-label">Email</label>
+			</div>
+			<h4>Change Password</h4>
+			<div class="form-group field">
+				<input type="password" class="form-field" " name="prev_pass" value="">
+				<label for="u_new_pass" class="form-label">Current Password</label>
+			</div>
+			<div class="form-group field">
+				<input type="password" class="form-field" name="u_new_pass" value="">
+				<label for="u_new_pass" class="form-label">New Password(if changing)</label>
+			</div>
+			<div class="form-group field">
+				<input type="password" class="form-field" name="u_new_pass_con" value="">
+				<label for="u_new_pass_con" class="form-label">Confirm New Password</label>
+			</div>
+			<div class="right">
+				<input type="submit" class="btn btn-primary" name="userUpdateAccount" value="Update User Account">
+			</div>
+		</form>
+	
 	</div>
 
 <?php
