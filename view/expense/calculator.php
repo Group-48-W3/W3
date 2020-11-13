@@ -4,7 +4,7 @@ require_once('../../controller/user/userController.php');
 include_once('header.php'); ?>
        
 <div class="container">
-    <h1>Tool Calculator</h1>
+    <h1>Tools</h1>
     <div class="col center" style="width:40%">
         <div class="text-center">
             <h2>Calculator</h2>
