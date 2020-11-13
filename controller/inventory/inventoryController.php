@@ -2,34 +2,6 @@
 // include model
     require_once("./../../model/inventoryModel.php");
 
-
-    if(isset($_POST['addNewRawMaterial'])){
-        $inv = new Inventory();
-        $inv->addRawMaterial();
-    }
- 
-
-    if(isset($_POST['addNewTool'])){
-        $inv = new Inventory();
-        $inv->addTool();
-    } 
-
-    if(isset($_POST['replenishRawMaterial'])){
-        $inv = new Inventory();
-        $inv->replenishRawMaterial();
-    } 
-
-    if(isset($_POST['replenishTool'])){
-        $inv = new Inventory();
-        $inv->replenishTool();
-    } 
-
-    if(isset($_POST['issueRawMaterial'])){
-        $inv = new Inventory();
-        $inv->issueRawMaterial();
-    }
-
-
     class Inventory{
         function __construct(){
             $this->index();
@@ -38,7 +10,7 @@
             //
         }
 
-        function addRawMaterial(){
+        function addRawMaterial($materialName,$materialType,$materialPrice,$materialQuantity,$materialReorderValue){
             $materialName = $_POST['materialName'];
             $materialType = $_POST['materialType'];
             $materialPrice = $_POST['materialPrice'];
@@ -57,7 +29,7 @@
             }else{
                 echo 'All fields are required';
             }
-            header('location:./../../view/inventory/replenishOwnerPermission.php');//redirection
+            //header('location:./../../view/inventory/replenishOwnerPermission.php');//redirection
             exit;
         } 
 
