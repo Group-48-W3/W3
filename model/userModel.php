@@ -80,5 +80,16 @@ function changePasswordDB($pass,$email){
 	 }
 	 mysqli_close($conn);
 }
+function updateAccountDB($email,$pass,$id){
+	global $conn;
+
+	$sql = "update user set u_password ='".$pass."',u_email ='".$email."' where u_id ='".$id."'";
+	 if (mysqli_query($conn, $sql)) {
+		echo "account changes successfully !";
+	 } else {
+		echo "Error: " . $sql . " " . mysqli_error($conn);
+	 }
+	 mysqli_close($conn);
+}
 
 ?>
