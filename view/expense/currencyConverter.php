@@ -2,9 +2,9 @@
     <h2>Currency Converter</h2>
     <table>
         <tr>
-            <td><input id="fromAmount" type="text" size="15"></td>
+            <td><input id="fromAmount" type="text" size="15" value="1"></td>
             <td>
-                <select if="from">
+                <select id="from">
                     <option value="AUD">Australian Dollar (AUD)</option>
                     <option value="BDT">Bangladesh Taka (BDT)</option>
                     <option value="CAD">Canadian Dollar (CAD)</option>
@@ -34,9 +34,9 @@
         </tr>
             
         <tr>
-        <td><input id="toAmount" type="text" size="15"></td>
+        <td><input id="toAmount" type="text" size="15" disabled></td>
             <td>
-                <select if="to">
+                <select id="to">
                     <option value="AUD">Australian Dollar (AUD)</option>
                     <option value="BDT">Bangladesh Taka (BDT)</option>
                     <option value="CAD">Canadian Dollar (CAD)</option>
@@ -65,3 +65,24 @@
             </td>
         </tr>
     </table>
+
+
+    <script>
+        const selcet = document.querySelectorAll('select');
+        const input = document.querySelectorAll('input');
+        const API_URL = "https://api.exchangeratesapi.io/latest";
+        let html = '';
+
+        async function currency()
+        {
+            const res = await fetch(API_URL);
+            const data = await res.json();
+            const arrKeys = Object.keys(data.rates);
+            const rates = data.rates;
+            console.log(rates)
+
+        }
+
+
+    }
+    </script>

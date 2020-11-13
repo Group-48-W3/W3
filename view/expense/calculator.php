@@ -77,9 +77,9 @@ include_once('header.php'); ?>
     <h2>Currency Converter</h2>
     <table>
         <tr>
-            <td><input id="fromAmount" type="text" size="15" value="1" onkeyup="currencyConverter();"></td>
+            <td><input id="fromAmount" type="text" size="15" value="0" onkeyup="currencyConverter();"></td>
             <td>
-                <select if="from" onchange="currencyConverter();">
+                <select id="from" onchange="currencyConverter();">
                     <option value="AUD">Australian Dollar (AUD)</option>
                     <option value="BDT">Bangladesh Taka (BDT)</option>
                     <option value="CAD">Canadian Dollar (CAD)</option>
@@ -111,7 +111,7 @@ include_once('header.php'); ?>
         <tr>
         <td><input id="toAmount" type="text" size="15" disabled></td>
             <td>
-                <select if="to" onchange="currencyConverter();">
+                <select id="to" onchange="currencyConverter();">
                     <option value="AUD">Australian Dollar (AUD)</option>
                     <option value="BDT">Bangladesh Taka (BDT)</option>
                     <option value="CAD">Canadian Dollar (CAD)</option>
@@ -194,7 +194,7 @@ include_once('header.php'); ?>
         var from = document.getElementById("from").value;
         var to = document.getElementById("to").value;
         var xmlhttp = new XMLHttpRequest();
-        var url = "http://api.fixer.io/latest?symbols=" + from + "," + to;
+        var url = "http://data.fixer.io/api/latest?access_key=2eac199252266bc77836add81d4d2967&format=1?" + from + "," + to;
         xmlhttp.open("GET",url,true);
         xmlhttp.send();
         xmlhttp.onreadystatechange = function()
@@ -202,8 +202,8 @@ include_once('header.php'); ?>
             if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
             {
                 var result = xmlhttp.responseText;
-                alert(result);
-                var jsResult = json.parse(result);
+                //alert(result);
+                var jsResult = JSON.parse(result);
                 var oneUnit = jsResult.rates[to]/jsResult.rates[from];
                 var amt = document.getElementById("fromAmount").value;
                 document.getElementById("toAmount").value = (oneUnit * amt).toFixed(2);
