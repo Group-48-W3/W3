@@ -30,7 +30,7 @@
     <h5>Payment Method : <?php echo $row["payment_method"]; ?></h5>
     
     <br>
-    <h3>Client Details</h3>
+    <h2>Client Details</h2>
     <h5>Name : <?php echo $row_client["c_name"]; ?></h5>
     <h5>Company : <?php echo $row_client["c_company"]; ?></h5>
     <h5>Address : <?php echo $row_client["c_address"]; ?></h5>
@@ -39,7 +39,29 @@
 
     <br>
     <hr>
-    <h3>Quotation Details</h3>
+    <h2>Quotation Details</h2>
+    <h3>Current Quotation</h3>
+    <!-- Quotation Table -->
+    <table>
+                <thead>
+                    <tr>
+                    <th>Contract</th>
+                    <th>Name</th>
+                    <th>Weight</th>
+                    <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td data-label="Contract">Bentota 360 Hotel</td>
+                    <td data-label="Name">Beach Chairs</td>
+                    <td data-label="Weight">3 Units</td>
+                    <td data-label="Description">High Comfortable Chair Model for Hotels</td>
+                    </tr>
+                </tbody>
+    </table>
+    <hr>
+    <h2>Add a new Quotation</h2>
     <form action="./../../controller/contract/quotationController.php">
       <div class="form-group field">
           <select name="quotation" id="quotation" class="form-field">
@@ -62,18 +84,16 @@
         <input type="text" class="form-field" name="q_quantity" id="q_quantity">
         <label for="q_quantity" class="form-label">Quantity</label>
       </div>
-      <div class="container">
+      <button type="submit" name="quotation_contract" class="btn btn-primary">Add Quotation</button>
+    </form>
+    <div class="container">
+      <small class="form-text text-muted">Need to create a need one? click the following button</small>
         <div class="row">
           <div class="col">
-            <small>Need to create a need one? click the following button</small>
-            <button class="btn-secondary" href="./../../view/contract/quotationAdd.php">Quotation Gallery</button>
-          </div>
-          <div class="col right">
-            <button type="submit" name="quotation_contract" class="btn-primary">Add Quotation</button>
+          <a class="btn btn-secondary" href="./quotationAdd.php">Quotation Gallery</a>
           </div>
         </div>
-      </div>
-    </form>
+    </div>
     
     <br>
     <hr>
@@ -107,13 +127,13 @@
     </form>
     <br>
     <hr>
-    <h3>Contract Settings</h3>
+    <h2>Contract Settings</h2>
     <h5>Want to update contract?</h5>
     <!-- Update Navigation -->
-    <a href="./contractUpdate.php?con_id=<?php echo $row["con_id"]; ?>" class="btn btn-warning">Update</a><br>
+    <a href="./contractUpdate.php?con_id=<?php echo $row["con_id"]; ?>" class="btn btn-warning">Update <?php echo $row["con_name"]; ?></a><br>
     <!-- Sset Inactive Navigation -->
     <h5>Want to set to inactive state contract?</h5>
-    <button class="btn btn-danger">Set Inactive</button><br>
+    <a class="btn btn-danger" name="set_inactive">Set Inactive</a><br>
     <!-- Delete Navigation to home -->
     <h5>Want to delete this particular contract?</h5>
     <a href="./contractUpdate.php?con_id=<?php echo $row["con_id"]; ?>" class="btn btn-danger">Delete <?php echo $row["con_name"]; ?></a>

@@ -1,8 +1,5 @@
 <?php 
-  // if(!isset($_SESSION['u_id'],$_SESSION['r_id'])){
-  //   header('location:index.php?lmsg=true');
-  //   exit;
-  // }
+  
   session_start();
   require_once('./../../controller/contract/contractController.php');
   require_once('./../../controller/user/userController.php');
@@ -14,14 +11,7 @@
   <div class="container">
     <!-- Heading  -->
     <h1>Contract Home</h1>
-    <div class="form-group field">
-      <input type="text" class="form-field" id="find-repo" placeholder="Find a Contract by Name">
-      <label for="find-repo" class="form-label">Find a Contract</label>
-    </div>
-      <a class="btn btn-primary" href="./contractAdd.php">Add New Contract</a>
-      <br>
-      <br>
-      <!-- Start the card View  -->
+    <!-- Start the card View  -->
     <div class="row">
       <!-- 1st card -->
       <div class="col-sm">
@@ -70,6 +60,15 @@
     </div>
     <!-- end of row -->
 
+    <div class="form-group field">
+      <input type="text" class="form-field" id="find-repo" placeholder="Find a Contract by Name">
+      <label for="find-repo" class="form-label">Find a Contract</label>
+      <div class="container">
+      <br>
+      <a class="btn btn-primary" href="./contractAdd.php">Add New Contract</a>
+      </div>
+     
+    </div>
     <!--Contrat Summary Details  -->
     <h1>Ongoing Contracts</h1>
     <p>Contracts that are Active</p>
@@ -97,6 +96,11 @@
       }
     ?>
   </div> 
+  <div class="container">
+  <h1>Finished Contracts</h1>
+  <p>Contracts that are finished already</p>
+  </div>
+  
 
 <?php
   require_once('leftSidebar.php'); 
