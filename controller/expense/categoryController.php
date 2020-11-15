@@ -39,7 +39,7 @@ class Category
         }
         else
         {
-           echo 'Fill all required feilds';
+           echo "<h4>Fill all required feilds</h4>";
         }
     }
     function viewCategory()
@@ -81,7 +81,6 @@ class Category
         }
         echo "<script>alert('Category updated successfully');</script>";
         header('location:./../../view/expense/expenseCategory.php');
-        
         exit;
 
     }
