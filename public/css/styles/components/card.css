@@ -15,8 +15,13 @@
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
+    transition: ease 0.2s;
   }
   
+  .card:hover {
+    filter: brightness(85%);
+  }
+
   .card > hr {
     margin-right: 0;
     margin-left: 0;

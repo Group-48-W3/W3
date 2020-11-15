@@ -26,7 +26,7 @@
     $user_role = $_SESSION['r_id'];
 		if($user_role == 1){?>
       <li class="nav-item">
-        <div onclick="expandAdminMenu()" class="nav-link">
+        <a href="./user/userHome.php" class="nav-link">
           <svg 
             aria-hidden="true" 
             focusable="false" 
@@ -42,39 +42,11 @@
             </path>
           </svg>
             <span class="link-text">Admin Panel</span>
-            <span class="link-drop" id="admin-drop">▼</span>
-        </div>
+        </a>
       </li>
-      <ul class="navbar-sub-nav" id="admin-menu">
-        <li class="nav-sub-item">
-          <a href="./user/userHome.php" class="nav-sub-link">
-            <span class="link-text">Home</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="./user/userView.php" class="nav-sub-link">
-            <span class="link-text">Users</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="./user/employeeView.php" class="nav-sub-link">
-            <span class="link-text">Employees</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="./user/userNotification.php" class="nav-sub-link">
-            <span class="link-text">Notification</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="./user/userPermission.php" class="nav-sub-link">
-            <span class="link-text">Permission</span>
-          </a>
-        </li>
-      </ul>
 
       <li class="nav-item">
-        <div onclick="expandContractMenu()" class="nav-link">
+        <a href="./contract/contractDashboard.php" class="nav-link">
             <svg 
               aria-hidden="true" 
               focusable="false" 
@@ -90,36 +62,8 @@
               </path>
             </svg>           
             <span class="link-text">Contracts</span>
-            <span class="link-drop" id="contract-drop">▼</span>
-        </div>
+        </a>
       </li>
-      <ul class="navbar-sub-nav" id="contracts-menu">
-        <li class="nav-sub-item">
-          <a href="./contract/contractDashboard.php" class="nav-sub-link">
-            <span class="link-text">Overview</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="./contract/contractHome.php" class="nav-sub-link">
-            <span class="link-text">Contract</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="./contract/activityHome.php" class="nav-sub-link">
-            <span class="link-text">Activity</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="./contract/quotationAdd.php" class="nav-sub-link">
-            <span class="link-text">Quotation</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="./contract/invoiceAdd.php" class="nav-sub-link">
-            <span class="link-text">Invoice</span>
-          </a>
-        </li>
-      </ul>
 
       <li class="nav-item">
         <a href="./expense/expenseHome.php" class="nav-link">
@@ -167,7 +111,7 @@
 		<?php 
 		if($user_role == 2 ){?>
       <li class="nav-item">
-        <div onclick="expandAdminMenu()" class="nav-link">
+        <a href="./user/userHome.php" class="nav-link">
           <svg 
             aria-hidden="true" 
             focusable="false" 
@@ -183,39 +127,11 @@
             </path>
           </svg>
             <span class="link-text">Admin Panel</span>
-            <span class="link-drop" id="admin-drop">▼</span>
-        </div>
+        </a>
       </li>
-      <ul class="navbar-sub-nav" id="admin-menu">
-        <li class="nav-sub-item">
-          <a href="./user/userHome.php" class="nav-sub-link">
-            <span class="link-text">Home</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="./user/userView.php" class="nav-sub-link">
-            <span class="link-text">Users</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="./user/employeeView.php" class="nav-sub-link">
-            <span class="link-text">Employees</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="./user/userNotification.php" class="nav-sub-link">
-            <span class="link-text">Notification</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="./user/userPermission.php" class="nav-sub-link">
-            <span class="link-text">Permission</span>
-          </a>
-        </li>
-      </ul>
 
       <li class="nav-item">
-        <div onclick="expandContractMenu()" class="nav-link">
+        <a href="./contract/contractDashboard.php" class="nav-link">
             <svg 
               aria-hidden="true" 
               focusable="false" 
@@ -231,36 +147,8 @@
               </path>
             </svg>           
             <span class="link-text">Contracts</span>
-            <span class="link-drop" id="contract-drop">▼</span>
-        </div>
+        </a>
       </li>
-      <ul class="navbar-sub-nav" id="contracts-menu">
-        <li class="nav-sub-item">
-          <a href="./contract/contractDashboard.php" class="nav-sub-link">
-            <span class="link-text">Overview</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="./contract/contractHome.php" class="nav-sub-link">
-            <span class="link-text">Contract</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="./contract/activityHome.php" class="nav-sub-link">
-            <span class="link-text">Activity</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="./contract/quotationAdd.php" class="nav-sub-link">
-            <span class="link-text">Quotation</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="./contract/invoiceAdd.php" class="nav-sub-link">
-            <span class="link-text">Invoice</span>
-          </a>
-        </li>
-      </ul>
       <li class="nav-item">
         <a href="./contract/reportHome.php" class="nav-link">
           <svg 

@@ -107,7 +107,7 @@
 </div>
 <br>
 <div class="tab">
-    <button class="tablinks" onclick="openTab(event, 'viewExpense')">Daily Expenses</button>
+    <button class="tablinks" id="openOnLoad" onclick="openTab(event, 'viewExpense')">Daily Expenses</button>
     <button class="tablinks" onclick="openTab(event, 'employeePayments')">Employee Payments</button>
     <button class="tablinks" onclick="openTab(event, 'sheduledExpenses')">Scheduled Expenses</button>
 </div>

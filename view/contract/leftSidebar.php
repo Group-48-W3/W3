@@ -69,7 +69,7 @@
       </ul>
 
       <li class="nav-item">
-        <div onclick="expandContractMenu()" class="nav-link">
+        <a href="contractDashboard.php" class="nav-link">
             <svg 
               aria-hidden="true" 
               focusable="false" 
@@ -85,36 +85,8 @@
               </path>
             </svg>           
             <span class="link-text">Contracts</span>
-            <span class="link-drop" id="contract-drop">▼</span>
-        </div>
+        </a>
       </li>
-      <ul class="navbar-sub-nav" id="contracts-menu">
-        <li class="nav-sub-item">
-          <a href="contractDashboard.php" class="nav-sub-link">
-            <span class="link-text">Overview</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="contractHome.php" class="nav-sub-link">
-            <span class="link-text">Contract</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="activityHome.php" class="nav-sub-link">
-            <span class="link-text">Activity</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="quotationAdd.php" class="nav-sub-link">
-            <span class="link-text">Quotation</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="invoiceAdd.php" class="nav-sub-link">
-            <span class="link-text">Invoice</span>
-          </a>
-        </li>
-      </ul>
       <li class="nav-item">
         <a href="./../contract/reportHome.php" class="nav-link">
           <svg 
