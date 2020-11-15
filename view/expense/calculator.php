@@ -5,70 +5,157 @@ include_once('header.php'); ?>
        
 <div class="container">
     <h1>Tools</h1>
-    <div class="col center" style="width:40%">
-        <div class="text-center">
-            <h2>Calculator</h2>
+    <div class="row">
+        <div class="col">
+            <div class="text-center">
+                <h2>Calculator</h2>
+            </div>
+            <div class="form-group field">
+                <input type="text" name="writespace" readonly class="form-field" id="writespace" placeholder="Input">
+                <label class="form-label" for="writespace">Input</label>
+            </div>
+            <div class="right">
+                <small class="form-text text-muted">Result : </small><small id="past-val">0</small>
+            </div>
+            <div class="form-group field">
+                <input type="text" value="0" name="printspace" class="form-field" readonly id="printspace" placeholder="Answer">
+                <label class="form-label" for="printspace">Answer</label>
+            </div>
+            <div class="container">
+                <table style="width:100%">
+                    <tr>
+                        <td><button class="btn btn-outline-light w-100">1</button></td>
+                        <td><button class="btn btn-outline-light w-100">2</button></td>
+                        <td><button class="btn btn-outline-light w-100">3</button></td>
+                        <td>
+                            <div class="btn-group w-100">
+                                <button class="btn btn-outline-info w-100">+</button>
+                                <button class="btn btn-outline-info w-100">-</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><button class="btn btn-outline-light w-100">4</button></td>
+                        <td><button class="btn btn-outline-light w-100">5</button></td>
+                        <td><button class="btn btn-outline-light w-100">6</button></td>
+                        <td>
+                            <div class="btn-group w-100">
+                                <button class="btn btn-outline-info w-100">x</button>
+                                <button class="btn btn-outline-info w-100">/</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><button class="btn btn-outline-light w-100">7</button></td>
+                        <td><button class="btn btn-outline-light w-100">8</button></td>
+                        <td><button class="btn btn-outline-light w-100">9</button></td>
+                        <td>
+                            <div class="btn-group w-100">
+                                <button class="btn btn-outline-info w-100">(</button>
+                                <button class="btn btn-outline-info w-100">)</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><button class="btn btn-outline-light w-100">0</button></td>
+                        <td><button class="btn btn-outline-danger w-100" >C</button></td>
+                        <td>
+                            <button class="btn btn-outline-success w-100">=</button>
+                        </td>
+                        <td>
+                            <div class="btn-group w-100">
+                                <button class="btn btn-outline-info w-100" >^</button>
+                                <button class="btn btn-outline-info w-100" >Ans</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
-        <div class="form-group field">
-            <input type="text" name="writespace" readonly class="form-field" id="writespace" placeholder="Input">
-            <label class="form-label" for="writespace">Input</label>
-        </div>
-        <div class="right">
-            <small class="form-text text-muted">Result : </small><small id="past-val">0</small>
-        </div>
-        <div class="form-group field">
-            <input type="text" value="0" name="printspace" class="form-field" readonly id="printspace" placeholder="Answer">
-            <label class="form-label" for="printspace">Answer</label>
-        </div>
-        <div class="container">
-            <table style="width:100%">
-                <tr>
-                    <td><button class="btn btn-outline-light w-100">1</button></td>
-                    <td><button class="btn btn-outline-light w-100">2</button></td>
-                    <td><button class="btn btn-outline-light w-100">3</button></td>
-                    <td>
-                        <div class="btn-group w-100">
-                            <button class="btn btn-outline-info w-100">+</button>
-                            <button class="btn btn-outline-info w-100">-</button>
+        <div id="box" class="col">
+            <div class="text-center">
+                <h2>Currency Converter</h2>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group field">
+                            <input class="form-field" id="fromAmount" placeholder="Input" type="text" size="15" onkeyup="currencyConverter();">
+                            <label for="fromamount" class="form-label">Input</label>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><button class="btn btn-outline-light w-100">4</button></td>
-                    <td><button class="btn btn-outline-light w-100">5</button></td>
-                    <td><button class="btn btn-outline-light w-100">6</button></td>
-                    <td>
-                        <div class="btn-group w-100">
-                            <button class="btn btn-outline-info w-100">x</button>
-                            <button class="btn btn-outline-info w-100">/</button>
+                    </div>
+                    <div class="col">
+                        <div class="form-group field">
+                            <select class="form-field" id="firstCurrency" if="from" onchange="currencyConverter();">
+                                <option value="AUD">Australian Dollar (AUD)</option>
+                                <option value="BDT">Bangladesh Taka (BDT)</option>
+                                <option value="CAD">Canadian Dollar (CAD)</option>
+                                <option value="CNY">Chinese Yuan (CNY)</option>
+                                <option value="EGP">Egyptian Pound (EGP)</option>
+                                <option value="EUR">EURO (EUR)</option>
+                                <option value="HKD">Hong Kong Dollar (HKD)</option>
+                                <option value="INR">Indian Rupee (INR)</option>
+                                <option value="ILS">Israeli Sheqel (ILS)</option>
+                                <option value="JPY">Japanese Yen (JPY)</option>
+                                <option value="MYR">Malaysian Ringgit (MYR)</option>
+                                <option value="MVR">Maldives Rufiyaa (MVR)</option>
+                                <option value="NZD">New Zealand Dollar  (NZD)</option>
+                                <option value="PKR">Pakistan Rupee (PKR)</option>
+                                <option value="PHP">Philippine Peso (PHP)</option>
+                                <option value="QAR">Qatari Rial (QAR)</option>
+                                <option value="RUB">Russian Ruble (RUB)</option>
+                                <option value="SAR">Saudi Riyal (SAR)</option>
+                                <option value="SGD">Singapore Dollar (SGD)</option>
+                                <option value="LKR">Sri Lanka Rupee (LKR)</option>
+                                <option value="THB">Thailand Baht (THB)</option>
+                                <option value="AED">UAE Dirham (AED)</option>
+                                <option value="GBP">Pound Sterling (GBP)</option>
+                                <option value="USD" selected>US Dollar (USD)</option>
+                            </select>
+                            <label for="firstCurrency" class="form-label">First Currency</label>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><button class="btn btn-outline-light w-100">7</button></td>
-                    <td><button class="btn btn-outline-light w-100">8</button></td>
-                    <td><button class="btn btn-outline-light w-100">9</button></td>
-                    <td>
-                        <div class="btn-group w-100">
-                            <button class="btn btn-outline-info w-100">(</button>
-                            <button class="btn btn-outline-info w-100">)</button>
+                    </div>  
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group field">
+                            <input class="form-field" placeholder="Answer" id="toAmount" type="text" size="15" disabled>
+                            <label for="toamount" class="form-label">Answer</label>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><button class="btn btn-outline-light w-100">0</button></td>
-                    <td><button class="btn btn-outline-danger w-100" >C</button></td>
-                    <td>
-                        <button class="btn btn-outline-success w-100">=</button>
-                    </td>
-                    <td>
-                        <div class="btn-group w-100">
-                            <button class="btn btn-outline-info w-100" >^</button>
-                            <button class="btn btn-outline-info w-100" >Ans</button>
+                    </div>
+                    <div class="col">
+                        <div class="form-group field">
+                            <select class="form-field" id="secondCurrency" if="to" onchange="currencyConverter();">
+                                <option value="AUD">Australian Dollar (AUD)</option>
+                                <option value="BDT">Bangladesh Taka (BDT)</option>
+                                <option value="CAD">Canadian Dollar (CAD)</option>
+                                <option value="CNY">Chinese Yuan (CNY)</option>
+                                <option value="EGP">Egyptian Pound (EGP)</option>
+                                <option value="EUR">EURO (EUR)</option>
+                                <option value="HKD">Hong Kong Dollar (HKD)</option>
+                                <option value="INR">Indian Rupee (INR)</option>
+                                <option value="ILS">Israeli Sheqel (ILS)</option>
+                                <option value="JPY">Japanese Yen (JPY)</option>
+                                <option value="MYR">Malaysian Ringgit (MYR)</option>
+                                <option value="MVR">Maldives Rufiyaa (MVR)</option>
+                                <option value="NZD">New Zealand Dollar  (NZD)</option>
+                                <option value="PKR">Pakistan Rupee (PKR)</option>
+                                <option value="PHP">Philippine Peso (PHP)</option>
+                                <option value="QAR">Qatari Rial (QAR)</option>
+                                <option value="RUB">Russian Ruble (RUB)</option>
+                                <option value="SAR">Saudi Riyal (SAR)</option>
+                                <option value="SGD">Singapore Dollar (SGD)</option>
+                                <option value="LKR" selected>Sri Lanka Rupee (LKR)</option>
+                                <option value="THB">Thailand Baht (THB)</option>
+                                <option value="AED">UAE Dirham (AED)</option>
+                                <option value="GBP">Pound Sterling (GBP)</option>
+                                <option value="USD">US Dollar (USD)</option>
+                            </select>
+                            <label for="secondCurrency" class="form-label">Second Currency</label>
                         </div>
-                    </td>
-                </tr>
-            </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
