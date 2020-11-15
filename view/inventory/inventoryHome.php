@@ -167,7 +167,7 @@
 <h2>Recent Issues</h2>
 <div class="container center">
 	<div class="tab">
-		<button class="tablinks" onclick="openTab(event, 'recentTools')">Tools</button>
+		<button class="tablinks" id="openOnLoad" onclick="openTab(event, 'recentTools')">Tools</button>
 		<button class="tablinks" onclick="openTab(event, 'recentRawMaterials')">Raw Materials</button>
 	</div>
 	<div id="recentTools" class="tabcontent">

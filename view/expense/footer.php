@@ -11,6 +11,11 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fa fa-angle-up"></i>
   </a>
+
+  <!--Auto open tabs when load-->
+  <script type="text/javascript">
+      document.getElementById("openOnLoad").click();
+  </script>
   
   <!-- Core plugin JavaScript-->
   <script src="../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
