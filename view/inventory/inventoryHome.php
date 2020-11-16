@@ -7,7 +7,10 @@
 	}		
 	
 	require_once('../../controller/user/userController.php');
-	 
+	require_once('../../controller/inventory/rawMaterialController.php');
+	$rawMaterial = new RawMaterial();
+	$category = $rawMaterial->getAllRawMaterialCategory();
+	$material = $rawMaterial->getAllRawMaterial();			
 ?>
 <?php include_once('header.php'); ?>
 
@@ -55,56 +58,40 @@
 	<table class="data-table">
 		<thead>
 			<tr>
-				<th>ID</th>
-				<th>Item</th>
-				<th>Quantity</th>
-				<th>Date</th>
+				<th>Material Name</th>
 				<th>Description</th>
+				<th>Minimum Quantity</th>
+				<th>Type</th>
+				<th>Price</th>
+				<th>Available Quantity</th>
 			</tr>
 		</thead>
 		<tbody>
+			<?php
+				$i=0;
+				while($categories = mysqli_fetch_array($category)) {
+			?>
 			<tr>
-				<td data-label="ID">01</td>
-				<td data-label="Item">Nails</td>
-				<td data-label="Quantity">20</td>
-				<td data-label="Date">2019.06.07</td>
-				<td data-label="Description">Issued to Sarath</td>
+				<td data-label="Material Name"><?php echo $categories["mat_name"]; ?></td>
+				<td data-label="Description"><?php echo $categories["inv_desc"]; ?></td>
+				<td data-label="Minimum Quantity"><?php echo $categories["min_qty"]; ?></td>
+				<td data-label="Type">
+					<?php echo $rawMaterial->getRawMaterialDetail($categories["inv_code"], 'mat_type') ?><br>
+				</td>
+				<td data-label="Price">
+					<?php // echo $materials["unit_price"]; ?><br>
+				</td>
+				<td data-label="Available Quantity">
+					<?php // echo $materials["mat_qty"]; ?><br>
+				</td>
 			</tr>
-			<tr>
-				<td data-label="ID">01</td>
-				<td data-label="Item">Nails</td>
-				<td data-label="Quantity">20</td>
-				<td data-label="Date">2019.06.07</td>
-				<td data-label="Description">Issued to Sarath</td>
-			</tr>
-			<tr>
-				<td data-label="ID">01</td>
-				<td data-label="Item">Nails</td>
-				<td data-label="Quantity">20</td>
-				<td data-label="Date">2019.06.07</td>
-				<td data-label="Description">Issued to Sarath</td>
-			</tr>
-			<tr>
-				<td data-label="ID">01</td>
-				<td data-label="Item">Nails</td>
-				<td data-label="Quantity">20</td>
-				<td data-label="Date">2019.06.07</td>
-				<td data-label="Description">Issued to Sarath</td>
-			</tr>
-			<tr>
-				<td data-label="ID">01</td>
-				<td data-label="Item">Nails</td>
-				<td data-label="Quantity">20</td>
-				<td data-label="Date">2019.06.07</td>
-				<td data-label="Description">Issued to Sarath</td>
-			</tr>
-			<tr>
-				<td data-label="ID">01</td>
-				<td data-label="Item">Nails</td>
-				<td data-label="Quantity">20</td>
-				<td data-label="Date">2019.06.07</td>
-				<td data-label="Description">Issued to Sarath</td>
-			</tr>
+			<?php
+					$i++;
+				}
+				if($i==0){
+					echo "No results ";
+				}
+			?>
 		</tbody>
 	</table>
 	<h3>Tools</h3>

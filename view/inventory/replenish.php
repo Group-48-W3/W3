@@ -7,21 +7,10 @@
 	}		
 	
   require_once('../../controller/user/userController.php');
+  require_once('../../controller/inventory/rawMaterialController.php');
+  $rawMaterial = new RawMaterial();
+  $result = $rawMaterial->getAllRawMaterialCategory();
   require_once('header.php');
-   
-  require_once('./../../controller/inventory/inventoryController.php');
-  if(isset( $_POST['addNewRawMaterial'])){
-    $materialName = $_POST['materialName'];
-    $materialType = $_POST['materialType'];
-    $materialPrice = $_POST['materialPrice'];
-    $materialQuantity = $_POST['materialQuantity'];
-    $materialReorderValue = $_POST['materialReorderValue'];
-
-    $inv = new Inventory();
-
-    $inv->addRawMaterial($materialName,$materialType,$materialPrice,$materialQuantity,$materialReorderValue);
-    
-  }
 ?>
 
 <h2>Replenish Stock(Add New Stock)</h2>
@@ -84,74 +73,77 @@
 
 <h2> Add New Raw Material</h2>
 <div class="tab">
-    <button class="tablinks" id="openOnLoad" onclick="openTab(event, 'newRawMaterial')">Raw Material</button>
-    <button class="tablinks" onclick="openTab(event, 'newSubRawMaterial')">Sub Raw Material</button>
+    <button class="tablinks" id="openOnLoad" onclick="openTab(event, 'rawMaterialCategory')">Raw Material Category</button>
+    <button class="tablinks" onclick="openTab(event, 'newRawMaterial')">New Raw Material</button>
 </div>
 <!-- Adding Raw materials -->
-<div id="newRawMaterial" class="tabcontent">
-    <h2>Add new raw material</h2>
+<div id="rawMaterialCategory" class="tabcontent">
+    <h2>Add new raw material category</h2>
     <div class="container">
-      <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
+      <form method="post" action="../../controller/inventory/rawMaterialController.php">
           <div class="form-group field">
               <div class="form-group field">
                   <input class="form-field" id="name" name="materialName">
                   <label for="name" class="form-label">Name</label>
               </div>
               <div class="form-group field">
-                  <input class="form-field" id="type" name="materialType">
-                  <label for="type" class="form-label">Type</label>
-              </div>
-              <div class="form-group field">
-                  <input class="form-field" id="price" name="materialPrice">
-                  <label for="price" class="form-label">Price</label>
-              </div>
-              <div class="form-group field">
-                  <input class="form-field" id="quantity" name="materialQuantity">
-                  <label for="quantity" class="form-label">Quantity</label>
+                  <input class="form-field" id="type" name="materialDescription">
+                  <label for="type" class="form-label">Description</label>
               </div>
               <div class="form-group field">
                   <input class="form-field" id="reorderValue" name="materialReorderValue">
-                  <label for="reorderValue" class="form-label">Re-Order Value(minimum stock level)</label>
+                  <label for="reorderValue" class="form-label">Re-Order Value (Minimum stock level)</label>
               </div>
           </div>
           <br>
           <div class="container right">
               <!-- <button class="btn btn-secondary" type="" value="Cancel">Cancel</button> -->
-              <button class="btn btn-primary" type="submit" name="addNewRawMaterial">Submit</button>
+              <button class="btn btn-primary" type="submit" name="addNewRawMaterialCategory">Submit</button>
           </div>
       </form>
     </div>
 </div>
-<div id="newSubRawMaterial" class="tabcontent">
-    <h2>Add new tool</h2>
+<div id="newRawMaterial" class="tabcontent">
+    <h2>Add new raw material</h2>
     <div class="container">
-      <form method="post" action="./../../controller/user/inventoryController.php">
+      <form method="post" action="./../../controller/inventory/rawMaterialController.php">
           <div class="form-group field">
               <div class="form-group field">
-                  <input class="form-field" id="name" name="toolName">
-                  <label for="name" class="form-label">Name</label>
+                  <select class="form-field" id="name" name="inventoryCode">
+                    <option value="">Select from list</option>
+                    <?php
+                        $i=0;
+                        while($row = mysqli_fetch_array($result)) {
+                    ?>
+                    <option value="<?php echo $row["inv_code"]; ?>"><?php echo $row["mat_name"]; ?></option>
+                    <?php
+                          if($i==0) { $i++; }
+                        }
+                        if($i==0){
+                            echo "No results ";
+                        }
+                    ?>
+                  </select>
+                  <label for="name" class="form-label">Raw Material Category</label>
               </div>
               <div class="form-group field">
-                  <input class="form-field" id="price" name="toolPrice">
-                  <label for="price" class="form-label">Tool Price</label>
+                  <input class="form-field" id="price" name="materialType">
+                  <label for="price" class="form-label" required>Material Type</label>
               </div>
               <div class="form-group field">
-                  <input class="form-field" id="manufacturer" name="toolManufacturer">
-                  <label for="manufacturer" class="form-label">Manufacturer</label>
+                  <input class="form-field" id="manufacturer" name="materialPrice">
+                  <label for="manufacturer" class="form-label" required>Unit Price</label>
               </div>
               <div class="form-group field">
-                  <input class="form-field" id="quantity" name="toolQuantity">
+                  <input class="form-field" id="quantity" name="materialQuantity">
                   <label for="quantity" class="form-label">Quantity</label>
-              </div>
-              <div class="form-group field">
-                  <input class="form-field" id="reorderValue" name="toolReorderValue">
-                  <label for="reorderValue" class="form-label">Re-Order Value</label>
+                  <small class="form-text text-muted">Leave blank for zero</small>
               </div>
           </div>
           <br>
           <div class="container right">
-              <button class="btn btn-secondary" type="" value="Cancel">Cancel</button> </a>
-              <button class="btn btn-primary" type="submit" value="Submit" name="addNewTool">Submit</button> 
+              <a class="btn btn-secondary" href="#">Cancel</a>
+              <button class="btn btn-primary" type="submit" value="Submit" name="addNewRawMaterial">Submit</button> 
           </div>
       </form>
     </div>
@@ -161,8 +153,8 @@
 
 <h2> Add New Tool</h2>
 <div class="tab">
-    <button class="tablinks" onclick="openTab(event, 'newTool')">Tool</button>
-    <button class="tablinks" onclick="openTab(event, 'newSubTool')">Sub Tool</button>
+    <button class="tablinks" onclick="openTab(event, 'newTool')">Tool Category</button>
+    <button class="tablinks" onclick="openTab(event, 'newSubTool')">New Tool</button>
 </div>
 <!-- Adding Raw materials -->
 <div id="newTool" class="tabcontent">
@@ -171,30 +163,30 @@
       <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
           <div class="form-group field">
               <div class="form-group field">
-                  <input class="form-field" id="name" name="materialName">
+                  <input class="form-field" id="name" name="toolName">
                   <label for="name" class="form-label">Name</label>
               </div>
               <div class="form-group field">
-                  <input class="form-field" id="type" name="materialType">
+                  <input class="form-field" id="type" name="toolType">
                   <label for="type" class="form-label">Type</label>
               </div>
               <div class="form-group field">
-                  <input class="form-field" id="price" name="materialPrice">
+                  <input class="form-field" id="price" name="toolPrice">
                   <label for="price" class="form-label">Price</label>
               </div>
               <div class="form-group field">
-                  <input class="form-field" id="quantity" name="materialQuantity">
+                  <input class="form-field" id="quantity" name="toolQuantity">
                   <label for="quantity" class="form-label">Quantity</label>
               </div>
               <div class="form-group field">
-                  <input class="form-field" id="reorderValue" name="materialReorderValue">
+                  <input class="form-field" id="reorderValue" name="toolReorderValue">
                   <label for="reorderValue" class="form-label">Re-Order Value(minimum stock level)</label>
               </div>
           </div>
           <br>
           <div class="container right">
               <!-- <button class="btn btn-secondary" type="" value="Cancel">Cancel</button> -->
-              <button class="btn btn-primary" type="submit" name="addNewRawMaterial">Submit</button>
+              <button class="btn btn-primary" type="submit" name="addNewRawtool">Submit</button>
           </div>
       </form>
     </div>
