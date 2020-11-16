@@ -40,7 +40,6 @@
                     <?php
                         $i=0;
                         while($row_quo = mysqli_fetch_array($result)) {
-
                     ?>
                     <option value="<?php echo $row_quo["con_id"];?>"><?php echo $row_quo["con_name"];?></option>
                     <?php
