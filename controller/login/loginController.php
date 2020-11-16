@@ -19,7 +19,7 @@ function loginUser(){
 			$email 		= trim($_POST['email']);
 			$password 	= trim($_POST['password']);
 			
-			$hash = md5($password);
+			$hash = md5($password);//sha1
 			
 			$sql = "select * from user where u_email = '".$email."' and u_password = '".$hash."'";
 			$rs = mysqli_query($conn,$sql);
@@ -31,7 +31,7 @@ function loginUser(){
 				unset($getUserRow['password']);
 				
                 $_SESSION = $getUserRow;//get user id
-                echo($_SESSION);
+                //echo($_SESSION);
 							
 				header('location:view/dashboard.php');
 				exit;
@@ -53,6 +53,6 @@ function userLogout(){
 function userAccess(){
     $errorMsg = "Login required to access dashboard";
     
-}    
+}
 
 ?>

@@ -1,9 +1,10 @@
 <?php 
+    session_start();
+    require_once('./../../controller/user/userController.php'); 
+    require_once('./header.php');
     require_once('./../../controller/contract/quotationController.php');
     $result;
 ?>
-
-<?php include_once('header.php'); ?>
 
 <div class="container">
     <h2>Quotation Single Page</h2>
@@ -51,7 +52,7 @@
                     </div>
                     <br>
                     <div class="right">
-                        <input type="submit" name="empDetails" value="Add Item" class="btn-primary">
+                        <input type="submit" name="empDetails" value="Add Item" class="btn btn-primary">
                     </div>
                 </form>
             </div>

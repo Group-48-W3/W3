@@ -1,5 +1,16 @@
-<?php require_once('./../../controller/user/userController.php');?> 
-<?php include_once('header.php'); ?>
+<?php 
+
+require_once('./../../controller/user/userController.php');
+require_once('./../../controller/user/testController.php');// controller
+include_once('header.php');
+
+if(isset($_POST['noticeMsg']))
+{
+   $test = new TestController();
+   $test->index($_POST['msgHeader'],$_POST['msgNotice'],$_POST['msgDate']);// controller calling
+} 
+
+?> 
 
 <div class="container">
     <div class="row">
@@ -7,23 +18,23 @@
             <h1>Admin/Owner Notices</h1>
             <p>Admin or Owner can push messages into the dashboard which is important to the all users</p>
             <h6>Here you can draft your message according to the format provided</h6>
-            <form action="">
+            <form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
                 <div class="form-group field">
-                    <input type="text" class="form-field" id="msgHeader">
+                    <input type="text" class="form-field" name="msgHeader">
                     <label for="msgHeader" class="form-label">Message Header</label>
                 </div>
                 <div class="form-group field">
-                    <textarea class="form-field" id="exampleTextarea" rows="3"></textarea>
+                    <textarea class="form-field" rows="3" name="msgNotice"></textarea>
                     <label for="exampleTextarea" class="form-label">Message</label>
                     <small id="emailHelp" class="form-text text-muted">Suitable and short meaningful message</small>
                 </div>
                 <div class="form-group field">
-                    <input type="text" id="msgDate" class="form-field">
+                    <input type="text" class="form-field" name="msgDate" >
                     <label for="msgDate" class="form-label">Date/Time</label>
                     <small class="form-text text-muted">eg:- <?php echo " ".date("Y/m/d")." ".date("h:i:sa") ?></small>
                 </div>
                 <div class="right">
-                    <input class="btn btn-primary" type="submit" value="Push Message" name="#">
+                    <input class="btn btn-primary" type="submit" value="Push Message" name="noticeMsg">
                 </div>
             </form>
         </div>
@@ -34,10 +45,10 @@
             <form action="">
                 <div class="form-group field">
                     <select class="form-field" name="member" id="member">
-                        <option value="USA">Admin</option>
-                        <option value="Russia">Owner</option>
-                        <option value="India">Accountant</option>
-                        <option value="Britain">Stock Keeper</option>
+                        <option value="admin">Admin</option>
+                        <option value="owner">Owner</option>
+                        <option value="accountant">Accountant</option>
+                        <option value="stock keeper">Stock Keeper</option>
                     </select>
                     <label for="member" class="form-label">Select Role</label>
                 </div>

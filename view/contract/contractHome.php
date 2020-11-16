@@ -1,22 +1,22 @@
 <?php 
+  // if(!isset($_SESSION['u_id'],$_SESSION['r_id'])){
+  //   header('location:index.php?lmsg=true');
+  //   exit;
+  // }
   session_start();
-  if(!isset($_SESSION['u_id'],$_SESSION['r_id'])){
-    header('location:index.php?lmsg=true');
-    exit;
-  }
   require_once('./../../controller/contract/contractController.php');
+  require_once('./../../controller/user/userController.php');
+  require_once('header.php');
   $con = new Contract();
   $result = $con->getAllActiveContracts();
 ?>
 
-<?php include_once('header.php'); ?>
-
   <div class="container">
-      <!-- Heading  -->
-      <h2>Contract Home</h2>
+    <!-- Heading  -->
+    <h1>Contract Home</h1>
     <div class="form-group field">
-      <input type="text" class="form-field" id="find-repo">
-      <label for="find-repo" class="form-label">Find a Repostory</label>
+      <input type="text" class="form-field" id="find-repo" placeholder="Find a Contract by Name">
+      <label for="find-repo" class="form-label">Find a Contract</label>
     </div>
       <a class="btn btn-primary" href="./contractAdd.php">Add New Contract</a>
       <br>
@@ -71,7 +71,7 @@
     <!-- end of row -->
 
     <!--Contrat Summary Details  -->
-    <h3>Ongoing Contracts</h3>
+    <h1>Ongoing Contracts</h1>
     <p>Contracts that are Active</p>
     <?php
       $i=0;
@@ -81,10 +81,10 @@
     <!-- Contract Item -->
     <div class="container card text-white bg-primary" onclick="location.href='./contractSinglePage.php?con_id=<?php echo $row["con_id"]; ?>';" style="cursor: pointer;">
       <br>
-      <h4><?php echo $row["con_name"]; ?></h4>
-      <h6><?php echo $row["con_desc"]; ?></h6>
-      <h6>Start Date :<?php echo $row["startdate"]; ?>Upto End date : <?php echo $row["enddate"]; ?></h6>
-      <h6><?php echo $row["location"]; ?></h6>
+      <h4 style="margin: 0px"><?php echo $row["con_name"]; ?></h4>
+      <h6 style="margin: 0px"><?php echo $row["con_desc"]; ?></h6>
+      <h6 style="margin: 0px">Start Date :<?php echo $row["startdate"]; ?>Upto End date : <?php echo $row["enddate"]; ?></h6>
+      <h6 style="margin: 0px"><?php echo $row["location"]; ?></h6>
       <p style="text-align:right;"><?php echo $row["status"]; ?></p>
       <br>
     </div>

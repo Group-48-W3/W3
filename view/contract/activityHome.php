@@ -1,10 +1,12 @@
-<?php 
+<?php
+    session_start();
+    require_once('./../../controller/user/userController.php');
     require_once('./../../controller/contract/contractController.php');
     $con = new Contract();
     $result = $con->getAllActiveContracts();
+    require_once('header.php');
 ?>
 
-<?php include_once('header.php'); ?>
 
 <!-- Content Starts -->
 <div class="container">
@@ -74,7 +76,7 @@
         </div>
         <div class="col-3">
             <div class="alert alert-dismissible alert-info">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
                 <strong>What is a Activity?</strong> Activity improves contract progress
                 <h5></h5>
             </div>

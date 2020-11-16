@@ -1,5 +1,8 @@
-<?php require_once('./expenseHeader.php');?>
-<br>
+<?php
+session_start();
+require_once('./../../controller/user/userController.php');
+include_once('header.php'); ?>
+
 <div class="container">
     <div class="alert alert-dismissible alert-warning">
         <button type="button" class="close" data-dismiss="alert"></button>
@@ -71,5 +74,8 @@
   </div>
 
 </div>  
-</body>
-</html>
+
+<?php
+  require_once('leftSidebar.php'); 
+  require_once('footer.php'); 
+?>	

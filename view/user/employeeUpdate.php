@@ -1,11 +1,12 @@
 <?php 
-require_once('./../../controller/user/employeeController.php');
-if (isset($_GET['updateid'])) {
-    $emp = new Employee();
-    $emp_details = $emp->getSingleEmployee($_GET['updateid']);
+	require_once('./../../controller/user/employeeController.php');
+	if (isset($_GET['updateid'])) {
+		$emp = new Employee();
+		$emp_details = $emp->getSingleEmployee($_GET['updateid']);
 
-    $row = mysqli_fetch_array($emp_details);
-}
+		$row = mysqli_fetch_array($emp_details);
+	}
+	require_once('../../controller/user/userController.php');
 ?>
 
 <?php include_once('header.php'); ?>

@@ -1,14 +1,18 @@
-<?php include_once('header.php'); ?>
+<?php 
+require_once('./../../controller/user/userController.php');
+require_once('./header.php');
+
+?>
 
 <div class="container">
 <h1>Permissions</h1>
 <h4>Following Details will be Important to identify results and approving the notifications</h4>
-<li>
-    <ul>Role ID #1 - Admin</ul>
-    <ul>Role ID #2 - Owner</ul>
-    <ul>Role ID #3 - Accountant</ul>
-    <ul>Role ID #4 - Stock Keeper</ul>
-</li>
+<ul>
+    <li>Role ID #1 - Admin</li>
+    <li>Role ID #2 - Owner</li>
+    <li>Role ID #3 - Accountant</li>
+    <li>Role ID #4 - Stock Keeper</li>
+</ul>
 
 <table>
     <thead>

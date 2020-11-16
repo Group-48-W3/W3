@@ -31,7 +31,7 @@
 					<div class="form-group">
 						<label for="exampleInputPassword1">Password</label>
 						<input class="form-control" id="exampleInputPassword1" name="password" type="password" placeholder="Password" required>
-						<a href="#" style="text-decoration:none;">Forget your password?</a>
+						<a href="./view/login/login_password_change.php" style="text-decoration:none;" onclick="<?php $flag = 2;?>">Forget your password?</a>
 					</div>
 					<button class="btn btn-primary btn-block" type="submit" name="login">Login</button>
 				</form>

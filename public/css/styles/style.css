@@ -14,14 +14,15 @@
 @import url("components/flex.css");
 @import url("components/badge.css");
 @import url("components/search.css");
+@import url("components/scale.css");
 @import url("components/banner.css");
 @import url("components/tabs.css");
 @import url("components/form.css");
 
 
 body {
-  color: black;
-  background-color: white;
+  color: #fff;
+  background-color: #222;
   margin: 0;
   padding: 0;
   display: flex;
@@ -40,11 +41,47 @@ body::-webkit-scrollbar-thumb {
   background: #6649b8;
 }
 
+a {
+  color: #00bc8c;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:hover {
+  color: #007053;
+  text-decoration: none;
+  background-color: transparent;
+}
+
 main {
   position: relative;
   margin-left: 7rem;
   margin-right: 2rem;
   padding: 1rem;
+}
+
+h1, .h1 {
+  font-size: 2rem;
+}
+
+h2, .h2 {
+  font-size: 1.5rem;
+}
+
+h3, .h3 {
+  font-size: 1rem;
+}
+
+h4, .h4 {
+  font-size: 1.40625rem;
+}
+
+h5, .h5 {
+  font-size: 1.171875rem;
+}
+
+h6, .h6 {
+  font-size: 0.9375rem;
 }
 
 table{
@@ -53,7 +90,7 @@ table{
 }
 
 tr:nth-of-type(odd){
-  background: #eee;
+  background: #444;
 }
 
 th {
@@ -64,20 +101,20 @@ th {
 
 td, th {
   padding: 0.5rem;
-  border: 1px solid #ccc;
   text-align: left;
-}
-
-a {
-  text-decoration: none;
 }
 
 td {
   padding: 1rem;
 }
 
-select{
+select {
   cursor: pointer;
+}
+
+option {
+  background-color: #222;
+  color: #fff;
 }
 
 textarea {
@@ -88,6 +125,10 @@ textarea {
 footer {
   position: relative;
   bottom: 0pt;
+}
+
+.cal-button {
+  padding: 1rem;
 }
 
 /* Small Screens */

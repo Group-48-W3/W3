@@ -1,4 +1,7 @@
 <?php 
+  session_start();
+  require_once('./../../controller/user/userController.php'); 
+  require_once('./header.php');
   require_once('./../../controller/contract/contractController.php');
 ?>
 
@@ -17,11 +20,11 @@
           <label for="con_name" class="form-label">Contract Name</label>
         </div>
         <div class="form-group field">
-          <input type="text" class="form-field" name="con_start_date" id="con_start_date" required>
+          <input type="date" class="form-field" name="con_start_date" id="con_start_date" required>
           <label for="con_start_date" class="form-label">Start Date</label>
         </div>
         <div class="form-group field">
-          <input type="text" class="form-field" name="con_end_date" id="con_end_date" required>
+          <input type="date" class="form-field" name="con_end_date" id="con_end_date" required>
           <label for="con_end_date" class="form-label">End Date</label>
         </div>
         <div class="form-group field">

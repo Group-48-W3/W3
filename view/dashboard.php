@@ -8,20 +8,24 @@
 		exit;
 	}		
 	
-	require_once('../controller/user/userController.php');
+	require_once('./../controller/user/userController.php');
 	require_once('header.php'); 
 	
 ?>
 <body class="fixed-nav sticky-footer" id="page-top">
   <div class="content-wrapper">
     <div class="container-fluid">
+	  <?php if(($_SESSION['u_password']) == '827ccb0eea8a706c4c34a16891f84e7b'): ?>
+		<div class="alert alert-warning">
+			<a href="./user/userProfile.php">Hello New User, you are currently using a temporary password. Please change it from the profile page into a new one.</a>
+		</div>
+	  <?php endif; ?>
       <h1>Welcome to W3 Contract Management System</h1>
 	  <hr>
 	  <center>
 		  <img src="./../public/img/logo.png" alt="icon" height="150px" width="150px">
 	  </center>
       
-	  <h1><small>You are login as :</small><?php echo getUserAccessRoleByID($_SESSION['r_id']); ?></h1>
 	  <hr>
       <h2>
 	  Special Notices:
