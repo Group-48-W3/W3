@@ -84,6 +84,9 @@
       <h6 style="margin: 0px"><?php echo $row["con_desc"]; ?></h6>
       <h6 style="margin: 0px">Start Date :<?php echo $row["startdate"]; ?>Upto End date : <?php echo $row["enddate"]; ?></h6>
       <h6 style="margin: 0px"><?php echo $row["location"]; ?></h6>
+      <div class="progress">
+        <progress id="contract" value="32" max="100"> 32% </progress>
+      </div>
       <p style="text-align:right;"><?php echo $row["status"]; ?></p>
       <br>
     </div>

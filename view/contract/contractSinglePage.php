@@ -18,7 +18,7 @@
 
     $quo_details = $quo->getAllQuotation();
   }
-  require_once('./../../controller/user/userController.php');
+ 
 ?>
 
 <?php include_once('header.php'); ?>
@@ -28,7 +28,8 @@
     <h5>Description    : <?php echo $row["con_desc"]; ?></h5>
     <h5>Location       : <?php echo $row["location"]; ?></h5>
     <h5>Payment Method : <?php echo $row["payment_method"]; ?></h5>
-    
+    <h4>Progress</h4>
+    <!-- Need to add progress -->
     <br>
     <h2>Client Details</h2>
     <h5>Name : <?php echo $row_client["c_name"]; ?></h5>
