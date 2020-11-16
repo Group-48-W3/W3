@@ -80,13 +80,13 @@ include_once('header.php'); ?>
                 <div class="row">
                     <div class="col">
                         <div class="form-group field">
-                            <input class="form-field" id="fromAmount" placeholder="Input" type="text" size="15" onkeyup="currencyConverter();">
+                            <input class="form-field" id="fromAmount" placeholder="Input"  type="text" size="15" onkeyup="currencyConverter();">
                             <label for="fromamount" class="form-label">Input</label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group field">
-                            <select class="form-field" id="firstCurrency" if="from" onchange="currencyConverter();">
+                            <select class="form-field" id="from" onchange="currencyConverter();">
                                 <option value="AUD">Australian Dollar (AUD)</option>
                                 <option value="BDT">Bangladesh Taka (BDT)</option>
                                 <option value="CAD">Canadian Dollar (CAD)</option>
@@ -125,7 +125,7 @@ include_once('header.php'); ?>
                     </div>
                     <div class="col">
                         <div class="form-group field">
-                            <select class="form-field" id="secondCurrency" if="to" onchange="currencyConverter();">
+                            <select class="form-field" id="to" onchange="currencyConverter();">
                                 <option value="AUD">Australian Dollar (AUD)</option>
                                 <option value="BDT">Bangladesh Taka (BDT)</option>
                                 <option value="CAD">Canadian Dollar (CAD)</option>
