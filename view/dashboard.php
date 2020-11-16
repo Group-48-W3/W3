@@ -17,7 +17,7 @@
     <div class="container-fluid">
 	  <?php if(($_SESSION['u_password']) == '827ccb0eea8a706c4c34a16891f84e7b'): ?>
 		<div class="alert alert-warning">
-			<h3>Hello New User, you are currently using a temporary password. Please change it from the profile page into a new one.</h3>
+			<a href="./user/userProfile.php">Hello New User, you are currently using a temporary password. Please change it from the profile page into a new one.</a>
 		</div>
 	  <?php endif; ?>
       <h1>Welcome to W3 Contract Management System</h1>

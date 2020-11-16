@@ -24,7 +24,6 @@
   }
 ?>
 
-
 <h2>Replenish Stock(Add New Stock)</h2>
 <div class="container">
   <div class="row">
@@ -83,10 +82,10 @@
 </div>
 <br>
 
-<h2> Add new item</h2>
+<h2> Add New Raw Material</h2>
 <div class="tab">
-    <button class="tablinks" onclick="openTab(event, 'newRawMaterial')">Raw Material</button>
-    <button class="tablinks" onclick="openTab(event, 'newTool')">Tool</button>
+    <button class="tablinks" id="openOnLoad" onclick="openTab(event, 'newRawMaterial')">Raw Material</button>
+    <button class="tablinks" onclick="openTab(event, 'newSubRawMaterial')">Sub Raw Material</button>
 </div>
 <!-- Adding Raw materials -->
 <div id="newRawMaterial" class="tabcontent">
@@ -123,7 +122,84 @@
       </form>
     </div>
 </div>
+<div id="newSubRawMaterial" class="tabcontent">
+    <h2>Add new tool</h2>
+    <div class="container">
+      <form method="post" action="./../../controller/user/inventoryController.php">
+          <div class="form-group field">
+              <div class="form-group field">
+                  <input class="form-field" id="name" name="toolName">
+                  <label for="name" class="form-label">Name</label>
+              </div>
+              <div class="form-group field">
+                  <input class="form-field" id="price" name="toolPrice">
+                  <label for="price" class="form-label">Tool Price</label>
+              </div>
+              <div class="form-group field">
+                  <input class="form-field" id="manufacturer" name="toolManufacturer">
+                  <label for="manufacturer" class="form-label">Manufacturer</label>
+              </div>
+              <div class="form-group field">
+                  <input class="form-field" id="quantity" name="toolQuantity">
+                  <label for="quantity" class="form-label">Quantity</label>
+              </div>
+              <div class="form-group field">
+                  <input class="form-field" id="reorderValue" name="toolReorderValue">
+                  <label for="reorderValue" class="form-label">Re-Order Value</label>
+              </div>
+          </div>
+          <br>
+          <div class="container right">
+              <button class="btn btn-secondary" type="" value="Cancel">Cancel</button> </a>
+              <button class="btn btn-primary" type="submit" value="Submit" name="addNewTool">Submit</button> 
+          </div>
+      </form>
+    </div>
+</div>
+
+<br>
+
+<h2> Add New Tool</h2>
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'newTool')">Tool</button>
+    <button class="tablinks" onclick="openTab(event, 'newSubTool')">Sub Tool</button>
+</div>
+<!-- Adding Raw materials -->
 <div id="newTool" class="tabcontent">
+    <h2>Add new raw material</h2>
+    <div class="container">
+      <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
+          <div class="form-group field">
+              <div class="form-group field">
+                  <input class="form-field" id="name" name="materialName">
+                  <label for="name" class="form-label">Name</label>
+              </div>
+              <div class="form-group field">
+                  <input class="form-field" id="type" name="materialType">
+                  <label for="type" class="form-label">Type</label>
+              </div>
+              <div class="form-group field">
+                  <input class="form-field" id="price" name="materialPrice">
+                  <label for="price" class="form-label">Price</label>
+              </div>
+              <div class="form-group field">
+                  <input class="form-field" id="quantity" name="materialQuantity">
+                  <label for="quantity" class="form-label">Quantity</label>
+              </div>
+              <div class="form-group field">
+                  <input class="form-field" id="reorderValue" name="materialReorderValue">
+                  <label for="reorderValue" class="form-label">Re-Order Value(minimum stock level)</label>
+              </div>
+          </div>
+          <br>
+          <div class="container right">
+              <!-- <button class="btn btn-secondary" type="" value="Cancel">Cancel</button> -->
+              <button class="btn btn-primary" type="submit" name="addNewRawMaterial">Submit</button>
+          </div>
+      </form>
+    </div>
+</div>
+<div id="newSubTool" class="tabcontent">
     <h2>Add new tool</h2>
     <div class="container">
       <form method="post" action="./../../controller/user/inventoryController.php">
