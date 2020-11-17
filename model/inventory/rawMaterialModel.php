@@ -61,9 +61,9 @@
         }
     }
 
-    function isInRawMaterialDetails($materialType, $inventoryCode){
+    function isInRawMaterialDetails($inventoryCode){
         global $conn;
-        $sql = "select * from raw_material_details where mat_type = '".$materialType."' and inv_code = '".$inventoryCode."'";
+        $sql = "select * from raw_material_details where inv_code = '$inventoryCode'";
 				
 	    $result = mysqli_query($conn, $sql);
         $numRows = mysqli_num_rows($result);
@@ -75,9 +75,9 @@
         }
     }
 
-    function getColumnFromRowMaterial($inventoryCode, $columnName){
+    function getRawMaterialDetailsDB($inventoryCode){
         global $conn;
-        $sql = "select ".$columnName." from row_material_details where 'inv_code' = '".$inventoryCode."'";
+        $sql = "select * from row_material_details where 'inv_code' = '$inventoryCode'";
         $result = mysqli_query($conn, $sql);
         return $result;
     }
