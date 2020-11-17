@@ -9,7 +9,6 @@
 	require_once('../../controller/user/userController.php');
 	require_once('../../controller/inventory/rawMaterialController.php');
 	$rawMaterial = new RawMaterial();
-	$category = $rawMaterial->getAllRawMaterialCategory();
 	$material = $rawMaterial->getAllRawMaterial();			
 ?>
 <?php include_once('header.php'); ?>
@@ -55,45 +54,84 @@
 <hr>
 <div class="container center">
 	<h3>Raw Materials</h3>
-	<table class="data-table">
-		<thead>
-			<tr>
-				<th>Material Name</th>
-				<th>Description</th>
-				<th>Minimum Quantity</th>
-				<th>Type</th>
-				<th>Price</th>
+
+	<div class="tab">
+		<?php
+			$i=0;
+			$category = $rawMaterial->getAllRawMaterialCategory();
+			while($categories = mysqli_fetch_array($category)) {
+				if($i==0) {
+		?>
+		<button class="tablinks" id="openOnLoad" onclick="openTab(event, <?php echo $categories['inv_code'];?>)">
+			<?php echo $categories["mat_name"]; ?>
+		</button>
+		<?php
+				} else {
+		?>
+		<button class="tablinks" onclick="openTab(event, <?php echo $categories['inv_code'];?>)">
+			<?php echo $categories["mat_name"]; ?>
+		</button>
+		<?php
+				}
+				$i++;
+			}
+			if($i==0){
+				echo "No results ";
+			}
+		?>
+	</div>
+	<?php
+		$i=0;
+		$category = $rawMaterial->getAllRawMaterialCategory();
+		while($categories = mysqli_fetch_array($category)) {
+			$inventoryCode = $categories['inv_code'];
+	?>
+	<div id="<?php echo $inventoryCode;?>" class="tabcontent">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<h2>Description</h2>
+					<p><?php echo $categories['inv_desc'];?></p>
+				</div>
+				<div class="col">
+					<h2>Minimum Quantity Required</h2>
+					<p><?php echo $categories['min_qty'];?></p>
+				</div>
+			</div>
+		</div>
+		<table class="data-table">
+			<thead>
+				<th>Material Type</th>
+				<th>Unit Price</th>
 				<th>Available Quantity</th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php
-				$i=0;
-				while($categories = mysqli_fetch_array($category)) {
-			?>
-			<tr>
-				<td data-label="Material Name"><?php echo $categories["mat_name"]; ?></td>
-				<td data-label="Description"><?php echo $categories["inv_desc"]; ?></td>
-				<td data-label="Minimum Quantity"><?php echo $categories["min_qty"]; ?></td>
-				<td data-label="Type">
-					<?php echo $rawMaterial->getRawMaterialDetail($categories["inv_code"], 'mat_type') ?><br>
-				</td>
-				<td data-label="Price">
-					<?php // echo $materials["unit_price"]; ?><br>
-				</td>
-				<td data-label="Available Quantity">
-					<?php // echo $materials["mat_qty"]; ?><br>
-				</td>
-			</tr>
-			<?php
-					$i++;
-				}
-				if($i==0){
-					echo "No results ";
-				}
-			?>
-		</tbody>
-	</table>
+			</thead>
+		<?php
+			$i=0;
+			$details = $rawMaterial->getRawMaterialDetails($inventoryCode);
+			while($types = mysqli_fetch_array($details)) {
+		?>
+		<tr>
+				<td data-label="Material Type"><?php echo $types["mat_type"]; ?></td>
+				<td data-label="Unit Price">Rs. <?php echo $types["unit_price"]; ?></td>
+				<td data-label="Available Quantity"><?php echo $types["mat_qty"]; ?></td>
+		</tr>
+		<?php
+				$i++;
+			}
+			if($i==0){
+				echo "No results ";
+			}
+		?>
+		</table>
+	</div>
+	<?php
+			$i++;
+		}
+		if($i==0){
+			echo "No results ";
+		}
+	?>
+
 	<h3>Tools</h3>
 	<table class="data-table">
 		<thead>

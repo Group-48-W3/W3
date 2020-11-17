@@ -116,14 +116,13 @@
             header('location:./../../view/inventory/issueConfirm.php');//redirection
             exit;
         }
-        function getRawMaterialDetail($inventoryCode, $column){
-            $text = "";
-            $result = getColumnFromRowMaterial($inventoryCode, $column);
-            return $result;
-            // while($row = mysqli_fetch_array($result)){
-            //     $text .= $row['mat_type']."</br>";
-            // }
-            // return $text;
+        function getRawMaterialDetails($inventoryCode){
+            if(isInRawMaterialDetails($inventoryCode)){
+                $res =  getRawMaterialDetailsDB($inventoryCode);
+            }else{
+                $res = array("mat_type"=>"<i>No result</i>", "mat_qty"=>"No result", "unit_price"=>"No result");
+            }
+            return $res;
         }
     }
 
