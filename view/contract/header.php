@@ -77,7 +77,7 @@ h5{
         <a class="" href="./../dashboard.php">Dashboard</span></a>
       </li>
       <li class="">
-        <a class="" href="./contractDashboard.php">Home<span class="sr-only"></span></a>
+        <a class="" href="./contractDashboard.php">Overview<span class="sr-only"></span></a>
       </li>
       <li class="">
         <a class="" href="./contractHome.php">Contract</a>
