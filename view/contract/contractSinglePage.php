@@ -144,18 +144,36 @@
         <table>
             <thead>
               <tr>
-                <th>Contract</th>
-                <th>Name</th>
-                <th>Weight</th>
+                <th>Activity</th>
+                <th>Item</th>
                 <th>Description</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-              <td data-label="Contract">Bentota 360 Hotel</td>
-              <td data-label="Name">Beach Chairs</td>
-              <td data-label="Weight">3 Units</td>
-              <td data-label="Description">High Comfortable Chair Model for Hotels</td>
+              <td data-label="Name">Setup the workspace</td>
+              <td data-label="Description">section 1</td>
+              <td data-label="abc">High Comfortable Chair Model for Hotels</td>
+              <td data-label="status">
+              <input type="checkbox" id="vehicle1" name="vehicle1" checked = "checked" value="Bike">
+              </td>
+              </tr>
+              <tr>
+              <td data-label="Name">Load the machine</td>
+              <td data-label="Description">section 1</td>
+              <td data-label="abc">High Comfortable Chair Model for Hotels</td>
+              <td data-label="status">
+              <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+              </td>
+              </tr>
+              <tr>
+              <td data-label="Name">Primary wood cutting</td>
+              <td data-label="Description">wood </td>
+              <td data-label="abc">High Comfortable Chair Model for Hotels</td>
+              <td data-label="status">
+              <input type="checkbox" id="vehicle1" name="vehicle1" checked = "checked" value="Bike">
+              </td>
               </tr>
             </tbody>
           </table>
