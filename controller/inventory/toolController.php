@@ -1,8 +1,23 @@
 <?php
 // include model
     require_once("./../../model/inventory/toolModel.php");
-
-    class Inventory{
+    
+    if(isset($_POST['addNewToolCategory'])){
+        // echo "condition";
+        $con = new Tool();     
+        $con->addToolCategory();
+    }
+    if(isset($_POST['addNewTool'])){
+        // echo "condition";
+        $con = new Tool();     
+        $con->addNewTool();  
+    }
+    if(isset($_POST['replenishRawMaterial'])){
+        // echo "condition";
+         $con = new RawMaterial();     
+         $con->replenishTool();
+     }
+    class Tool{
         function __construct(){
             $this->index();
         }
@@ -10,27 +25,62 @@
             //
         }
 
-        function addTool(){
+        function addToolCategory(){
             $toolName = $_POST['toolName'];
-            $toolPrice = $_POST['toolPrice'];
-            $toolManufacturer = $_POST['toolManufacturer'];
-            $toolQuantity = $_POST['toolQuantity'];
+            $toolDesc = $_POST['toolDesc'];
             $toolReorderValue = $_POST['toolReorderValue'];
     
-            if(!empty($toolName) && !empty($toolPrice) && !empty($toolManufacturer) && !empty($toolQuantity) && !empty($toolReorderValue)){
+            if(!empty($toolName) && !empty($toolDesc) && !empty($toolReorderValue)){
                 if(isInTool($toolName)){
-                    echo "Material already exist";
-                    header('location:./../../view/inventory/issue.php');//redirection
+                    echo "Category already exist";
                     exit;
                 }else{
                     //get owner permission to execute following command
-                    insertToTool($toolName, $toolPrice, $toolManufacturer, $toolQuantity, $toolReorderValue);
+                    insertToTool($toolName, $toolDesc, $toolReorderValue);
                 }
             }else{
                 echo 'All fields are required';
             }
-            header('location:./../../view/inventory/replenishOwnerPermission.php');//redirection
+            header('location:./../../view/inventory/replenish.php');//redirection
             exit;
+        }
+
+        function addNewTool(){
+            $toolRegID = $_POST['toolRegID'];
+            $toolPrice = $_POST['toolPrice'];
+            $toolManufacturer = $_POST['toolManufacturer'];
+            $toolQuantity = $_POST['toolQuantity'];
+            $toolCategory = $_POST['toolCategory'];
+    
+            if(!empty($toolRegID) && !empty($toolPrice) && !empty($toolManufacturer) && !empty($toolCategory)){
+                if(isInToolDetails($toolRegID)){
+                    echo "Category already exist";
+                    exit;
+                }else{
+                    //get owner permission to execute following command
+                    insertToToolDetails($toolRegID, $toolPrice, $toolManufacturer, $toolQuantity, $toolCategory);
+                }
+            }else{
+                echo 'All fields are required';
+            }
+            header('location:./../../view/inventory/replenish.php');//redirection
+            exit;
+        }
+
+        function getAllToolCategory(){
+            // select all tool categories from db
+            $res =  selectAllToolCategories();
+            return $res;
+        }
+
+        function getTools(){
+            $res = getToolsDB();
+            return $res;
+        }
+
+        function getToolDetails($toolCategoryID){
+            $res =  getToolDetailsDB($toolCategoryID);
+            return $res;
         }
 
         function replenishTool(){
@@ -42,7 +92,7 @@
             }else{
                 echo 'All fields are required';
             }
-            header('location:./../../view/inventory/replenishConfirm.php');//redirection
+            header('location:./../../view/inventory/replenish.php');//redirection
             exit;
         }
 

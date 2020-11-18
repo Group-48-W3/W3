@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2020 at 01:50 PM
+-- Generation Time: Nov 18, 2020 at 11:18 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -210,7 +210,7 @@ CREATE TABLE `login` (
 
 CREATE TABLE `maintenance` (
   `m_id` int(10) NOT NULL,
-  `tool_id` int(50) NOT NULL,
+  `tool_id` varchar(40) NOT NULL,
   `inv_code` int(50) NOT NULL,
   `cost` int(10) NOT NULL,
   `date` date NOT NULL
@@ -312,12 +312,13 @@ CREATE TABLE `raw_material` (
 --
 
 INSERT INTO `raw_material` (`inv_code`, `inv_desc`, `min_qty`, `mat_name`) VALUES
-(1, 'All types of gum', '12', 'Gum'),
-(2, 'All Hammers', '12', 'Hammer'),
+(1, 'All Types of Nails', '100', 'Nail'),
+(2, 'All types of paint', '120', 'Paint'),
 (3, 'All types of Pencil', '50', 'Pencil'),
 (4, 'All types of strings', '500', 'String'),
-(5, 'All Types of Nails', '100', 'Nail'),
-(6, 'All types of wood', '4700', 'Wood');
+(5, 'All types of glue', '12', 'Glue'),
+(6, 'All types of wood', '4700', 'Wood'),
+(12, '123we', 'wqe', '1234');
 
 -- --------------------------------------------------------
 
@@ -338,14 +339,15 @@ CREATE TABLE `raw_material_details` (
 --
 
 INSERT INTO `raw_material_details` (`mat_id`, `unit_price`, `mat_type`, `mat_qty`, `inv_code`) VALUES
-(1, 231, 'Ball Hammer', 21, 2),
-(2, 22, '5 inch', 0, 5),
-(3, 22, '2 inch', 0, 5),
-(4, 34, '1.2 inch', 0, 5),
-(5, 23, 'Cement Nail', 223, 5),
+(1, 1500, 'Ply-Wood', 5501, 6),
+(2, 22, '5 inch', 1444, 1),
+(3, 22, '2 inch', 671, 1),
+(4, 34, '1.2 inch', 1210, 1),
+(5, 23, 'Cement Nail', 735, 1),
 (6, 200, 'Nilon', 4750, 4),
-(7, 80, 'Normal', 10, 1),
-(8, 654, 'Wood Gum', 12, 1);
+(7, 80, 'Normal', 50, 5),
+(8, 654, 'Wood Gum', 12, 5),
+(10, 21, '213wer', 123, 12);
 
 -- --------------------------------------------------------
 
@@ -392,9 +394,18 @@ CREATE TABLE `tool` (
   `inv_code` int(10) NOT NULL,
   `inv_desc` varchar(50) NOT NULL,
   `min_qty` int(10) NOT NULL,
-  `tool_name` varchar(50) NOT NULL,
-  `item_id` int(10) NOT NULL
+  `tool_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tool`
+--
+
+INSERT INTO `tool` (`inv_code`, `inv_desc`, `min_qty`, `tool_name`) VALUES
+(1, 'To measure the amount of water in the wood', 5, 'Moisture Meter'),
+(2, 'For woodcarving and cleaning out joints and saw cu', 25, 'Chisel'),
+(3, 'To measure level or plumb of a surface', 20, 'Level'),
+(4, 'For screwing and unscrewing screws', 50, 'Screwdriver');
 
 -- --------------------------------------------------------
 
@@ -403,13 +414,22 @@ CREATE TABLE `tool` (
 --
 
 CREATE TABLE `tool_detail` (
-  `tool_id` int(11) NOT NULL,
+  `tool_id` varchar(40) NOT NULL,
   `tool_manu` varchar(50) NOT NULL,
   `tool_avl` varchar(10) NOT NULL,
   `tool_qty` varchar(50) NOT NULL,
   `tool_value` int(10) NOT NULL,
   `inv_code` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tool_detail`
+--
+
+INSERT INTO `tool_detail` (`tool_id`, `tool_manu`, `tool_avl`, `tool_qty`, `tool_value`, `inv_code`) VALUES
+('LE230', 'Lumber Co.', 'True', '45', 250, 3),
+('MM910i', 'Mois 910', 'True', '10', 56700, 1),
+('OR950i', 'Orion 950', 'True', '20', 45200, 1);
 
 -- --------------------------------------------------------
 
@@ -586,8 +606,7 @@ ALTER TABLE `schedule`
 -- Indexes for table `tool`
 --
 ALTER TABLE `tool`
-  ADD PRIMARY KEY (`inv_code`),
-  ADD KEY `item_id` (`item_id`);
+  ADD PRIMARY KEY (`inv_code`);
 
 --
 -- Indexes for table `tool_detail`
@@ -677,13 +696,13 @@ ALTER TABLE `quotation`
 -- AUTO_INCREMENT for table `raw_material`
 --
 ALTER TABLE `raw_material`
-  MODIFY `inv_code` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `inv_code` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `raw_material_details`
 --
 ALTER TABLE `raw_material_details`
-  MODIFY `mat_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `mat_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -701,13 +720,7 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `tool`
 --
 ALTER TABLE `tool`
-  MODIFY `inv_code` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tool_detail`
---
-ALTER TABLE `tool_detail`
-  MODIFY `tool_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `inv_code` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -813,12 +826,6 @@ ALTER TABLE `raw_material_details`
 --
 ALTER TABLE `schedule`
   ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`p_id`) REFERENCES `payment` (`p_id`);
-
---
--- Constraints for table `tool`
---
-ALTER TABLE `tool`
-  ADD CONSTRAINT `tool_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`);
 
 --
 -- Constraints for table `tool_detail`
