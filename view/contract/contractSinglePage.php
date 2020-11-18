@@ -24,6 +24,7 @@
     $con = new Contract();
     $con->deleteContract($_SESSION['contract_id']);
   }
+ 
 ?>
 
 <div class="container">
@@ -197,7 +198,7 @@
     <h5>Want to update contract?</h5>
     <!-- Update Navigation -->
     <a href="./contractUpdate.php?con_id=<?php echo $row["con_id"]; ?>" class="btn btn-warning">Update <?php echo $row["con_name"]; ?></a><br>
-    <!-- Sset Inactive Navigation -->
+    <!-- set Inactive Navigation -->
     <h5>Want to set to inactive state contract?</h5>
     <a class="btn btn-danger" name="set_inactive">Set Inactive</a><br>
     <!-- Delete Navigation to home -->
@@ -221,12 +222,7 @@
     </div>
     <br><br>
 </div>
-<script>
-  function auth(){
-    alert('Are you sure?');
-  }
-</script>
-<?php
-  require_once('leftSidebar.php'); 
-  require_once('footer.php'); 
-?>	
+<?php 
+ require_once('leftSidebar.php'); 
+ require_once('footer.php'); 
+?>
