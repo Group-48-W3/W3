@@ -4,32 +4,31 @@ session_start();
 require_once('./../../controller/user/userController.php'); 
 require_once('./header.php');
 
-
 ?>
-
+    <!-- Charts -->
     <div class="container">
-        <h2>Statistics and Analytics</h2>
+        <h2>Business Overview</h2>
         <h3>Contract Overview</h3>
         <div class="container">
-            <div id="contractBurndown" style="height: 370px; width: 80%;"></div>
-            <br>
-            <div id="chartContainerpie" style="height:320px; width: 40%;"></div>
+            <div id="contractBurndown" style="height: 370px; width: 80%;"></div><br>
+            <div id="chartContainerpie" style="height:320px; width: 80%;"></div>
         </div>
         <br>
         <h3>Expense Overview</h3>
         <!-- Body starts -->
         <div class="container">
-            <div id="chartContainer" style="height:200px; width: 80%; background-color:#363332; "></div>
-            <br>
-            <div id="monthExpenseCtaegory" style="height: 370px; width: 40%;"></div>
+            <div id="chartContainer" style="height:200px; width: 80%; background-color:#363332; "></div><br>
+            <div id="monthExpenseCtaegory" style="height: 370px; width: 80%;"></div>
         </div>
         <!-- Body ends -->
         <br>
         <h3>Inventory Overview</h3>
-        <div id="itemDistribution" style="height: 300px; width: 70%;"></div>
-    </div>
+        <div class="container">
+            <div id="itemDistribution" style="height: 370px; width: 80%;"></div></div>
+        </div>
+        
     <br>
-
+    <!-- Charts ends -->
     <?php
         $dataPoints = array(
             array("x" => 946665000000, "y" => 3289000),
@@ -56,40 +55,12 @@ require_once('./header.php');
             array("label"=>"KCC", "symbol" => "KCC","y"=>27.7),
             array("label"=>"Bentota", "symbol" => "B","y"=>13.9),
             array("label"=>"Euler", "symbol" => "E","y"=>5),
-            // array("label"=>"Calcium", "symbol" => "Ca","y"=>3.6),
-            // array("label"=>"Sodium", "symbol" => "Na","y"=>2.6),
-            // array("label"=>"Magnesium", "symbol" => "Mg","y"=>2.1),
-            // array("label"=>"Others", "symbol" => "Others","y"=>1.5),
-        
         );
     ?>
 
     <script>
         window.onload = function () {
-        // revenue distribution   
-        var chart = new CanvasJS.Chart("chartContainer", {
-        theme: "dark2",
-        animationEnabled: true,
-        title:{
-            text: "Company Revenue by Year"
-        },
-        axisY: {
-            title: "Revenue in LKR",
-            valueFormatString: "#0,,.",
-            suffix: "mn",
-            prefix: "LKR"
-        },
-        data: [{
-            type: "spline",
-            markerSize: 5,
-            xValueFormatString: "YYYY",
-            yValueFormatString: "$#,##0.##",
-            xValueType: "dateTime",
-            dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-        }]
-        });
-        
-        chart.render();
+        //////////////////////////////////////////////////////
         // contract distribution
         var chartpie = new CanvasJS.Chart("chartContainerpie", {
         theme: "dark2",
@@ -122,7 +93,9 @@ require_once('./header.php');
                 shared: true
             },
             legend: {
-                fontSize: 13
+                fontSize: 13,
+                cursor: "pointer",
+                itemclick: explodePie
             },
             data: [{
                 type: "splineArea",
@@ -205,6 +178,36 @@ require_once('./header.php');
             }]
         });
         chart.render();
+        //////////////////////////////////////////////////////
+        // revenue distribution 
+        var chart = new CanvasJS.Chart("chartContainer", {
+        theme: "dark2",
+        animationEnabled: true,
+        title:{
+            text: "Company Revenue by Year"
+        },
+        legend:{
+                cursor: "pointer",
+                itemclick: explodePie
+        },
+        axisY: {
+            title: "Revenue in LKR",
+            valueFormatString: "#0,,.",
+            suffix: "mn",
+            prefix: "LKR"
+        },
+        data: [{
+            type: "spline",
+            markerSize: 5,
+            xValueFormatString: "YYYY",
+            yValueFormatString: "$#,##0.##",
+            xValueType: "dateTime",
+            dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+        }]
+        });
+        
+        chart.render();
+        /////////////////////////////////////////////////////////////////////
         // Monthly Expense via category
         var chart = new CanvasJS.Chart("monthExpenseCtaegory", {
             theme: "dark2",
@@ -245,32 +248,34 @@ require_once('./header.php');
             e.chart.render();
         }
         // Item Distribution
-        var chart = new CanvasJS.Chart("itemDistribution", {
-            animationEnabled: true,
-            theme: "dark2", // "light1", "light2", "dark1", "dark2"
-            title:{
-                text: "Inventory Distribution"
-            },
-            axisY: {
-                title: "Inventory Graph"
-            },
-            data: [{        
-                type: "column",  
-                showInLegend: true, 
-                legendMarkerColor: "grey",
-                legendText: "Item Count",
-                dataPoints: [      
-                    { y: 300878, label: "Furniture " },
-                    { y: 266455,  label: "Glue" },
-                    { y: 169709,  label: "Blade" },
-                    { y: 158400,  label: "Nuts and bolts 2mm" },
-                    { y: 142503,  label: "Paint" },
-                    { y: 101500, label: "Waterbase" },
-                    { y: 97800,  label: "JAT" },
-                    { y: 80000,  label: "Locks and Handles" }
-                ]
-            }]
-        }); 
+        
+            var chart = new CanvasJS.Chart("itemDistribution", {
+                animationEnabled: true,
+                theme: "dark2", // "light1", "light2", "dark1", "dark2"
+                title:{
+                    text: "Inventory Distribution"
+                },
+                axisY: {
+                    title: "Inventory Graph"
+                },
+                data: [{        
+                    type: "column",  
+                    showInLegend: true, 
+                    legendMarkerColor: "grey",
+                    legendText: "Item Count",
+                    dataPoints: [      
+                        { y: 300878, label: "Furniture " },
+                        { y: 266455,  label: "Glue" },
+                        { y: 169709,  label: "Blade" },
+                        { y: 158400,  label: "Nuts and bolts 2mm" },
+                        { y: 142503,  label: "Paint" },
+                        { y: 101500, label: "Waterbase" },
+                        { y: 97800,  label: "JAT" },
+                        { y: 80000,  label: "Locks and Handles" }
+                    ]
+                }]
+            });
+            chart.render(); 
         }
     </script>
     

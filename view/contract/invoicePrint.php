@@ -10,7 +10,8 @@
     <img src="./../../public/img/invo.jpg" alt="Invoice">
 </div>
 <div class="container">
-    <button class="btn-secondary">Print</button>  
+    <button class="btn btn-secondary">Print</button>  
+    <button class="btn btn-secondary">Download as PNG</button>  
 </div>
 
 <?php
