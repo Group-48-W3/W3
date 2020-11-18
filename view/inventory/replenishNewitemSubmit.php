@@ -7,9 +7,8 @@
 	}		
 	
 	require_once('../../controller/user/userController.php');
-	 
+    require_once('header.php');
 ?>
-<?php include_once('header.php'); ?>
 
 <h2> Add new item</h2>
 <div class="tab">
