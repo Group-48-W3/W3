@@ -54,6 +54,14 @@ function getAllActiveContractsDB(){
 
 	return $result;
 }
+function getAllInactiveContractsDB(){
+	global $conn;
+	$query = "select * from contract where status = 'Inactive'";
+	$result = mysqli_query($conn,$query);
+
+	return $result;
+}
+    
 function getSingleActiveContractDB($id){
 	global $conn;
 	$query = "select * from contract where con_id =".$id;
@@ -68,7 +76,18 @@ function getSingleClientDB($id){
 
 	return $result;
 }
-
+function deleteContractDB($id){
+	global $conn;
+	$query = "delete from contract where con_id = ".$id;
+	$result = mysqli_query($conn, $query);
+    if ($result) {
+        return 1;
+       
+	} else {
+		return 0;
+	}
+    mysqli_close($conn);
+}
 
 
 ?>

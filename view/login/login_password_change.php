@@ -115,7 +115,6 @@
 							<input class="form-control" name="confirm_password" type="password" placeholder="Confirm Password" required>
 						</div>
 						<button class="btn btn-primary btn-block" type="submit" name="change_pass">Change</button>
-						<a href="./../../" style="text-decoration:none;">Login with new Password</a>
 					</form>
 				</div>
 			</div>
