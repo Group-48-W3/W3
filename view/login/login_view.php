@@ -15,7 +15,7 @@
 		</div>
 		<div class="column right">
 			<img src="./public/img/wave.svg" width="68px" height="68px">
-			<h2>Welcome Back</h2>
+			<h2>Welcome W3</h2>
 			<div class="form-container">
 				<?php 
 					if(isset($errorMsg)){

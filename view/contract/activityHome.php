@@ -10,7 +10,7 @@
 
 <!-- Content Starts -->
 <div class="container">
-    <h2>Activities</h2>
+    <h1>Activities</h1>
     <div class="row">
         <div class="col-7">
             <h3>Today Activities</h3>

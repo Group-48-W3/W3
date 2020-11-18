@@ -76,7 +76,18 @@ function getSingleClientDB($id){
 
 	return $result;
 }
-
+function deleteContractDB($id){
+	global $conn;
+	$query = "delete from contract where con_id = ".$id;
+	$result = mysqli_query($conn, $query);
+    if ($result) {
+        return 1;
+       
+	} else {
+		return 0;
+	}
+    mysqli_close($conn);
+}
 
 
 ?>

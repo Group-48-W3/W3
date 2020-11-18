@@ -1,6 +1,6 @@
+ <?php ob_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,30 +15,108 @@
 </head>
 <!-- Temp code  -->
 <style>
-#nav-temp ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333333;
-}
-#nav-temp li {
-  float: left;
-}
-#nav-temp li a {
-  display: block;
-  color: white;
-  text-align: center;
-  /* margin: 10px; */
-  padding: 12px;
-  text-decoration: none;
-}
-#nav-temp li a:hover {
-  background-color: #111111;
-}
-h5{
-  margin : 1px;
-}
+  #nav-temp ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+  }
+  #nav-temp li {
+    float: left;
+  }
+  #nav-temp li a {
+    display: block;
+    color: white;
+    text-align: center;
+    /* margin: 10px; */
+    padding: 12px;
+    text-decoration: none;
+  }
+  #nav-temp li a:hover {
+    background-color: #111111;
+  }
+  h5{
+    margin : 1px;
+  }
+  /* Progress styles */
+  svg.radial-progress {
+      height: auto;
+      max-width: 200px;
+      padding: 1em;
+      transform: rotate(-90deg);
+      width: 100%;
+  }
+  svg.radial-progress circle {
+      fill: rgba(0,0,0,0);
+      stroke: #fff;
+      stroke-dashoffset: 219.91148575129; /* Circumference */
+      stroke-width: 10;
+  }
+  svg.radial-progress circle.incomplete {
+      opacity: 0.25;
+  }
+  svg.radial-progress circle.complete {
+      stroke-dasharray: 219.91148575129; /* Circumference */
+  }
+  svg.radial-progress text {
+      fill: #fff;
+      font: 400 1em/1 'Oswald', sans-serif;
+      text-anchor: middle;
+  }
+
+
+
+  /*** COLORS ***/
+  /* Primary */
+  svg.radial-progress:nth-of-type(6n+1) circle {
+      stroke: #a2ed56;
+  }
+
+  /* Progress style ends */
+  /* Model style */
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 35%;
+    top: 30%;
+    width: 30%; /* Full width */
+    height: 25%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #474e5d;
+    padding-top: 50px;
+  }
+
+  /* Style the horizontal ruler */
+  hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+  }
+
+  /* The Modal Close Button (x) */
+  .close {
+    position: absolute;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f1f1f1;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #f44336;
+    cursor: pointer;
+  }
+
+  /* Clear floats */
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
 </style>
 <!--  -->
 <body>

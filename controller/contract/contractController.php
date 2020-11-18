@@ -3,7 +3,6 @@ require_once("./../../model/contractModel.php");
 // require_once("./../controller.php");
 
 if(isset($_POST['contractadd'])){
-   // echo "condition";
     $con = new Contract();     
     $con->addContract();
     
@@ -48,7 +47,6 @@ class Contract{
             header('location: ./../../view/contract/contractHome.php');
         }
         
-       
     }
     function getContractIdByName($name){ 
         //echo $name;
@@ -82,8 +80,12 @@ class Contract{
     function updateContract(){
 
     }
-    function deleteContract(){
-
+    function deleteContract($id){
+        $stat = deleteContractDB($id);
+        if($stat == 1){
+            header('location: ./contractHome.php');
+            exit;
+        }
     }
 }
 
