@@ -25,7 +25,7 @@
 
 <div class="container">
 <div class="row">
-  <div class="col-6">
+  <div class="col-sm">
     <!-- Contract Section -->
     <h2>Contract <?php echo $row["con_name"]; ?></h2>
     <h5>Description    : <?php echo $row["con_desc"]; ?></h5>
@@ -42,11 +42,10 @@
 
     <br>
   </div>
-  <div class="col-6">
-    <!-- Progress  -->
-    <h3>Progress</h3>
-    <h3>Invoices</h3>
+  <div class="col-sm">
+    <h2>Progress</h2>
   </div>
+  
 </div>
     
     <hr>
@@ -188,12 +187,16 @@
     <a class="btn btn-danger" name="set_inactive">Set Inactive</a><br>
     <!-- Delete Navigation to home -->
     <h5>Want to delete this particular contract?</h5>
-    <a href="./contractUpdate.php?con_id=<?php echo $row["con_id"]; ?>" class="btn btn-danger">Delete <?php echo $row["con_name"]; ?></a>
+    <button class="btn btn-danger" onclick="auth()">Delete <?php echo $row["con_name"]; ?></button>
     
     
     <br><br>
 </div>
-
+<script>
+  function auth(){
+    alert('Are you sure?');
+  }
+</script>
 <?php
   require_once('leftSidebar.php'); 
   require_once('footer.php'); 

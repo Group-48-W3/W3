@@ -54,6 +54,14 @@ function getAllActiveContractsDB(){
 
 	return $result;
 }
+function getAllInactiveContractsDB(){
+	global $conn;
+	$query = "select * from contract where status = 'Inactive'";
+	$result = mysqli_query($conn,$query);
+
+	return $result;
+}
+    
 function getSingleActiveContractDB($id){
 	global $conn;
 	$query = "select * from contract where con_id =".$id;
