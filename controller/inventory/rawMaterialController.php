@@ -6,13 +6,16 @@
         // echo "condition";
          $con = new RawMaterial();     
          $con->addRawMaterialCategory();
-         
      }
      if(isset($_POST['addNewRawMaterial'])){
         // echo "condition";
          $con = new RawMaterial();     
          $con->addRawMaterial();
-         
+     }
+     if(isset($_POST['replenishRawMaterial'])){
+        // echo "condition";
+         $con = new RawMaterial();     
+         $con->replenishRawMaterial();
      }
     class RawMaterial{
         function __construct(){
@@ -33,7 +36,6 @@
                 }else{
                     //get owner permission to execute following command
                     insertToRawMaterial($materialName, $materialDescription, $materialReorderValue);
-                    header('location:./../../view/inventory/replenish.php');
                 }
             }else{
                 echo 'All fields are required';
@@ -55,7 +57,6 @@
                 }else{
                     //get owner permission to execute following command
                     insertToRawMaterialDetails($inventoryCode, $materialType, $materialPrice, $materialQuantity);
-                    header('location:./../../view/inventory/replenish.php');
                 }
             }else{
                 echo 'All fields are required';
@@ -79,15 +80,15 @@
         }
 
         function replenishRawMaterial(){
-            $replenishMaterialId = $_POST['replenishRawMaterialId'];
+            $replenishMaterialId = $_POST['replenishMaterialId'];
             $replenishMaterialAmount = $_POST['replenishMaterialAmount'];
 
             if(!empty($replenishMaterialId) && !empty($replenishMaterialAmount)){
-                //update database
+                updateRawMaterialAmount($replenishMaterialId, $replenishMaterialAmount);
             }else{
                 echo 'All fields are required';
             }
-            header('location:./../../view/inventory/replenishConfirm.php');//redirection
+            //redirection
             exit;
         }
 
@@ -117,11 +118,7 @@
             exit;
         }
         function getRawMaterialDetails($inventoryCode){
-            if(isInRawMaterialDetails($inventoryCode)){
-                $res =  getRawMaterialDetailsDB($inventoryCode);
-            }else{
-                $res = array("mat_type"=>"<i>No result</i>", "mat_qty"=>"No result", "unit_price"=>"No result");
-            }
+            $res =  getRawMaterialDetailsDB($inventoryCode);
             return $res;
         }
     }
