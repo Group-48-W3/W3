@@ -7,9 +7,8 @@
 	}		
 	
 	require_once('../../controller/user/userController.php');
-	 
+    require_once('header.php');	 
 ?>
-<?php include_once('header.php'); ?>
 
 <div class="container center">
     <div class="row">

@@ -1,30 +1,42 @@
 <?php 
 
-session_start();
-require_once('./../../controller/user/userController.php'); 
-require_once('./header.php');
+    session_start();
+    require_once('./../../controller/user/userController.php'); 
+    require_once('./header.php');
 
 ?>
     <!-- Charts -->
     <div class="container">
         <h2>Business Overview</h2>
         <h3>Contract Overview</h3>
-        <div class="container">
-            <div id="contractBurndown" style="height: 370px; width: 80%;"></div><br>
-            <div id="chartContainerpie" style="height:320px; width: 80%;"></div>
+        <div class="container" id="chart">
+            <div class="row">
+                <div class="col-7">
+                    <div id="contractBurndown" style="height: 320px; width: 100%;"></div>
+                </div>
+                <div class="col-4">
+                    <div id="chartContainerpie" style="height:320px; width: 100%;"></div>
+                </div>
+            </div>
         </div>
         <br>
         <h3>Expense Overview</h3>
         <!-- Body starts -->
-        <div class="container">
-            <div id="chartContainer" style="height:200px; width: 80%; background-color:#363332; "></div><br>
-            <div id="monthExpenseCtaegory" style="height: 370px; width: 80%;"></div>
+        <div class="container" id="chart">
+            <div class="row">
+                <div class="col-6">
+                    <div id="monthExpenseCtaegory" style="height: 370px;"></div>
+                </div>
+                <div class="col-5">
+                    <div id="chartContainer" style="height:370px; background-color:#363332; "></div>
+                </div>
+            </div>
         </div>
         <!-- Body ends -->
         <br>
         <h3>Inventory Overview</h3>
-        <div class="container">
-            <div id="itemDistribution" style="height: 370px; width: 80%;"></div></div>
+        <div class="container" id="chart">
+            <div id="itemDistribution" style="height: 370px;"></div></div>
         </div>
         
     <br>
