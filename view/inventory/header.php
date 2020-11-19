@@ -11,6 +11,7 @@
   <title>W3</title>
   <link href="./../../public/css/styles/style.css" rel="stylesheet">
   <script type="text/javascript" src="./../../public/js/scripts/main.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 
 <body>
