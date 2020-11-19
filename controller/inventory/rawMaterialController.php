@@ -1,86 +1,94 @@
 <?php
 // include model
-    require_once("./../../model/inventoryModel.php");
+    require_once("./../../model/inventory/rawMaterialModel.php");
 
-    class Inventory{
+    if(isset($_POST['addNewRawMaterialCategory'])){
+        // echo "condition";
+         $con = new RawMaterial();     
+         $con->addRawMaterialCategory();
+     }
+     if(isset($_POST['addNewRawMaterial'])){
+        // echo "condition";
+         $con = new RawMaterial();     
+         $con->addRawMaterial();
+     }
+     if(isset($_POST['replenishRawMaterial'])){
+        // echo "condition";
+         $con = new RawMaterial();     
+         $con->replenishRawMaterial();
+     }
+    class RawMaterial{
         function __construct(){
             $this->index();
         }
         function index(){
             //
         }
-
-        function addRawMaterial($materialName,$materialType,$materialPrice,$materialQuantity,$materialReorderValue){
+        function addRawMaterialCategory(){
             $materialName = $_POST['materialName'];
-            $materialType = $_POST['materialType'];
-            $materialPrice = $_POST['materialPrice'];
-            $materialQuantity = $_POST['materialQuantity'];
+            $materialDescription = $_POST['materialDescription'];
             $materialReorderValue = $_POST['materialReorderValue'];
 
-            if(!empty($materialName) && !empty($materialType) && !empty($materialPrice) && !empty($materialQuantity) && !empty($materialReorderValue)){
+            if(!empty($materialName) && !empty($materialDescription) && !empty($materialReorderValue)){
                 if(isInRawMaterial($materialName)){
                     echo "Material already exist";
-                    header('location:./../../view/inventory/issue.php');//redirection
                     exit;
                 }else{
                     //get owner permission to execute following command
-                    insertToRawMaterial($materialName, $materialType, $materialPrice, $materialQuantity, $materialReorderValue);
+                    insertToRawMaterial($materialName, $materialDescription, $materialReorderValue);
                 }
             }else{
                 echo 'All fields are required';
             }
             //header('location:./../../view/inventory/replenishOwnerPermission.php');//redirection
             exit;
-        } 
+        }
 
+        function addRawMaterial(){
+            $inventoryCode = $_POST['inventoryCode'];
+            $materialType = $_POST['materialType'];
+            $materialPrice = $_POST['materialPrice'];
+            $materialQuantity = $_POST['materialQuantity'];
 
-        function addTool(){
-            $toolName = $_POST['toolName'];
-            $toolPrice = $_POST['toolPrice'];
-            $toolManufacturer = $_POST['toolManufacturer'];
-            $toolQuantity = $_POST['toolQuantity'];
-            $toolReorderValue = $_POST['toolReorderValue'];
-    
-            if(!empty($toolName) && !empty($toolPrice) && !empty($toolManufacturer) && !empty($toolQuantity) && !empty($toolReorderValue)){
-                if(isInTool($toolName)){
+            if(!empty($inventoryCode) && !empty($materialType) && !empty($materialPrice)){
+                if(isInRawMaterialDetails($materialType, $inventoryCode)){
                     echo "Material already exist";
-                    header('location:./../../view/inventory/issue.php');//redirection
                     exit;
                 }else{
                     //get owner permission to execute following command
-                    insertToTool($toolName, $toolPrice, $toolManufacturer, $toolQuantity, $toolReorderValue);
+                    insertToRawMaterialDetails($inventoryCode, $materialType, $materialPrice, $materialQuantity);
                 }
             }else{
                 echo 'All fields are required';
             }
-            header('location:./../../view/inventory/replenishOwnerPermission.php');//redirection
+            //header('location:./../../view/inventory/replenishOwnerPermission.php');//redirection
             exit;
         }
-    
+
+        function getAllRawMaterialCategory(){
+            // select all raw material categories from db
+            $res =  selectAllRawMaterialCategories();
+            return $res;
+            
+        }
+
+        function getAllRawMaterial(){
+            // select all raw material categories from db
+            $res =  selectAllRawMaterial();
+            return $res;
+            
+        }
 
         function replenishRawMaterial(){
-            $replenishMaterialId = $_POST['replenishRawMaterialId'];
+            $replenishMaterialId = $_POST['replenishMaterialId'];
             $replenishMaterialAmount = $_POST['replenishMaterialAmount'];
 
             if(!empty($replenishMaterialId) && !empty($replenishMaterialAmount)){
-                //update database
+                updateRawMaterialAmount($replenishMaterialId, $replenishMaterialAmount);
             }else{
                 echo 'All fields are required';
             }
-            header('location:./../../view/inventory/replenishConfirm.php');//redirection
-            exit;
-        }
-  
-        function replenishTool(){
-            $toolId = $_POST['replenishToolId'];
-            $replenishToolAmount = $_POST['replenishToolAmount'];
-
-            if(!empty($replenishToolId) && !empty($replenisToolAmount)){
-                //update database
-            }else{
-                echo 'All fields are required';
-            }
-            header('location:./../../view/inventory/replenishConfirm.php');//redirection
+            //redirection
             exit;
         }
 
@@ -108,17 +116,12 @@
             }
             header('location:./../../view/inventory/issueConfirm.php');//redirection
             exit;
-        }  
-
-        function addToMaintenance($toolId){
-            //
         }
-
-        function removeFromMaintenance($maintenanceId){
-            //
+        function getRawMaterialDetails($inventoryCode){
+            $res =  getRawMaterialDetailsDB($inventoryCode);
+            return $res;
         }
-
     }
 
 ?>
-
+    

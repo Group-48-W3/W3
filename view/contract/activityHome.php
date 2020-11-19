@@ -10,7 +10,7 @@
 
 <!-- Content Starts -->
 <div class="container">
-    <h2>Activities</h2>
+    <h1>Activities</h1>
     <div class="row">
         <div class="col-7">
             <h3>Today Activities</h3>
@@ -40,7 +40,6 @@
                     <?php
                         $i=0;
                         while($row_quo = mysqli_fetch_array($result)) {
-
                     ?>
                     <option value="<?php echo $row_quo["con_id"];?>"><?php echo $row_quo["con_name"];?></option>
                     <?php
