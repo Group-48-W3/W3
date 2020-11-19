@@ -105,33 +105,35 @@
 				<th>Unit Price</th>
 				<th>Available Quantity</th>
 			</thead>
-		<?php
-			$i=0;
-			$details = $rawMaterial->getRawMaterialDetails($inventoryCode);
-			while($types = mysqli_fetch_array($details)) {
-		?>
-		<tr>
-				<td data-label="Material Type"><?php echo $types["mat_type"]; ?></td>
-				<td data-label="Unit Price">Rs. <?php echo $types["unit_price"]; ?></td>
-				<td data-label="Available Quantity"><?php echo $types["mat_qty"]; ?></td>
-		</tr>
-		<?php
-				$i++;
+			<tbody>
+			<?php
+				$j=0;
+				$material = $rawMaterial->getRawMaterialDetails($inventoryCode);
+				while($row = mysqli_fetch_array($material)) {
+			?>
+			<tr>
+				<td data-label="Material Type"><?php echo $row["mat_name"]; ?></td>
+				<td data-label="Unit Price">Rs. <?php echo $row["unit_price"]; ?></td>
+				<td data-label="Available Quantity"><?php echo $row["mat_qty"]; ?></td>
+			</tr>
+			<?php
+				$j++;
 			}
-			if($i==0){
+			if($j==0){
 				echo "No results ";
 			}
-		?>
+			?>
+			</tbody>
 		</table>
 	</div>
 	<?php
-			$i++;
+		$i++;
 		}
 		if($i==0){
 			echo "No results ";
 		}
 	?>
-
+	<!-- Data loading ended -->
 	<h3>Tools</h3>
 	<table class="data-table">
 		<thead>

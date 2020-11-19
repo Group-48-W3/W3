@@ -117,11 +117,9 @@
             exit;
         }
         function getRawMaterialDetails($inventoryCode){
-            if(isInRawMaterialDetails($inventoryCode)){
-                $res =  getRawMaterialDetailsDB($inventoryCode);
-            }else{
-                $res = array("mat_type"=>"<i>No result</i>", "mat_qty"=>"No result", "unit_price"=>"No result");
-            }
+            
+            $res =  getRawMaterialDetailsDB($inventoryCode);
+        
             return $res;
         }
     }

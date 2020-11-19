@@ -77,7 +77,7 @@
 
     function getRawMaterialDetailsDB($inventoryCode){
         global $conn;
-        $sql = "select * from row_material_details where 'inv_code' = '$inventoryCode'";
+        $sql = "select * from raw_material_details where inv_code = '".$inventoryCode."'";
         $result = mysqli_query($conn, $sql);
         return $result;
     }
