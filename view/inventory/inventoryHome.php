@@ -101,7 +101,7 @@
 					<tr>
 						<td><i>Data</i></td>
 						<td><i>Data</i></td>
-						<td><a href="#">18</a></td>
+						<td><a href="rawMaterialBatch.php">18</a></td>
 						<td><i>Data</i></td>
 						<td><i>Data</i></td>
 						<td><i>Data</i></td>
