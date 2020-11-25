@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2020 at 05:55 PM
+-- Generation Time: Nov 25, 2020 at 11:22 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -303,12 +303,35 @@ INSERT INTO `quotation` (`q_id`, `q_budget`, `q_desc`, `q_img`, `q_name`) VALUES
 
 CREATE TABLE `raw-material-batch` (
   `batch-id` int(11) NOT NULL,
+  `added-date` date NOT NULL,
   `end-date` date NOT NULL,
   `unit-price` int(11) NOT NULL,
   `batch-quantity` int(11) NOT NULL,
   `stored-location` varchar(255) NOT NULL,
-  `inv-code` varchar(5) NOT NULL
+  `inv-code` varchar(5) NOT NULL,
+  `delivered-by` varchar(100) NOT NULL,
+  `supplier` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `raw-material-batch`
+--
+
+INSERT INTO `raw-material-batch` (`batch-id`, `added-date`, `end-date`, `unit-price`, `batch-quantity`, `stored-location`, `inv-code`, `delivered-by`, `supplier`) VALUES
+(2, '2020-11-27', '2020-11-28', 12, 500, 'Nail Rack', 'RM003', 'Self', 6),
+(3, '2020-11-29', '2020-11-19', 10, 10000, 'Nail Rack', 'RM003', 'Domex Couriers', 7),
+(4, '2020-11-25', '2040-12-31', 12, 300, 'Nail rack', 'RM004', 'Self', 6),
+(5, '2020-11-25', '2040-12-27', 32, 190, 'Nail Rack', 'RM005', 'Self', 6),
+(6, '2020-11-25', '2022-10-26', 1200, 2440, 'Wood Store Room', 'RM006', 'Domex Couriers', 5),
+(7, '2020-11-25', '2023-10-26', 3490, 1632, 'Wood Store Room', 'RM007', 'Domex Couriers', 5),
+(8, '2020-11-25', '2026-10-13', 325, 290, 'Glue Rack', 'RM008', 'Self', 6),
+(9, '2020-11-25', '2027-06-26', 200, 600, 'Glue Store', 'RM009', 'Domes Couriers', 7),
+(10, '2020-11-25', '2024-09-25', 150, 2450, 'Glue Store', 'RM010', 'Domex Couriers', 7),
+(11, '2020-11-25', '2025-06-17', 2300, 200, 'Paint Rack', 'RM011', 'Domex Couriers', 6),
+(12, '2020-11-25', '2028-05-26', 2780, 1300, 'Paint rack', 'RM012', 'Self', 6),
+(13, '2020-11-25', '2028-06-26', 4200, 2000, 'Wood Store Room', 'RM006', 'Domex Couriers', 9),
+(14, '2020-11-25', '2031-06-26', 1300, 500, 'Wood Store Room', 'RM006', 'Self', 5),
+(15, '2020-11-25', '2026-06-25', 350, 2300, 'Glue Rack', 'RM008', 'Self', 7);
 
 -- --------------------------------------------------------
 
@@ -325,6 +348,22 @@ CREATE TABLE `raw-material-category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `raw-material-category`
+--
+
+INSERT INTO `raw-material-category` (`inv-code`, `inv-desc`, `min-qty`, `mat-name`, `abc-category`) VALUES
+('RM003', 'Round headed and used for joining timber or other elements', 100, 'Common Nail', 'C'),
+('RM004', 'Smaller heads and used for finishing', 200, 'Finishing Nails', 'C'),
+('RM005', 'Provides better grip in the timber and a more secure attachment', 40, 'Ring Shank Nails', 'B'),
+('RM006', 'Gives the sound of a warm tone', 2000, 'Mahogany Wood', 'B'),
+('RM007', 'Color ranges from light brown to pink-red with a swirling or striped grain', 1000, 'Oak Wood', 'A'),
+('RM008', 'Waterproof and makes a good filler', 500, 'Epoxy', 'B'),
+('RM009', 'Great for gluing wedges to pieces and using them for clamping assistance', 100, 'Cyanoacrylate Glue', 'A'),
+('RM010', 'Common type of wood glue. Usually called “carpenter’s glue”', 950, 'PVA Glue', 'C'),
+('RM011', 'Easy to apply and it dries quickly in about 1½ to 2 hours', 650, 'Emulsion Paint', 'B'),
+('RM012', 'Dries slowly and forms a hard and durable surface', 400, 'Enamel Paint', 'B');
+
+--
 -- Triggers `raw-material-category`
 --
 DELIMITER $$
@@ -338,28 +377,28 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `replenish`
---
-
-CREATE TABLE `replenish` (
-  `replenish-id` int(11) NOT NULL,
-  `mat-id` varchar(5) DEFAULT NULL,
-  `replenish-date` date NOT NULL,
-  `replenish-time` time NOT NULL,
-  `replenish-qty` int(20) NOT NULL,
-  `delivered-by` varchar(100) NOT NULL,
-  `sup-id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `rm-seq`
 --
 
 CREATE TABLE `rm-seq` (
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `rm-seq`
+--
+
+INSERT INTO `rm-seq` (`id`) VALUES
+(3),
+(4),
+(5),
+(6),
+(7),
+(8),
+(9),
+(10),
+(11),
+(12);
 
 -- --------------------------------------------------------
 
@@ -411,6 +450,17 @@ CREATE TABLE `supplier` (
   `sup-status` tinyint(1) NOT NULL,
   `sup-created-on` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `supplier`
+--
+
+INSERT INTO `supplier` (`sup-id`, `sup-name`, `sup-email`, `sup-mobile`, `sup-address`, `sup-status`, `sup-created-on`) VALUES
+(5, 'Weerasinghe Woods', 'weerasinghewoods@example.com', '0722222222', 'No. 25, Maradana', 1, '2020-11-25 05:53:27'),
+(6, 'Indika Hardware', 'indikahardware@example.com', '0711111111', 'No. 26, Kandana', 1, '2020-11-25 05:53:49'),
+(7, 'Edirimuni Hardwares', 'edirimuni@example.com', '0755555555', 'No. 27, Madampe', 1, '2020-11-25 05:58:07'),
+(8, 'Nuwan Woods', 'nuwanwoods@example.com', '0766666666', 'No. 28, Padukka', 0, '2020-11-26 02:53:18'),
+(9, 'Good Wood Providers', 'gwprovider@example.com', '0777777777', 'No. 29, Deniyaya', 1, '2020-11-25 11:19:48');
 
 -- --------------------------------------------------------
 
@@ -616,21 +666,14 @@ ALTER TABLE `quotation`
 --
 ALTER TABLE `raw-material-batch`
   ADD PRIMARY KEY (`batch-id`),
-  ADD KEY `raw-material-batch_ibfk_1` (`inv-code`);
+  ADD KEY `raw-material-batch_ibfk_1` (`inv-code`),
+  ADD KEY `supplier` (`supplier`);
 
 --
 -- Indexes for table `raw-material-category`
 --
 ALTER TABLE `raw-material-category`
   ADD PRIMARY KEY (`inv-code`);
-
---
--- Indexes for table `replenish`
---
-ALTER TABLE `replenish`
-  ADD PRIMARY KEY (`replenish-id`),
-  ADD KEY `mat-id` (`mat-id`),
-  ADD KEY `sup-id` (`sup-id`);
 
 --
 -- Indexes for table `rm-seq`
@@ -757,19 +800,13 @@ ALTER TABLE `quotation`
 -- AUTO_INCREMENT for table `raw-material-batch`
 --
 ALTER TABLE `raw-material-batch`
-  MODIFY `batch-id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `replenish`
---
-ALTER TABLE `replenish`
-  MODIFY `replenish-id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `batch-id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `rm-seq`
 --
 ALTER TABLE `rm-seq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -787,7 +824,7 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `sup-id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sup-id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tl-seq`
@@ -897,14 +934,8 @@ ALTER TABLE `permission`
 -- Constraints for table `raw-material-batch`
 --
 ALTER TABLE `raw-material-batch`
-  ADD CONSTRAINT `raw-material-batch_ibfk_1` FOREIGN KEY (`inv-code`) REFERENCES `raw-material-category` (`inv-code`) ON UPDATE CASCADE;
-
---
--- Constraints for table `replenish`
---
-ALTER TABLE `replenish`
-  ADD CONSTRAINT `replenish_ibfk_1` FOREIGN KEY (`mat-id`) REFERENCES `raw-material-category` (`inv-code`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `replenish_ibfk_2` FOREIGN KEY (`sup-id`) REFERENCES `supplier` (`sup-id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `raw-material-batch_ibfk_1` FOREIGN KEY (`inv-code`) REFERENCES `raw-material-category` (`inv-code`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `raw-material-batch_ibfk_2` FOREIGN KEY (`supplier`) REFERENCES `supplier` (`sup-id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `schedule`
