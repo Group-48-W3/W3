@@ -42,7 +42,7 @@
           <label for="matInventoryCode" class="form-label">Raw Material Category</label>
         </div>
         <div class="form-group field">
-        <input class="form-field" id="amount" name="replenishMaterialAmount">
+        <input class="form-field" id="amount" name="replenishUnitPrice">
           <label for="amount" class="form-label">Unit Price</label>
         </div>
         <div class="form-group field">
@@ -62,7 +62,7 @@
             <option value="">Select from list</option>
             <?php
                 $i=0;
-                $result = $supplier->getAllSuppliers();
+                $result = $supplier->getActiveSuppliers();
                 while($row = mysqli_fetch_array($result)) {
             ?>
             <option value="<?php echo $row["sup-id"]; ?>"><?php echo $row["sup-name"]; ?></option>
@@ -82,7 +82,7 @@
         </div>
         <div class="row">
           <div class="container right">
-            <button class="btn btn-primary" type="submit" value="Submit" name="replenishRawMaterial">Submit</button>
+            <input class="btn btn-primary" type="submit" value="Replenish" name="replenishRawMaterial">
             <button class="btn btn-secondary" type="cancel" value="cancel">Cancel</button>  
           </div>
         </div>
