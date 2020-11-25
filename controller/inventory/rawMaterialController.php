@@ -28,20 +28,32 @@
             $materialName = $_POST['materialName'];
             $materialDescription = $_POST['materialDescription'];
             $materialReorderValue = $_POST['materialReorderValue'];
+            $materialAbcCategory = $_POST['materialAbcCategory'];
 
-            if(!empty($materialName) && !empty($materialDescription) && !empty($materialReorderValue)){
+            if(!empty($materialName) && !empty($materialDescription) && !empty($materialReorderValue) && !empty($materialAbcCategory)){
                 if(isInRawMaterial($materialName)){
-                    echo "Material already exist";
-                    exit;
+                    echo "<script>
+                    if (confirm('Material Already Exists!')) {
+                        window.location.replace(\"./../../view/inventory/replenish.php\");
+                    } else {
+                        window.location.replace(\"./../../view/inventory/replenish.php\");
+                    }</script>";
                 }else{
                     //get owner permission to execute following command
-                    insertToRawMaterial($materialName, $materialDescription, $materialReorderValue);
+                    insertRawMaterialCategory($materialName, $materialDescription, $materialReorderValue, $materialAbcCategory);
                 }
             }else{
                 echo 'All fields are required';
             }
             //header('location:./../../view/inventory/replenishOwnerPermission.php');//redirection
             exit;
+        }
+
+        function getAllRawMaterialCategory(){
+            // select all raw material categories from db
+            $res =  selectAllRawMaterialCategories();
+            return $res;
+            
         }
 
         function addRawMaterial(){
@@ -65,12 +77,7 @@
             exit;
         }
 
-        function getAllRawMaterialCategory(){
-            // select all raw material categories from db
-            $res =  selectAllRawMaterialCategories();
-            return $res;
-            
-        }
+        
 
         function getAllRawMaterial(){
             // select all raw material categories from db

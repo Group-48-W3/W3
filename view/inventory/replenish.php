@@ -9,8 +9,10 @@
   require_once('../../controller/user/userController.php');
   require_once('../../controller/inventory/rawMaterialController.php');
   require_once('../../controller/inventory/toolController.php');
+  require_once('../../controller/inventory/supplierController.php');
   $rawMaterial = new RawMaterial();
   $tool = new Tool();
+  $supplier = new Supplier();
   require_once('header.php');
 ?>
 
@@ -28,7 +30,7 @@
                 $result = $rawMaterial->getAllRawMaterialCategory();
                 while($row = mysqli_fetch_array($result)) {
             ?>
-            <option value="<?php echo $row["inv_code"]; ?>"><?php echo $row["mat_name"]; ?></option>
+            <option value="<?php echo $row["inv-code"]; ?>"><?php echo $row["mat-name"]; ?></option>
             <?php
                   if($i==0) { $i++; }
                 }
@@ -60,10 +62,10 @@
             <option value="">Select from list</option>
             <?php
                 $i=0;
-                $result = $rawMaterial->getAllRawMaterialCategory();
+                $result = $supplier->getAllSuppliers();
                 while($row = mysqli_fetch_array($result)) {
             ?>
-            <option value="<?php echo $row["inv_code"]; ?>"><?php echo $row["mat_name"]; ?></option>
+            <option value="<?php echo $row["sup-id"]; ?>"><?php echo $row["sup-name"]; ?></option>
             <?php
                   if($i==0) { $i++; }
                 }
@@ -94,7 +96,7 @@
 
 <div id="rawMaterialCategory">
     <div class="container">
-    <h3>Add new raw material category</h3>
+      <h3>Add new raw material category</h3>
       <form method="post" action="../../controller/inventory/rawMaterialController.php">
           <div class="form-group field">
               <div class="form-group field">
@@ -110,10 +112,11 @@
                   <label for="reorderValue" class="form-label">Re-Order Value (Minimum stock level)</label>
               </div>
               <div class="form-group field">
-                  <select name="" id="abcRawMat" class="form-field">
+                  <select id="abcRawMat" name="materialAbcCategory" class="form-field">
+                    <option value="">Select from List</option>
                     <option value="A">A - High Value & Low Stock</option>
-                    <option value="B">A - Moderate Value & Moderate Stock</option>
-                    <option value="C">A - Low Value & High Stock</option>
+                    <option value="B">B - Moderate Value & Moderate Stock</option>
+                    <option value="C">C - Low Value & High Stock</option>
                   </select>
                   <label for="abcRawMat" class="form-label">ABC Analysis</label>
               </div>
@@ -121,7 +124,7 @@
           <br>
           <div class="container right">
               <!-- <button class="btn btn-secondary" type="" value="Cancel">Cancel</button> -->
-              <button class="btn btn-primary" type="submit" name="addNewRawMaterialCategory">Submit</button>
+              <input class="btn btn-primary" type="submit" name="addNewRawMaterialCategory" value="Add Category">
           </div>
       </form>
     </div>

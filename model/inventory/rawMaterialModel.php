@@ -1,11 +1,10 @@
 <?php
     require_once("./../../config/config.php");
 
-    function insertToRawMaterial($materialName, $materialDescription, $materialReorderValue){
+    function insertRawMaterialCategory($materialName, $materialDescription, $materialReorderValue, $materialAbcCategory){
         global $conn;
         //insert to database
-        $sql = "INSERT INTO `raw_material` (`inv_desc`, `min_qty`, `mat_name`) VALUES ('$materialDescription', '$materialReorderValue', '$materialName')";
-        //$sql = "insert into raw_material VALUES ('','$materialName','$materialType','$materialPrice','$materialQuantity','1')";
+        $sql = "INSERT INTO `raw-material-category` (`inv-desc`, `min-qty`, `mat-name`, `abc-category`) VALUES ('$materialDescription', '$materialReorderValue', '$materialName', '$materialAbcCategory')";
         if (mysqli_query($conn, $sql)) {
             echo "<script>
             if (confirm('Raw Material category has been successfully created!')) {
@@ -17,6 +16,28 @@
             echo "Error: " . $sql . " " . mysqli_error($conn);
         }
         mysqli_close($conn);
+    }
+
+    function isInRawMaterial($materialName){
+        global $conn;
+        $sql = "select * from `raw-material-category` where `mat-name` = '".$materialName."'";
+				
+	    $result = mysqli_query($conn, $sql);
+        $numRows = mysqli_num_rows($result);
+
+        if($numRows == 0){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+
+    function selectAllRawMaterialCategories(){
+        global $conn;
+        $query = "select * from `raw-material-category`";
+        $result = mysqli_query($conn,$query);
+
+        return $result;
     }
 
     function insertToRawMaterialDetails($inventoryCode, $materialType, $materialPrice, $materialQuantity){
@@ -39,13 +60,7 @@
         mysqli_close($conn);
     }
 
-    function selectAllRawMaterialCategories(){
-        global $conn;
-        $query = "select * from raw_material";
-        $result = mysqli_query($conn,$query);
-
-        return $result;
-    }
+    
 
     function selectAllRawMaterial(){
         global $conn;
@@ -55,19 +70,7 @@
         return $result;
     }
 
-    function isInRawMaterial($materialName){
-        global $conn;
-        $sql = "select * from raw_material where mat_name = '".$materialName."'";
-				
-	    $result = mysqli_query($conn, $sql);
-        $numRows = mysqli_num_rows($result);
-
-        if($numRows == 0){
-            return 0;
-        }else{
-            return 1;
-        }
-    }
+    
 
     function isInRawMaterialDetails($inventoryCode){
         global $conn;

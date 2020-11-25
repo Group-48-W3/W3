@@ -9,9 +9,11 @@
 	require_once('../../controller/user/userController.php');
 	require_once('../../controller/inventory/rawMaterialController.php');
 	require_once('../../controller/inventory/toolController.php');
+	require_once('../../controller/inventory/supplierController.php');
 	require_once('header.php');
 	$rawMaterial = new RawMaterial();
 	$tool = new Tool();
+	$supplier = new Supplier();
 	$user_role = $_SESSION['r_id'];
     if($user_role == 1){		
 ?>
@@ -243,23 +245,35 @@
 					<th>Email</th>
 					<th>Telephone</th>
 					<th>Address</th>
-					<th>Added Date</th>
 					<th>Status</th>
+					<th>Added Date</th>
 					<th>Actions</th>
 				</thead>
 				<tbody>
-					<tr>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><a href="" class="btn btn-primary">&#10004</a></td>
-						<td>
-							<a href="" class="btn btn-warning">&#x270E</a>
-							<a href="" class="btn btn-danger">&#10006</a>
-						</td>
-					</tr>
+				<?php
+					$i=0;
+					$result = $supplier->getAllSuppliers();
+					while($row = mysqli_fetch_array($result)) {
+				?>
+				<tr>
+					<td data-label="Name"><?php echo $row["sup-name"]; ?></td>
+					<td data-label="Email"><?php echo $row["sup-email"]; ?></td>
+					<td data-label="Telephone"><?php echo $row["sup-mobile"]; ?></td>
+					<td data-label="Address"><?php echo $row["sup-address"]; ?></td>
+					<td data-label="Status"><?php if($row["sup-status"] == 1) {echo "Active";} else {echo "Inactive";} ?></td>
+					<td data-label="Added On"><?php echo $row["sup-created-on"]; ?></td>
+					<td>
+						<a href="" class="btn btn-warning">&#x270E</a>
+						<a href="" class="btn btn-danger">&#10006</a>
+					</td>
+				</tr>
+				<?php
+					$i++;
+					}
+					if($i==0){
+				?>
+				<tr><td colspan="8"><center>Sorry, No Results to Show!</center></td></tr>
+				<?php } ?>
 				</tbody>
 			</table>
 		</div>
