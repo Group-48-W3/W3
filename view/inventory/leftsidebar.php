@@ -21,10 +21,6 @@
             </svg>
         </a>
       </li>
-      <?php
-        $user_role = $_SESSION['r_id'];
-        if($user_role == 1){
-      ?>
       <li class="nav-item">
         <a href="inventoryHome.php" class="nav-link">
           <svg 
@@ -45,7 +41,6 @@
           <span class="link-text">Inventory</span>
         </a>
       </li>
-        <?php }?>
       <li class="nav-item">
         <a href="issue.php" class="nav-link">
           <svg 

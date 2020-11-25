@@ -9,11 +9,12 @@
 	require_once('../../controller/user/userController.php');
 	require_once('../../controller/inventory/rawMaterialController.php');
 	require_once('../../controller/inventory/toolController.php');
+	require_once('../../controller/inventory/supplierController.php');
 	require_once('header.php');
 	$rawMaterial = new RawMaterial();
 	$tool = new Tool();
-	$user_role = $_SESSION['r_id'];
-    if($user_role == 1){		
+	$supplier = new Supplier();
+	$user_role = $_SESSION['r_id'];	
 ?>
 
 <h1>Current Inventory</h1>
@@ -89,27 +90,42 @@
 		<div class="col">
 			<table class="data-table">
 				<thead>
-					<th>Name</th>
-					<th>Description</th>
+					<th width="15%">Name</th>
+					<th width="40%">Description</th>
 					<th>Available Batches</th>
 					<th>Total Quantity</th>
 					<th>Reorder Value</th>
-					<th>Average Price</th>
-					<th>Actions</th>
+					<th width="11%">Average Price</th>
+					<?php if($user_role == 1){ ?>
+					<th>Edit</th>
+					<?php } ?>
 				</thead>
 				<tbody>
+				<?php
+					$i=0;
+					$result = $rawMaterial->getAllRawMaterialCategory();
+					while($row = mysqli_fetch_array($result)) {
+						$batch = $rawMaterial->getBatchDetails($row["inv-code"]);
+						$batchRow = mysqli_fetch_array($batch);
+				?>
 					<tr>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><a href="rawMaterialBatch.php">18</a></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td>
-							<a href="" class="btn btn-warning">&#x270E</a>
-							<a href="" class="btn btn-danger">&#10006</a>
-						</td>
+						<td data-label="Name"><?php echo $row["mat-name"]; ?></td>
+						<td data-label="Description"><?php echo $row["inv-desc"]; ?></td>
+						<td data-label="Available Batches"><a href="rawMaterialBatch.php?material=<?php echo $row["inv-code"]; ?>"><?php echo $batchRow["batch-count"]?></a></td>
+						<td data-label="Total Quantity"><?php echo $batchRow["total-amount"]?></td>
+						<td data-label="Reorder Value"><?php echo $row["min-qty"]; ?></td>
+						<td data-label="Average Price">Rs. <?php echo $batchRow["avg-price"]?></td>
+						<?php if($user_role == 1){ ?>
+						<td data-label="Edit"><a href="" class="btn btn-warning">&#x270E</a></td>
+						<?php } ?>
 					</tr>
+				<?php
+					$i++;
+					}
+					if($i==0){
+				?>
+					<tr><td colspan="8"><center>Sorry, No Results to Show!</center></td></tr>
+				<?php } ?>
 				</tbody>
 			</table>
 		</div>
@@ -161,7 +177,9 @@
 					<th>Manufacturer</th>
 					<th>Added</th>
 					<th>Status</th>
-					<th>Actions</th>
+					<?php if($user_role == 1){ ?>
+					<th>Edit</th>
+					<?php } ?>
 				</thead>
 				<tbody>
 					<tr>
@@ -175,12 +193,13 @@
 						<td><i>Data</i></td>
 						<td><i>Data</i></td>
 						<td>
-							<a href="" class="btn btn-primary">&#10004</a>
+							OK
 						</td>
+						<?php if($user_role == 1){ ?>
 						<td>
 							<a href="" class="btn btn-warning">&#x270E</a>
-							<a href="" class="btn btn-danger">&#10006</a>
 						</td>
+						<?php } ?>
 					</tr>
 					<tr>
 						<td><i>Data</i></td>
@@ -193,12 +212,13 @@
 						<td><i>Data</i></td>
 						<td><i>Data</i></td>
 						<td>
-							<a href="" class="btn btn-warning">&#9888</a>
+							<a href="maintenance.php">&#9888</a>
 						</td>
+						<?php if($user_role == 1){ ?>
 						<td>
 							<a href="" class="btn btn-warning">&#x270E</a>
-							<a href="" class="btn btn-danger">&#10006</a>
 						</td>
+						<?php } ?>
 					</tr>
 				</tbody>
 			</table>
@@ -243,23 +263,38 @@
 					<th>Email</th>
 					<th>Telephone</th>
 					<th>Address</th>
-					<th>Added Date</th>
 					<th>Status</th>
-					<th>Actions</th>
+					<th>Added On</th>
+					<?php if($user_role == 1){ ?>
+					<th>Edit</th>
+					<?php } ?>
 				</thead>
 				<tbody>
-					<tr>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><a href="" class="btn btn-primary">&#10004</a></td>
-						<td>
-							<a href="" class="btn btn-warning">&#x270E</a>
-							<a href="" class="btn btn-danger">&#10006</a>
-						</td>
-					</tr>
+				<?php
+					$i=0;
+					$result = $supplier->getAllSuppliers();
+					while($row = mysqli_fetch_array($result)) {
+				?>
+				<tr>
+					<td data-label="Name"><?php echo $row["sup-name"]; ?></td>
+					<td data-label="Email"><?php echo $row["sup-email"]; ?></td>
+					<td data-label="Telephone"><?php echo $row["sup-mobile"]; ?></td>
+					<td data-label="Address"><?php echo $row["sup-address"]; ?></td>
+					<td data-label="Status"><?php if($row["sup-status"] == 1) {echo "Active";} else {echo "Inactive";} ?></td>
+					<td data-label="Added On"><?php echo $row["sup-created-on"]; ?></td>
+					<?php if($user_role == 1){ ?>
+					<td>
+						<a href="" class="btn btn-warning">&#x270E</a>
+					</td>
+					<?php } ?>
+				</tr>
+				<?php
+					$i++;
+					}
+					if($i==0){
+				?>
+				<tr><td colspan="8"><center>Sorry, No Results to Show!</center></td></tr>
+				<?php } ?>
 				</tbody>
 			</table>
 		</div>
@@ -268,7 +303,6 @@
 
 
 <?php
-	}
 	require_once('leftSidebar.php');
 	require_once('footer.php');
 ?>

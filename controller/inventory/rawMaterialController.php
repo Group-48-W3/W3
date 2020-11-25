@@ -7,11 +7,6 @@
          $con = new RawMaterial();     
          $con->addRawMaterialCategory();
      }
-     if(isset($_POST['addNewRawMaterial'])){
-        // echo "condition";
-         $con = new RawMaterial();     
-         $con->addRawMaterial();
-     }
      if(isset($_POST['replenishRawMaterial'])){
         // echo "condition";
          $con = new RawMaterial();     
@@ -28,35 +23,19 @@
             $materialName = $_POST['materialName'];
             $materialDescription = $_POST['materialDescription'];
             $materialReorderValue = $_POST['materialReorderValue'];
+            $materialAbcCategory = $_POST['materialAbcCategory'];
 
-            if(!empty($materialName) && !empty($materialDescription) && !empty($materialReorderValue)){
+            if(!empty($materialName) && !empty($materialDescription) && !empty($materialReorderValue) && !empty($materialAbcCategory)){
                 if(isInRawMaterial($materialName)){
-                    echo "Material already exist";
-                    exit;
+                    echo "<script>
+                    if (confirm('Material Already Exists!')) {
+                        window.location.replace(\"./../../view/inventory/replenish.php\");
+                    } else {
+                        window.location.replace(\"./../../view/inventory/replenish.php\");
+                    }</script>";
                 }else{
                     //get owner permission to execute following command
-                    insertToRawMaterial($materialName, $materialDescription, $materialReorderValue);
-                }
-            }else{
-                echo 'All fields are required';
-            }
-            //header('location:./../../view/inventory/replenishOwnerPermission.php');//redirection
-            exit;
-        }
-
-        function addRawMaterial(){
-            $inventoryCode = $_POST['inventoryCode'];
-            $materialType = $_POST['materialType'];
-            $materialPrice = $_POST['materialPrice'];
-            $materialQuantity = $_POST['materialQuantity'];
-
-            if(!empty($inventoryCode) && !empty($materialType) && !empty($materialPrice)){
-                if(isInRawMaterialDetails($materialType, $inventoryCode)){
-                    echo "Material already exist";
-                    exit;
-                }else{
-                    //get owner permission to execute following command
-                    insertToRawMaterialDetails($inventoryCode, $materialType, $materialPrice, $materialQuantity);
+                    insertRawMaterialCategory($materialName, $materialDescription, $materialReorderValue, $materialAbcCategory);
                 }
             }else{
                 echo 'All fields are required';
@@ -72,24 +51,41 @@
             
         }
 
-        function getAllRawMaterial(){
-            // select all raw material categories from db
-            $res =  selectAllRawMaterial();
-            return $res;
-            
-        }
-
         function replenishRawMaterial(){
-            $replenishMaterialId = $_POST['replenishMaterialId'];
+            $replenishMaterialId = $_POST['inventoryCode'];
             $replenishMaterialAmount = $_POST['replenishMaterialAmount'];
+            $replenishUnitPrice = $_POST['replenishUnitPrice'];
+            $replenishLocation = $_POST['replenishLocation'];
+            $replenishPeriod = $_POST['replenishPeriod'];
+            $replenishSupplier = $_POST['replenishSupplier'];
+            $replenishDelivery = $_POST['replenishDelivery'];
 
-            if(!empty($replenishMaterialId) && !empty($replenishMaterialAmount)){
-                updateRawMaterialAmount($replenishMaterialId, $replenishMaterialAmount);
+            if(!empty($replenishMaterialId) && !empty($replenishMaterialAmount) && !empty($replenishUnitPrice) && !empty($replenishLocation) && !empty($replenishPeriod) && !empty($replenishSupplier) && !empty($replenishDelivery)){
+                addNewBatch($replenishMaterialId, $replenishMaterialAmount, $replenishUnitPrice, $replenishLocation, $replenishPeriod, $replenishSupplier, $replenishDelivery);
             }else{
                 echo 'All fields are required';
             }
             //redirection
             exit;
+        }
+
+        function getBatchDetails($inventoryCode){
+            $res =  getBatchDetailsDB($inventoryCode);
+            return $res;
+        }
+
+        function getAllBatchDetailsOf($inventoryCode){
+            $res = getAllBatchDetailsWhere($inventoryCode);
+            return $res;
+        }
+
+
+
+        function getAllRawMaterial(){
+            // select all raw material categories from db
+            $res =  selectAllRawMaterial();
+            return $res;
+            
         }
 
         function issueRawMaterial(){
@@ -117,10 +113,7 @@
             header('location:./../../view/inventory/issueConfirm.php');//redirection
             exit;
         }
-        function getRawMaterialDetails($inventoryCode){
-            $res =  getRawMaterialDetailsDB($inventoryCode);
-            return $res;
-        }
+        
     }
 
 ?>
