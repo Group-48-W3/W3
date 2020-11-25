@@ -40,16 +40,14 @@
         return $result;
     }
 
-    function insertToRawMaterialDetails($inventoryCode, $materialType, $materialPrice, $materialQuantity){
+    function addNewBatch($replenishMaterialId, $replenishMaterialAmount, $replenishUnitPrice, $replenishLocation, $replenishPeriod, $replenishSupplier, $replenishDelivery){
         global $conn;
-        if(empty($materialQuantity)){
-            $sql = "INSERT INTO `raw_material_details` (`unit_price`, `mat_type`, `mat_qty`, `inv_code`) VALUES ('$materialPrice', '$materialType', '0', '$inventoryCode')";
-        } else {
-            $sql = "INSERT INTO `raw_material_details` (`unit_price`, `mat_type`, `mat_qty`, `inv_code`) VALUES ('$materialPrice', '$materialType', '$materialQuantity', '$inventoryCode')";
-        }
+        $date = Date("Y-m-d");
+        $sql = "INSERT INTO `raw-material-batch` (`added-date`, `end-date`, `unit-price`, `batch-quantity`, `stored-location`, `inv-code`, `delivered-by`, `supplier`) VALUES ('$date', '$replenishPeriod', '$replenishUnitPrice', '$replenishMaterialAmount', '$replenishLocation', '$replenishMaterialId', '$replenishDelivery', '$replenishSupplier')";
+        
         if (mysqli_query($conn, $sql)) {
             echo "<script>
-            if (confirm('Raw Material has been successfully created!')) {
+            if (confirm('New batch will be added to the stock when owner grants permission. Details have been recorded successfully!')) {
                 window.location.replace(\"./../../view/inventory/replenish.php\");
             } else {
                 window.location.replace(\"./../../view/inventory/replenish.php\");
@@ -60,7 +58,37 @@
         mysqli_close($conn);
     }
 
+    function getRawMaterialDetailsDB(){
+        global $conn;
+        $sql = "SELECT * FROM ";
+        $result = mysqli_query($conn, $sql);
+        return $result;
+    }
+
+    function getBatchDetailsDB($inventoryCode){
+        global $conn;
+        $sql = "SELECT COUNT(`batch-id`) AS `batch-count`, SUM(`batch-quantity`) AS `total-amount`, CAST(AVG(`unit-price`) AS DECIMAL(10,2)) AS `avg-price` FROM `raw-material-batch` WHERE `inv-code`= '$inventoryCode'";
+        $result = mysqli_query($conn, $sql);
+        return $result;
+    }
+
+    function getAllBatchDetailsWhere($inventoryCode){
+        global $conn;
+        $sql = "SELECT `raw-material-batch`.*, `supplier`.`sup-name` FROM `raw-material-batch` INNER JOIN `supplier` ON `raw-material-batch`.`supplier` = `supplier`.`sup-id` AND `raw-material-batch`.`inv-code`= '$inventoryCode' ORDER BY `added-date`";
+        $result = mysqli_query($conn, $sql);
+        return $result;
+    }
+
     
+
+
+
+
+
+
+
+
+
 
     function selectAllRawMaterial(){
         global $conn;
@@ -69,8 +97,6 @@
 
         return $result;
     }
-
-    
 
     function isInRawMaterialDetails($inventoryCode){
         global $conn;
@@ -86,13 +112,6 @@
         }
     }
 
-    function getRawMaterialDetailsDB($inventoryCode){
-        global $conn;
-        $sql = "select * from raw_material_details where inv_code = '".$inventoryCode."'";
-        $result = mysqli_query($conn, $sql);
-        return $result;
-    }
-
     //read commands
     function getColumnWhere($materialId, $column){
         global $conn;
@@ -102,9 +121,9 @@
     }
 
     //update commands
-    function updateRawMaterialAmount($replenishMaterialId, $replenishMaterialAmount){
+    function dd(){
         global $conn;
-        $sql = "update raw_material_details set mat_qty = mat_qty + '".$replenishMaterialAmount."' where mat_id = '".$replenishMaterialId."'";
+        $sql = "INSERT INTO `raw-material-batch` set mat_qty = mat_qty + '".$replenishMaterialAmount."' where mat_id = '".$replenishMaterialId."'";
         if (mysqli_query($conn, $sql)) {
             echo "<script>
             if (confirm('Raw Material details has been successfully updated!')) {
