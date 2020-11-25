@@ -11,7 +11,7 @@
   require_once('header.php');
 
   $supplier = new Supplier();
-  $result = $supplier->getAllSuppliers();
+  $result = $supplier->getActiveSuppliers();
 ?>
 
 <h1>Suppliers</h1>
@@ -41,7 +41,7 @@
 </div>
 <br>
 <div class="container">
-  <h2>Suppliers List</h2>
+  <h2>Active Suppliers</h2>
   <div class="row">
 		<div class="col">
 			<div class="left">
@@ -77,8 +77,6 @@
         <th width="20%">Email</th>
         <th width="10%">Telephone</th>
         <th width="25%">Address</th>
-        <th width="5%">Status</th>
-        <th width="20%">Added On</th>
       </tr>
     </thead>
     <tbody>
@@ -91,8 +89,6 @@
         <td data-label="Email"><?php echo $row["sup-email"]; ?></td>
         <td data-label="Telephone"><?php echo $row["sup-mobile"]; ?></td>
         <td data-label="Address"><?php echo $row["sup-address"]; ?></td>
-        <td data-label="Status"><?php if($row["sup-status"] == 1) {echo "Active";} else {echo "Inactive";} ?></td>
-        <td data-label="Added On"><?php echo $row["sup-created-on"]; ?></td>
       </tr>
       <?php
           $i++;

@@ -21,6 +21,13 @@
         return $result;
     }
 
+    function selectActiveSuppliers(){
+        global $conn;
+        $query = "select * from supplier where `sup-status`=1";
+        $result = mysqli_query($conn,$query);
+        return $result;
+    }
+
     function isInSupplier($supName){
         global $conn;
         $sql = "select * from supplier where `sup-name` = '".$supName."'";

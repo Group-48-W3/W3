@@ -48,6 +48,11 @@
             $res =  selectAllSuppliers();
             return $res;
         }
+
+        function getActiveSuppliers(){
+            $res =  selectActiveSuppliers();
+            return $res;
+        }
     }
 
 ?>
