@@ -6,61 +6,101 @@
 		exit;
 	}		
 	
-	require_once('../../controller/user/userController.php');
-    require_once('header.php');
+  require_once('../../controller/user/userController.php');
+  require_once('../../controller/inventory/supplierController.php');
+  require_once('header.php');
+
+  $supplier = new Supplier();
+  $result = $supplier->getAllSuppliers();
 ?>
 
 <h1>Suppliers</h1>
 <div class="container">
     <h2>Add new supplier</h2>
-    <div class="form-group field">
-        <input type="text" id="supName" class="form-field">
-        <label for="supName" class="form-label">Name</label>
-    </div>
-    <div class="form-group field">
-        <input type="text" id="supMail" class="form-field">
-        <label for="supMail" class="form-label">Email</label>
-    </div>
-    <div class="form-group field">
-        <input type="text" id="supMob" class="form-field">
-        <label for="supMob" class="form-label">Mobile</label>
-    </div>
-    <div class="form-group field">
-        <input type="text" id="supAddress" class="form-field">
-        <label for="supAddress" class="form-label">Address</label>
-    </div>
-    <div class="right">
-        <button class="btn btn-primary">Submit</button>
-    </div>
+    <form method="post" action="./../../controller/inventory/supplierController.php">
+      <div class="form-group field">
+          <input type="text" id="supName" name="supName" class="form-field">
+          <label for="supName" class="form-label">Name</label>
+      </div>
+      <div class="form-group field">
+          <input type="email" id="supMail" name="supMail" class="form-field">
+          <label for="supMail" class="form-label">Email</label>
+      </div>
+      <div class="form-group field">
+          <input type="text" id="supMob" name="supMob" class="form-field">
+          <label for="supMob" class="form-label">Mobile</label>
+      </div>
+      <div class="form-group field">
+          <input type="text" id="supAddress" name="supAddress" class="form-field">
+          <label for="supAddress" class="form-label">Address</label>
+      </div>
+      <div class="right">
+          <input type="submit" class="btn btn-primary" value="Add Supplier" name="addSupplier">
+      </div>
+    </form>
 </div>
 <br>
 <div class="container">
   <h2>Suppliers List</h2>
+  <div class="row">
+		<div class="col">
+			<div class="left">
+				<span>Show: </span>
+				<select name="" id="" class="" width="15px">
+					<option value="">10 records</option>
+					<option value="">25 records</option>
+					<option value="">50 records</option>
+					<option value="">100 records</option>
+				</select>
+			</div>
+		</div>
+		<div class="col">
+			<div class="right">
+				<span>Sort By: </span>
+				<select name="" id="">
+					<option value="">Name</option>
+					<option value="">Status</option>
+					<option value="">Added Date</option>
+				</select>
+				<select name="" id="">
+					<option value="">ASC</option>
+					<option value="">DESC</option>
+				</select>
+			</div>
+		</div>
+	</div>
+  <br>
   <table>
     <thead>
       <tr>
-        <th width="25%">Name</th>
+        <th width="20%">Name</th>
         <th width="20%">Email</th>
-        <th width="20%">Telephone</th>
-        <th width="20%">Address</th>
-        <th width="15%">Status</th>
+        <th width="10%">Telephone</th>
+        <th width="25%">Address</th>
+        <th width="5%">Status</th>
+        <th width="20%">Added On</th>
       </tr>
     </thead>
     <tbody>
-    <tr>
-        <td data-label="Item Code"><i>Name</i></td>
-        <td data-label="Maintaner"><i>Email</i></td>
-        <td data-label="Cost Code"><i>Telephone</i></td>
-        <td data-label="Date of Pickup"><i>Address</i></td>
-        <td data-label="Option"><button class="btn btn-secondary">&#10004</button></td>
-      </tr>
+      <?php
+        $i=0;
+        while($row = mysqli_fetch_array($result)) {
+      ?>
       <tr>
-        <td data-label="Item Code"><i>Name</i></td>
-        <td data-label="Maintaner"><i>Email</i></td>
-        <td data-label="Cost Code"><i>Telephone</i></td>
-        <td data-label="Date of Pickup"><i>Address</i></td>
-        <td data-label="Option"><button class="btn btn-secondary">&#9888</button></td>
+        <td data-label="Name"><?php echo $row["sup-name"]; ?></td>
+        <td data-label="Email"><?php echo $row["sup-email"]; ?></td>
+        <td data-label="Telephone"><?php echo $row["sup-mobile"]; ?></td>
+        <td data-label="Address"><?php echo $row["sup-address"]; ?></td>
+        <td data-label="Status"><?php if($row["sup-status"] == 1) {echo "Active";} else {echo "Inactive";} ?></td>
+        <td data-label="Added On"><?php echo $row["sup-created-on"]; ?></td>
       </tr>
+      <?php
+          $i++;
+        }
+        if($i==0){
+      ?>
+      <tr><td colspan="8"><center>Sorry, No Results to Show!</center></td></tr>
+      <?php } ?>
     </tbody>
   </table>
 </div>
