@@ -40,22 +40,9 @@
           </div>
         </div>
         <div class="col">
-          <div class="form-group field">
-            <select class="form-field" id="item" name="materialId">
-              <option value="">Select from list</option>  
-              <!--
-                  <//?php while($row = mysqli_fetch_array($result)) ?>
-                      <option value="<//?php echo $row["materialId"];">
-                          <//?php echo $row["materialId"]." - ".$row["materialName"]; ?>
-                      </option>
-                  <//?php } ?> 
-              -->
-              <option value="m_1201">nails</option>
-              <option value="m_1202">t1wood</option>
-              <option value="m_1203">t2wood</option>
-              <option value="m_1204">t3wood</option>      
-            </select>
-            <label for="item" class="form-label">Material Type</label>
+        <div class="form-group field">
+            <input class="form-field" id="amount" name="issueAmount">
+            <label for="amount" class="form-label">Enter amount</label>
           </div>
         </div>
       </div>
@@ -84,16 +71,6 @@
               <option value="contractC">contractC</option>      
             </select>
             <label for="contract" class="form-label">Select contract</label>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <div class="form-group field">
-            <input class="form-field" id="amount" name="issueAmount">
-            <label for="amount" class="form-label">Enter amount</label>
           </div>
         </div>
       </div>
