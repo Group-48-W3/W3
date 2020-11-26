@@ -133,7 +133,6 @@
 	<br>
 	<?php
 		$i++;
-		}
 		if($i==0){
 			echo "No results ";
 		}
