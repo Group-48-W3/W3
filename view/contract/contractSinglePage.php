@@ -31,7 +31,7 @@
 <div class="row">
   <div class="col-sm">
     <!-- Contract Section -->
-    <h2>Contract Details</h2>
+    <h2>Step 01 : Contract Details</h2>
     
     <h5>Contract <?php echo $row["con_name"]; ?></h5>
     <h5>Description    : <?php echo $row["con_desc"]; ?></h5>
@@ -39,7 +39,7 @@
     <h5>Payment Method : <?php echo $row["payment_method"]; ?></h5>
     <br>
     <!-- Client Section -->
-    <h2>Client Details</h2>
+    <h2>Step 02 : Client Details</h2>
     <h5>Name : <?php echo $row_client["c_name"]; ?></h5>
     <h5>Company : <?php echo $row_client["c_company"]; ?></h5>
     <h5>Address : <?php echo $row_client["c_address"]; ?></h5>
@@ -49,24 +49,27 @@
     <br>
   </div>
   <div class="col-sm">
-    <h2>Progress</h2>
-    <!-- Animated Progress bar -->
-    <section class="row">
-    <svg class="radial-progress" data-percentage="82" viewBox="0 0 80 80">
-            <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-            <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136;"></circle>
-            <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">82%</text>
-    </svg>
-      
-    </section>
-    <!-- Ends progress -->
+    <!-- Progress starts -->
+    <h2>Progress Measures</h2>
+    <div class="circles">
+      <div class="second circle">
+        <!-- <strong></strong> -->
+        <b></b>
+        <span><br>Overall Contracts progress</span>
+      </div>
+
+      <div class="third circle">
+        <strong></strong>
+        <span><br><?php echo $row["con_name"]." "; ?>progress</span>
+      </div>
+    </div>
+    <!-- Progress ends -->
   </div>
-  
 </div>
     
     <hr>
     <!-- Quotation details -->
-    <h2>Quotation Details</h2>
+    <h2>Step 03 : Quotation Details</h2>
     <div class="container">
       <div class="tab">
         <button class="tablinks" id="openOnLoad" onclick="openTab(event, 'currentQuo')">Current Quotation</button>
@@ -133,7 +136,7 @@
     </div>
     <!-- Quotation Details ends -->
     <!-- Activity Details -->
-    <h2>Activity Details</h2>
+    <h2>Step 04 : Activity Details</h2>
     <div class="container">
       <div class="tab">
         <button class="tablinks" id="openOnLoad" onclick="openTab(event, 'currentActivity')">Current Activity</button>
