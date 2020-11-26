@@ -2,13 +2,38 @@
   session_start();
   require_once('./../../controller/user/userController.php'); 
   require_once('./header.php');
+  // data imports
+  require_once('./../../controller/contract/contractController.php');
+  $con = new Contract();
+  $result = $con->getAllActiveContracts();
 ?>
 
 <div class="container">
   <h1>Reports & Statistics</h1>
   <div class="form-group field">
-          <input type="text" class="form-field" name="con_name" id="con_name" required>
-          <label for="con_name" class="form-label">Select Contract</label>
+      <select class="form-field" name="contract" id="con">
+      <?php
+        $i=0;
+        while($row_quo = mysqli_fetch_array($result)) {
+      ?>
+      <option value="<?php echo $row_quo["con_id"];?>"><?php echo $row_quo["con_name"];?></option>
+      <?php
+        $i++;
+        }
+        if($i==0){
+          echo "No results ";
+        }
+        ?>
+      </select>
+      <label for="con_name" class="form-label">Select Contract</label>
+  </div>
+  <div class="form-group field">
+    <input type="date" class="form-field" name="report_start_date" id="start_date" required>
+    <label for="report_start_date" class="form-label">Start Date</label>
+  </div>
+  <div class="form-group field">
+    <input type="date" class="form-field" name="report_end_date" id="end_date" required>
+    <label for="report_end_date" class="form-label">End Date</label>
   </div>
   <div class="row">
     <div class="col-sm">
