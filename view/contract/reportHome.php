@@ -6,6 +6,10 @@
 
 <div class="container">
   <h1>Reports & Statistics</h1>
+  <div class="form-group field">
+          <input type="text" class="form-field" name="con_name" id="con_name" required>
+          <label for="con_name" class="form-label">Select Contract</label>
+  </div>
   <div class="row">
     <div class="col-sm">
       <h3>Basic Reports</h3>
