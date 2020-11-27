@@ -82,11 +82,11 @@
     z-index: 1; /* Sit on top */
     left: 35%;
     top: 30%;
-    width: 30%; /* Full width */
-    height: 25%; /* Full height */
+    border-radius: 5px;
     overflow: auto; /* Enable scroll if needed */
     background-color: #474e5d;
-    padding-top: 50px;
+    padding: 25px;
+    box-shadow: 5px 5px 25px rgba( 0, 0, 0, 0.6);
   }
 
   /* Style the horizontal ruler */
@@ -102,6 +102,7 @@
     font-size: 40px;
     font-weight: bold;
     color: #f1f1f1;
+    transition: 0.2s ease;
   }
 
   .close:hover,
