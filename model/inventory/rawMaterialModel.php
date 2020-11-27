@@ -48,9 +48,9 @@
         if (mysqli_query($conn, $sql)) {
             echo "<script>
             if (confirm('New batch will be added to the stock when owner grants permission. Details have been recorded successfully!')) {
-                window.location.replace(\"./../../view/inventory/replenish.php\");
+                window.location.replace(\"./../../view/inventory/goodRecieveNote.php\");
             } else {
-                window.location.replace(\"./../../view/inventory/replenish.php\");
+                window.location.replace(\"./../../view/inventory/goodRecieveNote.php\");
             }</script>";
         } else {
             echo "Error: " . $sql . " " . mysqli_error($conn);
