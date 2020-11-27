@@ -214,30 +214,40 @@
       </div>
     </div>
     <!-- Activity Deatils ends -->
+    <br>
     
+    <div class="conainer">
     <h2>Contract Settings</h2>
-    <h5>Want to update contract?</h5>
-    <!-- Update Navigation -->
-    <a href="./contractUpdate.php?con_id=<?php echo $row["con_id"]; ?>" class="btn btn-warning">Update <?php echo $row["con_name"]; ?></a><br>
-    <!-- set Inactive Navigation -->
-    <h5>Want to set to inactive state contract?</h5>
-    <a class="btn btn-danger" name="set_inactive">Set Inactive</a><br>
-    <!-- Delete Navigation to home -->
-    <h5>Want to delete this particular contract?</h5>
-    <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'">Delete <?php echo $row["con_name"]; ?></button>
+      <div class="row">
+        <div class="col">
+        <h5>Update contract details</h5>
+        <!-- Update Navigation -->
+        <a href="./contractUpdate.php?con_id=<?php echo $row["con_id"]; ?>" class="btn btn-warning">Update <?php echo $row["con_name"]; ?></a>
+        </div>
+        <div class="col">
+          <!-- set Inactive Navigation -->
+          <h5>Set to inactive state contract</h5>
+          <a class="btn btn-danger" name="set_inactive">Set as Inactive</a><br>
+        </div>
+        <div class="col">
+          <!-- Delete Navigation to home -->
+          <h5>Delete this particular contract</h5>
+          <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'">Delete <?php echo $row["con_name"]; ?></button>
+        </div>
+      </div>
+    </div>
     
     <!-- Prompt -->
     <div id="id01" class="modal">
-    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <div class="right" style="margin-right:25px;">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      </div>
       <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
-        <div class="container">
-          <h1>Delete Contract</h1>
-          <p>Are you sure you want to delete your contract?</p>
-
-          <div class="clearfix">
-            <button type="button" class="btn btn-primary">Cancel</button>
-            <button type="submit" name="delete_con" class="btn btn-danger">Delete</button>
-          </div>
+        <h1>Delete Contract</h1>
+        <p>Are you sure you want to delete your contract?</p><br>
+        <div class="clearfix right">
+          <button type="button" class="btn btn-primary" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
+          <button type="submit" name="delete_con" class="btn btn-danger">Delete</button>
         </div>
       </form>
     </div>
