@@ -57,7 +57,7 @@
         <b></b>
         <span><br>Overall Contracts progress</span>
       </div>
-
+      <br>
       <div class="third circle">
         <strong></strong>
         <span><br><?php echo $row["con_name"]." "; ?>progress</span>
