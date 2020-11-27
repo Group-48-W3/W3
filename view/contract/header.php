@@ -65,57 +65,17 @@
       text-anchor: middle;
   }
 
-
-
   /*** COLORS ***/
   /* Primary */
   svg.radial-progress:nth-of-type(6n+1) circle {
       stroke: #a2ed56;
   }
-
   /* Progress style ends */
-  /* Model style */
-  /* The Modal (background) */
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 35%;
-    top: 30%;
-    border-radius: 5px;
-    overflow: auto; /* Enable scroll if needed */
-    background-color: #474e5d;
-    padding: 25px;
-    box-shadow: 5px 5px 25px rgba( 0, 0, 0, 0.6);
-  }
-
+ 
   /* Style the horizontal ruler */
   hr {
     border: 1px solid #f1f1f1;
     margin-bottom: 25px;
-  }
-
-  /* The Modal Close Button (x) */
-  .close {
-    position: absolute;
-    top: 15px;
-    font-size: 40px;
-    font-weight: bold;
-    color: #f1f1f1;
-    transition: 0.2s ease;
-  }
-
-  .close:hover,
-  .close:focus {
-    color: #f44336;
-    cursor: pointer;
-  }
-
-  /* Clear floats */
-  .clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
   }
 
 </style>
