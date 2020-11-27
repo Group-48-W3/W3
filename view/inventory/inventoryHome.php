@@ -131,6 +131,12 @@
 		</div>
 	</div>
 	<br>
+	<?php
+		$i++;
+		if($i==0){
+			echo "No results ";
+		}
+	?>
 
 	<h2>Tools</h2>
 	<div class="row">
