@@ -1,0 +1,38 @@
+/* Model style */
+  /* The confirm-box (background) */
+  .confirm-box {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 35%;
+    top: 30%;
+    border-radius: 5px;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #474e5d;
+    padding: 25px;
+    box-shadow: 5px 5px 25px rgba( 0, 0, 0, 0.6);
+    display: none;
+  }
+
+  /* The confirm-box Close Button (x) */
+  .close {
+    position: absolute;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f1f1f1;
+    transition: 0.2s ease;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #f44336;
+    cursor: pointer;
+  }
+
+  /* Clear floats */
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }

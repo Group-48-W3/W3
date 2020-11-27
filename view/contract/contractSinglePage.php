@@ -238,7 +238,7 @@
     </div>
     
     <!-- Prompt -->
-    <div id="id01" class="modal">
+    <div id="id01" class="confirm-box">
       <div class="right" style="margin-right:25px;">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
       </div>
