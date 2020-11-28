@@ -21,7 +21,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <div onclick="expandAdminMenu()" class="nav-link">
+        <a href="../user/userHome.php" class="nav-link">
           <svg 
             aria-hidden="true" 
             focusable="false" 
@@ -37,36 +37,8 @@
             </path>
           </svg>
             <span class="link-text">Admin Panel</span>
-            <span class="link-drop" id="admin-drop">▼</span>
-        </div>
+        </a>
       </li>
-      <ul class="navbar-sub-nav" id="admin-menu">
-        <li class="nav-sub-item">
-          <a href="../user/userHome.php" class="nav-sub-link">
-            <span class="link-text">Home</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="../user/userView.php" class="nav-sub-link">
-            <span class="link-text">Users</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="../user/employeeView.php" class="nav-sub-link">
-            <span class="link-text">Employees</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="../user/userNotification.php" class="nav-sub-link">
-            <span class="link-text">Notification</span>
-          </a>
-        </li>
-        <li class="nav-sub-item">
-          <a href="../user/userPermission.php" class="nav-sub-link">
-            <span class="link-text">Permission</span>
-          </a>
-        </li>
-      </ul>
 
       <li class="nav-item">
         <a href="contractDashboard.php" class="nav-link">
