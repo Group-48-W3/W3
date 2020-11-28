@@ -29,8 +29,12 @@ function addUser(){
 	$con_password = $_POST['cpassword'];
 
 	if(!empty($user_role) && !empty($first_name) && !empty($last_name) && !empty($email) && !empty($con_password) && !empty($password)){
+		// check if emails are duplicate
 		if(getEmailUser($email)){
 			if($password == $con_password){
+				// hashing done here
+				$hash_pass = sha1($password);
+				// call the model class
 				addUserDB($user_role,$first_name,$last_name,$email,$password);
 			}else{
 				echo("Password Mismatched");
@@ -65,8 +69,8 @@ function updateUser($id){
 	exit;
 }
 function updateAccount($email,$password,$id){
-	echo "metana";
-	updateAccountDB($email,md5($password),$id);
+	//echo "metana";
+	updateAccountDB($email,sha1($password),$id);
 }
 //delete a user
 function deleteUser($id){
@@ -86,7 +90,7 @@ function getUserAccessRoleByID($id){
 }
 // change password
 function changepassword($password){
-	$hash_pass = md5($password);//sha1
+	$hash_pass = sha1($password);//sha1
 	$user_email = $_SESSION['sender_mail'];
 	
 	changePasswordDB($hash_pass,$user_email);// call the model method

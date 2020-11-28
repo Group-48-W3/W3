@@ -1,7 +1,9 @@
 <?php 
 	session_start(); 
 	require_once('./../../controller/user/usercontroller.php');
+	require_once('./../../controller/login/loginController.php');
 	$x = 1;
+	$_SESSION['u_message'] = 'change';
 ?>
 
 <!doctype html>
@@ -34,8 +36,6 @@
 			echo $verify_code;
 			echo $_SESSION['sender_mail'];
 			if($verify_code == $_SESSION['randNum']){
-				//header('location:./change_password.php');//redirection
-				//setEmail();
 				$GLOBALS['x'] = 2;
 			}
 		}
@@ -43,9 +43,11 @@
 			if($_POST['new_password'] == $_POST['confirm_password']){
 				changepassword($_POST['new_password']);
 			}
+			$_SESSION['u_message'] = 'change';
 			header('location:./../../');//redirection
 		}
 	?>
+	<!-- Body starts -->
 	<body>
 		<div class="box">
 			<div class="column left">
@@ -91,6 +93,7 @@
 						</div>
 					</div>
 					</form>
+					<a class="btn btn-primary btn-block" href="./../../" style="text-decoration: none">Back to Login</a>
 				</div>
 			</div>
 			<?php endif; ?>
@@ -121,4 +124,5 @@
 			<?php endif; ?>
 		</div>
 	</body>
+	<!-- Body ends -->
 </html>

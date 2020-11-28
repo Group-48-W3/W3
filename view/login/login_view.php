@@ -34,6 +34,16 @@
 						<a href="./view/login/login_password_change.php" style="text-decoration:none;" onclick="<?php $flag = 2;?>">Forget your password?</a>
 					</div>
 					<button class="btn btn-primary btn-block" type="submit" name="login">Login</button>
+					<?php if(($_SESSION['u_message']) == 'error'): ?>
+					<div class="alert alert-warning" style="background-color: red;">
+					<a href="./user/userProfile.php" style="text-decoration: none; color: white;">Your Email or Password is incorrect</a>
+					</div>
+	  				<?php endif; ?>
+					<?php if(($_SESSION['u_message']) == 'error1'): ?>
+					<div class="alert alert-warning" style="background-color: green;">
+					<a href="./user/userProfile.php" style="text-decoration: none; color: white;">Password change success</a>
+					</div>
+	  				<?php endif; ?>
 				</form>
 			</div>
 		</div>
