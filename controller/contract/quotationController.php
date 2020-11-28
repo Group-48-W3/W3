@@ -2,14 +2,16 @@
 require_once("./../../model/quotationModel.php");
 
 class Quotation{
+    // constructor function
     function __construct(){
         //echo "here is constructor";
         $this->index();
     }
+    // index function
     function index(){
-        //echo "index quotation";
-        //$this->getAllQuotation();
+        // include the abstract data input for the functions
     }
+    // add quotation controller function
     function addQuotation(){
         //echo "add quotation";
         $q_id= $_POST['q_name'];

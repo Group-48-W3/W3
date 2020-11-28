@@ -1,5 +1,10 @@
 <?php
   session_start();
+  if(!isset($_SESSION['u_id'],$_SESSION['r_id']))
+	{
+		header('location:index.php?lmsg=true');
+		exit;
+	}		
   require_once('./../../controller/user/userController.php'); 
   require_once('./header.php');
   require_once('./../../controller/contract/contractController.php');
@@ -237,7 +242,7 @@
       </div>
     </div>
     
-    <!-- Prompt -->
+    <!-- Prompt Box -->
     <div id="id01" class="confirm-box">
       <div class="right" style="margin-right:25px;">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -251,6 +256,7 @@
         </div>
       </form>
     </div>
+    <!-- End Prompt Box -->
     <br><br>
 </div>
 <?php 
