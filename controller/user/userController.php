@@ -35,7 +35,7 @@ function addUser(){
 				// hashing done here
 				$hash_pass = sha1($password);
 				// call the model class
-				addUserDB($user_role,$first_name,$last_name,$email,$password);
+				addUserDB($user_role,$first_name,$last_name,$email,$hash_pass);
 			}else{
 				echo("Password Mismatched");
 			}

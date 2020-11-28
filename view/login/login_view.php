@@ -35,7 +35,7 @@
 					</div>
 					<button class="btn btn-primary btn-block" type="submit" name="login">Login</button>
 					<?php if(($_SESSION['u_message']) == 'error'): ?>
-					<div class="alert alert-warning" style="background-color: red;">
+					<div id="sdf" class="alert alert-warning" style="background-color: red;">
 					<a href="./user/userProfile.php" style="text-decoration: none; color: white;">Your Email or Password is incorrect</a>
 					</div>
 	  				<?php endif; ?>

@@ -15,7 +15,7 @@
 <body class="fixed-nav sticky-footer" id="page-top">
   <div class="content-wrapper">
     <div class="container-fluid">
-	  <?php if(($_SESSION['u_password']) == '827ccb0eea8a706c4c34a16891f84e7b'): ?>
+	  <?php if(($_SESSION['u_password']) == sha1('12345')): ?>
 		<div class="alert alert-warning">
 			<a href="./user/userProfile.php" style="text-decoration: none">Hello New User, you are currently using a temporary password. Please change it from the profile page into a new one.</a>
 		</div>

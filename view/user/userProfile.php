@@ -11,7 +11,7 @@
 	$details = mysqli_fetch_array(getSingleUser($_SESSION['u_id']));
 	$user_detail = getSingleUser($_SESSION['u_id']);
 	$row = mysqli_fetch_array($user_detail);
-	//////////////////
+	//
 	if(isset($_POST['userUpdateAccount'])){
 		
 		if(md5($_POST['prev_pass']) == $_SESSION['u_password'] && $_POST['u_new_pass'] == $_POST['u_new_pass_con']){
