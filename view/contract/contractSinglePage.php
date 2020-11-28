@@ -31,7 +31,7 @@
 <div class="row">
   <div class="col-sm">
     <!-- Contract Section -->
-    <h2>Contract Details</h2>
+    <h2>Step 01 : Contract Details</h2>
     
     <h5>Contract <?php echo $row["con_name"]; ?></h5>
     <h5>Description    : <?php echo $row["con_desc"]; ?></h5>
@@ -39,7 +39,7 @@
     <h5>Payment Method : <?php echo $row["payment_method"]; ?></h5>
     <br>
     <!-- Client Section -->
-    <h2>Client Details</h2>
+    <h2>Step 02 : Client Details</h2>
     <h5>Name : <?php echo $row_client["c_name"]; ?></h5>
     <h5>Company : <?php echo $row_client["c_company"]; ?></h5>
     <h5>Address : <?php echo $row_client["c_address"]; ?></h5>
@@ -49,24 +49,27 @@
     <br>
   </div>
   <div class="col-sm">
-    <h2>Progress</h2>
-    <!-- Animated Progress bar -->
-    <section class="row">
-    <svg class="radial-progress" data-percentage="82" viewBox="0 0 80 80">
-            <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-            <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136;"></circle>
-            <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">82%</text>
-    </svg>
-      
-    </section>
-    <!-- Ends progress -->
+    <!-- Progress starts -->
+    <h2>Progress Measures</h2>
+    <div class="circles">
+      <div class="second circle">
+        <!-- <strong></strong> -->
+        <b></b>
+        <span><br>Overall Contracts progress</span>
+      </div>
+      <br>
+      <div class="third circle">
+        <strong></strong>
+        <span><br><?php echo $row["con_name"]." "; ?>progress</span>
+      </div>
+    </div>
+    <!-- Progress ends -->
   </div>
-  
 </div>
     
     <hr>
     <!-- Quotation details -->
-    <h2>Quotation Details</h2>
+    <h2>Step 03 : Quotation Details</h2>
     <div class="container">
       <div class="tab">
         <button class="tablinks" id="openOnLoad" onclick="openTab(event, 'currentQuo')">Current Quotation</button>
@@ -133,7 +136,7 @@
     </div>
     <!-- Quotation Details ends -->
     <!-- Activity Details -->
-    <h2>Activity Details</h2>
+    <h2>Step 04 : Activity Details</h2>
     <div class="container">
       <div class="tab">
         <button class="tablinks" id="openOnLoad" onclick="openTab(event, 'currentActivity')">Current Activity</button>
@@ -211,30 +214,40 @@
       </div>
     </div>
     <!-- Activity Deatils ends -->
+    <br>
     
+    <div class="conainer">
     <h2>Contract Settings</h2>
-    <h5>Want to update contract?</h5>
-    <!-- Update Navigation -->
-    <a href="./contractUpdate.php?con_id=<?php echo $row["con_id"]; ?>" class="btn btn-warning">Update <?php echo $row["con_name"]; ?></a><br>
-    <!-- set Inactive Navigation -->
-    <h5>Want to set to inactive state contract?</h5>
-    <a class="btn btn-danger" name="set_inactive">Set Inactive</a><br>
-    <!-- Delete Navigation to home -->
-    <h5>Want to delete this particular contract?</h5>
-    <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'">Delete <?php echo $row["con_name"]; ?></button>
+      <div class="row">
+        <div class="col">
+        <h5>Update contract details</h5>
+        <!-- Update Navigation -->
+        <a href="./contractUpdate.php?con_id=<?php echo $row["con_id"]; ?>" class="btn btn-warning">Update <?php echo $row["con_name"]; ?></a>
+        </div>
+        <div class="col">
+          <!-- set Inactive Navigation -->
+          <h5>Set to inactive state contract</h5>
+          <a class="btn btn-danger" name="set_inactive">Set as Inactive</a><br>
+        </div>
+        <div class="col">
+          <!-- Delete Navigation to home -->
+          <h5>Delete this particular contract</h5>
+          <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'">Delete <?php echo $row["con_name"]; ?></button>
+        </div>
+      </div>
+    </div>
     
     <!-- Prompt -->
-    <div id="id01" class="modal">
-    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+    <div id="id01" class="confirm-box">
+      <div class="right" style="margin-right:25px;">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      </div>
       <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
-        <div class="container">
-          <h1>Delete Contract</h1>
-          <p>Are you sure you want to delete your contract?</p>
-
-          <div class="clearfix">
-            <button type="button" class="btn btn-primary">Cancel</button>
-            <button type="submit" name="delete_con" class="btn btn-danger">Delete</button>
-          </div>
+        <h1>Delete Contract</h1>
+        <p>Are you sure you want to delete your contract?</p><br>
+        <div class="clearfix right">
+          <button type="button" class="btn btn-primary" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
+          <button type="submit" name="delete_con" class="btn btn-danger">Delete</button>
         </div>
       </form>
     </div>

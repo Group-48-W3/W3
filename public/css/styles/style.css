@@ -19,7 +19,7 @@
 @import url("components/tabs.css");
 @import url("components/form.css");
 @import url("components/progress.css");
-
+@import url("components/confirm.css");
 
 body {
   color: #fff;
@@ -106,7 +106,10 @@ td, th {
 }
 
 td {
-  padding: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 select {
