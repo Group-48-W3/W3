@@ -18,7 +18,8 @@
 @import url("components/banner.css");
 @import url("components/tabs.css");
 @import url("components/form.css");
-
+@import url("components/progress.css");
+@import url("components/confirm.css");
 
 body {
   color: #fff;
@@ -105,7 +106,10 @@ td, th {
 }
 
 td {
-  padding: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 select {
@@ -129,6 +133,14 @@ footer {
 
 .cal-button {
   padding: 1rem;
+}
+
+#chart{
+  margin: 1rem;
+  padding: 1rem;
+  background:#32373a;
+  border-radius: 5px;
+  box-shadow: 0 10px 6px -6px rgba(8, 8, 8, 0.322);
 }
 
 /* Small Screens */

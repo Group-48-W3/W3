@@ -6,10 +6,10 @@
 		exit;
 	}		
 	
-	require_once('../../controller/user/userController.php');
-	 
+  require_once('../../controller/user/userController.php');
+  require_once('header.php');
 ?>
-<?php include_once('header.php'); ?>
+
 <h2>Check Quantity</h2>
 <div class="container">
   <div class="search">

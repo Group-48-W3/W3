@@ -8,7 +8,7 @@
   
 ?>
 
-<div class="container">
+<div class="container"> 
   <h1>Quotation</h1>
   <h2>Quotation Gallery</h2>
   <h6>Quotation gallery includes the main product quotation samples inside the business environment which may important for the future reference</h6>

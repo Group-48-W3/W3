@@ -71,7 +71,7 @@
           <input type="text" class="form-field" name="c_email" id="c_email">
           <label for="c_email" class="form-label">Client Email</label>
         </div> 
-        <input type="submit" class="btn-primary" name="contractadd" value="Create Contract">
+        <input type="submit" class="btn btn-primary" name="contractadd" value="Create Contract">
       </form>
     </div>
     <div class="col-4">

@@ -1,6 +1,6 @@
+ <?php ob_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,27 +15,69 @@
 </head>
 <!-- Temp code  -->
 <style>
-#nav-temp ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333333;
-}
-#nav-temp li {
-  float: left;
-}
-#nav-temp li a {
-  display: block;
-  color: white;
-  text-align: center;
-  /* margin: 10px; */
-  padding: 12px;
-  text-decoration: none;
-}
-#nav-temp li a:hover {
-  background-color: #111111;
-}
+  #nav-temp ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+  }
+  #nav-temp li {
+    float: left;
+  }
+  #nav-temp li a {
+    display: block;
+    color: white;
+    text-align: center;
+    /* margin: 10px; */
+    padding: 12px;
+    text-decoration: none;
+  }
+  #nav-temp li a:hover {
+    background-color: #111111;
+  }
+  h5{
+    margin : 1px;
+  }
+  /* Progress styles */
+  svg.radial-progress {
+      height: auto;
+      max-width: 200px;
+      padding: 1em;
+      transform: rotate(-90deg);
+      width: 100%;
+  }
+  svg.radial-progress circle {
+      fill: rgba(0,0,0,0);
+      stroke: #fff;
+      stroke-dashoffset: 219.91148575129; /* Circumference */
+      stroke-width: 10;
+  }
+  svg.radial-progress circle.incomplete {
+      opacity: 0.25;
+  }
+  svg.radial-progress circle.complete {
+      stroke-dasharray: 219.91148575129; /* Circumference */
+  }
+  svg.radial-progress text {
+      fill: #fff;
+      font: 400 1em/1 'Oswald', sans-serif;
+      text-anchor: middle;
+  }
+
+  /*** COLORS ***/
+  /* Primary */
+  svg.radial-progress:nth-of-type(6n+1) circle {
+      stroke: #a2ed56;
+  }
+  /* Progress style ends */
+ 
+  /* Style the horizontal ruler */
+  hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+  }
+
 </style>
 <!--  -->
 <body>
@@ -74,7 +116,7 @@
         <a class="" href="./../dashboard.php">Dashboard</span></a>
       </li>
       <li class="">
-        <a class="" href="./contractDashboard.php">Home<span class="sr-only"></span></a>
+        <a class="" href="./contractDashboard.php">Overview<span class="sr-only"></span></a>
       </li>
       <li class="">
         <a class="" href="./contractHome.php">Contract</a>
