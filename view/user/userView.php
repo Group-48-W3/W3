@@ -68,10 +68,10 @@ if (mysqli_num_rows($result) > 0) {
       <!-- <input type="text" class="form-field" id="user_role" name="user_role"> -->
       <label for="user_role" class="form-label">User Role ID</label>
       <select id="user_role" name="user_role" class="form-field">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
+        <option value="1">Admin</option>
+        <option value="2">Owner</option>
+        <option value="3">Accountant</option>
+        <option value="4">Stockkeeper</option>
       </select>
     </div>
 

@@ -57,6 +57,7 @@ include_once('header.php');
   <h5>Welcome to the Admin Panel, These are some details you need to consider</h5>
 </div> 
 <!-- end of container  -->
+<!-- active/inactive component -->
 </div>
 
 

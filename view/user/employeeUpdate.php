@@ -7,10 +7,9 @@
 		$row = mysqli_fetch_array($emp_details);
 	}
 	require_once('../../controller/user/userController.php');
+	include_once('header.php');
 ?>
-
-<?php include_once('header.php'); ?>
-
+<!--Body starts  -->
 <div class="container">
     <div class="row">
 		<div class="col-7">

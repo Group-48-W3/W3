@@ -13,8 +13,7 @@ if(preg_match('/dashboard/', $url)){
 function addUserDB($user_role,$first_name,$last_name,$email,$password){
 	// echo("This add user function");
 	global $conn;
-	$hash = md5($password);
-	$sql = "insert into user VALUES ('','$user_role','$first_name','$last_name','$email','$hash')";
+	$sql = "insert into user VALUES ('','$user_role','$first_name','$last_name','$email','$password')";
 	 if (mysqli_query($conn, $sql)) {
 		echo "New record created successfully !";
 	 } else {
