@@ -1,5 +1,10 @@
 <?php 
 session_start();
+if(!isset($_SESSION['u_id'],$_SESSION['r_id']))
+	{
+		header('location:index.php?lmsg=true');
+		exit;
+	}
     require_once('./../../controller/expense/categoryController.php');
     if (isset($_GET['updateid'])) {
         $cat = new Category();
