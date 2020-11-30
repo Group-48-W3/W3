@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2020 at 01:55 PM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.6
+-- Generation Time: Nov 30, 2020 at 01:34 PM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -343,7 +342,8 @@ INSERT INTO `raw-material-batch` (`batch-id`, `added-date`, `end-date`, `unit-pr
 (14, '2020-11-25', '2031-06-26', 1300, 500, 'Wood Store Room', 'RM006', 'Self', 5),
 (15, '2020-11-25', '2026-06-25', 350, 2300, 'Glue Rack', 'RM008', 'Self', 7),
 (16, '2020-11-28', '2020-12-30', 123, 89, 'rag 123#', 'RM004', 'me', 6),
-(17, '2020-11-28', '2020-11-12', 123, 89, 'rag 123#', 'RM007', 'me', 7);
+(17, '2020-11-28', '2020-11-12', 123, 89, 'rag 123#', 'RM007', 'me', 7),
+(18, '2020-11-29', '2020-11-30', 12, 100, 'Nail Rack', 'RM004', 'Self', 6);
 
 -- --------------------------------------------------------
 
@@ -364,7 +364,7 @@ CREATE TABLE `raw-material-category` (
 --
 
 INSERT INTO `raw-material-category` (`inv-code`, `inv-desc`, `min-qty`, `mat-name`, `abc-category`) VALUES
-('RM003', 'Round headed and used for joining timber or other elements', 100, 'Common Nail', 'C'),
+('RM003', 'Round headed and used for joining timber', 100, 'Common Nail', 'C'),
 ('RM004', 'Smaller heads and used for finishing', 200, 'Finishing Nails', 'C'),
 ('RM005', 'Provides better grip in the timber and a more secure attachment', 40, 'Ring Shank Nails', 'B'),
 ('RM006', 'Gives the sound of a warm tone', 2000, 'Mahogany Wood', 'B'),
@@ -468,11 +468,12 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`sup-id`, `sup-name`, `sup-email`, `sup-mobile`, `sup-address`, `sup-status`, `sup-created-on`) VALUES
-(5, 'Weerasinghe Woods', 'weerasinghewoods@example.com', '0722222222', 'No. 25, Maradana', 1, '2020-11-25 05:53:27'),
-(6, 'Indika Hardware', 'indikahardware@example.com', '0711111111', 'No. 26, Kandana', 1, '2020-11-25 05:53:49'),
-(7, 'Edirimuni Hardwares', 'edirimuni@example.com', '0755555555', 'No. 27, Madampe', 1, '2020-11-25 05:58:07'),
-(8, 'Nuwan Woods', 'nuwanwoods@example.com', '0766666666', 'No. 28, Padukka', 0, '2020-11-26 02:53:18'),
-(9, 'Good Wood Providers', 'gwprovider@example.com', '0777777777', 'No. 29, Deniyaya', 1, '2020-11-25 11:19:48');
+(5, 'Weerasinghe Woods', 'weerasinghewoods@example.com', '0724552364', 'No. 25, Maradana', 1, '2020-11-25 05:53:27'),
+(6, 'Indika Hardware', 'indikahardware@example.com', '0712631477', 'No. 26, Kandana', 1, '2020-11-25 05:53:49'),
+(7, 'Edirimuni Hardwares', 'edirimuni@example.com', '0755641255', 'No. 27, Madampe', 1, '2020-11-25 05:58:07'),
+(8, 'Nuwan Woods', 'nuwanwoods@example.com', '0762312444', 'No. 28, Padukka', 0, '2020-11-26 02:53:18'),
+(9, 'Good Wood Providers', 'gwprovider@example.com', '0771414213', 'No. 29, Deniyaya', 1, '2020-11-25 11:19:48'),
+(10, 'Dissanayake Woods', 'dissanayake@example.com', '0712324256', 'No. 30, Moratuwa', 1, '2020-11-29 06:30:14');
 
 -- --------------------------------------------------------
 
@@ -813,7 +814,7 @@ ALTER TABLE `quotation`
 -- AUTO_INCREMENT for table `raw-material-batch`
 --
 ALTER TABLE `raw-material-batch`
-  MODIFY `batch-id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `batch-id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `rm-seq`
@@ -837,7 +838,7 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `sup-id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `sup-id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tl-seq`
