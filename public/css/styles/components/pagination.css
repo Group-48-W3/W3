@@ -1,0 +1,29 @@
+div.pager {
+    margin-top: 15px;
+    margin-left: auto;
+    text-align: right; 
+}
+
+div.pager span {
+    display: inline-block;
+    width: 1.8em;
+    height: 1.8em;
+    line-height: 1.8;
+    text-align: center;
+    cursor: pointer;
+    background: #303030;
+    color: #ccc;
+    margin-right: 0.8em;
+    transition: 0.2s ease;
+}
+
+div.pager span:hover {
+    filter: brightness(85%);
+}
+
+div.pager span.active {
+    background: #fff;
+    color:#191919;
+    font-weight:bold;
+    text-align:center;
+}

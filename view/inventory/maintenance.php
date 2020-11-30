@@ -40,16 +40,20 @@
       <table>
         <thead>
           <tr>
-            <th width="40%">Item</th>
-            <th width="45%">Description</th>
-            <th width="15%">Option</th>
+            <th>Registered ID</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Manufacturer</th>
+            <th width="15%">Action</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td data-label="Item"><i>Search result</i></td>
-            <td data-label="Description"><i>Description of item</i></td>
-            <td data-label="Option"><button class="btn btn-secondary" onClick="prompt('Please enter reason for maintenance:')">+ Add to maintenance</button></td>
+            <td data-label="Registered ID"><i>Tool ID</i></td>
+            <td data-label="Category"><i>Tool Category</i></td>
+            <td data-label="Image"><i>Image of Tool</i></td>
+            <td data-label="Manufacturer"><i>Manufacturer</i></td>
+            <td data-label="Action"><button class="btn btn-secondary" onclick="document.getElementById('addMn').style.display='block'">+ Add to maintenance</button></td>
           </tr>
         </tbody>
       </table>
@@ -62,24 +66,91 @@
   <table>
     <thead>
       <tr>
-        <th width="25%">Item Code</th>
-        <th width="20%">Maintaner</th>
-        <th width="20%">Cost</th>
+        <th width="10%">Tool ID</th>
+        <th width="10%">Category</th>
+        <th width="15%">Maintaner</th>
+        <th width="30%">Reason</th>
         <th width="20%">Date of pickup</th>
         <th width="15%">Option</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td data-label="Item Code"><i>Item ID</i></td>
-        <td data-label="Maintaner"><i>Who is repairing</i></td>
-        <td data-label="Cost Code"><i>Repairing cost</i></td>
-        <td data-label="Date of Pickup"><i>Pickup date</i></td>
-        <td data-label="Option"><button class="btn btn-secondary" onClick="prompt('Enter Cost and Maintainers details')">Remove from maintenance</button></td>
+        <td data-label="Item Code">MT4544f</td>
+        <td data-label="Item Code">Nail Gun</td>
+        <td data-label="Maintaner">Liyanage Workshop</td>
+        <td data-label="Cost Code">Failure in motor. Doesn't work when powered</td>
+        <td data-label="Date of Pickup">2021:01:23</td>
+        <td data-label="Option"><button class="btn btn-secondary" onclick="document.getElementById('remMn').style.display='block'">Remove from maintenance</button></td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<!-- Prompt Boxes -->
+<div id="addMn" class="confirm-box">
+  <div class="right" style="margin-right:25px;">
+    <span onclick="document.getElementById('addMn').style.display='none'" class="close" title="Close Modal">&times;</span>
+  </div>
+  <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
+    <h1>Add to maintenance</h1>
+    <p>You are about to add this tool to maintenance. Please enter the following deatils</p>
+    <div class="container">
+      <div class="row">
+        <div class="col-10">
+          <div class="form-group field">
+            <input class="form-field" id="reason" name="reason">
+            <label for="reason" class="form-label">Reason for maintenance</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <div class="form-group field">
+            <input class="form-field" id="maintainer" name="maintainer">
+            <label for="maintainer" class="form-label">Details of maintainer</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <div class="form-group field">
+            <input type="date" class="form-field" id="pickup" name="pickup">
+            <label for="pickup" class="form-label">Expected pickup date</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix right">
+      <button type="button" class="btn btn-secondary" onclick="document.getElementById('addMn').style.display='none'">Cancel</button>
+      <button type="submit" name="addMaintenance" class="btn btn-warning">Add to mainteance</button>
+    </div>
+  </form>
+</div>
+<div id="remMn" class="confirm-box">
+  <div class="right" style="margin-right:25px;">
+    <span onclick="document.getElementById('remMn').style.display='none'" class="close" title="Close Modal">&times;</span>
+  </div>
+  <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
+  <h1>Are you sure?</h1>
+  <p>You are about to remove this tool from maintenance. Please enter the following deatails</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-10">
+        <div class="form-group field">
+          <input class="form-field" id="cost" name="cost">
+          <label for="cost" class="form-label">Cost for maintenance</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix right">
+    <button type="button" class="btn btn-secondary" onclick="document.getElementById('remMn').style.display='none'">Cancel</button>
+    <button type="submit" name="delete_con" class="btn btn-warning">Remove from maintenance</button>
+  </div>
+  </form>
+</div>
+<!-- End Prompt Boxes -->
 
 <?php
   require_once('leftSidebar.php'); 
