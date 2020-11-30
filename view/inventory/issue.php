@@ -40,7 +40,7 @@
           </div>
         </div>
         <div class="col">
-        <div class="form-group field">
+          <div class="form-group field">
             <input class="form-field" id="amount" name="issueAmount">
             <label for="amount" class="form-label">Enter amount</label>
           </div>
