@@ -4,7 +4,7 @@ require_once("./../../model/quotationModel.php");
 class Quotation{
     // constructor function
     function __construct(){
-        //echo "here is constructor";
+        //"here is constructor";
         $this->index();
     }
     // index function
@@ -30,13 +30,14 @@ class Quotation{
             echo "Sorry, there was an error uploading your file.";
         }
 
-        $image=basename( $_FILES["imageUpload"]["name"],".jpg"); // used to store the filename in a variable
+        $image=basename( $_FILES["imageUpload"]["name"],".jpg"); 
+        // used to store the filename in a variable
 
         //storind the data in your database
         $query= "INSERT INTO items VALUES ('$id','$title','$description','$price','$value','$contact','$image')";
         mysql_query($query);
 
-        echo "Your add has been submited, you will be redirected to your account page in 3 seconds....";
+        echo "Your add has been submited";
         header( "Refresh:3; url=account.php", true, 303);
     }
     // get all quotations
@@ -44,6 +45,9 @@ class Quotation{
         $res =  getAllQuotationDB();
         return $res;
         
+    }
+    function getSingleQuotation(){
+
     }
     
 }

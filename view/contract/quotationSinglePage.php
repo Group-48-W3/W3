@@ -3,16 +3,25 @@
     require_once('./../../controller/user/userController.php'); 
     require_once('./header.php');
     require_once('./../../controller/contract/quotationController.php');
-    $result;
+    
+    if (isset($_GET['q_id'])) {
+        $quo = new Quotation();
+        $quo_details = $quo->getAllQuotation();
+      }
+    
+      if(isset($_POST['delete_con'])){
+        $con = new Contract();
+        $con->deleteContract($_SESSION['contract_id']);
+    }
 ?>
 
 <div class="container">
     <h2>Quotation Single Page</h2>
-    <h6>Items that are viable for the quotation and other quotation details</h6>
+    <h6 style="margin:0px">Items that are viable for this particular quotation and other quotation details</h6>
 </div>
 <div class="container">
-    <h3>Quotation Details</h3>
-    <h3>Item Details</h3>
+    <h2>Quotation Details</h2>
+    <h2>Item Details</h2>
     <table>  
         <thead>
             <th>Item ID</th>
@@ -23,11 +32,24 @@
         </thead>
         <tbody>
           <tr>
-            <td data-label="Item ID"><i>Item ID</i></td>
-            <td data-label="Name"><i>Name</i></td>
-            <td data-label="Description"><i>Description</i></td>
-            <td data-label="Price"><i>Price</i></td>
-            <td data-label="Action"><i>Action</i></td>
+            <td data-label="Item ID"><i>1</i></td>
+            <td data-label="Name"><i>Wood Floor</i></td>
+            <td data-label="Description"><i>Floor Mahogani</i></td>
+            <td data-label="Price"><i>65,000</i></td>
+            <td data-label="Action">
+            <a class="btn btn-warning" href="#">&#x270E</a>
+            <a class="btn btn-danger" href="#">&#x2716</a>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Item ID"><i>2</i></td>
+            <td data-label="Name"><i>Hand Driller</i></td>
+            <td data-label="Description"><i>Metal Model #10 Hand</i></td>
+            <td data-label="Price"><i>45,000</i></td>
+            <td data-label="Action">
+            <a class="btn btn-warning" href="#">&#x270E</a>
+            <a class="btn btn-danger" href="#">&#x2716</a>
+            </td>
           </tr>
         </tbody>
     </table>
