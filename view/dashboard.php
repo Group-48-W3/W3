@@ -17,7 +17,7 @@
     <div class="container-fluid">
 	  <?php if(($_SESSION['u_password']) == sha1('12345')): ?>
 		<div class="alert alert-warning">
-			<a href="./user/userProfile.php" style="text-decoration: none">Hello New User, you are currently using a temporary password. Please change it from the profile page into a new one.</a>
+			<a href="./user/userProfile.php" style="text-decoration: none"><b>Hello New User, you are currently using a temporary password. Please change it from the profile page into a new one.</b></a>
 		</div>
 	  <?php endif; ?>
       <h1>Welcome to W3 Contract Management System</h1>

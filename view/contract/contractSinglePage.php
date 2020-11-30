@@ -251,7 +251,7 @@
         <h1>Delete Contract</h1>
         <p>Are you sure you want to delete your contract?</p><br>
         <div class="clearfix right">
-          <button type="button" class="btn btn-primary" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
+          <button type="button" class="btn btn-secondary" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
           <button type="submit" name="delete_con" class="btn btn-danger">Delete</button>
         </div>
       </form>

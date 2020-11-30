@@ -39,8 +39,8 @@ $result = $employee->getAllEmployee();
                 <td data-label="Emp Type"><?php echo $row["emp_type"]; ?></td>
                 <td data-label="Action">
                 <!-- notation ? parameter = value  -->
-                <a class="btn btn-warning" href="./employeeUpdate.php?updateid=<?php echo $row["emp_id"]; ?>">Update</a>
-                <a class="btn btn-danger" href="./../../controller/user/employeeController.php?deleteid=<?php echo $row["nic"]; ?>">Delete</a>
+                <a class="btn btn-warning" href="./employeeUpdate.php?updateid=<?php echo $row["emp_id"]; ?>">&#x270E</a>
+                <a class="btn btn-danger" href="./../../controller/user/employeeController.php?deleteid=<?php echo $row["nic"]; ?>">&#x2716</a>
                 </td>
             </tr>
         </tbody>

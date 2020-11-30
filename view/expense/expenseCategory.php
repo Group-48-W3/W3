@@ -1,5 +1,10 @@
 <?php 
 session_start();
+if(!isset($_SESSION['u_id'],$_SESSION['r_id']))
+	{
+		header('location:index.php?lmsg=true');
+		exit;
+	}
 //controller calling
 require_once('./../../controller/expense/categoryController.php');
 //employee object
