@@ -9,7 +9,7 @@
 
 <!-- Content Starts -->
 <div class="container">
-  <h2>Create New Contracts</h2>
+  <h2>Create a New Contract</h2>
   <div class="row">
     <div class="col-7">
     <!-- Step 01 -->
@@ -79,11 +79,11 @@
         <strong>Please Be Noticed!</strong>
         <h5>Step 01 :- Add Contract Settings</h5>
         <h5>Step 02 :- Add Client Details</h5>
-        <h5>Step 03 :- Initial Step Record (Quotation Selection)</h5>
-        <h5>Step 04 :- Employee Selection</h5>
+        <h5>Step 03 :- Quotation Selection</h5>
+        <h5>Step 04 :- Activity Selection</h5>
       </div>
       <div class="alert alert-dismissible alert-warning">
-        <strong>Please Add the correct status!</strong>
+        <strong>Please add a correct status!</strong>
         <h5>Page 01 :- Step 01 & Step 02</h5>
         <h5>Page 02 :- Step 03 & Step 04</h5>
         <h5>Already Finished</h5>
