@@ -70,30 +70,30 @@
 
 
 <main>
-<!--Navbar starts -->
-<div class="container">
-  <!-- <a class="" href="../dashboard.php">W3 DASHBOARD</a> -->
-  <div id="nav-temp">
-    <ul class="">
-    <li class="">
-        <a class="" href="./../dashboard.php">Dashboard<span class="sr-only"></span></a>
-      </li>
-      <li class="">
-        <a class="" href="./userHome.php">Home<span class="sr-only"></span></a>
-      </li>
-      <li class="">
-        <a class="" href="./userView.php">Users</a>
-      </li>
-      <li class="">
-        <a class="" href="./employeeView.php">Employees</a>
-      </li>
-      <li class="">
-        <a class="" href="./userNotification.php">Notification</a>
-      </li>
-      <li class="">
-        <a class="" href="./userPermission.php">Permission</a>
-      </li>
-    </ul>
-  </div>
-</div>
-<!--Navbar ends  -->
+<!--Navbar starts
+    <div class="container">
+      <a class="" href="../dashboard.php">W3 DASHBOARD</a> 
+      <div id="nav-temp">
+        <ul class="">
+        <li class="">
+            <a class="" href="./../dashboard.php">Dashboard<span class="sr-only"></span></a>
+          </li>
+          <li class="">
+            <a class="" href="./userHome.php">Home<span class="sr-only"></span></a>
+          </li>
+          <li class="">
+            <a class="" href="./userView.php">Users</a>
+          </li>
+          <li class="">
+            <a class="" href="./employeeView.php">Employees</a>
+          </li>
+          <li class="">
+            <a class="" href="./userNotification.php">Notification</a>
+          </li>
+          <li class="">
+            <a class="" href="./userPermission.php">Permission</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+Navbar ends  -->
