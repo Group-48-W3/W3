@@ -57,24 +57,29 @@
         <div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
           <!-- <div class="card-header">Header</div> -->
           <div class="card-body">
-            <h1 id="value" class="card-title">0</h1>
+            <h1 id="value" class="card-title">4</h1>
             <p class="card-text">Invoices</p>
           </div>
         </div>
       </div>
       <!-- end 4 -->
     </div>
+    <br>
     <!-- end of row -->
-
+    <!-- Find a contract  -->
+    <h1 style="margin: 0px">Find a Contract</h1>
+    <h6 style="margin: 0px">Search contracts from the database</h6>
     <div class="form-group field">
       <input type="text" class="form-field" id="find-repo" placeholder="Find a Contract by Name">
       <label for="find-repo" class="form-label">Find a Contract</label>
       <div class="container">
-      <br>
-      <a class="btn btn-primary" href="./contractAdd.php">Add New Contract</a>
-      </div>
-     
+      <br> 
     </div>
+    </div>
+    <!-- Add a new Contract -->
+    <h1 style="margin: 0px">Add a new Contract</h1>
+    <a class="btn btn-primary" href="./contractAdd.php">Add New Contract</a>
+    <!-- End add contract -->
     <!--Contrat Summary Details  -->
     <h1>Ongoing Contracts</h1>
     <p>Contracts that are Active</p>
@@ -138,7 +143,34 @@
   </div> 
   </div>
   
+  <script>
+	$('table.paginated').each(function () {
+        var currentPage = 0;
+        var numPerPage = 3; // number of items 
+        var $table = $(this);
+        //var $tableBd = $(this).find("tbody");
 
+        $table.bind('repaginate', function () {
+            $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+        });
+        $table.trigger('repaginate');
+        var numRows = $table.find('tbody tr').length;
+        var numPages = Math.ceil(numRows / numPerPage);
+        var $pager = $('<div class="pager"></div>');
+        for (var page = 0; page < numPages; page++) {
+            $('<span class="page-number"></span>').text(page + 1).bind('click', {
+                newPage: page
+            }, function (event) {
+                currentPage = event.data['newPage'];
+                $table.trigger('repaginate');
+                $(this).addClass('active').siblings().removeClass('active');
+            }).appendTo($pager).addClass('clickable');
+        }
+        if (numRows > numPerPage) {
+            $pager.insertAfter($table).find('span.page-number:first').addClass('active');
+        }
+    });
+</script>
 <?php
   require_once('leftSidebar.php'); 
   require_once('footer.php'); 

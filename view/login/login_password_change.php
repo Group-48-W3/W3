@@ -3,7 +3,7 @@
 	require_once('./../../controller/user/usercontroller.php');
 	require_once('./../../controller/login/loginController.php');
 	$x = 1;
-	$_SESSION['u_message'] = 'change';
+	$_SESSION['u_message'] = 'noerror';
 ?>
 
 <!doctype html>
@@ -56,18 +56,25 @@
 		$code = rand(1000000,9999999);
 		$temp = $code;
 		if(isset( $_POST['code_send'])){
-			$to_email = $_POST['sender_email'];
-			$subject = "Request to change the password";
-			$body =  "you have requested to change the password. Your verification code is "." ".$code;
-			$headers = "From: w3contracts@gmail.com";
+			// check valid email
+			if(checkEmail($_POST['sender_email'])){
+				// success email
+				$to_email = $_POST['sender_email'];
+				$subject = "Request to change the password";
+				$body =  "you have requested to change the password. Your verification code is "." ".$code;
+				$headers = "From: w3contracts@gmail.com";
+				
+				$_SESSION['randNum'] = $code;
+				$_SESSION['sender_mail'] = $to_email;
+
+				$sendMail = mail($to_email, $subject, $body, $headers);
+			}else{
+				//unsuccess email
+				$_SESSION['u_message'] = 'error2';
+			}
 			
-			$_SESSION['randNum'] = $code;
-			$_SESSION['sender_mail'] = $to_email;
-
-
-			$sendMail = mail($to_email, $subject, $body, $headers);
 		}
-		if(isset( $_POST['auth_user'])){
+		if(isset($_POST['auth_user'])){
 			
 			$verify_code = $_POST['code_verify'];
 			echo $verify_code;
@@ -114,8 +121,7 @@
 									<button class="btn-small" type="submit" name="code_send">Send</button>
 								</div>
 							</div>
-						</div>
-						
+						</div>	
 					</form>
 					<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 					<div class="container">
@@ -131,6 +137,12 @@
 					</div>
 					</form>
 					<a class="btn btn-primary btn-block" href="./../../" style="text-decoration: none">Back to Login</a>
+					<!-- Error Message -->
+					<?php if(($_SESSION['u_message']) == 'error2'): ?>
+					<div class="alert alert-warning" style="background-color: red;">
+						<a href="./user/userProfile.php" style="text-decoration: none; color: white;">Incorrect Email,Check your mail again</a>
+					</div>
+	  				<?php endif; ?>
 				</div>
 			</div>
 			<?php endif; ?>
