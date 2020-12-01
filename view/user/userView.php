@@ -1,9 +1,18 @@
-<?php require_once('./../../controller/user/userController.php');?> 
+<?php 
+session_start();
+if(!isset($_SESSION['u_id'],$_SESSION['r_id']))
+{
+  header('location:index.php?lmsg=true');
+  exit;
+}		
+require_once('./../../controller/user/userController.php');
+include_once('header.php');
+?> 
 
 <?php
+
 $result = getAll();
 ?>
-<?php include_once('header.php'); ?>
 
 <div class="container">
 <?php
@@ -34,8 +43,8 @@ if (mysqli_num_rows($result) > 0) {
           <td data-label="Last Name"><?php echo $row["u_lastname"]; ?></td>
           <td data-label="Email"><?php echo $row["u_email"]; ?></td>
           <td data-label="Action">
-            <a class="btn btn-warning" href="./userUpdate.php?updateid=<?php echo $row["u_id"]; ?>">Update</a>
-            <a class="btn btn-danger" href="./../../controller/user/userController.php?userid=<?php echo $row["u_id"]; ?>">Delete</a>  
+            <a class="btn btn-warning" href="./userUpdate.php?updateid=<?php echo $row["u_id"]; ?>">&#x270E</a>
+            <a class="btn btn-danger" href="./../../controller/user/userController.php?userid=<?php echo $row["u_id"]; ?>">&#x2716</a>  
           </td>
       </tr>
     <?php
@@ -68,10 +77,10 @@ if (mysqli_num_rows($result) > 0) {
       <!-- <input type="text" class="form-field" id="user_role" name="user_role"> -->
       <label for="user_role" class="form-label">User Role ID</label>
       <select id="user_role" name="user_role" class="form-field">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
+        <option value="1">Admin</option>
+        <option value="2">Owner</option>
+        <option value="3">Accountant</option>
+        <option value="4">Stockkeeper</option>
       </select>
     </div>
 

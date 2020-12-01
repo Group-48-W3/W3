@@ -1,5 +1,10 @@
 <?php
   session_start();
+  if(!isset($_SESSION['u_id'],$_SESSION['r_id']))
+	{
+		header('location:index.php?lmsg=true');
+		exit;
+	}		
   require_once('./../../controller/user/userController.php'); 
   require_once('./header.php');
   require_once('./../../controller/contract/contractController.php');
@@ -28,12 +33,13 @@
 ?>
 
 <div class="container">
+<h1>Contract <?php echo " ".$row["con_name"]; ?></h1>
 <div class="row">
   <div class="col-sm">
     <!-- Contract Section -->
     <h2>Step 01 : Contract Details</h2>
     
-    <h5>Contract <?php echo $row["con_name"]; ?></h5>
+    <h5>Contract :  <?php echo $row["con_name"]; ?></h5>
     <h5>Description    : <?php echo $row["con_desc"]; ?></h5>
     <h5>Location       : <?php echo $row["location"]; ?></h5>
     <h5>Payment Method : <?php echo $row["payment_method"]; ?></h5>
@@ -81,18 +87,20 @@
         <table>
           <thead>
             <tr>
-              <th>Contract</th>
               <th>Name</th>
-              <th>Weight</th>
               <th>Description</th>
+              <th>Budget</th>
+              <th>Image</th>
+              <th>Progress</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-            <td data-label="Contract">Bentota 360 Hotel</td>
-            <td data-label="Name">Beach Chairs</td>
-            <td data-label="Weight">3 Units</td>
-            <td data-label="Description">High Comfortable Chair Model for Hotels</td>
+            <td data-label="Contract">Wood StairCase</td>
+            <td data-label="Name">StairCase Model #MC10</td>
+            <td data-label="Weight">150,000</td>
+            <td data-label="Description"><i>Image</i></td>
+            <td data-label="Progress">40%</td>
             </tr>
           </tbody>
         </table>
@@ -215,9 +223,9 @@
     </div>
     <!-- Activity Deatils ends -->
     <br>
-    
-    <div class="conainer">
     <h2>Contract Settings</h2>
+    <div class="container">
+    
       <div class="row">
         <div class="col">
         <h5>Update contract details</h5>
@@ -236,8 +244,55 @@
         </div>
       </div>
     </div>
+    <!-- Workflow Animation -->
+    <!-- <h2>Contract Workflow Diagram</h2>
+    <div class="tree">
+      <ul>
+        <li>
+          <a href="#">1</a>
+          <ul>
+            <li>
+              <a href="#">2</a>
+              <ul>
+                <li>
+                  <a href="#">2.1</a>
+                  
+                </li>
+                <li>
+                  <a href="#">2.2</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">3</a>
+              <ul>
+                <ul>
+                <li>
+                  <a href="#">3.1</a>
+                  <ul>
+                <li>
+                  <a href="#">3.1.1</a>
+                </li>
+                <li>
+                  <a href="#">3.1.2</a>
+                </li>
+              </ul>
+                </li>
+                <li>
+                  <a href="#">3.2</a>
+                </li>
+              </ul>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <br> -->
+    <!-- Workflow Animation ends -->
     
-    <!-- Prompt -->
+    
+    <!-- Prompt Box -->
     <div id="id01" class="confirm-box">
       <div class="right" style="margin-right:25px;">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -246,11 +301,12 @@
         <h1>Delete Contract</h1>
         <p>Are you sure you want to delete your contract?</p><br>
         <div class="clearfix right">
-          <button type="button" class="btn btn-primary" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
+          <button type="button" class="btn btn-secondary" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
           <button type="submit" name="delete_con" class="btn btn-danger">Delete</button>
         </div>
       </form>
     </div>
+    <!-- End Prompt Box -->
     <br><br>
 </div>
 <?php 

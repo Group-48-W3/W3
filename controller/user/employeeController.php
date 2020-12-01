@@ -17,10 +17,11 @@ if(isset($_POST['empDetails'])){
 }
 // employee class
 class Employee{
-
+    // constructor
     function __construct(){
       $this->index();
     }
+    //index function
     function index(){
       // $this->getAllEmployee();
     }
@@ -43,8 +44,9 @@ class Employee{
         }else{
             echo 'All fields are required';
         }
-        header('location:./../../view/user/employeeView.php');//redirection
-        exit;//break;
+        //redirection
+        header('location:./../../view/user/employeeView.php');
+        exit;
     }
     function getAllEmployee(){
         // get all employee controller

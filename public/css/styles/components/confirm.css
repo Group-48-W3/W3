@@ -4,11 +4,15 @@
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    left: 35%;
-    top: 30%;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin-top: -50px;
+    margin-left: -50px;
     border-radius: 5px;
-    overflow: auto; /* Enable scroll if needed */
-    background-color: #474e5d;
+    overflow: hidden; /* Enable scroll if needed */
+    background-color: #303030;
     padding: 25px;
     box-shadow: 5px 5px 25px rgba( 0, 0, 0, 0.6);
     display: none;

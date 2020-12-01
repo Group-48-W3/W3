@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2020 at 11:22 PM
+-- Generation Time: Nov 30, 2020 at 01:34 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -61,6 +61,13 @@ CREATE TABLE `category` (
   `cat_type` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`cat_id`, `cat_name`, `cat_desc`, `cat_type`) VALUES
+(3, 'Insurance', 'insurance payment', 'primary');
+
 -- --------------------------------------------------------
 
 --
@@ -84,7 +91,8 @@ INSERT INTO `client` (`c_id`, `c_name`, `c_address`, `c_company`, `c_mobile`, `c
 (1, 'dumidu perera', 'Collombo 5, Colombo', 'Access Construction', '+94112786543', 'access@con.org'),
 (4, 'sumedha gamage', '75/7 Chandrasekara Road,Horethuduwa', 'TechNed Pvt Ltd', '0775365565', 'sumedha@example.com'),
 (7, 'rajindu cooray', 'no 10, Willorawatte', 'CircleCI Pvt Ltd', '+94775365565', 'rajindu@example.com'),
-(9, 'hill top', 'no 11, Udunuwara, Kandy', 'Hill Top Hotel', '+945678901', 'hilltop@example.com');
+(9, 'hill top', 'no 11, Udunuwara, Kandy', 'Hill Top Hotel', '+945678901', 'hilltop@example.com'),
+(10, 'Sahan Dissanayaka', '75/7 Chandrasekara Road,Horethuduwa', 'Student', '0775365565', 'tsahandisaai@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -115,7 +123,8 @@ INSERT INTO `contract` (`con_id`, `con_name`, `startdate`, `enddate`, `location`
 (3, 'Kandy City Center', '2020-06-11', '2020-12-01', 'Kandy', 'Movie Complex', 'Active', 'Pay As You Go', 1, 1),
 (7, 'Project Euler', '2020-06-11', '2020-12-31', 'Moratuwa', 'Wood Floor', 'Inactive', 'Fixed Point', 4, 2),
 (10, 'Project MatrixWood', '2018-10-27', '2020-10-27', 'Panadura', 'Wood Floor', 'Inactive', 'Fixed Point', 7, 2),
-(12, 'Kandy HillTop', '2018-10-30', '2020-12-01', 'Kandy', 'veranda chairs', 'Active', 'Fixed Point', 9, 2);
+(12, 'Kandy HillTop', '2018-10-30', '2020-12-01', 'Kandy', 'veranda chairs', 'Active', 'Fixed Point', 9, 2),
+(13, 'Demo', '2020-11-28', '2021-01-28', 'Colombo', 'Wood Floor', 'Active', 'Pay As You Go', 10, 2);
 
 -- --------------------------------------------------------
 
@@ -292,8 +301,8 @@ CREATE TABLE `quotation` (
 --
 
 INSERT INTO `quotation` (`q_id`, `q_budget`, `q_desc`, `q_img`, `q_name`) VALUES
-(1, '25000', 'Luxury Chair Outdoor for 5 Star Hotels ', '', 'Weesa Chair'),
-(2, '38000', 'Outside Table Model', '', 'Weesa Table');
+(1, '25000', 'Luxury Chair Outdoor for 5 Star Hotels ', '', 'Chair #Q001'),
+(2, '38000', 'Outside Table Model', '', 'Table #Q001');
 
 -- --------------------------------------------------------
 
@@ -331,7 +340,10 @@ INSERT INTO `raw-material-batch` (`batch-id`, `added-date`, `end-date`, `unit-pr
 (12, '2020-11-25', '2028-05-26', 2780, 1300, 'Paint rack', 'RM012', 'Self', 6),
 (13, '2020-11-25', '2028-06-26', 4200, 2000, 'Wood Store Room', 'RM006', 'Domex Couriers', 9),
 (14, '2020-11-25', '2031-06-26', 1300, 500, 'Wood Store Room', 'RM006', 'Self', 5),
-(15, '2020-11-25', '2026-06-25', 350, 2300, 'Glue Rack', 'RM008', 'Self', 7);
+(15, '2020-11-25', '2026-06-25', 350, 2300, 'Glue Rack', 'RM008', 'Self', 7),
+(16, '2020-11-28', '2020-12-30', 123, 89, 'rag 123#', 'RM004', 'me', 6),
+(17, '2020-11-28', '2020-11-12', 123, 89, 'rag 123#', 'RM007', 'me', 7),
+(18, '2020-11-29', '2020-11-30', 12, 100, 'Nail Rack', 'RM004', 'Self', 6);
 
 -- --------------------------------------------------------
 
@@ -352,7 +364,7 @@ CREATE TABLE `raw-material-category` (
 --
 
 INSERT INTO `raw-material-category` (`inv-code`, `inv-desc`, `min-qty`, `mat-name`, `abc-category`) VALUES
-('RM003', 'Round headed and used for joining timber or other elements', 100, 'Common Nail', 'C'),
+('RM003', 'Round headed and used for joining timber', 100, 'Common Nail', 'C'),
 ('RM004', 'Smaller heads and used for finishing', 200, 'Finishing Nails', 'C'),
 ('RM005', 'Provides better grip in the timber and a more secure attachment', 40, 'Ring Shank Nails', 'B'),
 ('RM006', 'Gives the sound of a warm tone', 2000, 'Mahogany Wood', 'B'),
@@ -456,11 +468,12 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`sup-id`, `sup-name`, `sup-email`, `sup-mobile`, `sup-address`, `sup-status`, `sup-created-on`) VALUES
-(5, 'Weerasinghe Woods', 'weerasinghewoods@example.com', '0722222222', 'No. 25, Maradana', 1, '2020-11-25 05:53:27'),
-(6, 'Indika Hardware', 'indikahardware@example.com', '0711111111', 'No. 26, Kandana', 1, '2020-11-25 05:53:49'),
-(7, 'Edirimuni Hardwares', 'edirimuni@example.com', '0755555555', 'No. 27, Madampe', 1, '2020-11-25 05:58:07'),
-(8, 'Nuwan Woods', 'nuwanwoods@example.com', '0766666666', 'No. 28, Padukka', 0, '2020-11-26 02:53:18'),
-(9, 'Good Wood Providers', 'gwprovider@example.com', '0777777777', 'No. 29, Deniyaya', 1, '2020-11-25 11:19:48');
+(5, 'Weerasinghe Woods', 'weerasinghewoods@example.com', '0724552364', 'No. 25, Maradana', 1, '2020-11-25 05:53:27'),
+(6, 'Indika Hardware', 'indikahardware@example.com', '0712631477', 'No. 26, Kandana', 1, '2020-11-25 05:53:49'),
+(7, 'Edirimuni Hardwares', 'edirimuni@example.com', '0755641255', 'No. 27, Madampe', 1, '2020-11-25 05:58:07'),
+(8, 'Nuwan Woods', 'nuwanwoods@example.com', '0762312444', 'No. 28, Padukka', 0, '2020-11-26 02:53:18'),
+(9, 'Good Wood Providers', 'gwprovider@example.com', '0771414213', 'No. 29, Deniyaya', 1, '2020-11-25 11:19:48'),
+(10, 'Dissanayake Woods', 'dissanayake@example.com', '0712324256', 'No. 30, Moratuwa', 1, '2020-11-29 06:30:14');
 
 -- --------------------------------------------------------
 
@@ -537,10 +550,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`u_id`, `r_id`, `u_firstname`, `u_lastname`, `u_email`, `u_password`) VALUES
-(1, 1, 'john', 'doe', 'john_doe@example.com', '827ccb0eea8a706c4c34a16891f84e7b'),
-(2, 2, 'Sahan', 'Dissanayaka', 'sahan@example.com', '827ccb0eea8a706c4c34a16891f84e7b'),
-(4, 4, 'udara', 'weerasinghe', 'udara@example.com', '827ccb0eea8a706c4c34a16891f84e7b'),
-(5, 4, 'supun', 'akalanka', 'supun@example.com', '827ccb0eea8a706c4c34a16891f84e7b');
+(1, 1, 'john', 'doe', 'john_doe@example.com', '8cb2237d0679ca88db6464eac60da96345513964'),
+(2, 2, 'Sahan', 'Dissanayaka', 'sahan@example.com', '8cb2237d0679ca88db6464eac60da96345513964'),
+(4, 4, 'udara', 'weerasinghe', 'udara@example.com', '8cb2237d0679ca88db6464eac60da96345513964'),
+(5, 4, 'supun', 'akalanka', 'supun@example.com', '8cb2237d0679ca88db6464eac60da96345513964'),
+(14, 3, 'Shanuka', 'Fernando', 'shanuka@example.com', '8cb2237d0679ca88db6464eac60da96345513964');
 
 --
 -- Indexes for dumped tables
@@ -740,19 +754,19 @@ ALTER TABLE `activity`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `cat_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `cat_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `c_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `c_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `contract`
 --
 ALTER TABLE `contract`
-  MODIFY `con_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `con_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -800,7 +814,7 @@ ALTER TABLE `quotation`
 -- AUTO_INCREMENT for table `raw-material-batch`
 --
 ALTER TABLE `raw-material-batch`
-  MODIFY `batch-id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `batch-id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `rm-seq`
@@ -824,7 +838,7 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `sup-id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `sup-id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tl-seq`
@@ -842,7 +856,7 @@ ALTER TABLE `tool-detailed`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `u_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `u_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables

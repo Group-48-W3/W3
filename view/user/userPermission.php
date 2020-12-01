@@ -1,4 +1,11 @@
 <?php 
+session_start();
+
+if(!isset($_SESSION['u_id'],$_SESSION['r_id']))
+	{
+		header('location:index.php?lmsg=true');
+		exit;
+  }
 require_once('./../../controller/user/userController.php');
 require_once('./header.php');
 
@@ -29,11 +36,23 @@ require_once('./header.php');
     <tbody>
     <tr>
         <td data-label="Permission">Delete</td>
-        <td data-label="Description">expense #12</td>  
-        <td data-label="Module">expense</td>
+        <td data-label="Description">Expense #12</td>  
+        <td data-label="Module">Expense</td>
         <td data-label="User ID">3</td>
         <td data-label="Role ID">3</td>
-        <td data-label="UserName">supun</td>
+        <td data-label="UserName">Supun</td>
+        <td data-label="Action">
+            <a class="btn btn-success" href="#">Approve</a>
+            <a class="btn btn-danger" href="#">Decline</a>  
+        </td>
+    </tr>
+    <tr>
+        <td data-label="Permission">Accept</td>
+        <td data-label="Description">New batch</td>  
+        <td data-label="Module">Inventory</td>
+        <td data-label="User ID">4</td>
+        <td data-label="Role ID">4</td>
+        <td data-label="UserName">Udara</td>
         <td data-label="Action">
             <a class="btn btn-success" href="#">Approve</a>
             <a class="btn btn-danger" href="#">Decline</a>  

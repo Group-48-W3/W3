@@ -19,6 +19,7 @@
 @import url("components/tabs.css");
 @import url("components/form.css");
 @import url("components/progress.css");
+@import url("components/pagination.css");
 @import url("components/confirm.css");
 
 body {

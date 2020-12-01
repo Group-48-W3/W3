@@ -1,6 +1,6 @@
 <?php
 // load the model
-
+$_SESSION['u_message'] = '';
 if(isset($_POST['login'])){
     loginUser();
 }
@@ -19,7 +19,7 @@ function loginUser(){
 			$email 		= trim($_POST['email']);
 			$password 	= trim($_POST['password']);
 			
-			$hash = md5($password);//sha1
+			$hash = sha1($password);//sha1 hashing
 			
 			$sql = "select * from user where u_email = '".$email."' and u_password = '".$hash."'";
 			$rs = mysqli_query($conn,$sql);
@@ -38,7 +38,7 @@ function loginUser(){
 			}
 			else
 			{
-				$errorMsg = "Wrong email or password";
+				$_SESSION['u_message'] = 'error';
 			}
         }
 }

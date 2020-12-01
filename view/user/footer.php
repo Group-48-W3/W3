@@ -3,7 +3,7 @@
       <div class="container">
         <center>Done By : Team48 of 16th Batch University of Colombo School of Computing</center>
           <center>
-          <small>Copyright © <a href=""></a></small>
+          <small>Copyright © <a href=""> W3 Contracts - Willorawatta</a></small>
           </center>
       </div>
     </footer>
@@ -13,9 +13,9 @@
     </a>
     
     <!-- Core plugin JavaScript-->
-    <script src="../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="./../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin.min.js"></script>
+    <script src="./../js/sb-admin.min.js"></script>
     <!-- Custom scripts for this page-->
     <!-- Toggle between fixed and static navbar-->
     <script>

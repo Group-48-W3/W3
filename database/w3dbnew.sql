@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2020 at 11:18 PM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.7
+-- Generation Time: Dec 01, 2020 at 06:06 AM
+-- Server version: 10.3.16-MariaDB
+-- PHP Version: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `w3db`
+-- Database: `w3dbnew`
 --
 
 -- --------------------------------------------------------
@@ -61,6 +62,13 @@ CREATE TABLE `category` (
   `cat_type` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`cat_id`, `cat_name`, `cat_desc`, `cat_type`) VALUES
+(3, 'Insurance', 'insurance payment', 'primary');
+
 -- --------------------------------------------------------
 
 --
@@ -84,7 +92,8 @@ INSERT INTO `client` (`c_id`, `c_name`, `c_address`, `c_company`, `c_mobile`, `c
 (1, 'dumidu perera', 'Collombo 5, Colombo', 'Access Construction', '+94112786543', 'access@con.org'),
 (4, 'sumedha gamage', '75/7 Chandrasekara Road,Horethuduwa', 'TechNed Pvt Ltd', '0775365565', 'sumedha@example.com'),
 (7, 'rajindu cooray', 'no 10, Willorawatte', 'CircleCI Pvt Ltd', '+94775365565', 'rajindu@example.com'),
-(9, 'hill top', 'no 11, Udunuwara, Kandy', 'Hill Top Hotel', '+945678901', 'hilltop@example.com');
+(9, 'hill top', 'no 11, Udunuwara, Kandy', 'Hill Top Hotel', '+945678901', 'hilltop@example.com'),
+(10, 'Sahan Dissanayaka', '75/7 Chandrasekara Road,Horethuduwa', 'Student', '0775365565', 'tsahandisaai@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -115,7 +124,8 @@ INSERT INTO `contract` (`con_id`, `con_name`, `startdate`, `enddate`, `location`
 (3, 'Kandy City Center', '2020-06-11', '2020-12-01', 'Kandy', 'Movie Complex', 'Active', 'Pay As You Go', 1, 1),
 (7, 'Project Euler', '2020-06-11', '2020-12-31', 'Moratuwa', 'Wood Floor', 'Inactive', 'Fixed Point', 4, 2),
 (10, 'Project MatrixWood', '2018-10-27', '2020-10-27', 'Panadura', 'Wood Floor', 'Inactive', 'Fixed Point', 7, 2),
-(12, 'Kandy HillTop', '2018-10-30', '2020-12-01', 'Kandy', 'veranda chairs', 'Active', 'Fixed Point', 9, 2);
+(12, 'Kandy HillTop', '2018-10-30', '2020-12-01', 'Kandy', 'veranda chairs', 'Active', 'Fixed Point', 9, 2),
+(13, 'Demo', '2020-11-28', '2021-01-28', 'Colombo', 'Wood Floor', 'Active', 'Pay As You Go', 10, 2);
 
 -- --------------------------------------------------------
 
@@ -165,15 +175,14 @@ CREATE TABLE `invoice` (
 --
 
 CREATE TABLE `issue` (
-  `iss_id` int(11) NOT NULL,
-  `iss_date` date NOT NULL,
-  `iss_qty` int(11) NOT NULL,
-  `iss_desc` varchar(50) NOT NULL,
-  `iss_time` time NOT NULL,
-  `inv_code` int(11) NOT NULL,
-  `inv_code_tool` int(11) NOT NULL,
-  `emp_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `issue-id` int(11) NOT NULL,
+  `mat-id` varchar(5) DEFAULT NULL,
+  `tool-id` int(11) DEFAULT NULL,
+  `issue-qty` int(20) NOT NULL,
+  `emp-id` int(11) NOT NULL,
+  `issue-date` date NOT NULL,
+  `issue-time` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -209,12 +218,14 @@ CREATE TABLE `login` (
 --
 
 CREATE TABLE `maintenance` (
-  `m_id` int(10) NOT NULL,
-  `tool_id` varchar(40) NOT NULL,
-  `inv_code` int(50) NOT NULL,
-  `cost` int(10) NOT NULL,
-  `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `maintenance-id` int(11) NOT NULL,
+  `tool` int(11) NOT NULL,
+  `reason` varchar(255) NOT NULL,
+  `added-date` date NOT NULL,
+  `received-date` date DEFAULT NULL,
+  `cost` int(20) DEFAULT NULL,
+  `maintenance-by` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -291,63 +302,116 @@ CREATE TABLE `quotation` (
 --
 
 INSERT INTO `quotation` (`q_id`, `q_budget`, `q_desc`, `q_img`, `q_name`) VALUES
-(1, '25000', 'Luxury Chair Outdoor for 5 Star Hotels ', '', 'Weesa Chair'),
-(2, '38000', 'Outside Table Model', '', 'Weesa Table');
+(1, '25000', 'Luxury Chair Outdoor for 5 Star Hotels ', '', 'Chair #Q001'),
+(2, '38000', 'Outside Table Model', '', 'Table #Q001');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `raw_material`
+-- Table structure for table `raw-material-batch`
 --
 
-CREATE TABLE `raw_material` (
-  `inv_code` int(10) NOT NULL,
-  `inv_desc` varchar(50) NOT NULL,
-  `min_qty` varchar(10) NOT NULL,
-  `mat_name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `raw-material-batch` (
+  `batch-id` int(11) NOT NULL,
+  `added-date` date NOT NULL,
+  `end-date` date NOT NULL,
+  `unit-price` int(11) NOT NULL,
+  `batch-quantity` int(11) NOT NULL,
+  `stored-location` varchar(255) NOT NULL,
+  `inv-code` varchar(5) NOT NULL,
+  `delivered-by` varchar(100) NOT NULL,
+  `supplier` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `raw_material`
+-- Dumping data for table `raw-material-batch`
 --
 
-INSERT INTO `raw_material` (`inv_code`, `inv_desc`, `min_qty`, `mat_name`) VALUES
-(1, 'All Types of Nails', '100', 'Nail'),
-(2, 'All types of paint', '120', 'Paint'),
-(3, 'All types of Pencil', '50', 'Pencil'),
-(4, 'All types of strings', '500', 'String'),
-(5, 'All types of glue', '12', 'Glue'),
-(6, 'All types of wood', '4700', 'Wood'),
-(12, '123we', 'wqe', '1234');
+INSERT INTO `raw-material-batch` (`batch-id`, `added-date`, `end-date`, `unit-price`, `batch-quantity`, `stored-location`, `inv-code`, `delivered-by`, `supplier`) VALUES
+(2, '2020-11-27', '2020-11-28', 12, 500, 'Nail Rack', 'RM003', 'Self', 6),
+(3, '2020-11-29', '2020-11-19', 10, 10000, 'Nail Rack', 'RM003', 'Domex Couriers', 7),
+(4, '2020-11-25', '2040-12-31', 12, 300, 'Nail rack', 'RM004', 'Self', 6),
+(5, '2020-11-25', '2040-12-27', 32, 190, 'Nail Rack', 'RM005', 'Self', 6),
+(6, '2020-11-25', '2022-10-26', 1200, 2440, 'Wood Store Room', 'RM006', 'Domex Couriers', 5),
+(7, '2020-11-25', '2023-10-26', 3490, 1632, 'Wood Store Room', 'RM007', 'Domex Couriers', 5),
+(8, '2020-11-25', '2026-10-13', 325, 290, 'Glue Rack', 'RM008', 'Self', 6),
+(9, '2020-11-25', '2027-06-26', 200, 600, 'Glue Store', 'RM009', 'Domes Couriers', 7),
+(10, '2020-11-25', '2024-09-25', 150, 2450, 'Glue Store', 'RM010', 'Domex Couriers', 7),
+(11, '2020-11-25', '2025-06-17', 2300, 200, 'Paint Rack', 'RM011', 'Domex Couriers', 6),
+(12, '2020-11-25', '2028-05-26', 2780, 1300, 'Paint rack', 'RM012', 'Self', 6),
+(13, '2020-11-25', '2028-06-26', 4200, 2000, 'Wood Store Room', 'RM006', 'Domex Couriers', 9),
+(14, '2020-11-25', '2031-06-26', 1300, 500, 'Wood Store Room', 'RM006', 'Self', 5),
+(15, '2020-11-25', '2026-06-25', 350, 2300, 'Glue Rack', 'RM008', 'Self', 7),
+(16, '2020-11-28', '2020-12-30', 123, 89, 'rag 123#', 'RM004', 'me', 6),
+(17, '2020-11-28', '2020-11-12', 123, 89, 'rag 123#', 'RM007', 'me', 7),
+(18, '2020-11-29', '2020-11-30', 12, 100, 'Nail Rack', 'RM004', 'Self', 6);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `raw_material_details`
+-- Table structure for table `raw-material-category`
 --
 
-CREATE TABLE `raw_material_details` (
-  `mat_id` int(10) NOT NULL,
-  `unit_price` int(10) NOT NULL,
-  `mat_type` varchar(50) NOT NULL,
-  `mat_qty` int(10) NOT NULL,
-  `inv_code` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `raw-material-category` (
+  `inv-code` varchar(5) NOT NULL,
+  `inv-desc` varchar(255) NOT NULL,
+  `min-qty` int(10) NOT NULL,
+  `mat-name` varchar(100) NOT NULL,
+  `abc-category` char(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `raw_material_details`
+-- Dumping data for table `raw-material-category`
 --
 
-INSERT INTO `raw_material_details` (`mat_id`, `unit_price`, `mat_type`, `mat_qty`, `inv_code`) VALUES
-(1, 1500, 'Ply-Wood', 5501, 6),
-(2, 22, '5 inch', 1444, 1),
-(3, 22, '2 inch', 671, 1),
-(4, 34, '1.2 inch', 1210, 1),
-(5, 23, 'Cement Nail', 735, 1),
-(6, 200, 'Nilon', 4750, 4),
-(7, 80, 'Normal', 50, 5),
-(8, 654, 'Wood Gum', 12, 5),
-(10, 21, '213wer', 123, 12);
+INSERT INTO `raw-material-category` (`inv-code`, `inv-desc`, `min-qty`, `mat-name`, `abc-category`) VALUES
+('RM003', 'Round headed and used for joining timber', 100, 'Common Nail', 'C'),
+('RM004', 'Smaller heads and used for finishing', 200, 'Finishing Nails', 'C'),
+('RM005', 'Provides better grip in the timber and a more secure attachment', 40, 'Ring Shank Nails', 'B'),
+('RM006', 'Gives the sound of a warm tone', 2000, 'Mahogany Wood', 'B'),
+('RM007', 'Color ranges from light brown to pink-red with a swirling or striped grain', 1000, 'Oak Wood', 'A'),
+('RM008', 'Waterproof and makes a good filler', 500, 'Epoxy', 'B'),
+('RM009', 'Great for gluing wedges to pieces and using them for clamping assistance', 100, 'Cyanoacrylate Glue', 'A'),
+('RM010', 'Common type of wood glue. Usually called “carpenter’s glue”', 950, 'PVA Glue', 'C'),
+('RM011', 'Easy to apply and it dries quickly in about 1½ to 2 hours', 650, 'Emulsion Paint', 'B'),
+('RM012', 'Dries slowly and forms a hard and durable surface', 400, 'Enamel Paint', 'B');
+
+--
+-- Triggers `raw-material-category`
+--
+DELIMITER $$
+CREATE TRIGGER `tg_raw_material_category_insert` BEFORE INSERT ON `raw-material-category` FOR EACH ROW BEGIN
+  INSERT INTO `rm-seq` VALUES (NULL);
+  SET NEW.`inv-code` = CONCAT('RM', LPAD(LAST_INSERT_ID(), 3, '0'));
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rm-seq`
+--
+
+CREATE TABLE `rm-seq` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `rm-seq`
+--
+
+INSERT INTO `rm-seq` (`id`) VALUES
+(3),
+(4),
+(5),
+(6),
+(7),
+(8),
+(9),
+(10),
+(11),
+(12);
 
 -- --------------------------------------------------------
 
@@ -387,49 +451,85 @@ CREATE TABLE `schedule` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tool`
+-- Table structure for table `supplier`
 --
 
-CREATE TABLE `tool` (
-  `inv_code` int(10) NOT NULL,
-  `inv_desc` varchar(50) NOT NULL,
-  `min_qty` int(10) NOT NULL,
-  `tool_name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `supplier` (
+  `sup-id` int(11) NOT NULL,
+  `sup-name` varchar(50) NOT NULL,
+  `sup-email` varchar(50) NOT NULL,
+  `sup-mobile` varchar(20) NOT NULL,
+  `sup-address` varchar(100) NOT NULL,
+  `sup-status` tinyint(1) NOT NULL,
+  `sup-created-on` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tool`
+-- Dumping data for table `supplier`
 --
 
-INSERT INTO `tool` (`inv_code`, `inv_desc`, `min_qty`, `tool_name`) VALUES
-(1, 'To measure the amount of water in the wood', 5, 'Moisture Meter'),
-(2, 'For woodcarving and cleaning out joints and saw cu', 25, 'Chisel'),
-(3, 'To measure level or plumb of a surface', 20, 'Level'),
-(4, 'For screwing and unscrewing screws', 50, 'Screwdriver');
+INSERT INTO `supplier` (`sup-id`, `sup-name`, `sup-email`, `sup-mobile`, `sup-address`, `sup-status`, `sup-created-on`) VALUES
+(5, 'Weerasinghe Woods', 'weerasinghewoods@example.com', '0724552364', 'No. 25, Maradana', 1, '2020-11-25 05:53:27'),
+(6, 'Indika Hardware', 'indikahardware@example.com', '0712631477', 'No. 26, Kandana', 1, '2020-11-25 05:53:49'),
+(7, 'Edirimuni Hardwares', 'edirimuni@example.com', '0755641255', 'No. 27, Madampe', 1, '2020-11-25 05:58:07'),
+(8, 'Nuwan Woods', 'nuwanwoods@example.com', '0762312444', 'No. 28, Padukka', 0, '2020-11-26 02:53:18'),
+(9, 'Good Wood Providers', 'gwprovider@example.com', '0771414213', 'No. 29, Deniyaya', 1, '2020-11-25 11:19:48'),
+(10, 'Dissanayake Woods', 'dissanayake@example.com', '0712324256', 'No. 30, Moratuwa', 1, '2020-11-29 06:30:14');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tool_detail`
+-- Table structure for table `tl-seq`
 --
 
-CREATE TABLE `tool_detail` (
-  `tool_id` varchar(40) NOT NULL,
-  `tool_manu` varchar(50) NOT NULL,
-  `tool_avl` varchar(10) NOT NULL,
-  `tool_qty` varchar(50) NOT NULL,
-  `tool_value` int(10) NOT NULL,
-  `inv_code` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `tl-seq` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `tool_detail`
+-- Table structure for table `tool-category`
 --
 
-INSERT INTO `tool_detail` (`tool_id`, `tool_manu`, `tool_avl`, `tool_qty`, `tool_value`, `inv_code`) VALUES
-('LE230', 'Lumber Co.', 'True', '45', 250, 3),
-('MM910i', 'Mois 910', 'True', '10', 56700, 1),
-('OR950i', 'Orion 950', 'True', '20', 45200, 1);
+CREATE TABLE `tool-category` (
+  `inv-code` varchar(5) NOT NULL,
+  `inv-desc` varchar(255) NOT NULL,
+  `min-qty` int(11) NOT NULL,
+  `tool-name` varchar(100) NOT NULL,
+  `abc-category` char(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Triggers `tool-category`
+--
+DELIMITER $$
+CREATE TRIGGER `tg_tool_category_insert` BEFORE INSERT ON `tool-category` FOR EACH ROW BEGIN
+  INSERT INTO `tl-seq` VALUES (NULL);
+  SET NEW.`inv-code` = CONCAT('TL', LPAD(LAST_INSERT_ID(), 3, '0'));
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tool-detailed`
+--
+
+CREATE TABLE `tool-detailed` (
+  `tool-id` int(11) NOT NULL,
+  `tool-code` varchar(100) NOT NULL,
+  `manufacturer` varchar(50) NOT NULL,
+  `price` int(20) NOT NULL,
+  `image` blob NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `tool-qty` int(10) NOT NULL,
+  `tool-location` varchar(255) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `inv-code` varchar(5) NOT NULL,
+  `added-date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -451,10 +551,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`u_id`, `r_id`, `u_firstname`, `u_lastname`, `u_email`, `u_password`) VALUES
-(1, 1, 'john', 'doe', 'john_doe@example.com', '827ccb0eea8a706c4c34a16891f84e7b'),
-(2, 2, 'Sahan', 'Dissanayaka', 'sahan@example.com', '827ccb0eea8a706c4c34a16891f84e7b'),
-(4, 4, 'udara', 'weerasinghe', 'udara@example.com', '827ccb0eea8a706c4c34a16891f84e7b'),
-(5, 4, 'supun', 'akalanka', 'supun@example.com', '827ccb0eea8a706c4c34a16891f84e7b');
+(1, 1, 'supun', 'akalanka', 'supunakalanka2017@gmail.com', '8cb2237d0679ca88db6464eac60da96345513964'),
+(2, 2, 'Sahan', 'Dissanayaka', 't.sahan998@gmail.com', '3810f3c42b21d2bc4f26609152909346c5a04923'),
+(4, 4, 'udara', 'weerasinghe', 'udaraweerasinghe@gmail.com', '8cb2237d0679ca88db6464eac60da96345513964'),
+(5, 3, 'Shanuka', 'Fernando', 'shanuka2809@gmail.com', '8cb2237d0679ca88db6464eac60da96345513964');
 
 --
 -- Indexes for dumped tables
@@ -511,10 +611,10 @@ ALTER TABLE `invoice`
 -- Indexes for table `issue`
 --
 ALTER TABLE `issue`
-  ADD PRIMARY KEY (`iss_id`),
-  ADD KEY `inv_code` (`inv_code`),
-  ADD KEY `inv_code_tool` (`inv_code_tool`),
-  ADD KEY `emp_id` (`emp_id`);
+  ADD PRIMARY KEY (`issue-id`),
+  ADD KEY `mat-id` (`mat-id`),
+  ADD KEY `tool-id` (`tool-id`),
+  ADD KEY `emp-id` (`emp-id`);
 
 --
 -- Indexes for table `item`
@@ -535,9 +635,8 @@ ALTER TABLE `login`
 -- Indexes for table `maintenance`
 --
 ALTER TABLE `maintenance`
-  ADD PRIMARY KEY (`m_id`,`tool_id`,`inv_code`),
-  ADD KEY `tool_id` (`tool_id`),
-  ADD KEY `inv_code` (`inv_code`);
+  ADD PRIMARY KEY (`maintenance-id`),
+  ADD KEY `tool` (`tool`);
 
 --
 -- Indexes for table `need`
@@ -577,17 +676,24 @@ ALTER TABLE `quotation`
   ADD PRIMARY KEY (`q_id`);
 
 --
--- Indexes for table `raw_material`
+-- Indexes for table `raw-material-batch`
 --
-ALTER TABLE `raw_material`
-  ADD PRIMARY KEY (`inv_code`);
+ALTER TABLE `raw-material-batch`
+  ADD PRIMARY KEY (`batch-id`),
+  ADD KEY `raw-material-batch_ibfk_1` (`inv-code`),
+  ADD KEY `supplier` (`supplier`);
 
 --
--- Indexes for table `raw_material_details`
+-- Indexes for table `raw-material-category`
 --
-ALTER TABLE `raw_material_details`
-  ADD PRIMARY KEY (`mat_id`),
-  ADD KEY `inv_code` (`inv_code`);
+ALTER TABLE `raw-material-category`
+  ADD PRIMARY KEY (`inv-code`);
+
+--
+-- Indexes for table `rm-seq`
+--
+ALTER TABLE `rm-seq`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `role`
@@ -603,17 +709,29 @@ ALTER TABLE `schedule`
   ADD KEY `p_id` (`p_id`);
 
 --
--- Indexes for table `tool`
+-- Indexes for table `supplier`
 --
-ALTER TABLE `tool`
-  ADD PRIMARY KEY (`inv_code`);
+ALTER TABLE `supplier`
+  ADD PRIMARY KEY (`sup-id`);
 
 --
--- Indexes for table `tool_detail`
+-- Indexes for table `tl-seq`
 --
-ALTER TABLE `tool_detail`
-  ADD PRIMARY KEY (`tool_id`),
-  ADD KEY `inv_code` (`inv_code`);
+ALTER TABLE `tl-seq`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tool-category`
+--
+ALTER TABLE `tool-category`
+  ADD PRIMARY KEY (`inv-code`);
+
+--
+-- Indexes for table `tool-detailed`
+--
+ALTER TABLE `tool-detailed`
+  ADD PRIMARY KEY (`tool-id`),
+  ADD KEY `tool-detailed_ibfk_1` (`inv-code`);
 
 --
 -- Indexes for table `user`
@@ -636,19 +754,19 @@ ALTER TABLE `activity`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `cat_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `cat_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `c_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `c_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `contract`
 --
 ALTER TABLE `contract`
-  MODIFY `con_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `con_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -660,7 +778,7 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `issue`
 --
 ALTER TABLE `issue`
-  MODIFY `iss_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `issue-id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `item`
@@ -672,7 +790,7 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `maintenance`
 --
 ALTER TABLE `maintenance`
-  MODIFY `m_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `maintenance-id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payment`
@@ -693,16 +811,16 @@ ALTER TABLE `quotation`
   MODIFY `q_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `raw_material`
+-- AUTO_INCREMENT for table `raw-material-batch`
 --
-ALTER TABLE `raw_material`
-  MODIFY `inv_code` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+ALTER TABLE `raw-material-batch`
+  MODIFY `batch-id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT for table `raw_material_details`
+-- AUTO_INCREMENT for table `rm-seq`
 --
-ALTER TABLE `raw_material_details`
-  MODIFY `mat_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+ALTER TABLE `rm-seq`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -717,16 +835,28 @@ ALTER TABLE `schedule`
   MODIFY `s_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tool`
+-- AUTO_INCREMENT for table `supplier`
 --
-ALTER TABLE `tool`
-  MODIFY `inv_code` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `supplier`
+  MODIFY `sup-id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `tl-seq`
+--
+ALTER TABLE `tl-seq`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tool-detailed`
+--
+ALTER TABLE `tool-detailed`
+  MODIFY `tool-id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `u_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `u_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
@@ -762,9 +892,9 @@ ALTER TABLE `invoice`
 -- Constraints for table `issue`
 --
 ALTER TABLE `issue`
-  ADD CONSTRAINT `issue_ibfk_1` FOREIGN KEY (`inv_code`) REFERENCES `raw_material` (`inv_code`),
-  ADD CONSTRAINT `issue_ibfk_2` FOREIGN KEY (`inv_code_tool`) REFERENCES `tool` (`inv_code`),
-  ADD CONSTRAINT `issue_ibfk_3` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_id`);
+  ADD CONSTRAINT `issue_ibfk_1` FOREIGN KEY (`mat-id`) REFERENCES `raw-material-category` (`inv-code`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `issue_ibfk_2` FOREIGN KEY (`tool-id`) REFERENCES `tool-detailed` (`tool-id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `issue_ibfk_3` FOREIGN KEY (`emp-id`) REFERENCES `employee` (`emp_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `item`
@@ -783,8 +913,7 @@ ALTER TABLE `login`
 -- Constraints for table `maintenance`
 --
 ALTER TABLE `maintenance`
-  ADD CONSTRAINT `maintenance_ibfk_1` FOREIGN KEY (`tool_id`) REFERENCES `tool_detail` (`tool_id`),
-  ADD CONSTRAINT `maintenance_ibfk_2` FOREIGN KEY (`inv_code`) REFERENCES `tool` (`inv_code`);
+  ADD CONSTRAINT `maintenance_ibfk_1` FOREIGN KEY (`tool`) REFERENCES `tool-detailed` (`tool-id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `need`
@@ -816,10 +945,11 @@ ALTER TABLE `permission`
   ADD CONSTRAINT `permission_ibfk_3` FOREIGN KEY (`u_id`) REFERENCES `user` (`u_id`);
 
 --
--- Constraints for table `raw_material_details`
+-- Constraints for table `raw-material-batch`
 --
-ALTER TABLE `raw_material_details`
-  ADD CONSTRAINT `raw_material_details_ibfk_1` FOREIGN KEY (`inv_code`) REFERENCES `raw_material` (`inv_code`);
+ALTER TABLE `raw-material-batch`
+  ADD CONSTRAINT `raw-material-batch_ibfk_1` FOREIGN KEY (`inv-code`) REFERENCES `raw-material-category` (`inv-code`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `raw-material-batch_ibfk_2` FOREIGN KEY (`supplier`) REFERENCES `supplier` (`sup-id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `schedule`
@@ -828,10 +958,10 @@ ALTER TABLE `schedule`
   ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`p_id`) REFERENCES `payment` (`p_id`);
 
 --
--- Constraints for table `tool_detail`
+-- Constraints for table `tool-detailed`
 --
-ALTER TABLE `tool_detail`
-  ADD CONSTRAINT `tool_detail_ibfk_1` FOREIGN KEY (`inv_code`) REFERENCES `tool` (`inv_code`);
+ALTER TABLE `tool-detailed`
+  ADD CONSTRAINT `tool-detailed_ibfk_1` FOREIGN KEY (`inv-code`) REFERENCES `tool-category` (`inv-code`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user`

@@ -20,7 +20,7 @@
 <h1>Current Inventory</h1>
 <div class="container">
 	<h2>Quick Details</h2>
-	<div class="row center">
+	<div class="row">
 		<div class="col-sm">
 			<div class="card text-white bg-info mb-3" style="max-width: 20rem;">
 			<div class="card-body">
@@ -62,11 +62,11 @@
 		<div class="col">
 			<div class="left">
 				<span>Show: </span>
-				<select name="" id="" class="" width="15px">
-					<option value="">10 records</option>
-					<option value="">25 records</option>
-					<option value="">50 records</option>
-					<option value="">100 records</option>
+				<select name="" id="rmViewRows" class="" width="15px">
+					<option value="5">5 records</option>
+					<option value="10">10 records</option>
+					<option value="25">25 records</option>
+					<option value="50">50 records</option>
 				</select>
 			</div>
 		</div>
@@ -88,7 +88,7 @@
 	<br>
 	<div class="row">
 		<div class="col">
-			<table class="data-table">
+			<table class="data-table paginated">
 				<thead>
 					<th width="15%">Name</th>
 					<th width="40%">Description</th>
@@ -101,31 +101,31 @@
 					<?php } ?>
 				</thead>
 				<tbody>
-				<?php
-					$i=0;
-					$result = $rawMaterial->getAllRawMaterialCategory();
-					while($row = mysqli_fetch_array($result)) {
-						$batch = $rawMaterial->getBatchDetails($row["inv-code"]);
-						$batchRow = mysqli_fetch_array($batch);
-				?>
-					<tr>
-						<td data-label="Name"><?php echo $row["mat-name"]; ?></td>
-						<td data-label="Description"><?php echo $row["inv-desc"]; ?></td>
-						<td data-label="Available Batches"><a href="rawMaterialBatch.php?material=<?php echo $row["inv-code"]; ?>"><?php echo $batchRow["batch-count"]?></a></td>
-						<td data-label="Total Quantity"><?php echo $batchRow["total-amount"]?></td>
-						<td data-label="Reorder Value"><?php echo $row["min-qty"]; ?></td>
-						<td data-label="Average Price">Rs. <?php echo $batchRow["avg-price"]?></td>
-						<?php if($user_role == 1){ ?>
-						<td data-label="Edit"><a href="" class="btn btn-warning">&#x270E</a></td>
-						<?php } ?>
-					</tr>
-				<?php
-					$i++;
-					}
-					if($i==0){
-				?>
+					<?php
+						$i=0;
+						$result = $rawMaterial->getAllRawMaterialCategory();
+						while($row = mysqli_fetch_array($result)) {
+							$batch = $rawMaterial->getBatchDetails($row["inv-code"]);
+							$batchRow = mysqli_fetch_array($batch);
+					?>
+						<tr>
+							<td data-label="Name"><?php echo $row["mat-name"]; ?></td>
+							<td data-label="Description"><?php echo $row["inv-desc"]; ?></td>
+							<td data-label="Available Batches"><a href="rawMaterialBatch.php?material=<?php echo $row["inv-code"]; ?>"><?php echo $batchRow["batch-count"]?></a></td>
+							<td data-label="Total Quantity"><?php echo $batchRow["total-amount"]?></td>
+							<td data-label="Reorder Value"><?php echo $row["min-qty"]; ?></td>
+							<td data-label="Average Price">Rs. <?php echo $batchRow["avg-price"]?></td>
+							<?php if($user_role == 1){ ?>
+							<td data-label="Edit"><a href="" class="btn btn-warning">&#x270E</a></td>
+							<?php } ?>
+						</tr>
+					<?php
+						$i++;
+						}
+						if($i==0){
+					?>
 					<tr><td colspan="8"><center>Sorry, No Results to Show!</center></td></tr>
-				<?php } ?>
+					<?php } ?>
 				</tbody>
 			</table>
 		</div>
@@ -144,10 +144,10 @@
 			<div class="left">
 				<span>Show: </span>
 				<select name="" id="" class="" width="15px">
+					<option value="">5 records</option>
 					<option value="">10 records</option>
 					<option value="">25 records</option>
 					<option value="">50 records</option>
-					<option value="">100 records</option>
 				</select>
 			</div>
 		</div>
@@ -179,7 +179,7 @@
 					<th>Image</th>
 					<th>Location</th>
 					<th>Stock</th>
-					<th>Price</th>
+					<th>Price (Rs)</th>
 					<th>Manufacturer</th>
 					<th>Added</th>
 					<th>Status</th>
@@ -189,15 +189,15 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
+						<td>12Af6</td>
+						<td>Jig Saw</td>
+						<td>Cut irregular curves</td>
+						<td><a href="#">img.jpg</a></td>
+						<td>Rack 23</td>
+						<td>1</td>
+						<td>3200</td>
+						<td>CAT Saws</td>
+						<td>2020:10:12</td>
 						<td>
 							OK
 						</td>
@@ -208,15 +208,15 @@
 						<?php } ?>
 					</tr>
 					<tr>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
-						<td><i>Data</i></td>
+						<td>MT4544f</td>
+						<td>Nail Gun</td>
+						<td>Drive nails into woods</td>
+						<td><a href="#">img.jpg</a></td>
+						<td>Rack 34</td>
+						<td>1</td>
+						<td>2500</td>
+						<td>Bostitch Tools</td>
+						<td>2020:10:19</td>
 						<td>
 							<a href="maintenance.php">&#9888</a>
 						</td>
@@ -238,10 +238,10 @@
 			<div class="left">
 				<span>Show: </span>
 				<select name="" id="" class="" width="15px">
+					<option value="">5 records</option>
 					<option value="">10 records</option>
 					<option value="">25 records</option>
 					<option value="">50 records</option>
-					<option value="">100 records</option>
 				</select>
 			</div>
 		</div>
@@ -263,7 +263,7 @@
 	<br>
 	<div class="row">
 		<div class="col">
-			<table class="data-table">
+			<table class="data-table paginated">
 				<thead>
 					<th>Name</th>
 					<th>Email</th>
@@ -307,6 +307,34 @@
 	</div>
 </div>
 
+<script>
+	$('table.paginated').each(function () {
+        var currentPage = 0;
+        var numPerPage = 5; // number of items 
+        var $table = $(this);
+        //var $tableBd = $(this).find("tbody");
+
+        $table.bind('repaginate', function () {
+            $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+        });
+        $table.trigger('repaginate');
+        var numRows = $table.find('tbody tr').length;
+        var numPages = Math.ceil(numRows / numPerPage);
+        var $pager = $('<div class="pager"></div>');
+        for (var page = 0; page < numPages; page++) {
+            $('<span class="page-number"></span>').text(page + 1).bind('click', {
+                newPage: page
+            }, function (event) {
+                currentPage = event.data['newPage'];
+                $table.trigger('repaginate');
+                $(this).addClass('active').siblings().removeClass('active');
+            }).appendTo($pager).addClass('clickable');
+        }
+        if (numRows > numPerPage) {
+            $pager.insertAfter($table).find('span.page-number:first').addClass('active');
+        }
+    });
+</script>
 
 <?php
 	require_once('leftSidebar.php');

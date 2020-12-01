@@ -1,5 +1,12 @@
 <?php 
 //controller calling
+session_start();
+
+if(!isset($_SESSION['u_id'],$_SESSION['r_id']))
+	{
+		header('location:index.php?lmsg=true');
+		exit;
+  }
 require_once('../../controller/user/userController.php');
 require_once('./../../controller/user/employeeController.php');
 //employee object
@@ -39,8 +46,8 @@ $result = $employee->getAllEmployee();
                 <td data-label="Emp Type"><?php echo $row["emp_type"]; ?></td>
                 <td data-label="Action">
                 <!-- notation ? parameter = value  -->
-                <a class="btn btn-warning" href="./employeeUpdate.php?updateid=<?php echo $row["emp_id"]; ?>">Update</a>
-                <a class="btn btn-danger" href="./../../controller/user/employeeController.php?deleteid=<?php echo $row["nic"]; ?>">Delete</a>
+                <a class="btn btn-warning" href="./employeeUpdate.php?updateid=<?php echo $row["emp_id"]; ?>">&#x270E</a>
+                <a class="btn btn-danger" href="./../../controller/user/employeeController.php?deleteid=<?php echo $row["nic"]; ?>">&#x2716</a>
                 </td>
             </tr>
         </tbody>

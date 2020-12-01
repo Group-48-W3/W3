@@ -1,4 +1,11 @@
-<?php 
+<?php
+	session_start();
+
+	if(!isset($_SESSION['u_id'],$_SESSION['r_id']))
+		{
+			header('location:index.php?lmsg=true');
+			exit;
+	  }
 	require_once('./../../controller/user/employeeController.php');
 	if (isset($_GET['updateid'])) {
 		$emp = new Employee();
@@ -7,10 +14,9 @@
 		$row = mysqli_fetch_array($emp_details);
 	}
 	require_once('../../controller/user/userController.php');
+	include_once('header.php');
 ?>
-
-<?php include_once('header.php'); ?>
-
+<!--Body starts  -->
 <div class="container">
     <div class="row">
 		<div class="col-7">
@@ -40,7 +46,7 @@
 					<input type="text" class="form-field" name="emp_type" id="emp_type" placeholder="permanent/temporary/contract" value="<?php echo $row["emp_type"]; ?>">
 					<label for="emp_type" class="form-label">Employee Type</label>
 				</div>
-				<input type="submit" name="empUpdateDetails" value="Update Info" class="btn-primary">
+				<input type="submit" name="empUpdateDetails" value="Update Info" class="btn btn-primary">
 			</form>
 		</div>
     </div>
