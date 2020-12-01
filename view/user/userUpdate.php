@@ -1,5 +1,11 @@
 <?php 
+session_start();
 
+if(!isset($_SESSION['u_id'],$_SESSION['r_id']))
+	{
+		header('location:index.php?lmsg=true');
+		exit;
+  }
 require_once('./../../controller/user/userController.php');
 if (isset($_GET['updateid'])) {
 
