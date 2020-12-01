@@ -73,7 +73,8 @@ $res = getAll();
             <thead>
                <tr>
                   <th width="5%">#</th>
-                  <th width="80%">Name</th>
+                  <th width="50%">Name</th>
+                  <th width="30%">Role</th>
                   <th width="15%">Status</th>
                </tr>
             </thead>
@@ -90,7 +91,19 @@ $res = getAll();
 			   ?>	
                <tr>
                   <th scope="row"><?php echo $i?></th>
-                  <td><?php echo $row['u_firstname']?></td>
+                  <td><?php echo $row['u_firstname']." ".$row['u_lastname']?></td>
+                  <td>
+                  <?php if($row['r_id'] == 1){
+                    echo "Admin";
+                  }else if($row['r_id'] == 2){
+                    echo "Owner";
+                  }else if($row['r_id'] == 3){
+                    echo "Accountant";
+                  }else if($row['r_id'] == 4){
+                    echo "Stock Keeper";
+                  }
+                  ?>
+                  </td>
                   <td><button type="button" class="btn <?php echo $class?>"><?php echo $status?></button></td>
                </tr>
 			   <?php 
