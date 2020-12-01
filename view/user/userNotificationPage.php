@@ -5,10 +5,7 @@
 	{
 		header('location:index.php?lmsg=true');
 		exit;
-	}		
-	
-	 
-	
+	}			
 ?>
 <!DOCTYPE html>
 <html lang="en">

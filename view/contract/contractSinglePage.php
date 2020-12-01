@@ -245,7 +245,7 @@
       </div>
     </div>
     <!-- Workflow Animation -->
-    <h2>Contract Workflow Diagram</h2>
+    <!-- <h2>Contract Workflow Diagram</h2>
     <div class="tree">
       <ul>
         <li>
@@ -288,7 +288,7 @@
         </li>
       </ul>
     </div>
-    <br>
+    <br> -->
     <!-- Workflow Animation ends -->
     
     
