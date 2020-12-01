@@ -96,7 +96,7 @@
 					<th>Total Quantity</th>
 					<th>Reorder Value</th>
 					<th width="11%">Average Price</th>
-					<?php if($user_role == 1){ ?>
+					<?php if($user_role==2){ ?>
 					<th>Edit</th>
 					<?php } ?>
 				</thead>
@@ -115,7 +115,7 @@
 							<td data-label="Total Quantity"><?php echo $batchRow["total-amount"]?></td>
 							<td data-label="Reorder Value"><?php echo $row["min-qty"]; ?></td>
 							<td data-label="Average Price">Rs. <?php echo $batchRow["avg-price"]?></td>
-							<?php if($user_role == 1){ ?>
+							<?php if($user_role==2){ ?>
 							<td data-label="Edit"><a href="" class="btn btn-warning">&#x270E</a></td>
 							<?php } ?>
 						</tr>
@@ -183,7 +183,7 @@
 					<th>Manufacturer</th>
 					<th>Added</th>
 					<th>Status</th>
-					<?php if($user_role == 1){ ?>
+					<?php if($user_role==2){ ?>
 					<th>Edit</th>
 					<?php } ?>
 				</thead>
@@ -201,7 +201,7 @@
 						<td>
 							OK
 						</td>
-						<?php if($user_role == 1){ ?>
+						<?php if($user_role==2){ ?>
 						<td>
 							<a href="" class="btn btn-warning">&#x270E</a>
 						</td>
@@ -220,7 +220,7 @@
 						<td>
 							<a href="maintenance.php">&#9888</a>
 						</td>
-						<?php if($user_role == 1){ ?>
+						<?php if($user_role==2){ ?>
 						<td>
 							<a href="" class="btn btn-warning">&#x270E</a>
 						</td>
@@ -271,7 +271,7 @@
 					<th>Address</th>
 					<th>Status</th>
 					<th>Added On</th>
-					<?php if($user_role == 1){ ?>
+					<?php if($user_role==2){ ?>
 					<th>Edit</th>
 					<?php } ?>
 				</thead>
@@ -288,7 +288,7 @@
 					<td data-label="Address"><?php echo $row["sup-address"]; ?></td>
 					<td data-label="Status"><?php if($row["sup-status"] == 1) {echo "Active";} else {echo "Inactive";} ?></td>
 					<td data-label="Added On"><?php echo $row["sup-created-on"]; ?></td>
-					<?php if($user_role == 1){ ?>
+					<?php if($user_role==2){ ?>
 					<td>
 						<a href="" class="btn btn-warning">&#x270E</a>
 					</td>

@@ -86,6 +86,6 @@
 </div>
 
 <?php
-  require_once('leftSidebar.php'); 
+  require_once('leftSidebarReport.php'); 
   require_once('footer.php'); 
 ?>	

@@ -108,9 +108,9 @@
 </nav>
 <!--End of Top Bar-->
 
-<!--Navbar starts -->
+<!--Navbar starts 
 <div class="container">
-  <!-- <a class="" href="../dashboard.php">W3 DASHBOARD</a> -->
+   <a class="" href="../dashboard.php">W3 DASHBOARD</a>
   <div id="nav-temp">
     <ul class="">
     <li class="">
@@ -134,5 +134,5 @@
     </ul>
   </div>
 </div>
-<!--Navbar ends  -->
+Navbar ends  -->
 <main>
