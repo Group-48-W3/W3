@@ -95,5 +95,13 @@ function changepassword($password){
 	
 	changePasswordDB($hash_pass,$user_email);// call the model method
 }
+function checkEmail($email){
+	// check for valid email from model
+	if(!getEmailUser($email)){
+		return 1;
+	}else{
+		return 0;
+	}
+}
 
 ?>
