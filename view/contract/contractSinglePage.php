@@ -235,7 +235,7 @@
         <div class="col">
           <!-- set Inactive Navigation -->
           <h5>Set to inactive state contract</h5>
-          <a class="btn btn-danger" name="set_inactive">Set as Inactive</a><br>
+          <a class="btn btn-danger" name="set_inactive" onclick="document.getElementById('id02').style.display='block'">Set as Inactive</a><br>
         </div>
         <div class="col">
           <!-- Delete Navigation to home -->
@@ -307,6 +307,21 @@
       </form>
     </div>
     <!-- End Prompt Box -->
+    <!-- Second Prompt Box -->
+    <div id="id02" class="confirm-box">
+      <div class="right" style="margin-right:25px;">
+        <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+      </div>
+      <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
+        <h1>Change Status Contract</h1>
+        <p>Are you sure you want to change the status your contract?</p><br>
+        <div class="clearfix right">
+          <button type="button" class="btn btn-secondary" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
+          <button type="submit" name="delete_con" class="btn btn-warning">Set Inactive</button>
+        </div>
+      </form>
+    </div>
+    <!-- End of Prompt Box -->
     <br><br>
 </div>
 <?php 
