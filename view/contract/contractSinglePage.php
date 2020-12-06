@@ -124,23 +124,25 @@
                   }
                 ?>
               </select>
-              <label for="quotation" class="form-label">Select Quotation</label>
+              <label for="quotation" class="form-label">Select Quotation Model</label>
+          </div>
+          <div class="form-group field">
+            <input type="text" class="form-field" name="q_budget" id="q_budget">
+            <label for="q_quantity" class="form-label">Budget</label>
           </div>
           <div class="form-group field">
             <input type="text" class="form-field" name="q_quantity" id="q_quantity">
             <label for="q_quantity" class="form-label">Quantity</label>
           </div>
           <button type="submit" name="quotation_contract" class="btn btn-primary">Add Quotation</button>
-        </form>
-        <div class="container">
+          <br>
+          <!-- Add new quotation -->
           <small class="form-text text-muted">Need to create a need one? click the following button</small>
-            <div class="row">
-              <div class="col">
-              <a class="btn btn-secondary" href="./quotationAdd.php">Quotation Gallery</a>
-              </div>
-            </div>
+          <div class="quotation">
+          <a class="btn btn-secondary" href="./quotationAdd.php">Create a new Quotation</a>
+          </div>
         </div>
-      </div>
+        </form>
     </div>
     <!-- Quotation Details ends -->
     <!-- Activity Details -->
@@ -233,11 +235,6 @@
         <a href="./contractUpdate.php?con_id=<?php echo $row["con_id"]; ?>" class="btn btn-warning">Update <?php echo $row["con_name"]; ?></a>
         </div>
         <div class="col">
-          <!-- set Inactive Navigation -->
-          <h5>Set to inactive state contract</h5>
-          <a class="btn btn-danger" name="set_inactive" onclick="document.getElementById('id02').style.display='block'">Set as Inactive</a><br>
-        </div>
-        <div class="col">
           <!-- Delete Navigation to home -->
           <h5>Delete this particular contract</h5>
           <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'">Delete <?php echo $row["con_name"]; ?></button>
@@ -245,18 +242,17 @@
       </div>
     </div>
     <!-- Workflow Animation -->
-    <!-- <h2>Contract Workflow Diagram</h2>
+    <h2>Contract Origanization</h2>
     <div class="tree">
       <ul>
         <li>
-          <a href="#">1</a>
+          <a href="#"><?php echo $row['con_name'];?></a>
           <ul>
             <li>
               <a href="#">2</a>
               <ul>
                 <li>
-                  <a href="#">2.1</a>
-                  
+                  <a href="#">2.1</a>  
                 </li>
                 <li>
                   <a href="#">2.2</a>
@@ -288,7 +284,7 @@
         </li>
       </ul>
     </div>
-    <br> -->
+    <br>
     <!-- Workflow Animation ends -->
     
     

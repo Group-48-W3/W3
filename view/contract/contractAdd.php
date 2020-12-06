@@ -44,7 +44,6 @@
         <div class="form-group field">
         <label class="form-label">Status</label><br>
           <input type="radio" name="con_status" value="Active">Active
-          <input type="radio" name="con_status" value="Inactive">Inactive<br>
         </div>
         <div class="form-group field">
           <input type="text" class="form-field" name="con_payment" id="con_payment" required>
