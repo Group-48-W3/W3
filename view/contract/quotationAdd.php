@@ -14,15 +14,13 @@
 
 <div class="container"> 
   <h1>Add New Quotation</h1>
-  <?php echo $a; ?>
     
-  <h2>Create Custom Quotation</h2>
   <!-- searching -->
   <div class="container">
     <div class="row">
-      <div class="col-lg-12">
-         <h2>Search for items from seracg bar</h2>
-         <input type="text" name="search" id="search" autocomplete="off" placeholder="search user name here....">
+      <div class="form-group field">
+         <h2>Search for items from serach bar</h2>
+         <input class="form-field" type="text" name="search" id="search" autocomplete="off" placeholder="search item name here....">
          <div id="output"></div>
       </div>           
     </div>
