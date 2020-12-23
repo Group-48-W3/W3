@@ -77,17 +77,14 @@
     <!-- Quotation details -->
     <h2>Step 03 : Quotation Details</h2>
     <div class="container">
-      <div class="tab">
-        <button class="tablinks" id="openOnLoad" onclick="openTab(event, 'currentQuo')">Current Quotation</button>
-        <button class="tablinks" onclick="openTab(event, 'addQuo')">Add Quotation</button>
-      </div>
-      <div id="currentQuo" class="tabcontent">
-        <h3>Current Quotation</h3>
+      
+      <div id="currentQuo" class="container">
+        <h2>Current Quotation</h2>
         <!-- Quotation Table -->
         <table>
           <thead>
             <tr>
-              <th>Name</th>
+              <th>Item</th>
               <th>Description</th>
               <th>Budget</th>
               <th>Image</th>
@@ -106,40 +103,13 @@
         </table>
         <hr>
       </div>
-      <div id="addQuo" class="tabcontent">
+      <div id="addQuo" class="container">
         <h2>Add a new Quotation</h2>
-        <form action="./../../controller/contract/quotationController.php">
-          <div class="form-group field">
-              <select name="quotation" id="quotation" class="form-field">
-                <?php
-                  $i=0;
-                  while($row_quo = mysqli_fetch_array($quo_details)) {
-                ?>
-                  <option value="<?php echo $row_quo["q_id"];?>"><?php echo $row_quo["q_name"];?></option>
-                <?php
-                  $i++;
-                  }
-                  if($i==0){
-                      echo "No results ";
-                  }
-                ?>
-              </select>
-              <label for="quotation" class="form-label">Select Quotation Model</label>
-          </div>
-          <div class="form-group field">
-            <input type="text" class="form-field" name="q_budget" id="q_budget">
-            <label for="q_quantity" class="form-label">Budget</label>
-          </div>
-          <div class="form-group field">
-            <input type="text" class="form-field" name="q_quantity" id="q_quantity">
-            <label for="q_quantity" class="form-label">Quantity</label>
-          </div>
-          <button type="submit" name="quotation_contract" class="btn btn-primary">Add Quotation</button>
-          <br>
+        
           <!-- Add new quotation -->
           <small class="form-text text-muted">Need to create a need one? click the following button</small>
           <div class="quotation">
-          <a class="btn btn-secondary" href="./quotationAdd.php">Create a new Quotation</a>
+          <a class="btn btn-success" href="./quotationAdd.php">Create a new Quotation</a>
           </div>
         </div>
         </form>
