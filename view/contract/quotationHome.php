@@ -13,7 +13,7 @@
   <h6>Quotation gallery includes the main product quotation samples inside the business environment which may important for the future reference</h6>
   <!-- Add a new Contract -->
   <h1 style="margin: 0px">Add a new Quotation</h1>
-  <a class="btn btn-primary" href="./contractAdd.php">Add New Quotation</a>
+  <a class="btn btn-primary" href="./quotationAdd.php">Add New Quotation</a>
   <!-- End add contract -->
   <div class="container">
   <br>
