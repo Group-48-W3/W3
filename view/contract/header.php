@@ -13,6 +13,7 @@
   <link href="./../../public/css/style.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet"/>
   <script type="text/javascript" src="./../../public/js/scripts/main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script> 
 </head>
 <!-- Temp code  -->
 <style>

@@ -109,7 +109,7 @@
           <!-- Add new quotation -->
           <small class="form-text text-muted">Need to create a need one? click the following button</small>
           <div class="quotation">
-          <a class="btn btn-success" href="./quotationAdd.php">Create a new Quotation</a>
+          <a class="btn btn-success" href="./quotationAdd.php?quo_con_id=<?php echo $row["con_id"]; ?>">Create a new Quotation</a>
           </div>
         </div>
         </form>
