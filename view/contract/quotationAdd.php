@@ -10,25 +10,24 @@
   if (isset($_GET['quo_con_id'])) {
     $a = $_GET['quo_con_id'];
   }
+
+  if(isset($_POST['quotationAdd'])){
+    $item_no = $_POST['q_itemno'];
+    $name = $POST['q_name'];
+    $description = $POST['q_desc'];
+    $quantity = $POST['q_quantity'];
+    $discount = $POST['q_discount'];
+
+    $validateQuotation = addQuotation($item_no,$name,$description,$quantity,$discount);
+  }
 ?>
 
 <div class="container"> 
   <h1>Add New Quotation</h1>  
   <!-- searching -->
-  <div class="container">
-    <div class="row">
-      <!-- <div class="form-group field">
-         <h2>Search for items from serach bar</h2>
-         <label for="search">Search Items</label>
-         <input class="form-field" type="text" name="search" id="search" autocomplete="off" size="30px">
-         <div id="output"></div>
-      </div>            -->
-    </div>
- </div>
-  
   
   <!-- Form Starts -->
-  <form method="post" action="./../../controller/contract/quotationController.php">
+  <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
     <div class="form-group field">
       <input type="text" class="form-field" id="q_itemno" name="q_itemno" autocomplete="off">
       <label for="q_itemno" class="form-label">Furniture Item Code</label>
@@ -44,7 +43,7 @@
       <small id="" class="form-text text-muted">Provide a suitable quotation name </small>
     </div>
     <div class="form-group field">
-      <input type="text" class="form-field" name="q_budget" id="q_desc">  
+      <input type="text" class="form-field" name="q_desc" id="q_desc">  
       <label for="q_desc" class="form-label">Quotation Description</label>
     </div>
     <div class="form-group field">
@@ -53,7 +52,7 @@
     </div>
     <div class="form-group field">
       <input type="text" class="form-field" id="q_discount" name="q_discount">
-      <label for="q_budget" class="form-label">Discount</label>
+      <label for="q_discount" class="form-label">Discount</label>
     </div>
     <div class="right">
       <button type="submit" class="btn btn-primary" name ="quotationAdd">Add Quotation</button>
