@@ -13,53 +13,27 @@
 ?>
 
 <div class="container"> 
-  <h1>Add New Quotation</h1>
-    
+  <h1>Add New Quotation</h1>  
   <!-- searching -->
   <div class="container">
     <div class="row">
-      <div class="form-group field">
+      <!-- <div class="form-group field">
          <h2>Search for items from serach bar</h2>
-         <input class="form-field" type="text" name="search" id="search" autocomplete="off" placeholder="search item name here....">
+         <label for="search">Search Items</label>
+         <input class="form-field" type="text" name="search" id="search" autocomplete="off" size="30px">
          <div id="output"></div>
-      </div>           
+      </div>            -->
     </div>
  </div>
   
-  <script type="text/javascript">
-    $(document).ready(function(){
-       $("#search").keyup(function(){
-          var query = $(this).val();
-          if (query != "") {
-            $.ajax({
-              url: './search.php',
-              method: 'POST',
-              data: {query:query},
-              success: function(data){
- 
-                $('#output').html(data);
-                $('#output').css('display', 'block');
- 
-                $("#search").focusout(function(){
-                    $('#output').css('display', 'none');
-                });
-                $("#search").focusin(function(){
-                    $('#output').css('display', 'block');
-                });
-              }
-            });
-          } else {
-          $('#output').css('display', 'none');
-        }
-      });
-    });
-  </script>
+  
   <!-- Form Starts -->
   <form method="post" action="./../../controller/contract/quotationController.php">
     <div class="form-group field">
-      <input type="text" class="form-field" id="q_itemno" name="q_itemno">
-      <label for="q_name" class="form-label">Furniture Item Code</label>
+      <input type="text" class="form-field" id="q_itemno" name="q_itemno" autocomplete="off">
+      <label for="q_itemno" class="form-label">Furniture Item Code</label>
       <small id="" class="form-text text-muted">select the furniture item model</small>
+      <div id="output"></div>
       <h6>If you haven't a furniture item code. Add a new item here</h6>
       <!-- Add new Item to Quotation -->
       <a class="btn btn-warning" onclick="document.getElementById('id01').style.display='block'">Add new Item</a>
@@ -86,7 +60,35 @@
     </div>
   </form>
   <!-- Form Ends -->
-</div>    
+</div> 
+<script type="text/javascript">
+    $(document).ready(function(){
+       $("#q_itemno").keyup(function(){
+          var query = $(this).val();
+          if (query != "") {
+            $.ajax({
+              url: './search.php',
+              method: 'POST',
+              data: {query:query},
+              success: function(data){
+ 
+                $('#output').html(data);
+                $('#output').css('display', 'block');
+ 
+                $("#q_itemno").focusout(function(){
+                    $('#output').css('display', 'none');
+                });
+                $("#q_itemno").focusin(function(){
+                    $('#output').css('display', 'block');
+                });
+              }
+            });
+          } else {
+          $('#output').css('display', 'none');
+        }
+      });
+    });
+  </script>   
 <!-- Prompt Box -->
 <div id="id01" class="confirm-box">
       <div class="right" style="margin-right:25px;">

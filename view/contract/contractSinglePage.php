@@ -84,8 +84,7 @@
     <!-- Quotation details -->
     <h2>Step 03 : Quotation Details</h2>
     <div class="container">
-      
-      <div id="currentQuo" class="container">
+      <div id="currentQuo">
         <h2>Current Quotation</h2>
         <!-- Quotation Table -->
         <table>
@@ -100,7 +99,7 @@
           </thead>
           <tbody>
             <tr>
-            <td data-label="Contract">Wood StairCase</td>
+            <td data-label="Contract"><a>Diwan #M001</a></td>
             <td data-label="Name">StairCase Model #MC10</td>
             <td data-label="Weight">150,000</td>
             <td data-label="Description"><i>Image</i></td>
@@ -110,9 +109,8 @@
         </table>
         <hr>
       </div>
-      <div id="addQuo" class="container">
+      <div id="addQuo">
         <h2>Add a new Quotation</h2>
-        
           <!-- Add new quotation -->
           <small class="form-text text-muted">Need to create a need one? click the following button</small>
           <div class="quotation">
