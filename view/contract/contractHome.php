@@ -72,7 +72,7 @@
     <!-- searching -->
     <div class="container">
       <div class="row">
-        <div class="form-group field">
+        <div class="form-group field" style="width: 200px">
           <input class="form-field" type="text" name="search" id="search" autocomplete="off" placeholder="Search the contract name here">
           <div id="output"></div>
         </div>           

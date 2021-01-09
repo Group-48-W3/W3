@@ -214,7 +214,7 @@
       </div>
     </div>
     <!-- Workflow Animation -->
-    <h2>Contract Origanization</h2>
+    <!-- <h2>Contract Origanization</h2>
     <div class="tree">
       <ul>
         <li>
@@ -256,7 +256,7 @@
         </li>
       </ul>
     </div>
-    <br>
+    <br> -->
     <!-- Workflow Animation ends -->
     
     
