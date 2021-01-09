@@ -9,6 +9,7 @@
   require_once('./header.php');
   require_once('./../../controller/contract/contractController.php');
   require_once('./../../controller/contract/quotationController.php');
+  require_once('./../../controller/contract/activityController.php');
 
   if (isset($_GET['con_id'])) {
     $con = new Contract();
@@ -29,7 +30,13 @@
     $con = new Contract();
     $con->deleteContract($_SESSION['contract_id']);
   }
- 
+
+  if(isset($_POST['add_activity'])){
+    //
+    $contract_id = $_SESSION['contract_id'];
+    
+  }
+
 ?>
 
 <div class="container">
@@ -77,8 +84,7 @@
     <!-- Quotation details -->
     <h2>Step 03 : Quotation Details</h2>
     <div class="container">
-      
-      <div id="currentQuo" class="container">
+      <div id="currentQuo">
         <h2>Current Quotation</h2>
         <!-- Quotation Table -->
         <table>
@@ -93,7 +99,7 @@
           </thead>
           <tbody>
             <tr>
-            <td data-label="Contract">Wood StairCase</td>
+            <td data-label="Contract"><a>Diwan #M001</a></td>
             <td data-label="Name">StairCase Model #MC10</td>
             <td data-label="Weight">150,000</td>
             <td data-label="Description"><i>Image</i></td>
@@ -103,9 +109,8 @@
         </table>
         <hr>
       </div>
-      <div id="addQuo" class="container">
+      <div id="addQuo">
         <h2>Add a new Quotation</h2>
-        
           <!-- Add new quotation -->
           <small class="form-text text-muted">Need to create a need one? click the following button</small>
           <div class="quotation">
@@ -165,30 +170,27 @@
       <div id="addActivity" class="tabcontent">
       <h3>Set Activities</h3>
         <!-- Activity Form -->
-        <form method="post" action="./../../controller/contract/contractController.php">
+        <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+          
           <div class="form-group">
-            <input type="text" class="form-field" name="c_id" id="c_id">
-            <label for="c_id" class="form-label">Contract Name</label>
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-field" id="activityName" name="start_date">
+            <input type="text" class="form-field" id="activityName" name="act_name">
             <label for="activityName" class="form-label">Activity Name</label>
           </div>
           <div class="form-group">
-            <input type="text" class="form-field" name="end_date" id="activityDescription">
+            <input type="text" class="form-field" name="act_des" id="activityDescription">
             <label for="activityDescription" class="form-label">Activity Description</label>
           </div>
           <div class="form-group">
-            <input type="text" class="form-field" name="location" id="activityWeight">
+            <input type="text" class="form-field" name="act_weight" id="activityWeight" value="1">
             <label for="activityWeight" class="form-label">Activity Weight</label>
             <small class="form-text text-muted">Weight describes the work load of the work done (Weight eg:- 2 Units put as 2)</small>
           </div>
           <div class="form-group">
-            <input type="text" class="form-field" name="description" id="activityDate">  
+            <input type="date" class="form-field" name="act_date" id="activityDate">  
             <label for="activityDate" class="form-label">Date</label>
           </div>
           <div class="right">
-            <button type="submit" class="btn btn-primary">Add Activity</button>
+            <button type="submit" name="add_activity" class="btn btn-primary">Add Activity</button>
           </div>
         </form>
       </div>
@@ -212,7 +214,7 @@
       </div>
     </div>
     <!-- Workflow Animation -->
-    <h2>Contract Origanization</h2>
+    <!-- <h2>Contract Origanization</h2>
     <div class="tree">
       <ul>
         <li>
@@ -254,7 +256,7 @@
         </li>
       </ul>
     </div>
-    <br>
+    <br> -->
     <!-- Workflow Animation ends -->
     
     
