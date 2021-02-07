@@ -5,7 +5,7 @@ require_once("./../../model/itemModel.php");
 class Item{
     // constructor function
     function __construct(){
-        //"here is constructor";
+        "here is constructor";
         $this->index();
     }
     // index function
@@ -21,6 +21,18 @@ class Item{
         }else{
 
         }
+    }
+    //retrive a singe item
+    function getSingleItem($id){
+
+    }
+    // retrive all items
+    function getAllItems(){
+        $item = new ItemModel();
+
+    }
+    function deleteItem($id){
+        
     }
 }
 ?>

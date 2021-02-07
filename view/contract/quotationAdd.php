@@ -14,14 +14,15 @@
     $a = $_GET['quo_con_id'];
   }
 
-  if(isset($_POST['quotationAdd'])){
+  if(isset($_POST['quotation_add'])){
     $item_no = $_POST['q_itemno'];
     $name = $POST['q_name'];
     $description = $POST['q_desc'];
     $quantity = $POST['q_quantity'];
     $discount = $POST['q_discount'];
-
-    $validateQuotation = addQuotation($item_no,$name,$description,$quantity,$discount);
+    $con_id = $_GET['quo_con_id'];
+    $quo->addQuotation($item_no,$name,$description,$quantity,$discount,$con_id);
+    
   }
 
   if(isset($_POST['add_item'])){
@@ -46,10 +47,13 @@
   <!-- Form Starts -->
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
     <div class="form-group field">
-      <input type="text" class="form-field" id="q_itemno" name="q_itemno" autocomplete="off">
+      <input type="text" class="form-field" name="q_itemno" id="q_itemno" autocomplete="off">
       <label for="q_itemno" class="form-label">Furniture Item Code</label>
       <small id="" class="form-text text-muted">select the furniture item model</small>
-      <div id="output"></div>
+      <!-- select items -->
+      <div id="output">
+      
+      </div>
       <h6 style="margin: 0x">If you haven't a furniture item code. Add a new item here</h6>
       <!-- Add new Item to Quotation -->
       <a class="btn btn-warning" onclick="document.getElementById('id01').style.display='block'">Add new Item</a>
@@ -72,7 +76,7 @@
       <label for="q_discount" class="form-label">Discount</label>
     </div>
     <div class="right">
-      <button type="submit" class="btn btn-primary" name ="quotationAdd">Add Quotation</button>
+      <button type="submit" class="btn btn-primary" name ="quotation_add">Add Quotation</button>
     </div>
   </form>
   <!-- Form Ends -->

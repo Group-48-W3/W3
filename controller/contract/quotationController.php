@@ -12,12 +12,16 @@ class Quotation{
         // include the abstract data input for the functions
     }
     // add quotation controller function
-    function addQuotation($item_no,$name,$description,$quantity,$discount){
+    function addQuotation($item_no,$name,$description,$quantity,$discount,$con_id){
         // add a new quotation
+        $quotation = new QuotationModel();
+        $res = $quotation->addQuotationDB($item_no,$name,$description,$quantity,$discount,$con_id);
+
     }
     // get all quotations
     function getAllQuotation(){
-        $res =  getAllQuotationDB();
+        $quotation = new QuotationModel();
+        $res =  $quotation->getAllQuotationDB();
         return $res;
         
     }

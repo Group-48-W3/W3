@@ -3,15 +3,17 @@
  
   if (isset($_POST['query'])) {
      
-        $query = "SELECT * FROM furniture_item WHERE item_name LIKE '{$_POST['query']}%' LIMIT 5";
+        $query = "SELECT * FROM furniture_item WHERE item_id LIKE '{$_POST['query']}%' LIMIT 5";
         $result = mysqli_query($conn, $query);
     
     if (mysqli_num_rows($result) > 0) {
-        while ($user = mysqli_fetch_array($result)) {
-        echo $user["item_id"]." ".$user['item_name']."<br/>";
+        echo "<select id='item_name' name='item_code_selected' class='form-field'>";
+        while ($user = mysqli_fetch_array($result)){
+            echo "<option value='".$user['item_id']."'>".$user['item_name']."</option>";
         }
+        echo "</select>";
     } else {
-        echo "<p style='color:red'>User not found...</p>";
+        echo "<p style='color:red'>Item not found...</p>";
     }
     
     }
