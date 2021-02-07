@@ -1,0 +1,78 @@
+ 
+ Thank you shanuka,
+
+ so, let's consider about the Admin panel,
+ and sahan will log as admin then we can see detailwise about the admin panel.
+ The admin panel is fully covered about  administration of the system.there have facilities like user management, 
+ employee managemnet,make noticication,handle dashboard and make changes in user privilagers 
+ of the system and there is a role admin to maintain the adimn panel
+ and
+ the admin only have permission to access admin panel of the system.
+          
+  
+
+  the first User interface is Home
+  There can be seen summerize of system details about user count,employee count ,Total notifications and total permission.
+  //after that you can see active inactive users in the below section
+
+  users
+  Then user part is tha main section of the admin panel and admin can handle users
+  in we can delete or upadte details about system users and 
+  by using below section Admin can add new user by entering details like firstname, lastname,email and tempary password..
+ 
+ Then sahan will add sample user to system by entering these records . . .
+ specially, Admin can only creates a tempory password and new user should use it for first time logging 
+ and after that he/she can change that password.
+ thank u sahan.
+ and next we can move on to the employee section
+
+  Employees
+  as like before users section we can make crud operation for employees.There have options to update and delete options for 
+  employees in upper section and there has a form in below part to add new employee to the system
+   we can see there are 3 types of employee_catageorise which connect with the system like ,
+             Permanent , Tempory and contract based. 
+                  
+  Notification
+ 
+  If you oberserve the dashboard ,when we log into the system in any types of logins,
+  the first screen was the dashboard message. All the dashboard messages are sent by 
+  this interface.
+  when we move to the left handside of notification User interface we can see a form,
+  and
+  owner or admin can push a message to the dashboard by using this
+  this messages will be display to all the user roles of the system.
+
+  In the right hand side admin or owner can send private message to users by 
+  selecting their role...So,This interface enhance the system's intercommunication among 
+  users.
+  
+ finally we can consider about the permission interface
+ 
+ as udara mention before In our system has condition that stockkeeper
+ has to get permission from the owner to add new batch to the stock.And also accountant must need permission 
+ from owner to delete an expense record.So this User interface manage all the permissions in the system 
+ through the components 
+ and owner is the resposible person who accept or decline permission requests.
+
+ so.. this is the  demonstration of our W3contracts system and , if there have anything to  clarify 
+ you may ask now.Thank you!
+  
+ 
+
+
+
+
+ 12
+
+
+ inline 
+ 
+
+   front end validation
+   back end validation
+
+
+&#x270E - update
+
+  model එකෙන් controller එකට යවනව විතරයි. controller එක තමයි  හදලා ඔක්කොනම කරලා model එකට යවන්නේ
+ 
