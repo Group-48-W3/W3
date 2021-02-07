@@ -15,6 +15,45 @@ class ItemModel{
         }
         mysqli_close($conn);
     }
+    function getAllItemsDB(){
+        global $conn;
+        $sql = "select * from furniture_item";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            echo "all items retrive successfully !";
+        
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+        }
+        mysqli_close($conn);
+        return $result;
+        
+    }
+    function getSingleItemDB($id){
+        global $conn;
+        $sql = "select * from furniture_item WHERE item_id = ".$id;
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            echo "item retrive successfully !";
+        
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+        }
+        mysqli_close($conn);
+        return $result;
+    }
+    function deleteItemDB($id){
+        global $conn;
+        $query = "delete from furniture_item where item_id = ".$id;
+        $result = mysqli_query($conn, $query);
+        if ($result) {
+            return 1;
+           
+        } else {
+            return 0;
+        }
+        mysqli_close($conn);
+    }
 }
 
 ?>

@@ -22,5 +22,17 @@ class Item{
 
         }
     }
+    //retrive a singe item
+    function getSingleItem($id){
+
+    }
+    // retrive all items
+    function getAllItems(){
+        $item = new ItemModel();
+
+    }
+    function deleteItem($id){
+        
+    }
 }
 ?>
