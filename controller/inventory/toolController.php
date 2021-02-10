@@ -12,9 +12,9 @@
         $con = new Tool();     
         $con->addNewTool();  
     }
-    if(isset($_POST['replenishRawMaterial'])){
+    if(isset($_POST['replenishTool'])){
         // echo "condition";
-         $con = new RawMaterial();     
+         $con = new Tool();     
          $con->replenishTool();
      }
     class Tool{
@@ -26,9 +26,9 @@
         }
 
         function addToolCategory(){
-            $toolName = $_POST['toolName'];
-            $toolDesc = $_POST['toolDesc'];
-            $toolReorderValue = $_POST['toolReorderValue'];
+            $toolName = $_POST['toolCatName'];
+            $toolDesc = $_POST['toolCatDesc'];
+            $toolReorderValue = $_POST['toolCatReorderValue'];
     
             if(!empty($toolName) && !empty($toolDesc) && !empty($toolReorderValue)){
                 if(isInTool($toolName)){
@@ -100,6 +100,3 @@
             //to-do
         }
     }
-
-?>
-
