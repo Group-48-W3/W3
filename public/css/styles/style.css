@@ -95,6 +95,19 @@ tr:nth-of-type(odd){
   background: #444;
 }
 
+.row-link {
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.row-link:hover {
+  filter: brightness(85%);
+}
+
+.row-link:active {
+  filter: brightness(100%);
+}
+
 th {
   background: #333;
   color: white;
@@ -164,7 +177,7 @@ footer {
 		left: -9999px;
 	}
 	
-	tr { border: 1px solid #ccc; }
+  tr { border: 1px solid #ccc; }
 	
 	td { 
 		/* Behave  like a "row" */

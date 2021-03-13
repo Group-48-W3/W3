@@ -7,11 +7,13 @@
          $con = new RawMaterial();     
          $con->addRawMaterialCategory();
      }
+
      if(isset($_POST['replenishRawMaterial'])){
         // echo "condition";
          $con = new RawMaterial();     
          $con->replenishRawMaterial();
      }
+     
     class RawMaterial{
         function __construct(){
             $this->index();
