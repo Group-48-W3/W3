@@ -29,7 +29,8 @@ class Item{
     // retrive all items
     function getAllItems(){
         $item = new ItemModel();
-
+        $res =  $item->getAllItemsDB();
+        return $res;
     }
     function deleteItem($id){
         

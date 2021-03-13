@@ -8,20 +8,26 @@
   $quo = new Quotation();
   $result = $quo->getAllQuotation();
 
+  $a = '';
+
   $_SESSION['item_add'] = 'none';
 
   if (isset($_GET['quo_con_id'])) {
     $a = $_GET['quo_con_id'];
+    $_SESSION['con_id'] = $a;
+    echo $a;
+    echo $_SESSION['con_id'];
   }
 
-  if(isset($_POST['quotation_add'])){
-    $item_no = $_POST['q_itemno'];
-    $name = $POST['q_name'];
-    $description = $POST['q_desc'];
-    $quantity = $POST['q_quantity'];
-    $discount = $POST['q_discount'];
-    $con_id = $_GET['quo_con_id'];
-    $quo->addQuotation($item_no,$name,$description,$quantity,$discount,$con_id);
+  if(isset($_POST['add_quotation'])){
+    $quo_itemno = $_POST['q_itemno'];
+    $quo_name = $_POST['quo_name'];
+    $quo_description = $_POST['q_desc'];
+    $quo_quantity = $_POST['quo_quantity'];
+    $quo_discount = $_POST['quo_discount'];
+    $con_id = $_SESSION['con_id'];
+    
+    $quo->addQuotation($quo_itemno,$quo_name,$quo_description,$quo_quantity,$quo_discount,$con_id);
     
   }
 
@@ -47,36 +53,34 @@
   <!-- Form Starts -->
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
     <div class="form-group field">
-      <input type="text" class="form-field" name="q_itemno" id="q_itemno" autocomplete="off">
+      <input type="text" class="form-field" name="q_itemno" id="q_itemno">
       <label for="q_itemno" class="form-label">Furniture Item Code</label>
       <small id="" class="form-text text-muted">select the furniture item model</small>
+      <div id="output"></div>
       <!-- select items -->
-      <div id="output">
-      
-      </div>
       <h6 style="margin: 0x">If you haven't a furniture item code. Add a new item here</h6>
       <!-- Add new Item to Quotation -->
       <a class="btn btn-warning" onclick="document.getElementById('id01').style.display='block'">Add new Item</a>
     </div>
     <div class="form-group field">
-      <input type="text" class="form-field" id="q_name" name="q_name">
-      <label for="q_name" class="form-label">Quotation Name</label>
+      <input type="text" class="form-field" id="q_name" name="quo_name">
+      <label class="form-label">Quotation Name</label>
       <small id="" class="form-text text-muted">Provide a suitable quotation name </small>
     </div>
     <div class="form-group field">
-      <input type="text" class="form-field" name="q_desc" id="q_desc">  
-      <label for="q_desc" class="form-label">Quotation Description</label>
+      <input type="text" class="form-field" name="q_desc" id="quo_desc">  
+      <label class="form-label">Quotation Description</label>
     </div>
     <div class="form-group field">
-      <input type="text" class="form-field" id="q_quantity" name="q_quantity">
-      <label for="q_budget" class="form-label">Quantity</label>
+      <input type="text" class="form-field" id="q_quantity" name="quo_quantity">
+      <label class="form-label">Quantity</label>
     </div>
     <div class="form-group field">
-      <input type="text" class="form-field" id="q_discount" name="q_discount">
-      <label for="q_discount" class="form-label">Discount</label>
+      <input type="text" class="form-field" id="q_discount" name="quo_discount">
+      <label class="form-label">Discount</label>
     </div>
     <div class="right">
-      <button type="submit" class="btn btn-primary" name ="quotation_add">Add Quotation</button>
+      <button type="submit" class="btn btn-primary" name ="add_quotation">Add Quotation</button>
     </div>
   </form>
   <!-- Form Ends -->
