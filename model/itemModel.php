@@ -20,7 +20,7 @@ class ItemModel{
         $sql = "select * from furniture_item";
         $result = mysqli_query($conn, $sql);
         if ($result) {
-            echo "all items retrive successfully !";
+            //echo "all items retrive successfully !";
         
         } else {
             echo "Error: " . $sql . " " . mysqli_error($conn);
