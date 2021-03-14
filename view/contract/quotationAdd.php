@@ -8,9 +8,10 @@
   $quo = new Quotation();
   $result = $quo->getAllQuotation();
 
-  $a = '';
+  $a = $_SESSION['contract_id'];
 
   $_SESSION['item_add'] = 'none';
+  
 
   if (isset($_GET['quo_con_id'])) {
     $a = $_GET['quo_con_id'];
@@ -25,7 +26,7 @@
     $quo_description = $_POST['q_desc'];
     $quo_quantity = $_POST['quo_quantity'];
     $quo_discount = $_POST['quo_discount'];
-    $con_id = $_SESSION['con_id'];
+    $con_id = $a;
     
     $quo->addQuotation($quo_itemno,$quo_name,$quo_description,$quo_quantity,$quo_discount,$con_id);
     
@@ -73,11 +74,11 @@
     </div>
     <div class="form-group field">
       <input type="text" class="form-field" id="q_quantity" name="quo_quantity">
-      <label class="form-label">Quantity</label>
+      <label class="form-label">Nominal Value(LKR)</label>
     </div>
     <div class="form-group field">
       <input type="text" class="form-field" id="q_discount" name="quo_discount">
-      <label class="form-label">Discount</label>
+      <label class="form-label">Discount(%)</label>
     </div>
     <div class="right">
       <button type="submit" class="btn btn-primary" name ="add_quotation">Add Quotation</button>

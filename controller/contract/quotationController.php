@@ -25,8 +25,14 @@ class Quotation{
         return $res;
         
     }
-    function getSingleQuotation(){
-
+    function getAllQuotationContract($con_id){
+        $quotation = new QuotationModel();
+        $res =  $quotation->getAllQuotationContractDB($con_id);
+        return $res;
+        
+    }
+    function getSingleQuotation($con_id){
+        // to be implemented
     }
     
 }
