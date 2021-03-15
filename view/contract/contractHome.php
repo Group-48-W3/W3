@@ -69,13 +69,44 @@
     <!-- Find a contract  -->
     <h1 style="margin: 0px">Find a Contract</h1>
     <h6 style="margin: 0px">Search contracts from the database</h6>
-    <div class="form-group field">
-      <input type="text" class="form-field" id="find-repo" placeholder="Find a Contract by Name">
-      <label for="find-repo" class="form-label">Find a Contract</label>
-      <div class="container">
-      <br> 
+    <!-- searching -->
+    <div class="container">
+      <div class="row">
+        <div class="form-group field" style="width: 200px">
+          <input class="form-field" type="text" name="search" id="search" autocomplete="off" placeholder="Search the contract name here">
+          <div id="output"></div>
+        </div>           
+      </div>
     </div>
-    </div>
+    
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("#search").keyup(function(){
+            var contract = $(this).val();
+            if (contract != "") {
+              $.ajax({
+                url: './search.php',
+                method: 'POST',
+                data: {contract:contract},
+                success: function(data){
+  
+                  $('#output').html(data);
+                  $('#output').css('display', 'block');
+  
+                  $("#search").focusout(function(){
+                      $('#output').css('display', 'none');
+                  });
+                  $("#search").focusin(function(){
+                      $('#output').css('display', 'block');
+                  });
+                }
+              });
+            } else {
+            $('#output').css('display', 'none');
+          }
+        });
+      });
+    </script>
     <!-- Add a new Contract -->
     <h1 style="margin: 0px">Add a new Contract</h1>
     <a class="btn btn-primary" href="./contractAdd.php">Add New Contract</a>
