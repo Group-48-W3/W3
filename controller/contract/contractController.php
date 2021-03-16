@@ -78,7 +78,13 @@ class Contract{
 
     }
     function updateContract(){
-
+        if(contractUpdateDB()){
+            echo "Update success";
+            header('location: ./contractUpdate.php?con_id=3');
+        }else{
+            echo "Error on Updation, please check for relevance of data";
+        }
+        
     }
     function deleteContract($id){
         $stat = deleteContractDB($id);

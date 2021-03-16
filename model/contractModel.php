@@ -76,6 +76,9 @@ function getSingleClientDB($id){
 
 	return $result;
 }
+function updateContractDB(){
+	return 1;
+}
 function deleteContractDB($id){
 	global $conn;
 	$query = "delete from contract where con_id = ".$id;

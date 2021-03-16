@@ -11,19 +11,27 @@
 
  if (isset($_GET['con_id'])){
     $this_contract = $_GET['con_id'];
+    
     $con = new Contract();
     $con_details = $con->getSingleActiveContract($_SESSION['contract_id']);
     
     $row = mysqli_fetch_array($con_details);
-    
-    $client_details = $con->getSingleClient($row['c_id']);
+    $_SESSION['client_id'] = $row['c_id'];
+    $client_details = $con->getSingleClient($_SESSION['client_id']);
 
     $row_client = mysqli_fetch_array($client_details);
+ }
+
+ // update contract validations
+ if (isset($_POST['contractUpdate'])){
+    $con = new Contract();
+    $con_update = $con->updateContract();
  }
  ?>
 
 <div class="container">
-    <h1>Update Contract</h1>
+   <!-- <?php echo $_SESSION['contract_id']; ?> -->
+    <h2>Update Contract<?php echo " ".$row['con_name']; ?></h2>
     <!-- Contract details start -->
     <!-- Step 01 -->
     <h4>Step 01 : Update Contract Details</h4>
