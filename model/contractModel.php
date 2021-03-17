@@ -79,27 +79,32 @@ function getSingleClientDB($id){
 function updateContractDB($contract_id,$con_name,$con_start_date,$con_end_date,
 $con_location,$con_description,$con_payment){
 	global $conn;
-	$query = "update contract SET con_name='$con_name',startdate='$con_start_date',
+	$sql = "update contract SET con_name='$con_name',startdate='$con_start_date',
 	enddate='$con_end_date',location='$con_location',con_desc='$con_description',
-	payment_method='$con_payment WHERE con_id='$contract_id'";
-	$result = mysqli_query($conn,$query);
-
-	if ($result) {
-        return 1;
+	payment_method='$con_payment' WHERE con_id='$contract_id'";
+	$result = mysqli_query($conn,$sql);
+    if ($result) {
+        echo "contract updated successfully !";
+		return 1;
        
 	} else {
+		echo "Error: " . $sql . " " . mysqli_error($conn);
 		return 0;
 	}
     mysqli_close($conn);
+    
+    
 }
 function updateClientDB($c_id,$c_name,$c_address,$c_company,$c_mobile,$c_email){
 	global $conn;
-	$query = "update client SET c_name='$c_name',c_address='$c_address',c_company='$c_company',c_mobile='$c_mobile',c_email='$c_email'";
+	$query = "update client SET c_name='$c_name',c_address='$c_address',c_company='$c_company',c_mobile='$c_mobile',c_email='$c_email' WHERE c_id = '$c_id'";
 	$result = mysqli_query($conn, $query);
     if ($result) {
-        return 1;
+        echo "client updated successfully !";
+		return 1;
        
 	} else {
+		echo "Error: " . $query . " " . mysqli_error($conn);
 		return 0;
 	}
     mysqli_close($conn);

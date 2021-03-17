@@ -27,8 +27,9 @@
     $con = new Contract();
     
     $con_update = $con->updateContract($_SESSION['contract_id'],$_POST['con_name'],$_POST['con_start_date'],$_POST['con_end_date'],
-    $_POST['con_location'],$_POST['con_description'],$_POST['con_payment']);
-    $client_update = $con->updateClient($_SESSION['contract_id'],$_SESSION['client_id'],$_POST['c_name'],$_POST['c_address'],$_POST['c_company'],$_POST['c_mobile'],$_POST['c_email']);
+    $_POST['con_location'],$_POST['con_description'],$_POST['con_payment'],
+    $_SESSION['client_id'],$_POST['c_name'],$_POST['c_address'],$_POST['c_company'],$_POST['c_mobile'],$_POST['c_email']);
+    
  }
  ?>
 

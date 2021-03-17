@@ -76,25 +76,28 @@ class Contract{
 
     }
     function updateContract($contract_id,$con_name,$con_start_date,$con_end_date,
-    $con_location,$con_description,$con_payment){
+    $con_location,$con_description,$con_payment,
+    $c_id,$c_name,$c_address,$c_company,$c_mobile,$c_email){
         //update the details of a contract
         if(updateContractDB($contract_id,$con_name,$con_start_date,$con_end_date,
         $con_location,$con_description,$con_payment)){
-            echo "Update success";
-            header('location: ./contractUpdate.php?con_id='.$contract_id);
+            echo "Update contract success";
+            if(updateClientDB($c_id,$c_name,$c_address,$c_company,$c_mobile,$c_email)){
+                echo "Update client success";
+            }else{
+                echo "Error update on client";
+            }
+            //header('location: ./contractUpdate.php?con_id='.$contract_id);
         }else{
-            echo "Error on Updation, please check for relevance of data";
+            echo "Error on Contract Updation, please check for relevance of data";
+            
         }    
     }
-    function updateClient($c_id,$c_name,$c_address,$c_company,$c_mobile,$c_email){
+    function updateClient($con_id,$c_id,$c_name,$c_address,$c_company,$c_mobile,$c_email){
         //update the details of a client
         
-        if(updateClientDB($c_id,$c_name,$c_address,$c_company,$c_mobile,$c_email)){
-            echo "Client Update success";
-            header('location: ./contractUpdate.php?con_id='.$con_id);
-        }else{
-            echo "Error on Updation, please check for relevance of data";
-        }
+        updateClientDB($c_id,$c_name,$c_address,$c_company,$c_mobile,$c_email);
+        
     }
     function deleteContract($id){
         $stat = deleteContractDB($id);
