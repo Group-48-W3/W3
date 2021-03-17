@@ -6,6 +6,11 @@ if(!isset($_SESSION['u_id'],$_SESSION['r_id']))
 		exit;
 	}		
 require_once('./../../controller/user/userController.php');
+require_once('./../../controller/expense/incomeController.php');
+  //income object
+  $income = new Income();
+  $result = $income->totalIncome();
+  $row = mysqli_fetch_array($result);
 include_once('header.php'); ?>
 
 <div class="container">
@@ -70,7 +75,7 @@ include_once('header.php'); ?>
     <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
       <!-- <div class="card-header">Header</div> -->
       <div class="card-body">
-        <h2 class="card-title">LKR: 225,350</h1>
+        <h2 class="card-title">LKR: <?php echo $row["inc_amount"]; ?></h1>
         <p class="card-text">Last month all incomes</p>
       </div>
     </div>
