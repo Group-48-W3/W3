@@ -1,5 +1,6 @@
 <?php
 require_once("./../../model/quotationModel.php");
+require_once("./../../model/activityModel.php");
 
 class Quotation{
     // constructor function
@@ -15,8 +16,9 @@ class Quotation{
     function addQuotation($item_no,$name,$description,$quantity,$discount,$con_id){
         // add a new quotation
         $quotation = new QuotationModel();
+        $activity = new activityModel();
         $res = $quotation->addQuotationDB($item_no,$name,$description,$quantity,$discount,$con_id);
-
+        $res1 = $activity->addActivityforQuotationDB($name,$con_id);
     }
     // get all quotations
     function getAllQuotation(){
@@ -33,6 +35,7 @@ class Quotation{
     }
     function getSingleQuotation($con_id){
         // to be implemented
+
     }
     
 }
