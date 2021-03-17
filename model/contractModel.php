@@ -92,6 +92,18 @@ $con_location,$con_description,$con_payment){
 	}
     mysqli_close($conn);
 }
+function updateClientDB($c_id,$c_name,$c_address,$c_company,$c_mobile,$c_email){
+	global $conn;
+	$query = "update client SET c_name='$c_name',c_address='$c_address',c_company='$c_company',c_mobile='$c_mobile',c_email='$c_email'";
+	$result = mysqli_query($conn, $query);
+    if ($result) {
+        return 1;
+       
+	} else {
+		return 0;
+	}
+    mysqli_close($conn);
+}
 function deleteContractDB($id){
 	global $conn;
 	$query = "delete from contract where con_id = ".$id;

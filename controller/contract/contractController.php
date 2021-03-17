@@ -86,9 +86,15 @@ class Contract{
             echo "Error on Updation, please check for relevance of data";
         }    
     }
-    function updateClient($c_name,$c_address,$c_company,$c_mobile,$c_email){
+    function updateClient($c_id,$c_name,$c_address,$c_company,$c_mobile,$c_email){
         //update the details of a client
-
+        
+        if(updateClientDB($c_id,$c_name,$c_address,$c_company,$c_mobile,$c_email)){
+            echo "Client Update success";
+            header('location: ./contractUpdate.php?con_id='.$con_id);
+        }else{
+            echo "Error on Updation, please check for relevance of data";
+        }
     }
     function deleteContract($id){
         $stat = deleteContractDB($id);
