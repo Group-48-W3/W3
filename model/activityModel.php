@@ -6,9 +6,9 @@ class activityModel{
         global $conn;
         
         $sql1 = "insert into activity VALUES ('','primary wood provision','$name','1',FALSE,'$con_id')";
-        $sql2 = "insert into activity VALUES ('','item strcture','$name','1',FALSE','$con_id')";
+        $sql2 = "insert into activity VALUES ('','item strcture','$name','1',FALSE,'$con_id')";
         $sql3 = "insert into activity VALUES ('','wood paint + lacker','$name','1',FALSE,'$con_id')";
-        $sql4 = "insert into activity VALUES ('','wood polish','$name','1',FALSE','$con_id')";
+        $sql4 = "insert into activity VALUES ('','wood polish','$name','1',FALSE,'$con_id')";
         
         mysqli_query($conn, $sql1);
         mysqli_query($conn, $sql2);

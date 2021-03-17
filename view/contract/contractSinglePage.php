@@ -191,7 +191,55 @@
       </div>
       <div id="currentActivity" class="tabcontent">
         <h3>Current Activities</h3>
-        <table>
+        <div class="row">
+          <div class="col">
+            <table class="data-table paginated">
+              <thead>
+                <th width="15%">Activity Name</th>
+                <th>Activity Description</th>
+                
+                <th>Budget</th>
+                <th>Image</th>
+                <th>Discount</th>
+                <th>Progress</th>
+                <?php if($user_role==2){ ?>
+                <th>Edit</th>
+                <?php } ?>
+              </thead>
+              <tbody>
+                <?php
+                  $i=0;
+                  while($row = mysqli_fetch_array($quo_details)) {
+                    
+                ?>
+                  <tr>
+                    <td data-label="Name"><?php echo $row["q_name"]; ?></td>
+                    <td data-label="Name">
+                    <a onclick="document.getElementById('item').style.display='block'"><?php echo $row["q_item"]; ?></a>
+                    </td>
+                    <td data-label="Description"><?php echo $row["q_desc"]; ?></td>
+                    <td data-label="Budget"><?php echo $row["q_budget"];?></td>
+                    <td data-label="Image">Not Avaliable</td>
+                    <td data-label="Discount"><?php echo $row["q_discount"]?></td>
+                    <td data-label="Progress">25%</td>
+                    <?php if($user_role==2){ ?>
+                    <td data-label="Edit"><a href="" class="btn btn-warning">&#x270E</a></td>
+                    <?php } ?>
+                  </tr>
+                <?php
+                  $i++;
+                  }
+                  if($i==0){
+                ?>
+                <tr><td colspan="8"><center>No Activities Avaliable!</center></td></tr>
+                <?php } ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <br>
+       
+        <!-- <table>
             <thead>
               <tr>
                 <th>Activity</th>
@@ -227,7 +275,7 @@
               </tr>
             </tbody>
           </table>
-        <hr>
+        <hr> -->
       </div>
       <div id="addActivity" class="tabcontent">
       <h3>Set Activities</h3>
