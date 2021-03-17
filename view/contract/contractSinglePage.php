@@ -10,11 +10,12 @@
   require_once('./../../controller/contract/contractController.php');
   require_once('./../../controller/contract/quotationController.php');
   require_once('./../../controller/contract/activityController.php');
-
+  $user_role = $_SESSION['r_id'];	
   if (isset($_GET['con_id'])) {
     $con = new Contract();
     $quo = new Quotation();
     $_SESSION['contract_id'] = $_GET['con_id'];
+    
     $con_details = $con->getSingleActiveContract($_SESSION['contract_id']);
     
     $row = mysqli_fetch_array($con_details);
@@ -23,7 +24,7 @@
 
     $row_client = mysqli_fetch_array($client_details);
 
-    $quo_details = $quo->getAllQuotation();
+    $quo_details = $quo->getAllQuotationContract($_SESSION['contract_id']);
   }
 
   if(isset($_POST['delete_con'])){
@@ -86,28 +87,88 @@
     <div class="container">
       <div id="currentQuo">
         <h2>Current Quotation</h2>
-        <!-- Quotation Table -->
-        <table>
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Description</th>
-              <th>Budget</th>
-              <th>Image</th>
-              <th>Progress</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-            <td data-label="Contract"><a>Diwan #M001</a></td>
-            <td data-label="Name">StairCase Model #MC10</td>
-            <td data-label="Weight">150,000</td>
-            <td data-label="Description"><i>Image</i></td>
-            <td data-label="Progress">40%</td>
-            </tr>
-          </tbody>
-        </table>
-        <hr>
+      <!-- Quotation Table -->
+      <!-- New Component for item Table -->
+      <div class="container ">
+        <div class="row">
+          <div class="col">
+            <div class="left">
+              <span>Show: </span>
+              <select name="" id="rmViewRows" class="" width="15px">
+                <option value="5">5 records</option>
+              
+              </select>
+            </div>
+          </div>
+          <div class="col">
+            <div class="right">
+              <span>Sort By: </span>
+              <select name="" id="">
+                <option value="">Category</option>
+                <option value="">Price</option>
+                <option value="">Available Quantity</option>
+              </select>
+              <select name="" id="">
+                <option value="">ASC</option>
+                <option value="">DESC</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col">
+            <table class="data-table paginated">
+              <thead>
+                <th width="15%">Quotation Name</th>
+                <th>Item Name</th>
+                <th width="40%">Description</th>
+                <th>Budget</th>
+                <th>Image</th>
+                <th>Discount</th>
+                <th>Progress</th>
+                <?php if($user_role==2){ ?>
+                <th>Edit</th>
+                <?php } ?>
+              </thead>
+              <tbody>
+                <?php
+                  $i=0;
+                  while($row = mysqli_fetch_array($quo_details)) {
+                    
+                ?>
+                  <tr>
+                    <td data-label="Name"><?php echo $row["q_name"]; ?></td>
+                    <td data-label="Name">
+                    <a onclick="document.getElementById('item').style.display='block'"><?php echo $row["q_item"]; ?></a>
+                    </td>
+                    <td data-label="Description"><?php echo $row["q_desc"]; ?></td>
+                    <td data-label="Budget"><?php echo $row["q_budget"];?></td>
+                    <td data-label="Image">Not Avaliable</td>
+                    <td data-label="Discount"><?php echo $row["q_discount"]?></td>
+                    <td data-label="Progress">25%</td>
+                    <?php if($user_role==2){ ?>
+                    <td data-label="Edit"><a href="" class="btn btn-warning">&#x270E</a></td>
+                    <?php } ?>
+                  </tr>
+                <?php
+                  $i++;
+                  }
+                  if($i==0){
+                ?>
+                <tr><td colspan="8"><center>No Quotations Avaliable!</center></td></tr>
+                <?php } ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <br>
+        <?php
+          $i++;
+          if($i==0){
+            echo "No results ";
+          }
+        ?>
       </div>
       <div id="addQuo">
         <h2>Add a new Quotation</h2>
@@ -119,6 +180,7 @@
         </div>
         </form>
     </div>
+    <hr>
     <!-- Quotation Details ends -->
     <!-- Activity Details -->
     <h2>Step 04 : Activity Details</h2>
@@ -258,7 +320,39 @@
     </div>
     <br> -->
     <!-- Workflow Animation ends -->
-    
+    <!-- Prompt Box -->
+    <div id="item" class="confirm-box">
+      <div class="right" style="margin-right:25px;">
+        <span onclick="document.getElementById('item').style.display='none'" class="close" title="Close Modal">&times;</span>
+      </div>
+      
+      <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
+        <h1>Item View</h1>
+        <div class="form-group field">
+          <input type="text" class="form-field" name="item_name" id="item_name" >
+          <label for="item_name" class="form-label" placeholder="I0001">Item Name</label>
+          <small id="" class="form-text text-muted">Provide a suitable item name eg:- bed_model#4</small>
+        </div>
+        <div class="form-group field">
+          <input type="text" class="form-field" name="item_category" id="item_category" >
+          <label for="q_budget" class="form-label">Item Category</label>
+        </div>
+        <div class="form-group field">
+          <input type="text" class="form-field" name="unit_price" id="unit_price">  
+          <label for="unit_price" class="form-label">Unit Price</label>
+        </div>
+        <div class="form-group field">
+          <input type="file" class="form-field" id="image" name="image">
+          <label for="q_budget" class="form-label">Image</label>
+        </div>
+        
+        <div class="clearfix right">
+          <button type="button" class="btn btn-secondary" onclick="document.getElementById('item').style.display='none'">Cancel</button>
+          <button type="submit" name="add_item" class="btn btn-primary">Add Item</button>
+        </div>
+      </form>
+    </div>
+    <!-- End Prompt Box -->
     
     <!-- Prompt Box -->
     <div id="id01" class="confirm-box">
@@ -275,21 +369,6 @@
       </form>
     </div>
     <!-- End Prompt Box -->
-    <!-- Second Prompt Box -->
-    <div id="id02" class="confirm-box">
-      <div class="right" style="margin-right:25px;">
-        <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-      </div>
-      <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
-        <h1>Change Status Contract</h1>
-        <p>Are you sure you want to change the status your contract?</p><br>
-        <div class="clearfix right">
-          <button type="button" class="btn btn-secondary" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
-          <button type="submit" name="delete_con" class="btn btn-warning">Set Inactive</button>
-        </div>
-      </form>
-    </div>
-    <!-- End of Prompt Box -->
     <br><br>
 </div>
 <?php 

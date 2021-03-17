@@ -21,5 +21,12 @@ class QuotationModel{
         }
         mysqli_close($conn);
 	}
+	function getAllQuotationContractDB($con_id){
+		global $conn;
+		$query = "select * from quotation where q_con_id = '$con_id'";
+		$result = mysqli_query($conn,$query);
+
+		return $result;
+	}
 }
 ?>

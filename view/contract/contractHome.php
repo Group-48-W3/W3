@@ -16,7 +16,7 @@
 
   <div class="container">
     <!-- Heading  -->
-    <h1>Contract Home</h1>
+    <h2>Contract Home</h2>
     <!-- Start the card View  -->
     <div class="row">
       <!-- 1st card -->
@@ -67,17 +67,30 @@
     <br>
     <!-- end of row -->
     <!-- Find a contract  -->
-    <h1 style="margin: 0px">Find a Contract</h1>
-    <h6 style="margin: 0px">Search contracts from the database</h6>
-    <!-- searching -->
-    <div class="container">
-      <div class="row">
-        <div class="form-group field" style="width: 200px">
-          <input class="form-field" type="text" name="search" id="search" autocomplete="off" placeholder="Search the contract name here">
-          <div id="output"></div>
-        </div>           
+    <div class="row">
+      
+      <div class="col-sm">
+        <!-- Add a new Contract -->
+        <h2 style="margin: 0px">Add a new Contract</h2>
+        <small>Add new contract for the business environment</small><br>
+        <a class="btn btn-primary" href="./contractAdd.php">Add New Contract</a>
+        <!-- End add contract -->
+      </div>
+      <div class="col-sm">
+        <h2 style="margin: 0px">Find a Contract</h2>
+        <small style="margin: 0px">Search contracts from the database</small><br>
+        <!-- searching -->
+        <div class="container">
+          <div class="row">
+            <div class="form-group field" style="width: 200px">
+              <input class="form-field" type="text" name="search" id="search" autocomplete="off" placeholder="Search the contract name here">
+              <div id="output"></div>
+            </div>           
+          </div>
+        </div>
       </div>
     </div>
+    
     
     <script type="text/javascript">
       $(document).ready(function(){
@@ -107,12 +120,9 @@
         });
       });
     </script>
-    <!-- Add a new Contract -->
-    <h1 style="margin: 0px">Add a new Contract</h1>
-    <a class="btn btn-primary" href="./contractAdd.php">Add New Contract</a>
-    <!-- End add contract -->
+    
     <!--Contrat Summary Details  -->
-    <h1>Ongoing Contracts</h1>
+    <h2>Ongoing Contracts</h2>
     <p>Contracts that are Active</p>
     <?php
       $i=0;
@@ -142,7 +152,7 @@
     ?>
   </div> 
   <div class="container">
-  <h1>Finished Contracts</h1>
+  <h2>Finished Contracts</h2>
   <p>Contracts that are finished already</p>
   <!-- Database Results -->
   <?php
