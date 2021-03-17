@@ -76,8 +76,21 @@ function getSingleClientDB($id){
 
 	return $result;
 }
-function updateContractDB(){
-	return 1;
+function updateContractDB($contract_id,$con_name,$con_start_date,$con_end_date,
+$con_location,$con_description,$con_payment){
+	global $conn;
+	$query = "update contract SET con_name='$con_name',startdate='$con_start_date',
+	enddate='$con_end_date',location='$con_location',con_desc='$con_description',
+	payment_method='$con_payment WHERE con_id='$contract_id'";
+	$result = mysqli_query($conn,$query);
+
+	if ($result) {
+        return 1;
+       
+	} else {
+		return 0;
+	}
+    mysqli_close($conn);
 }
 function deleteContractDB($id){
 	global $conn;

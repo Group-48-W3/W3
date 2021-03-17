@@ -25,7 +25,10 @@
  // update contract validations
  if (isset($_POST['contractUpdate'])){
     $con = new Contract();
-    $con_update = $con->updateContract();
+    
+    $con_update = $con->updateContract($_SESSION['contract_id'],$_POST['con_name'],$_POST['con_start_date'],$_POST['con_end_date'],
+    $_POST['con_location'],$_POST['con_description'],$_POST['con_payment']);
+    $client_update = $con->updateClient($_POST['c_name'],$_POST['c_address'],$_POST['c_company'],$_POST['c_mobile'],$_POST['c_email']);
  }
  ?>
 
@@ -35,7 +38,7 @@
     <!-- Contract details start -->
     <!-- Step 01 -->
     <h4>Step 01 : Update Contract Details</h4>
-      <form method="post" action="./../../controller/contract/contractController.php">
+      <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
         <div class="form-group field">
           <input type="text" class="form-field" name="con_name" id="con_name" value="<?php echo $row['con_name'];?>" required>
           <label for="con_name" class="form-label">Contract Name</label>
