@@ -11,7 +11,7 @@ function addContractDB($con_name,$con_start_date,$con_end_date,$con_location,$co
 		echo "Error: " . $sql . " " . mysqli_error($conn);
 		return 0;
 	 }
-	 mysqli_close($conn);
+	mysqli_close($conn);
 }
 function addClientDB($c_name,$c_address,$c_company,$c_mobile,$c_email){
 	global $conn;
