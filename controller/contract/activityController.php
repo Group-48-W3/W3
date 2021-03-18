@@ -15,10 +15,15 @@ class Activity{
     }
     function addActivityforQuotation(){
         //setup basic activities for each quotation
-
+        
     }
-    function getActivity($name){ 
+    function getActivityforContract($con_id){ 
         //
+        $activity = new activityModel();
+        echo "in controller";
+        $res = $activity->getAllActivityContractDB($con_id);
+
+        return $res;
     }
     
     function updateActivity(){

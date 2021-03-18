@@ -14,6 +14,7 @@
   if (isset($_GET['con_id'])) {
     $con = new Contract();
     $quo = new Quotation();
+    $act = new Activity();
     $_SESSION['contract_id'] = $_GET['con_id'];
     
     $con_details = $con->getSingleActiveContract($_SESSION['contract_id']);
@@ -25,6 +26,8 @@
     $row_client = mysqli_fetch_array($client_details);
 
     $quo_details = $quo->getAllQuotationContract($_SESSION['contract_id']);
+
+    $act_details = $act->getActivityforContract($_SESSION['contract_id']);
   }
 
   if(isset($_POST['delete_con'])){
@@ -191,17 +194,42 @@
       </div>
       <div id="currentActivity" class="tabcontent">
         <h3>Current Activities</h3>
+        <!-- Table Header -->
+        <div class="row">
+          <div class="col">
+            <div class="left">
+              <span>Show: </span>
+              <select name="" id="rmViewRows" class="" width="15px">
+                <option value="5">5 records</option>
+              
+              </select>
+            </div>
+          </div>
+          <div class="col">
+            <div class="right">
+              <span>Sort By: </span>
+              <select name="" id="">
+                <option value="">Category</option>
+                <option value="">Price</option>
+                <option value="">Available Quantity</option>
+              </select>
+              <select name="" id="">
+                <option value="">ASC</option>
+                <option value="">DESC</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <br>
+        <!-- Table Header ends -->
         <div class="row">
           <div class="col">
             <table class="data-table paginated">
               <thead>
-                <th width="15%">Activity Name</th>
+                <th width="30%">Activity Name</th>
                 <th>Activity Description</th>
-                
-                <th>Budget</th>
-                <th>Image</th>
-                <th>Discount</th>
-                <th>Progress</th>
+                <th>Weight</th>
+                <th>Complete</th>
                 <?php if($user_role==2){ ?>
                 <th>Edit</th>
                 <?php } ?>
@@ -209,21 +237,24 @@
               <tbody>
                 <?php
                   $i=0;
-                  while($row = mysqli_fetch_array($quo_details)) {
-                    
+                  while($row_act = mysqli_fetch_array($act_details)) {    
                 ?>
                   <tr>
-                    <td data-label="Name"><?php echo $row["q_name"]; ?></td>
-                    <td data-label="Name">
-                    <a onclick="document.getElementById('item').style.display='block'"><?php echo $row["q_item"]; ?></a>
+                    <td data-label="Name"><?php echo $row_act["act_name"]; ?></td>
+                    <td data-label="Description"><?php echo $row_act["act_desc"]; ?></td>
+                    <td data-label="Budget"><?php echo $row_act["weight"];?></td>
+                    
+                    <?php if($row_act["act_complete"] == TRUE){?>
+                    <td data-label="status">
+                    <input type="checkbox" id="vehicle1" name="act_true" checked = "checked" value="done">
                     </td>
-                    <td data-label="Description"><?php echo $row["q_desc"]; ?></td>
-                    <td data-label="Budget"><?php echo $row["q_budget"];?></td>
-                    <td data-label="Image">Not Avaliable</td>
-                    <td data-label="Discount"><?php echo $row["q_discount"]?></td>
-                    <td data-label="Progress">25%</td>
+                    <?php }else{ ?>
+                      <td data-label="status">
+                    <input type="checkbox" id="vehicle1" name="act_false" value="not_done">
+                    </td>
+                    <?php } ?>
                     <?php if($user_role==2){ ?>
-                    <td data-label="Edit"><a href="" class="btn btn-warning">&#x270E</a></td>
+                    <td data-label="Edit"><a href="" class="btn btn-success">&#x270E Mark</a></td>
                     <?php } ?>
                   </tr>
                 <?php
@@ -238,44 +269,6 @@
           </div>
         </div>
         <br>
-       
-        <!-- <table>
-            <thead>
-              <tr>
-                <th>Activity</th>
-                <th>Item</th>
-                <th>Description</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-              <td data-label="Name">Setup the workspace</td>
-              <td data-label="Description">section 1</td>
-              <td data-label="abc">High Comfortable Chair Model for Hotels</td>
-              <td data-label="status">
-              <input type="checkbox" id="vehicle1" name="vehicle1" checked = "checked" value="Bike">
-              </td>
-              </tr>
-              <tr>
-              <td data-label="Name">Load the machine</td>
-              <td data-label="Description">section 1</td>
-              <td data-label="abc">High Comfortable Chair Model for Hotels</td>
-              <td data-label="status">
-              <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-              </td>
-              </tr>
-              <tr>
-              <td data-label="Name">Primary wood cutting</td>
-              <td data-label="Description">wood </td>
-              <td data-label="abc">High Comfortable Chair Model for Hotels</td>
-              <td data-label="status">
-              <input type="checkbox" id="vehicle1" name="vehicle1" checked = "checked" value="Bike">
-              </td>
-              </tr>
-            </tbody>
-          </table>
-        <hr> -->
       </div>
       <div id="addActivity" class="tabcontent">
       <h3>Set Activities</h3>
@@ -323,51 +316,6 @@
         </div>
       </div>
     </div>
-    <!-- Workflow Animation -->
-    <!-- <h2>Contract Origanization</h2>
-    <div class="tree">
-      <ul>
-        <li>
-          <a href="#"><?php echo $row['con_name'];?></a>
-          <ul>
-            <li>
-              <a href="#">2</a>
-              <ul>
-                <li>
-                  <a href="#">2.1</a>  
-                </li>
-                <li>
-                  <a href="#">2.2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">3</a>
-              <ul>
-                <ul>
-                <li>
-                  <a href="#">3.1</a>
-                  <ul>
-                <li>
-                  <a href="#">3.1.1</a>
-                </li>
-                <li>
-                  <a href="#">3.1.2</a>
-                </li>
-              </ul>
-                </li>
-                <li>
-                  <a href="#">3.2</a>
-                </li>
-              </ul>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <br> -->
-    <!-- Workflow Animation ends -->
     <!-- Prompt Box -->
     <div id="item" class="confirm-box">
       <div class="right" style="margin-right:25px;">
@@ -419,6 +367,35 @@
     <!-- End Prompt Box -->
     <br><br>
 </div>
+
+<script>
+	$('table.paginated').each(function () {
+        var currentPage = 0;
+        var numPerPage = 5; // number of items 
+        var $table = $(this);
+        //var $tableBd = $(this).find("tbody");
+
+        $table.bind('repaginate', function () {
+            $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+        });
+        $table.trigger('repaginate');
+        var numRows = $table.find('tbody tr').length;
+        var numPages = Math.ceil(numRows / numPerPage);
+        var $pager = $('<div class="pager"></div>');
+        for (var page = 0; page < numPages; page++) {
+            $('<span class="page-number"></span>').text(page + 1).bind('click', {
+                newPage: page
+            }, function (event) {
+                currentPage = event.data['newPage'];
+                $table.trigger('repaginate');
+                $(this).addClass('active').siblings().removeClass('active');
+            }).appendTo($pager).addClass('clickable');
+        }
+        if (numRows > numPerPage) {
+            $pager.insertAfter($table).find('span.page-number:first').addClass('active');
+        }
+    });
+</script>
 <?php 
  require_once('leftSidebar.php'); 
  require_once('footer.php'); 
