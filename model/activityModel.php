@@ -43,6 +43,20 @@ class activityModel{
         }
         mysqli_close($conn);
     }
+    function getProgressContractDB($con_id){
+        global $conn;
+        $sql = "SELECT COUNT(act_id) FROM activity WHERE con_id='$con_id' AND act_complete = 1";
+        $result = mysqli_query($conn, $sql);
+
+        return $result;
+    }
+    function getTotalActivityContractDB($con_id){
+        global $conn;
+        $sql = "SELECT COUNT(act_id) FROM activity WHERE con_id='$con_id'";
+        $result = mysqli_query($conn, $sql);
+
+        return $result;
+    }
 }
 
 

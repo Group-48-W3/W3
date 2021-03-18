@@ -28,6 +28,8 @@
     $quo_details = $quo->getAllQuotationContract($_SESSION['contract_id']);
 
     $act_details = $act->getActivityforContract($_SESSION['contract_id']);
+
+    $progress = $act->getProgressContract($_SESSION['contract_id']);
   }
 
   if(isset($_POST['delete_con'])){
@@ -75,15 +77,13 @@
     <!-- Progress starts -->
     <h2>Progress Measures</h2>
     <div class="circles">
-      <div class="second circle">
-        <!-- <strong></strong> -->
-        <b></b>
-        <span><br>Overall Contracts progress</span>
-      </div>
+      <h5>Progess : <?php echo " ".$progress." %"?></h5>
+      
       <br>
       <div class="third circle">
         <strong></strong>
-        <span><br><?php echo $row["con_name"]." "; ?>progress</span>
+        <!-- <span><br><?php echo $row["con_name"]." "; ?>progress</span> -->
+        
       </div>
     </div>
     <!-- Progress ends -->
@@ -228,11 +228,11 @@
                     
                     <?php if($row_act["act_complete"] == TRUE){?>
                     <td data-label="status">
-                    <input type="checkbox" id="vehicle1" name="act_true" checked = "checked" value="done">
+                    ✔️
                     </td>
                     <?php }else{ ?>
-                      <td data-label="status">
-                    <input type="checkbox" id="vehicle1" name="act_false" value="not_done">
+                    <td data-label="status">
+                    ⌛
                     </td>
                     <?php } ?>
                     <?php if($user_role==2){ ?>
@@ -354,7 +354,7 @@
     <!-- End Prompt Box -->
     <br><br>
 </div>
-
+<!-- Pagination script -->
 <script>
 	$('table.paginated').each(function () {
         var currentPage = 0;

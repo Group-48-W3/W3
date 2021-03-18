@@ -8,10 +8,14 @@
 	}		
   require_once('./../../controller/contract/contractController.php');
   require_once('./../../controller/user/userController.php');
+  require_once('./../../controller/contract/activityController.php');
   require_once('header.php');
   $con = new Contract();
   $result = $con->getAllActiveContracts();
   $res2 = $con->getAllInactiveContracts();
+
+  $act = new Activity();
+  
 ?>
 
   <div class="container">
@@ -130,14 +134,20 @@
 
     ?>
     <!-- Contract Item -->
+    <?php
+        $res_act = $act->getProgressContract((int)$row["con_id"]);
+        //echo $res_act;
+    ?>
     <div class="container card text-white bg-primary" onclick="location.href='./contractSinglePage.php?con_id=<?php echo $row["con_id"]; ?>';" style="cursor: pointer;">
       <br>
       <h4 style="margin: 0px"><?php echo $row["con_name"]; ?></h4>
       <h6 style="margin: 0px"><?php echo $row["con_desc"]; ?></h6>
       <h6 style="margin: 0px">Start Date :<?php echo $row["startdate"]; ?>Upto End date : <?php echo $row["enddate"]; ?></h6>
       <h6 style="margin: 0px"><?php echo $row["location"]; ?></h6>
+      <h6 style="margin: 0px">Progress : <?php echo " ".$res_act." %"; ?></h6>
       <div class="progress">
-        <progress id="contract" value="32" max="100"> 32% </progress>
+        <progress id="contract" value="<?php echo $res_act; ?>" max="100"> </progress>
+        
       </div>
       <p style="text-align:right;"><?php echo $row["status"]; ?></p>
       <br>
