@@ -22,8 +22,21 @@ class activityModel{
         $sql = "select * from activity WHERE con_id = '$con_id'";
         $result = mysqli_query($conn, $sql);
         if ($result) {
-            echo "activity retrived successfully !";
+            //echo "activity retrived successfully !";
             return $result;
+        
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+        }
+        mysqli_close($conn);
+    }
+    function setMarkActivityDB($act_id){
+        global $conn;
+        $sql = "update activity SET act_complete = TRUE WHERE act_id = '$act_id'";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            //echo "activity retrived successfully !";
+            return 1;
         
         } else {
             echo "Error: " . $sql . " " . mysqli_error($conn);

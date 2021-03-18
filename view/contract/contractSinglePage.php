@@ -40,6 +40,12 @@
     $contract_id = $_SESSION['contract_id'];
     
   }
+  if(isset($_POST['act_done'])){
+    $act_id = $_POST['mark_done'];
+    $act = new Activity();
+    $act->setMarkActivity($act_id,$_SESSION['contract_id']);
+    
+  }
 
 ?>
 
@@ -152,6 +158,7 @@
                     <td data-label="Progress">25%</td>
                     <?php if($user_role==2){ ?>
                     <td data-label="Edit"><a href="" class="btn btn-warning">&#x270E</a></td>
+                    
                     <?php } ?>
                   </tr>
                 <?php
@@ -195,31 +202,6 @@
       <div id="currentActivity" class="tabcontent">
         <h3>Current Activities</h3>
         <!-- Table Header -->
-        <div class="row">
-          <div class="col">
-            <div class="left">
-              <span>Show: </span>
-              <select name="" id="rmViewRows" class="" width="15px">
-                <option value="5">5 records</option>
-              
-              </select>
-            </div>
-          </div>
-          <div class="col">
-            <div class="right">
-              <span>Sort By: </span>
-              <select name="" id="">
-                <option value="">Category</option>
-                <option value="">Price</option>
-                <option value="">Available Quantity</option>
-              </select>
-              <select name="" id="">
-                <option value="">ASC</option>
-                <option value="">DESC</option>
-              </select>
-            </div>
-          </div>
-        </div>
         <br>
         <!-- Table Header ends -->
         <div class="row">
@@ -254,7 +236,12 @@
                     </td>
                     <?php } ?>
                     <?php if($user_role==2){ ?>
-                    <td data-label="Edit"><a href="" class="btn btn-success">&#x270E Mark</a></td>
+                    <td data-label="Edit">
+                    <form method = "post" action="<?php echo $_SERVER['PHP_SELF']?>">
+                    <input type="hidden" name = "mark_done" value="<?php echo $row_act["act_id"]; ?>">
+                    <button type="submit" name="act_done" class="btn btn-success">&#x270E Mark</button>
+                    </form>  
+                    </td>
                     <?php } ?>
                   </tr>
                 <?php

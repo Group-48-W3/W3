@@ -20,12 +20,22 @@ class Activity{
     function getActivityforContract($con_id){ 
         //
         $activity = new activityModel();
-        echo "in controller";
         $res = $activity->getAllActivityContractDB($con_id);
 
         return $res;
     }
-    
+    function setMarkActivity($act_id,$con_id){
+        $activity = new activityModel();
+        $res = $activity->setMarkActivityDB($act_id);
+
+        if($res){
+            header('location: ./contractSinglePage.php?con_id='.$con_id);
+        }else{
+            echo "Error on mark activity";
+        }
+
+        
+    }
     function updateActivity(){
         //
     }
