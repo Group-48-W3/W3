@@ -133,11 +133,10 @@
               <thead>
                 <th width="15%">Quotation Name</th>
                 <th>Item Name</th>
-                <th width="40%">Description</th>
+                <th width="30%">Description</th>
                 <th>Budget</th>
                 <th>Image</th>
                 <th>Discount</th>
-                <th>Progress</th>
                 <?php if($user_role==2){ ?>
                 <th>Edit</th>
                 <?php } ?>
@@ -145,8 +144,7 @@
               <tbody>
                 <?php
                   $i=0;
-                  while($row = mysqli_fetch_array($quo_details)) {
-                    
+                  while($row = mysqli_fetch_array($quo_details)) {    
                 ?>
                   <tr>
                     <td data-label="Name"><?php echo $row["q_name"]; ?></td>
@@ -157,9 +155,12 @@
                     <td data-label="Budget"><?php echo $row["q_budget"];?></td>
                     <td data-label="Image">Not Avaliable</td>
                     <td data-label="Discount"><?php echo $row["q_discount"]?></td>
-                    <td data-label="Progress">25%</td>
+                  
                     <?php if($user_role==2){ ?>
-                    <td data-label="Edit"><a href="" class="btn btn-warning">&#x270E</a></td>
+                    <td data-label="Edit">
+                    <a href="./quotationSinglePage.php?q_id=<?php echo $row["q_id"]; ?>" class="btn btn-warning">&#x270E</a>
+                    <a class="btn btn-danger" href="#">&#x2716</a>
+                    </td>
                     
                     <?php } ?>
                   </tr>

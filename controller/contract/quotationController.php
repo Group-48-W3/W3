@@ -33,10 +33,25 @@ class Quotation{
         return $res;
         
     }
-    function getSingleQuotation($con_id){
+    function getSingleQuotation($q_id){
         // to be implemented
+        $quotation = new QuotationModel();
+        $res =  $quotation->getSingleQuotationDB($q_id);
+        return $res;
+    }
+    function updateQuotation($quo_id,$q_item,$q_name,$q_desc,$q_budget,$q_discount){
+        // 
+        $quotation = new QuotationModel();
+        $res = $quotation->updateQuotationDB($quo_id,$q_item,$q_name,$q_desc,$q_budget,$q_discount);
+        if($res){
+            echo "quotation update successfully";
+            header('./quotationSinglePage.php?q_id='.$quo_id);
+        }else{
+            echo "quotation updation has an error";
+        }
+    }
+    function deleteQuotation($quo_id){
 
     }
-    
 }
 ?>
