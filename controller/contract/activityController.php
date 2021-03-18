@@ -9,15 +9,18 @@ class Activity{
         //echo "This is activity control section";
         
     }
-    function addActivity(){
-        //
-         
-            
+    function addActivity($act_name,$act_desc,$act_weight,$act_date,$con_id){
+        //add a custom activity
+        $activity = new activityModel();
+        $res = $activity->addActivityDB($act_name,$act_desc,$act_weight,$act_date,$con_id);
+
+        if($res){
+            header('location: ./contractSinglePage.php?con_id='.$con_id);
+        }else{
+            echo "Error on add activity";
+        }           
     }
-    function addActivityforQuotation(){
-        //setup basic activities for each quotation
-        
-    }
+    
     function getActivityforContract($con_id){ 
         //
         $activity = new activityModel();

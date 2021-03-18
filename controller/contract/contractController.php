@@ -95,7 +95,6 @@ class Contract{
     }
     function updateClient($con_id,$c_id,$c_name,$c_address,$c_company,$c_mobile,$c_email){
         //update the details of a client
-        
         updateClientDB($c_id,$c_name,$c_address,$c_company,$c_mobile,$c_email);
         
     }

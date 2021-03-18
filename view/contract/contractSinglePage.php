@@ -40,6 +40,8 @@
   if(isset($_POST['add_activity'])){
     //
     $contract_id = $_SESSION['contract_id'];
+    $act = new Activity();
+    $act->addActivity($_POST['act_name'],$_POST['act_desc'],$_POST['act_weight'],$_POST['act_date'],$contract_id);
     
   }
   if(isset($_POST['act_done'])){
@@ -267,7 +269,7 @@
             <label for="activityName" class="form-label">Activity Name</label>
           </div>
           <div class="form-group">
-            <input type="text" class="form-field" name="act_des" id="activityDescription">
+            <input type="text" class="form-field" name="act_desc" id="activityDescription">
             <label for="activityDescription" class="form-label">Activity Description</label>
           </div>
           <div class="form-group">

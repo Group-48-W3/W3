@@ -2,6 +2,20 @@
 require_once("./../../config/config.php");
 
 class activityModel{
+    function addActivityDB($act_name,$act_desc,$act_weight,$act_date,$con_id){
+        global $conn;
+        $sql = "insert into activity values ('','$act_name','$act_desc','$act_weight',FALSE,'$con_id')";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            //echo "activity retrived successfully !";
+            return 1;
+        
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+            return 0;
+        }
+        mysqli_close($conn);
+    }
     function addActivityforQuotationDB($name,$con_id){
         global $conn;
         
