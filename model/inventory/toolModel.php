@@ -1,6 +1,7 @@
 <?php
 require_once("./../../config/config.php");
 
+// Insert new tool category
 function insertToTool($toolName, $toolDesc, $toolReorderValue, $abcTool)
 {
     global $conn;
@@ -13,13 +14,13 @@ function insertToTool($toolName, $toolDesc, $toolReorderValue, $abcTool)
     mysqli_close($conn);
 }
 
-function insertToToolDetails($toolRegID, $toolPrice, $toolManufacturer, $toolQuantity, $toolCategory)
+function insertToToolDetails($toolInvCode, $toolDesc, $toolQuantity, $toolLoc, $toolSupplier, $toolDeliver)
 {
     global $conn;
     if (empty($toolQuantity)) {
-        $sql = "INSERT INTO `tool_detail` (`tool_id`, `tool_manu`, `tool_avl`, `tool_qty`, `tool_value`, `inv_code`) VALUES ('$toolRegID', '$toolManufacturer', 'Yes', '0', '$toolPrice', '$toolCategory')";
+        $sql = "INSERT INTO `tool-detailed` (`delivered-by`, `supplier`, `description`, `tool-qty`, `tool-location`, `inv-code`) VALUES ('$toolDeliver', '$toolSupplier', '$toolDesc', '0', '$toolLoc', '$toolInvCode')";
     } else {
-        $sql = "INSERT INTO `tool_detail` (`tool_id`, `tool_manu`, `tool_avl`, `tool_qty`, `tool_value`, `inv_code`) VALUES ('$toolRegID', '$toolManufacturer', 'Yes', '$toolQuantity', '$toolPrice', '$toolCategory')";
+        $sql = "INSERT INTO `tool-detailed` (`delivered-by`, `supplier`, `description`, `tool-qty`, `tool-location`, `inv-code`) VALUES ('$toolDeliver', '$toolSupplier', '$toolDesc', '$toolQuantity', '$toolLoc', '$toolInvCode')";
     }
     if (mysqli_query($conn, $sql)) {
         echo "New tool inserted successfully!";
@@ -29,10 +30,24 @@ function insertToToolDetails($toolRegID, $toolPrice, $toolManufacturer, $toolQua
     mysqli_close($conn);
 }
 
+function insertToMachineDetails($machineInvCode, $machineDesc, $machineID, $machinePrice, $machineLoc, $machineSupplier, $machineDeliver)
+{
+    global $conn;
+    $date = Date("Y-m-d");
+    $sql = "INSERT INTO `machine-detailed` (`inv-code`, `machine-desc`, `reg-id`, `price`, `supplier`, `delivered-by`, `machine-location`, `status`, `added-date`) VALUES ('$machineInvCode', '$machineDesc', '$machineID', '$machinePrice', '$machineSupplier', '$machineDeliver', '$machineLoc', '1', '$date')";
+
+    if (mysqli_query($conn, $sql)) {
+        echo "New machine inserted successfully!";
+    } else {
+        echo "Error: " . $sql . " " . mysqli_error($conn);
+    }
+    mysqli_close($conn);
+}
+
 function selectAllToolCategories()
 {
     global $conn;
-    $query = "select * from tool";
+    $query = "SELECT * from `tool-category`";
     $result = mysqli_query($conn, $query);
     return $result;
 }
@@ -53,7 +68,7 @@ function getToolDetailsDB($toolCategoryID)
     return $result;
 }
 
-//Check if category exists
+// Check if category exists
 function isInTool($toolName)
 {
     global $conn;
@@ -69,10 +84,27 @@ function isInTool($toolName)
     }
 }
 
-function isInToolDetails($toolRegID)
+// Check if tool exists
+function isInToolDetails($toolDesc)
 {
     global $conn;
-    $sql = "select * from tool_detail where tool_id = '" . $toolRegID . "'";
+    $sql = "SELECT * FROM `tool-detailed` WHERE `description` = '$toolDesc'";
+
+    $result = mysqli_query($conn, $sql);
+    $numRows = mysqli_num_rows($result);
+
+    if ($numRows == 0) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+// Check if machine exists
+function isInMachineDetails($machineID)
+{
+    global $conn;
+    $sql = "SELECT * FROM `machine-detailed` WHERE `reg-id` = '$machineID'";
 
     $result = mysqli_query($conn, $sql);
     $numRows = mysqli_num_rows($result);
