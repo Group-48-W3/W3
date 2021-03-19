@@ -28,5 +28,26 @@ class QuotationModel{
 
 		return $result;
 	}
+	function getSingleQuotationDB($q_id){
+		global $conn;
+		$query = "select * from quotation where q_id = '$q_id'";
+		$result = mysqli_query($conn,$query);
+
+		return $result;
+
+	}
+	function updateQuotationDB($quo_id,$q_item,$q_name,$q_desc,$q_budget,$q_discount){
+		global $conn;
+		$sql = "update quotation SET q_item='$q_item',q_name='$q_name',q_desc='$q_desc', q_budget='$q_budget', q_discount='$q_discount'
+		WHERE q_id = '$quo_id'";
+        if (mysqli_query($conn, $sql)) {
+            // echo "Item created successfully !";
+            return 1;
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+            return 0;
+        }
+        mysqli_close($conn);
+	}
 }
 ?>

@@ -14,6 +14,7 @@
   if (isset($_GET['con_id'])) {
     $con = new Contract();
     $quo = new Quotation();
+    $act = new Activity();
     $_SESSION['contract_id'] = $_GET['con_id'];
     
     $con_details = $con->getSingleActiveContract($_SESSION['contract_id']);
@@ -25,6 +26,10 @@
     $row_client = mysqli_fetch_array($client_details);
 
     $quo_details = $quo->getAllQuotationContract($_SESSION['contract_id']);
+
+    $act_details = $act->getActivityforContract($_SESSION['contract_id']);
+
+    $progress = $act->getProgressContract($_SESSION['contract_id']);
   }
 
   if(isset($_POST['delete_con'])){
@@ -35,6 +40,14 @@
   if(isset($_POST['add_activity'])){
     //
     $contract_id = $_SESSION['contract_id'];
+    $act = new Activity();
+    $act->addActivity($_POST['act_name'],$_POST['act_desc'],$_POST['act_weight'],$_POST['act_date'],$contract_id);
+    
+  }
+  if(isset($_POST['act_done'])){
+    $act_id = $_POST['mark_done'];
+    $act = new Activity();
+    $act->setMarkActivity($act_id,$_SESSION['contract_id']);
     
   }
 
@@ -66,15 +79,13 @@
     <!-- Progress starts -->
     <h2>Progress Measures</h2>
     <div class="circles">
-      <div class="second circle">
-        <!-- <strong></strong> -->
-        <b></b>
-        <span><br>Overall Contracts progress</span>
-      </div>
+      <h5>Progess : <?php echo " ".$progress." %"?></h5>
+      
       <br>
       <div class="third circle">
         <strong></strong>
-        <span><br><?php echo $row["con_name"]." "; ?>progress</span>
+        <!-- <span><br><?php echo $row["con_name"]." "; ?>progress</span> -->
+        
       </div>
     </div>
     <!-- Progress ends -->
@@ -122,11 +133,10 @@
               <thead>
                 <th width="15%">Quotation Name</th>
                 <th>Item Name</th>
-                <th width="40%">Description</th>
+                <th width="30%">Description</th>
                 <th>Budget</th>
                 <th>Image</th>
                 <th>Discount</th>
-                <th>Progress</th>
                 <?php if($user_role==2){ ?>
                 <th>Edit</th>
                 <?php } ?>
@@ -134,8 +144,7 @@
               <tbody>
                 <?php
                   $i=0;
-                  while($row = mysqli_fetch_array($quo_details)) {
-                    
+                  while($row = mysqli_fetch_array($quo_details)) {    
                 ?>
                   <tr>
                     <td data-label="Name"><?php echo $row["q_name"]; ?></td>
@@ -146,9 +155,13 @@
                     <td data-label="Budget"><?php echo $row["q_budget"];?></td>
                     <td data-label="Image">Not Avaliable</td>
                     <td data-label="Discount"><?php echo $row["q_discount"]?></td>
-                    <td data-label="Progress">25%</td>
+                  
                     <?php if($user_role==2){ ?>
-                    <td data-label="Edit"><a href="" class="btn btn-warning">&#x270E</a></td>
+                    <td data-label="Edit">
+                    <a href="./quotationSinglePage.php?q_id=<?php echo $row["q_id"]; ?>" class="btn btn-warning">&#x270E</a>
+                    <a class="btn btn-danger" href="#">&#x2716</a>
+                    </td>
+                    
                     <?php } ?>
                   </tr>
                 <?php
@@ -191,17 +204,17 @@
       </div>
       <div id="currentActivity" class="tabcontent">
         <h3>Current Activities</h3>
+        <!-- Table Header -->
+        <br>
+        <!-- Table Header ends -->
         <div class="row">
           <div class="col">
             <table class="data-table paginated">
               <thead>
-                <th width="15%">Activity Name</th>
+                <th width="30%">Activity Name</th>
                 <th>Activity Description</th>
-                
-                <th>Budget</th>
-                <th>Image</th>
-                <th>Discount</th>
-                <th>Progress</th>
+                <th>Weight</th>
+                <th>Complete</th>
                 <?php if($user_role==2){ ?>
                 <th>Edit</th>
                 <?php } ?>
@@ -209,21 +222,29 @@
               <tbody>
                 <?php
                   $i=0;
-                  while($row = mysqli_fetch_array($quo_details)) {
-                    
+                  while($row_act = mysqli_fetch_array($act_details)) {    
                 ?>
                   <tr>
-                    <td data-label="Name"><?php echo $row["q_name"]; ?></td>
-                    <td data-label="Name">
-                    <a onclick="document.getElementById('item').style.display='block'"><?php echo $row["q_item"]; ?></a>
+                    <td data-label="Name"><?php echo $row_act["act_name"]; ?></td>
+                    <td data-label="Description"><?php echo $row_act["act_desc"]; ?></td>
+                    <td data-label="Budget"><?php echo $row_act["weight"];?></td>
+                    
+                    <?php if($row_act["act_complete"] == TRUE){?>
+                    <td data-label="status">
+                    ✔️
                     </td>
-                    <td data-label="Description"><?php echo $row["q_desc"]; ?></td>
-                    <td data-label="Budget"><?php echo $row["q_budget"];?></td>
-                    <td data-label="Image">Not Avaliable</td>
-                    <td data-label="Discount"><?php echo $row["q_discount"]?></td>
-                    <td data-label="Progress">25%</td>
+                    <?php }else{ ?>
+                    <td data-label="status">
+                    ⌛
+                    </td>
+                    <?php } ?>
                     <?php if($user_role==2){ ?>
-                    <td data-label="Edit"><a href="" class="btn btn-warning">&#x270E</a></td>
+                    <td data-label="Edit">
+                    <form method = "post" action="<?php echo $_SERVER['PHP_SELF']?>">
+                    <input type="hidden" name = "mark_done" value="<?php echo $row_act["act_id"]; ?>">
+                    <button type="submit" name="act_done" class="btn btn-success">&#x270E Mark</button>
+                    </form>  
+                    </td>
                     <?php } ?>
                   </tr>
                 <?php
@@ -238,44 +259,6 @@
           </div>
         </div>
         <br>
-       
-        <!-- <table>
-            <thead>
-              <tr>
-                <th>Activity</th>
-                <th>Item</th>
-                <th>Description</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-              <td data-label="Name">Setup the workspace</td>
-              <td data-label="Description">section 1</td>
-              <td data-label="abc">High Comfortable Chair Model for Hotels</td>
-              <td data-label="status">
-              <input type="checkbox" id="vehicle1" name="vehicle1" checked = "checked" value="Bike">
-              </td>
-              </tr>
-              <tr>
-              <td data-label="Name">Load the machine</td>
-              <td data-label="Description">section 1</td>
-              <td data-label="abc">High Comfortable Chair Model for Hotels</td>
-              <td data-label="status">
-              <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-              </td>
-              </tr>
-              <tr>
-              <td data-label="Name">Primary wood cutting</td>
-              <td data-label="Description">wood </td>
-              <td data-label="abc">High Comfortable Chair Model for Hotels</td>
-              <td data-label="status">
-              <input type="checkbox" id="vehicle1" name="vehicle1" checked = "checked" value="Bike">
-              </td>
-              </tr>
-            </tbody>
-          </table>
-        <hr> -->
       </div>
       <div id="addActivity" class="tabcontent">
       <h3>Set Activities</h3>
@@ -287,7 +270,7 @@
             <label for="activityName" class="form-label">Activity Name</label>
           </div>
           <div class="form-group">
-            <input type="text" class="form-field" name="act_des" id="activityDescription">
+            <input type="text" class="form-field" name="act_desc" id="activityDescription">
             <label for="activityDescription" class="form-label">Activity Description</label>
           </div>
           <div class="form-group">
@@ -323,51 +306,6 @@
         </div>
       </div>
     </div>
-    <!-- Workflow Animation -->
-    <!-- <h2>Contract Origanization</h2>
-    <div class="tree">
-      <ul>
-        <li>
-          <a href="#"><?php echo $row['con_name'];?></a>
-          <ul>
-            <li>
-              <a href="#">2</a>
-              <ul>
-                <li>
-                  <a href="#">2.1</a>  
-                </li>
-                <li>
-                  <a href="#">2.2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">3</a>
-              <ul>
-                <ul>
-                <li>
-                  <a href="#">3.1</a>
-                  <ul>
-                <li>
-                  <a href="#">3.1.1</a>
-                </li>
-                <li>
-                  <a href="#">3.1.2</a>
-                </li>
-              </ul>
-                </li>
-                <li>
-                  <a href="#">3.2</a>
-                </li>
-              </ul>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <br> -->
-    <!-- Workflow Animation ends -->
     <!-- Prompt Box -->
     <div id="item" class="confirm-box">
       <div class="right" style="margin-right:25px;">
@@ -419,6 +357,35 @@
     <!-- End Prompt Box -->
     <br><br>
 </div>
+<!-- Pagination script -->
+<script>
+	$('table.paginated').each(function () {
+        var currentPage = 0;
+        var numPerPage = 5; // number of items 
+        var $table = $(this);
+        //var $tableBd = $(this).find("tbody");
+
+        $table.bind('repaginate', function () {
+            $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+        });
+        $table.trigger('repaginate');
+        var numRows = $table.find('tbody tr').length;
+        var numPages = Math.ceil(numRows / numPerPage);
+        var $pager = $('<div class="pager"></div>');
+        for (var page = 0; page < numPages; page++) {
+            $('<span class="page-number"></span>').text(page + 1).bind('click', {
+                newPage: page
+            }, function (event) {
+                currentPage = event.data['newPage'];
+                $table.trigger('repaginate');
+                $(this).addClass('active').siblings().removeClass('active');
+            }).appendTo($pager).addClass('clickable');
+        }
+        if (numRows > numPerPage) {
+            $pager.insertAfter($table).find('span.page-number:first').addClass('active');
+        }
+    });
+</script>
 <?php 
  require_once('leftSidebar.php'); 
  require_once('footer.php'); 
