@@ -16,7 +16,7 @@ $result = getAll();
 
 <div class="container">
 <?php
-if (mysqli_num_rows($result) > 0) {
+if (mysqli_num_rows($res) > 0) {
 ?>
 <div class="container"> 
   <h3>System Users</h3>
