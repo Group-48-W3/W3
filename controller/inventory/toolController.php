@@ -3,7 +3,6 @@
     require_once("./../../model/inventory/toolModel.php");
     
     if(isset($_POST['addNewToolCategory'])){
-        // echo "condition";
         $con = new Tool();     
         $con->addToolCategory();
     }
@@ -29,19 +28,19 @@
             $toolName = $_POST['toolCatName'];
             $toolDesc = $_POST['toolCatDesc'];
             $toolReorderValue = $_POST['toolCatReorderValue'];
+            $abcTool = $_POST['abcTool'];
     
-            if(!empty($toolName) && !empty($toolDesc) && !empty($toolReorderValue)){
+            if(!empty($toolName) && !empty($toolDesc) && !empty($toolReorderValue) && !empty($abcTool)){
                 if(isInTool($toolName)){
                     echo "Category already exist";
                     exit;
                 }else{
-                    //get owner permission to execute following command
-                    insertToTool($toolName, $toolDesc, $toolReorderValue);
+                    insertToTool($toolName, $toolDesc, $toolReorderValue, $abcTool);
                 }
             }else{
                 echo 'All fields are required';
             }
-            header('location:./../../view/inventory/replenish.php');//redirection
+            header('location:./../../view/inventory/replenish.php#newtool');//redirection
             exit;
         }
 

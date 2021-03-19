@@ -127,7 +127,6 @@ require_once('header.php');
       </div>
       <br>
       <div class="container right">
-        <!-- <button class="btn btn-secondary" type="" value="Cancel">Cancel</button> -->
         <input class="btn btn-primary" type="submit" name="addNewRawMaterialCategory" value="Add Category">
       </div>
     </form>
@@ -136,7 +135,8 @@ require_once('header.php');
 <br>
 
 <h2> Add New Tool</h2>
-<div class="tab">
+<a name="newtool"></a>
+<div class="tab"  name="toolCategorySection">
   <button class="tablinks" id="openOnLoad" onclick="openTab(event, 'newToolCategory')">New Category</button>
   <button class="tablinks" onclick="openTab(event, 'newSubTool')">New Tool</button>
   <button class="tablinks" onclick="openTab(event, 'newSubMachine')">New Machine</button>
@@ -160,7 +160,7 @@ require_once('header.php');
           <label for="reorderValue" class="form-label">Re-Order Value (Minimum stock level)</label>
         </div>
         <div class="form-group field">
-          <select name="" id="abcTool" class="form-field">
+          <select name="abcTool" id="abcTool" class="form-field">
             <option value="A">A - High Value & Low Stock</option>
             <option value="B">A - Moderate Value & Moderate Stock</option>
             <option value="C">A - Low Value & High Stock</option>
@@ -170,7 +170,6 @@ require_once('header.php');
       </div>
       <br>
       <div class="container right">
-        <!-- <button class="btn btn-secondary" type="" value="Cancel">Cancel</button> -->
         <button class="btn btn-primary" type="submit" name="addNewToolCategory">Submit</button>
       </div>
     </form>
