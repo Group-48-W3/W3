@@ -96,12 +96,49 @@ $user_role = $_SESSION['r_id'];
 					<th>Description</th>
 					<th>Re-Order Value</th>
 					<th>ABC Analysis</th>
+					<th>Edit</th>
 				</thead>
 				<tbody>
 					<td data-label="Category"></td>
 					<td data-label="Description"></td>
 					<td data-label="Re-Order Value"></td>
 					<td data-label="ABC Analysis"></td>
+					<?php
+					$i = 0;
+					$result = $tool->getAllToolCategory();
+					while ($row = mysqli_fetch_array($result)) {
+					?>
+						<tr 
+						onclick="window.location='toolDetails.php?tool=<?php echo $row['inv-code']; ?>';"
+						class="row-link"
+						>
+							<td data-label="Name">
+								<?php echo $row["tool-name"]; ?>
+							</td>
+							<td data-label="Description">
+								<?php echo $row["inv-desc"]; ?>
+							</td>
+							<td data-label="Reorder Value">
+								<?php echo $row["min-qty"]; ?></td>
+							<td data-label="Average Price">
+								<?php echo $row["abc-category"] ?>
+							</td>
+							<td data-label="Edit">
+								<a href="" class="btn btn-warning">&#x270E</a>
+							</td>
+						</tr>
+					<?php
+						$i++;
+					}
+					if ($i == 0) {
+					?>
+						<tr>
+							<td colspan="5">
+								<center>Sorry, No Results to Show!</center>
+							</td>
+						</tr>
+					<?php } ?>
+				</tbody>
 				</tbody>
 			</table>
 		</div>

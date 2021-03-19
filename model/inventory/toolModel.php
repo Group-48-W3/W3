@@ -14,6 +14,7 @@ function insertToTool($toolName, $toolDesc, $toolReorderValue, $abcTool)
     mysqli_close($conn);
 }
 
+// Insert new tool
 function insertToToolDetails($toolInvCode, $toolDesc, $toolQuantity, $toolLoc, $toolSupplier, $toolDeliver)
 {
     global $conn;
@@ -30,6 +31,7 @@ function insertToToolDetails($toolInvCode, $toolDesc, $toolQuantity, $toolLoc, $
     mysqli_close($conn);
 }
 
+// Insert new machine
 function insertToMachineDetails($machineInvCode, $machineDesc, $machineID, $machinePrice, $machineLoc, $machineSupplier, $machineDeliver)
 {
     global $conn;
@@ -52,18 +54,22 @@ function selectAllToolCategories()
     return $result;
 }
 
-function getToolsDB()
+
+// Get tools
+function getToolsDB($invCode)
 {
     global $conn;
-    $query = "select * from tool_detail";
+    $query = "SELECT * FROM `tool-detailed` WHERE `inv-code`='$invCode'";
     $result = mysqli_query($conn, $query);
     return $result;
 }
 
-function getToolDetailsDB($toolCategoryID)
+
+// Get machines
+function getMachinesDB($invCode)
 {
     global $conn;
-    $sql = "select * from tool_detail where inv_code = '" . $toolCategoryID . "'";
+    $sql = "SELECT `machine-detailed`.*, `supplier`.`sup-name` FROM `machine-detailed`INNER JOIN `supplier` ON `machine-detailed`.`supplier` = `supplier`.`sup-id` AND `machine-detailed`.`inv-code`= '$invCode'";
     $result = mysqli_query($conn, $sql);
     return $result;
 }
@@ -72,7 +78,7 @@ function getToolDetailsDB($toolCategoryID)
 function isInTool($toolName)
 {
     global $conn;
-    $sql = "SELECT * from `tool-category` WHERE `tool-name` = '$toolName'";
+    $sql = "SELECT * FROM `tool-category` WHERE `tool-name` = '$toolName'";
 
     $result = mysqli_query($conn, $sql);
     $numRows = mysqli_num_rows($result);

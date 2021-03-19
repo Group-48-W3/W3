@@ -105,15 +105,15 @@ class Tool
         return $res;
     }
 
-    function getTools()
+    function getTools($invCode)
     {
-        $res = getToolsDB();
+        $res = getToolsDB($invCode);
         return $res;
     }
 
-    function getToolDetails($toolCategoryID)
+    function getMachines($invCode)
     {
-        $res =  getToolDetailsDB($toolCategoryID);
+        $res =  getMachinesDB($invCode);
         return $res;
     }
 
