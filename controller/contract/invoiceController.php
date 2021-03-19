@@ -3,7 +3,10 @@ require_once("./../../model/invoiceModel.php");
 
 class Invoice{
     function getAllInvoice(){
+        $invo = new InvoiceModel();
+        $res = $invo->getInvoiceListDB();
 
+        return $res;
     }
     function saveInvoice($POST){
         $invo = new InvoiceModel();
