@@ -14,8 +14,9 @@ class InvoiceModel{
         } else {
             echo "Error: " . $sql . " " . mysqli_error($conn);
         }
-        mysqli_close($conn);
+        
         return $result;
+        mysqli_close($conn);
     }
     public function addInvoiceDB($POST){
         global $conn;
@@ -45,6 +46,32 @@ class InvoiceModel{
             return 0;
          }
         mysqli_close($conn);
+    }
+    public function getInvoiceDB($invo_id){
+        global $conn;
+        $sql = "select * from invoice WHERE invo_id = '$invo_id'";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            //echo "invoice list retrive successfully !";
+        
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+        }
+        
+        return $result;
+    }
+    public function getInvoiceItemsDB($invo_id){
+        global $conn;
+        $sql = "select * from invoice_item WHERE invo_id = '$invo_id'";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            //echo "invoice list retrive successfully !";
+        
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+        }
+        
+        return $result;
     }
 }
 

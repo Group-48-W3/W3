@@ -17,13 +17,22 @@ class Invoice{
             echo "Error occur in controller";
         }
     }
+    function getInvoice($invo_id){
+        $invo = new InvoiceModel();
+        $res = $invo->getInvoiceDB($invo_id); 
+
+        return $res;
+    }
+    function getInvoiceItems($invo_id){
+        $invo = new InvoiceModel();
+        $res = $invo->getInvoiceItemsDB($invo_id); 
+
+        return $res;
+    }
     function updateInvoice(){
 
     }
     function deleteInvoice(){
-
-    }
-    function printInvoice(){
 
     }
 }

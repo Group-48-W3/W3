@@ -34,7 +34,7 @@ if(isset($_POST['invoice_save'])){
 ?>
 <div class="container">
   <h1>Add Invoice</h1>
-  <a class="btn btn-primary" href="./invoicePrint.php">View All Invoice</a>	
+  <a class="btn btn-primary" href="./invoiceList.php">View All Invoice</a>	
 <div>
 <!-- /////////////////////////////////////////invoice template////////////////////////////////////////// -->
 <div class="container content-invoice">
