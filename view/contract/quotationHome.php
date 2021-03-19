@@ -9,11 +9,11 @@
 ?>
 
 <div class="container"> 
-  <h1>Quotation Home</h1>
+  <h2>Quotation Home</h2>
   <h6>Quotation gallery includes the main product quotation samples inside the business environment which may important for the future reference</h6>
   <!-- Add a new Contract -->
-  <h1 style="margin: 0px">Add a new Quotation</h1>
-  <a class="btn btn-primary" href="./contractAdd.php">Add New Quotation</a>
+  <h2 style="margin: 0px">Add a new Quotation</h2>
+  <a class="btn btn-primary" href="./quotationAdd.php">Add New Quotation</a>
   <!-- End add contract -->
   <div class="container">
   <br>
