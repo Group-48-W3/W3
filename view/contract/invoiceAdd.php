@@ -12,6 +12,7 @@
 
 // data importing
 $con = new Contract();
+$invoice = new Invoice();
 $con_details = $con->getAllActiveContracts();
 
 $header = "W3 Contracts Pvt Ltd";
@@ -19,19 +20,29 @@ $address = "No 131/1,Willorawatte Road, Moratuwa";
 $mobile = "+94710360505";
 $fax = "+94112651557";
 $email = "lwwfernando@gmail.com";
+
+if(isset($_POST['invoice_save'])){
+  if(!empty($_POST['c_id']) && $_POST['c_company'] && $_POST['c_client']) {	
+    $invoice->saveInvoice($_POST);
+    header("location:invoicePrint.php");	
+  }else{
+    echo "Error on save invoice";
+  }  
+}
+
+
 ?>
 <div class="container">
   <h1>Add Invoice</h1>
-  <a class="btn btn-primary" href="./invoicePrint.php">Create Invoice</a>	
+  <a class="btn btn-primary" href="./invoicePrint.php">View All Invoice</a>	
 <div>
 <!-- /////////////////////////////////////////invoice template////////////////////////////////////////// -->
 <div class="container content-invoice">
-	<form action="<?php ?>" id="invoice-form" method="post" class="invoice-form" role="form" novalidate=""> 
+	<form action="<?php echo $_SERVER['PHP_SELF']?>" id="invoice-form" method="post" class="invoice-form" role="form" novalidate=""> 
 		<div class="load-animate animated fadeInUp">
 			<div class="row">
 				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-					<h2 class="title">Invoice Template</h2>
-					
+					<h2 class="title">Invoice Template</h2>	
 				</div>		    		
 			</div>
 			<input id="currency" type="hidden" value="$">
@@ -49,12 +60,12 @@ $email = "lwwfernando@gmail.com";
 					<h3>To,</h3>
           <div class="form-group field">
           <!-- contract selection -->
-            <select name="contractname" id="contractname" class="form-field">
+            <select name="c_id" id="c_id" class="form-field">
               <?php
                 $i=0;
                 while($row = mysqli_fetch_array($con_details)) {
               ?>
-                <option value="<?php echo $row["con_name"];?>"><?php echo $row["con_id"]." ".$row["con_name"];?></option>
+                <option value="<?php echo $row["con_id"];?>"><?php echo $row["con_id"]." ".$row["con_name"];?></option>
               <?php
                 $i++;
                 }
@@ -66,11 +77,11 @@ $email = "lwwfernando@gmail.com";
             <label for="c_id" class="form-label">Contract Name</label>
           </div>
 					<div class="form-group">
-						<input type="text" class="form-field" name="companyName" id="companyName" placeholder="Company Name" autocomplete="off">
+						<input type="text" class="form-field" name="c_company" id="companyName" placeholder="Company Name" autocomplete="off">
             <label for="paymentType" class="form-label">company name</label>
 					</div>
 					<div class="form-group">
-						<textarea class="form-field" rows="3" name="address" id="address" placeholder="Address"></textarea>
+						<textarea class="form-field" rows="3" name="c_client" id="address" placeholder="Address"></textarea>
             <label for="paymentType" class="form-label">client name</label>
 					</div>	
 				</div>
@@ -112,8 +123,7 @@ $email = "lwwfernando@gmail.com";
 					<br>
 					<div class="form-group">
 						<input type="hidden" value="<?php echo $_SESSION['u_id']; ?>" class="form-control" name="userId">
-						<input data-loading-text="Saving Invoice..." type="submit" name="invoice_btn" value="Save Invoice" class="btn btn-success">
-            					
+						<input data-loading-text="Saving Invoice..." type="submit" name="invoice_save" value="Save Invoice" class="btn btn-success">  					
 					</div>
 					
 				</div>

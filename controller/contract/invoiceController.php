@@ -2,7 +2,25 @@
 require_once("./../../model/invoiceModel.php");
 
 class Invoice{
-    function getInvoiceList(){
+    function getAllInvoice(){
+
+    }
+    function saveInvoice($POST){
+        $invo = new InvoiceModel();
+        $res = $invo->addInvoiceDB($POST);
+        if($res){
+            echo "Successfully add the invoice";
+        }else{
+            echo "Error occur in controller";
+        }
+    }
+    function updateInvoice(){
+
+    }
+    function deleteInvoice(){
+
+    }
+    function printInvoice(){
 
     }
 }

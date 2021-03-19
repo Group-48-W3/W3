@@ -22,7 +22,7 @@ class Activity{
     }
     
     function getActivityforContract($con_id){ 
-        //
+        // get activities for a single contract
         $activity = new activityModel();
         $res = $activity->getAllActivityContractDB($con_id);
 
@@ -36,9 +36,7 @@ class Activity{
             header('location: ./contractSinglePage.php?con_id='.$con_id);
         }else{
             echo "Error on mark activity";
-        }
-
-        
+        }    
     }
     function getProgressContract($con_id){
         $activity = new activityModel();
@@ -54,10 +52,6 @@ class Activity{
         
     }
     function updateActivity(){
-        //
-    }
-
-    function setCompleteActivity($id){
         //
     }
 
