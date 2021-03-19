@@ -49,7 +49,7 @@
                     </div>
                     <br>
                     <div class="right">
-                        <input type="submit" name="empDetails" value="Update Quotation" name="update_quotation" class="btn btn-warning">
+                        <input type="submit" value="Update Quotation" name="update_quotation" class="btn btn-warning">
                     </div>
                 </form>
             </div>
