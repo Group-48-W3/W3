@@ -10,7 +10,16 @@
   require_once('./../../controller/contract/itemController.php');
   $item = new Item();
   $result= $item->getAllItems();
-  $user_role = $_SESSION['r_id'];	
+  $user_role = $_SESSION['r_id'];
+  
+  if(isset($_GET['delete_id'])){
+	$item->deleteItem($_GET['delete_id']);
+  }
+
+  if(isset($_POST['add_item'])){
+	$item->addItem($_POST['item_name'],$_POST['item_category'],$_POST['unit_price']);
+  }
+
 ?>
 
 <div class="container"> 
@@ -79,7 +88,7 @@
 							<td data-label="Edit">
 							
 							<a class="btn btn-warning" href="./itemUpdate.php?item_id=<?php echo $row['item_id'];?>" >&#x270E</a>
-							<a class="btn btn-danger" href="./contractHome.php">&#x2716</a>
+							<a class="btn btn-danger" href="./itemHome.php?delete_id=<?php echo $row['item_id'];?>">&#x2716</a>
 							</td>
 							<?php } ?>
 						</tr>
@@ -126,14 +135,13 @@
           <input type="file" class="form-field" id="image" name="image">
           <label for="q_budget" class="form-label">Image</label>
         </div>
-        
-        <div class="clearfix right">
+		<div class="clearfix right">
           <button type="button" class="btn btn-secondary" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
           <button type="submit" name="add_item" class="btn btn-primary">Add Item</button>
         </div>
-      </form>
-    </div>
-<!-- End Prompt Box -->
+    </form>
+</div>
+        <!-- End Prompt Box -->
 
 <script>
 	$('table.paginated').each(function () {

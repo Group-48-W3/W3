@@ -56,6 +56,7 @@ class Item{
         // delete an item
         $item = new ItemModel();
         $item->deleteItemDB($item_id);
+        //echo "controller".$item_id;
     }
 }
 ?>
