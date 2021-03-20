@@ -16,15 +16,12 @@ $item = new Item();
 
 
 if(isset($_GET['item_id'])){
-    //echo $_GET['item_id'];
-    //$item_id = $_GET['item_id'];
     $_SESSION['item_id'] = $_GET['item_id'];
 }
 $row = mysqli_fetch_array($item->getSingleItem($_SESSION['item_id']));
 
 if(isset($_POST['update_item'])){
     //validation
-    
     $item->updateItem($_SESSION['item_id'],$_POST['item_name'],$_POST['item_cat'],$_POST['unit_price']);
 }
 

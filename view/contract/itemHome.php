@@ -12,6 +12,8 @@
   $result= $item->getAllItems();
   $user_role = $_SESSION['r_id'];
   
+  $_SESSION['delete_item'] = 'none';
+
   if(isset($_GET['delete_id'])){
 	$item->deleteItem($_GET['delete_id']);
   }
@@ -21,7 +23,12 @@
   }
 
 ?>
-
+<?php set_time_limit(20); if(($_SESSION['delete_item']) == 'success'): ?>
+	
+		<div class="alert alert-danger" style="background-color: red;">
+						<a href="./user/userProfile.php" style="text-decoration: none; color: white;">Item deleted successfully</a>
+		</div>
+<?php endif; ?>
 <div class="container"> 
   <h1>Item Home</h1>
   <h6>Item Home displays all the avaliable item model delivered by the business</h6>
@@ -141,7 +148,7 @@
         </div>
     </form>
 </div>
-        <!-- End Prompt Box -->
+<!-- End Prompt Box -->
 
 <script>
 	$('table.paginated').each(function () {

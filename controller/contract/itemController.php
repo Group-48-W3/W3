@@ -56,6 +56,7 @@ class Item{
         // delete an item
         $item = new ItemModel();
         $item->deleteItemDB($item_id);
+        $_SESSION['delete_item'] = "success";
         //echo "controller".$item_id;
     }
 }
