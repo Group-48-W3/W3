@@ -130,24 +130,26 @@ if(isset($_POST['invoice_save'])){
 							<th width="15%">Total</th>
 						</tr>
 						<!-- if contract id is set all quotation are autoloaded  -->
-						<?php if($a == 1){ echo "quo";?>
+						<?php if($a == 1){?>
 							
 							<?php
 								$i=0;
+								$j = 1;
 								while($quo = mysqli_fetch_array($quo_details)) {
 							?>
 								<!-- inner work -->
 							<tr>	
 							<td><input class="itemRow" type="checkbox"></td>
-							<td><input type="text" name="productCode[]" id="productCode_1" value="<?php echo $i+1; ?>" class="form-control" autocomplete="off"></td>
-							<td><input type="text" name="productName[]" id="productName_1" value="<?php echo $quo['q_name']; ?>" class="form-control" autocomplete="off"></td>			
-							<td><input type="number" name="quantity[]" id="quantity_1" value="<?php echo 1; ?>" class="form-control quantity" autocomplete="off"></td>
-							<td><input type="number" name="price[]" id="price_1" value="<?php echo $quo['q_budget']; ?>" class="form-control price" autocomplete="off"></td>
-							<td><input type="number" name="total[]" id="total_1" class="form-control total" autocomplete="off"></td>
+							<td><input type="text" name="productCode[]" id="<?php echo "productCode_".$j; ?>" value="<?php echo $i + 1; ?>" class="form-control" autocomplete="off"></td>
+							<td><input type="text" name="productName[]" id="<?php echo "productName_".$j; ?>" value="<?php echo $quo['q_name']; ?>" class="form-control" autocomplete="off"></td>			
+							<td><input type="number" name="quantity[]" id="<?php echo "quantity_".$j; ?>" value="<?php echo 1; ?>" class="form-control quantity" autocomplete="off"></td>
+							<td><input type="number" name="price[]" id="<?php echo "price_".$j; ?>" value="<?php echo $quo['q_budget']; ?>" class="form-control price" autocomplete="off"></td>
+							<td><input type="number" name="total[]" id="<?php echo "total_".$j; ?>" class="form-control total" autocomplete="off"></td>
 							</tr>
 							<!-- inner work ends -->
 							<?php
 								$i++;
+								$j++;
 								}
 								if($i==0){
 									echo "No results ";
