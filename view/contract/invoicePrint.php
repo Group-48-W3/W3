@@ -13,54 +13,109 @@
 // data importing
 $con = new Contract();
 $invoice = new Invoice();
-$con_details = $con->getAllActiveContracts();
 
-$invo_list = $invoice->getAllInvoice();
-$row = mysqli_fetch_array($invo_list);
+if(!empty($_GET['invo_id']) && $_GET['invo_id']) {
+	echo $_GET['invo_id'];
+	$invoiceValues = mysqli_fetch_array($invoice->getInvoice($_GET['invo_id']));		
+	$invoiceItems = $invoice->getInvoiceItems($_GET['invo_id']);
+    
+    $row = mysqli_fetch_array($invoiceItems);
+    
+}
+$invoiceDate = date("d/M/Y", strtotime($invoiceValues['date']));
 
-?>
+$html = '';
+$html .= '
+    
+    <table width="100%" border="1" cellpadding="5" cellspacing="0">
+	<tr>
+	<td colspan="2" align="center" style="font-size:18px"><b>Invoice</b></td>
+	</tr>
+	<tr>
+	<td colspan="2">
+	<table width="100%" cellpadding="5">
+	<tr>
+	<td width="65%">
+	To,<br />
+	<b>RECEIVER (BILL TO)</b><br />
+	Name : '.$invoiceValues['company_name'].'<br /> 
+	Billing Address : '.$invoiceValues['company_name'].'<br />
+	</td>
+	<td width="35%">         
+	Invoice No. : '.$invoiceValues['invo_id'].'<br />
+	Invoice Date : '.$invoiceDate.'<br />
+	</td>
+	</tr>
+	</table>
+	<br />
+	<table width="100%" border="1" cellpadding="5" cellspacing="0">
+	<tr>
+	<th align="left">Sr No.</th>
+	<th align="left">Item Code</th>
+	<th align="left">Item Name</th>
+	<th align="left">Quantity</th>
+	<th align="left">Price</th>
+	<th align="left">Actual Amt.</th> 
+	</tr>';
+     
+    $a = 0;
+      
+    while($invoiceItem = mysqli_fetch_array($invoiceItems)) {
+        $count = 0;
+        $a++;
+	    $html .= '
+	    <tr>
+	        <td align="left">'.$a.'</td>
+	        <td align="left">'.$invoiceItem["item_id"].'</td>
+	        <td align="left">'.$invoiceItem["item_name"].'</td>
+	        <td align="left">'.$invoiceItem["item_quantity"].'</td>
+	        <td align="left">'.$invoiceItem["item_price"].'</td>
+	        <td align="left">'.$invoiceItem["item_final_amount"].'</td>   
+	    </tr>';
+        $count++;
+    }
+$html .= '
+	<tr>
+	<td align="right" colspan="5"><b>Sub Total</b></td>
+	<td align="left"><b>'.$invoiceValues['total_before_tax'].'</b></td>
+	</tr>
+	<tr>
+	<td align="right" colspan="5"><b>Tax Rate :</b></td>
+	<td align="left">'.$invoiceValues['tax_per'].'</td>
+	</tr>
+	<tr>
+	<td align="right" colspan="5">Tax Amount: </td>
+	<td align="left">'.$invoiceValues['total_tax'].'</td>
+	</tr>
+	<tr>
+	<td align="right" colspan="5">Total: </td>
+	<td align="left">'.$invoiceValues['total_after_tax'].'</td>
+	</tr>
+	<tr>
+	<td align="right" colspan="5">Amount Paid:</td>
+	<td align="left">'.$invoiceValues['amount_paid'].'</td>
+	</tr>
+	<tr>
+	<td align="right" colspan="5"><b>Amount Due:</b></td>
+	<td align="left">'.$invoiceValues['amount_due'].'</td>
+	</tr>';
+$html .= '
+	</table>
+	</td>
+	</tr>
+	</table>';
+// create pdf of invoice	
+$filename = 'Invoice-'.$invoiceValues['invo_id'].'.pdf';
+require_once 'dompdf/autoload.inc.php';
+Dompdf\Autoloader::register();
+use Dompdf\Dompdf;
+$dompdf = new Dompdf();
+$dompdf->loadHtml($html);
+$dompdf->setPaper('A4', 'landscape');
+$dompdf->render();
+$dompdf->stream($filename, array("Attachment"=>0));
 
-<div class="container">		
-	  <h2 class="title">Invoice List</h2>
-	  		  
-      <table id="data-table" class="table table-condensed table-striped">
-        <thead>
-          <tr>
-            <th>Invoice No.</th>
-            <th>Create Date</th>
-            <th>Customer Name</th>
-            <th>Invoice Total</th>
-            <th>Print</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <?php		
-		
-        foreach($invo_list as $invoiceDetails){
-			$invoiceDate = date("d/M/Y", strtotime($invoiceDetails["date"]));
-            echo '
-              <tr>
-                <td>'.$invoiceDetails["invo_id"].'</td>
-                <td>'.$invoiceDate.'</td>
-                <td>'.$invoiceDetails["company_name"].'</td>
-                <td>'.$invoiceDetails["total_after_tax"].'</td>
-                <td><a class="btn btn-warning" href="print_invoice.php?invoice_id='.$invoiceDetails["invo_id"].'" title="Print Invoice">🖨️</a></td>
-                <td><a class="btn btn-warning" href="edit_invoice.php?update_id='.$invoiceDetails["invo_id"].'"  title="Edit Invoice">🔃</a></td>
-                <td><a class="btn btn-danger" href="#" id="'.$invoiceDetails["invo_id"].'" class="deleteInvoice"  title="Delete Invoice">❌</a></td>
-              </tr>
-            ';
-        }       
-        ?>
-      </table>	
-</div>
+$output = $dompdf->output();
+file_put_contents("$filename", $output);
 
-<div class="container">
-    <h1>Print Invoice</h1>
-    <h6>View of the printable invoice</h6>
-    <img src="./../../public/img/invo.jpg" alt="Invoice">
-</div>
-<?php
-  require_once('leftSidebar.php'); 
-  require_once('footer.php'); 
-?>	
+?> 

@@ -9,10 +9,10 @@ class Activity{
         //echo "This is activity control section";
         
     }
-    function addActivity($act_name,$act_desc,$act_weight,$act_date,$con_id){
+    function addActivity($act_name,$act_desc,$act_date,$con_id){
         //add a custom activity
         $activity = new activityModel();
-        $res = $activity->addActivityDB($act_name,$act_desc,$act_weight,$act_date,$con_id);
+        $res = $activity->addActivityDB($act_name,$act_desc,$act_date,$con_id);
 
         if($res){
             header('location: ./contractSinglePage.php?con_id='.$con_id);
@@ -49,6 +49,19 @@ class Activity{
         }else{
             return 0;
         }
+        
+    }
+    function getAllTodayActivity(){
+        //
+        // get activities for a single contract
+        $activity = new activityModel();
+        $date = date('Y/m/d');
+        $res = $activity->getAllTodayActivityDB($date);
+
+        return $res;
+    }
+    function getProgressToday(){
+        // complete activties during today
         
     }
     function updateActivity(){

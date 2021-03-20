@@ -40,15 +40,24 @@ class Item{
         //update an item
         $item = new ItemModel();
         if(!empty($item_name) && !empty($item_cat) && !empty($unit_price)){
-            $item->updateItemDB($item_name,$item_cat,$unit_price);
+            //echo "on controller";
+            $res = $item->updateItemDB($item_id,$item_name,$item_cat,$unit_price);
+            if($res){
+                echo "item updated successfully";
+                //header('location: ./itemUpdate.php?item_id='.$item_id);
+            }else{
+                echo "Error occured in updation, Please check for relevance of details";
+            }    
         }else{
-            echo "Error occured in updation, Please check for relevance of details";
+            echo "Error on validation";
         }
     }
     function deleteItem($item_id){
         // delete an item
         $item = new ItemModel();
         $item->deleteItemDB($item_id);
+        $_SESSION['delete_item'] = "success";
+        //echo "controller".$item_id;
     }
 }
 ?>
