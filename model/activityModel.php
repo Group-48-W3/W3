@@ -2,9 +2,9 @@
 require_once("./../../config/config.php");
 
 class activityModel{
-    function addActivityDB($act_name,$act_desc,$act_weight,$act_date,$con_id){
+    function addActivityDB($act_name,$act_desc,$act_date,$con_id){
         global $conn;
-        $sql = "insert into activity values ('','$act_name','$act_desc','$act_weight',FALSE,'$con_id')";
+        $sql = "insert into activity values ('','$act_name','$act_desc','$act_date',FALSE,'$con_id')";
         $result = mysqli_query($conn, $sql);
         if ($result) {
             //echo "activity retrived successfully !";
@@ -18,11 +18,13 @@ class activityModel{
     }
     function addActivityforQuotationDB($name,$con_id){
         global $conn;
+
+        $date = date('Y/m/d');
         
-        $sql1 = "insert into activity VALUES ('','primary wood provision','$name','1',FALSE,'$con_id')";
-        $sql2 = "insert into activity VALUES ('','item strcture','$name','1',FALSE,'$con_id')";
-        $sql3 = "insert into activity VALUES ('','wood paint + lacker','$name','1',FALSE,'$con_id')";
-        $sql4 = "insert into activity VALUES ('','wood polish','$name','1',FALSE,'$con_id')";
+        $sql1 = "insert into activity VALUES ('','primary wood provision','$name','$date',FALSE,'$con_id')";
+        $sql2 = "insert into activity VALUES ('','item strcture','$name','$date',FALSE,'$con_id')";
+        $sql3 = "insert into activity VALUES ('','wood paint + lacker','$name','$date',FALSE,'$con_id')";
+        $sql4 = "insert into activity VALUES ('','wood polish','$name','$date',FALSE,'$con_id')";
         
         mysqli_query($conn, $sql1);
         mysqli_query($conn, $sql2);
