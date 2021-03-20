@@ -28,7 +28,7 @@
 		<div class="alert alert-danger" style="background-color: red;">
 						<a href="./user/userProfile.php" style="text-decoration: none; color: white;">Item deleted successfully</a>
 		</div>
-<?php endif; ?>
+<?php $_SESSION['delete_item'] = 'none'; endif; ?>
 <div class="container"> 
   <h1>Item Home</h1>
   <h6>Item Home displays all the avaliable item model delivered by the business</h6>

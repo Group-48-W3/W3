@@ -59,7 +59,6 @@
   <div class="col-sm">
     <!-- Contract Section -->
     <h2>Step 01 : Contract Details</h2>
-    
     <h5>Contract :  <?php echo $row["con_name"]; ?></h5>
     <h5>Description    : <?php echo $row["con_desc"]; ?></h5>
     <h5>Location       : <?php echo $row["location"]; ?></h5>
@@ -91,7 +90,6 @@
     <!-- Progress ends -->
   </div>
 </div>
-    
     <hr>
     <!-- Quotation details -->
     <h2>Step 03 : Quotation Details</h2>
@@ -107,7 +105,6 @@
               <span>Show: </span>
               <select name="" id="rmViewRows" class="" width="15px">
                 <option value="5">5 records</option>
-              
               </select>
             </div>
           </div>
