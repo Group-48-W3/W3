@@ -289,17 +289,23 @@
     <br>
     <h2>Contract Settings</h2>
     <div class="container">
-    
+      <div class="row">
+      <div class="col">
+      <h5>Create a Invoice</h5>
+        <!-- Update Navigation -->
+        <a href="./InvoiceAdd.php?con_id=<?php echo $_SESSION['contract_id']; ?>" class="btn btn-primary">Create Invoice</a>
+      </div>
+      </div>
       <div class="row">
         <div class="col">
         <h5>Update contract details</h5>
         <!-- Update Navigation -->
-        <a href="./contractUpdate.php?con_id=<?php echo $row["con_id"]; ?>" class="btn btn-warning">Update <?php echo $row["con_name"]; ?></a>
+        <a href="./contractUpdate.php?con_id=<?php echo $row["con_id"]; ?>" class="btn btn-warning">Update</a>
         </div>
         <div class="col">
           <!-- Delete Navigation to home -->
           <h5>Delete this particular contract</h5>
-          <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'">Delete <?php echo $row["con_name"]; ?></button>
+          <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'">Delete</button>
         </div>
       </div>
     </div>

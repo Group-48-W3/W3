@@ -6,21 +6,48 @@
    exit;
  }		
  require_once('./../../controller/user/userController.php'); 
- require_once('./../../controller/contract/contractController.php'); 
- require_once('./header.php');
- require_once('./../../controller/contract/invoiceController.php');
+  
+require_once('./header.php');
+require_once('./../../controller/contract/contractController.php');
+require_once('./../../controller/contract/quotationController.php');
+require_once('./../../controller/contract/activityController.php');
+require_once('./../../controller/contract/invoiceController.php');
 
 // data importing
 $con = new Contract();
 $invoice = new Invoice();
 $con_details = $con->getAllActiveContracts();
-
+$a = 0;
 $header = "W3 Contracts Pvt Ltd";
 $address = "No 131/1,Willorawatte Road, Moratuwa";
 $mobile = "+94710360505";
 $fax = "+94112651557";
 $email = "lwwfernando@gmail.com";
+// take if contract id is passed
+if (isset($_GET['con_id'])) {
+	$a = 1;
+    $con = new Contract();
+    $quo = new Quotation();
+    $act = new Activity();
+    $_SESSION['contract_id'] = $_GET['con_id'];
+    
+    $con_details = $con->getSingleActiveContract($_SESSION['contract_id']);
+    
+    $row = mysqli_fetch_array($con_details);
 
+	$name = $row['con_name'];
+    
+    $client_details = $con->getSingleClient($row['c_id']);
+
+    $row_client = mysqli_fetch_array($client_details);
+
+    $quo_details = $quo->getAllQuotationContract($_SESSION['contract_id']);
+
+    $act_details = $act->getActivityforContract($_SESSION['contract_id']);
+
+    $progress = $act->getProgressContract($_SESSION['contract_id']);
+}
+//
 if(isset($_POST['invoice_save'])){
   if(!empty($_POST['c_id']) && $_POST['c_company'] && $_POST['c_client']) {	
     $invoice->saveInvoice($_POST);
@@ -30,8 +57,9 @@ if(isset($_POST['invoice_save'])){
   }  
 }
 
-
+//echo $_SESSION['contract_id'];
 ?>
+
 <div class="container">
   <h1>Add Invoice</h1>
   <a class="btn btn-primary" href="./invoiceList.php">View All Invoice</a>	
@@ -60,12 +88,13 @@ if(isset($_POST['invoice_save'])){
 					<h3>To,</h3>
           <div class="form-group field">
           <!-- contract selection -->
+		  	<?php if($a != 1){ ?>
             <select name="c_id" id="c_id" class="form-field">
               <?php
                 $i=0;
-                while($row = mysqli_fetch_array($con_details)) {
+                while($row2 = mysqli_fetch_array($con_details)) {
               ?>
-                <option value="<?php echo $row["con_id"];?>"><?php echo $row["con_id"]." ".$row["con_name"];?></option>
+                <option value="<?php echo $row["con_id"];?>"><?php echo $row2["con_id"]." ".$row2["con_name"];?></option>
               <?php
                 $i++;
                 }
@@ -74,17 +103,20 @@ if(isset($_POST['invoice_save'])){
                 }
               ?>
             </select>
+			<?php }else{ ?>
+			<input type="text" class="form-field" name="c_company" id="companyName" placeholder="Company Name" value="<?php echo $name; ?>" disabled>
+			<?php } ?>		
             <label for="c_id" class="form-label">Contract Name</label>
           </div>
-					<div class="form-group">
-						<input type="text" class="form-field" name="c_company" id="companyName" placeholder="Company Name" autocomplete="off">
+			<div class="form-group">
+			<input type="text" class="form-field" name="c_company" id="companyName" placeholder="Company Name" autocomplete="off">
             <label for="paymentType" class="form-label">company name</label>
-					</div>
-					<div class="form-group">
-						<textarea class="form-field" rows="3" name="c_client" id="address" placeholder="Address"></textarea>
+			</div>
+			<div class="form-group">
+			<textarea class="form-field" rows="3" name="c_client" id="address" placeholder="Address"></textarea>
             <label for="paymentType" class="form-label">client name</label>
-					</div>	
-				</div>
+			</div>	
+			</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -96,7 +128,34 @@ if(isset($_POST['invoice_save'])){
 							<th width="15%">Quantity</th>
 							<th width="15%">Price</th>								
 							<th width="15%">Total</th>
-						</tr>							
+						</tr>
+						<!-- if contract id is set all quotation are autoloaded  -->
+						<?php if($a == 1){ echo "quo";?>
+							
+							<?php
+								$i=0;
+								while($quo = mysqli_fetch_array($quo_details)) {
+							?>
+								<!-- inner work -->
+							<tr>	
+							<td><input class="itemRow" type="checkbox"></td>
+							<td><input type="text" name="productCode[]" id="productCode_1" value="<?php echo $i+1; ?>" class="form-control" autocomplete="off"></td>
+							<td><input type="text" name="productName[]" id="productName_1" value="<?php echo $quo['q_name']; ?>" class="form-control" autocomplete="off"></td>			
+							<td><input type="number" name="quantity[]" id="quantity_1" value="<?php echo 1; ?>" class="form-control quantity" autocomplete="off"></td>
+							<td><input type="number" name="price[]" id="price_1" value="<?php echo $quo['q_budget']; ?>" class="form-control price" autocomplete="off"></td>
+							<td><input type="number" name="total[]" id="total_1" class="form-control total" autocomplete="off"></td>
+							</tr>
+							<!-- inner work ends -->
+							<?php
+								$i++;
+								}
+								if($i==0){
+									echo "No results ";
+								}
+							?>
+							</select>
+						<?php }else{ ?>			
+						<!-- end autoloading -->
 						<tr>
 							<td><input class="itemRow" type="checkbox"></td>
 							<td><input type="text" name="productCode[]" id="productCode_1" class="form-control" autocomplete="off"></td>
@@ -104,7 +163,8 @@ if(isset($_POST['invoice_save'])){
 							<td><input type="number" name="quantity[]" id="quantity_1" class="form-control quantity" autocomplete="off"></td>
 							<td><input type="number" name="price[]" id="price_1" class="form-control price" autocomplete="off"></td>
 							<td><input type="number" name="total[]" id="total_1" class="form-control total" autocomplete="off"></td>
-						</tr>						
+						</tr>
+						<?php } ?>						
 					</table>
 				</div>
 			</div>
