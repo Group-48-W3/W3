@@ -57,14 +57,11 @@ $html .= '
 	<th align="left">Price</th>
 	<th align="left">Actual Amt.</th> 
 	</tr>';
-    $count = 0; 
+     
     $a = 0;
       
     while($invoiceItem = mysqli_fetch_array($invoiceItems)) {
-	    echo $invoiceItem["item_id"];
-        echo $invoiceItem["item_name"];
-        echo $invoiceItem["item_quantity"];
-        echo $invoiceItem["item_final_amount"];
+        $count = 0;
         $a++;
 	    $html .= '
 	    <tr>
