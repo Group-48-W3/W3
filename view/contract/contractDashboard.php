@@ -6,7 +6,7 @@
 		exit;
 	}		
     require_once('./../../controller/user/userController.php');
-    require_once('./../../controller/user/contractController.php'); 
+    require_once('./../../controller/contract/contractController.php'); 
     require_once('./header.php');
 
 ?>

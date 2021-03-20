@@ -46,7 +46,7 @@ $row = mysqli_fetch_array($invo_list);
                 <td>'.$invoiceDetails["company_name"].'</td>
                 <td>'.$invoiceDetails["total_after_tax"].'</td>
                 <td><a class="btn btn-warning" href="invoicePrint.php?invo_id='.$invoiceDetails["invo_id"].'" title="Print Invoice">🖨️</a></td>
-                <td><a class="btn btn-warning" href="edit_invoice.php?update_id='.$invoiceDetails["invo_id"].'"  title="Edit Invoice">🔃</a></td>
+                <td><a class="btn btn-warning" href="invoiceUpdate.php?update_id='.$invoiceDetails["invo_id"].'"  title="Edit Invoice">🔃</a></td>
                 <td><a class="btn btn-danger" href="#" id="'.$invoiceDetails["invo_id"].'" class="deleteInvoice"  title="Delete Invoice">❌</a></td>
               </tr>
             ';

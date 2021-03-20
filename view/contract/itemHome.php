@@ -1,5 +1,10 @@
 <?php 
   session_start();
+  if(!isset($_SESSION['u_id'],$_SESSION['r_id']))
+  {
+    header('location:index.php?lmsg=true');
+    exit;
+  }
   require_once('./../../controller/user/userController.php'); 
   require_once('./header.php');
   require_once('./../../controller/contract/itemController.php');
@@ -49,15 +54,12 @@
 	</div>
 	<br>
 	<div class="row">
-		<div class="col">
+		<div class="col-10">
 			<table class="data-table paginated">
 				<thead>
 					<th width="15%">Item Name</th>
-					<th width="40%">Category</th>
-					<th>Available Batches</th>
-					<th>Total Quantity</th>
-					
-					<th width="11%">Average Price</th>
+					<th width="30%">Category</th>
+					<th>Unit Price</th>
 					<?php if($user_role==2){ ?>
 					<th>Edit</th>
 					<?php } ?>
@@ -71,12 +73,14 @@
 						<tr>
 							<td data-label="Name"><?php echo $row["item_name"]; ?></td>
 							<td data-label="Description"><?php echo $row["item_category"]; ?></td>
-							<td data-label="Available Batches"></td>
 							<td data-label="Unit Price"><?php echo $row["unit_price"]?></td>
-							
-							<td data-label="Average Price">Rs. XXX</td>
+		
 							<?php if($user_role==2){ ?>
-							<td data-label="Edit"><a href="" class="btn btn-warning">&#x270E</a></td>
+							<td data-label="Edit">
+							
+							<a class="btn btn-warning" href="./itemUpdate.php?item_id=<?php echo $row['item_id'];?>" >&#x270E</a>
+							<a class="btn btn-danger" href="./contractHome.php">&#x2716</a>
+							</td>
 							<?php } ?>
 						</tr>
 					<?php

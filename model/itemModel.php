@@ -34,7 +34,7 @@ class ItemModel{
         $sql = "select * from furniture_item WHERE item_id = ".$id;
         $result = mysqli_query($conn, $sql);
         if ($result) {
-            echo "item retrive successfully !";
+            //echo "item retrive successfully !";
         
         } else {
             echo "Error: " . $sql . " " . mysqli_error($conn);
@@ -44,14 +44,15 @@ class ItemModel{
     }
     function updateItemDB($item_id,$item_name,$item_cat,$unit_price){
         global $conn;
-        $sql = "update furniture_item SET item_name='$item_name',item_category = '$item_cat', unit_price = '$unit_price' WHERE item_id = '$item_id'";
+        $sql = "update furniture_item SET item_name='$item_name', item_category='$item_cat', unit_price='$unit_price' 
+        WHERE item_id='$item_id'";
 
-        $result = mysqli_query($conn, $sql);
-        if ($result) {
+        if (mysqli_query($conn, $sql)) {
             echo "item updated successfully !";
-        
+            return 1;
         } else {
             echo "Error: " . $sql . " " . mysqli_error($conn);
+            return 0;
         }
         mysqli_close($conn);
     }

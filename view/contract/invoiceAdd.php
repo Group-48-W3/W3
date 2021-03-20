@@ -73,6 +73,9 @@ if(isset($_POST['invoice_save'])){
 					<h2 class="title">Invoice Template</h2>	
 				</div>		    		
 			</div>
+			<div class="row">
+			<!-- add the icon -->
+			</div>
 			<input id="currency" type="hidden" value="$">
 			<div class="row">
 				<div class="col-xs-10 col-sm-6 col-md-6 col-lg-6">
