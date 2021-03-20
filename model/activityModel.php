@@ -73,6 +73,19 @@ class activityModel{
 
         return $result;
     }
+    function getAllTodayActivityDB($date){
+        global $conn;
+        $sql = "select * from activity WHERE act_date='$date'";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            //echo "activity retrived successfully !";
+            return $result;
+        
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+        }
+        mysqli_close($conn);
+    }
 }
 
 

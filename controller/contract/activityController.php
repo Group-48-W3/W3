@@ -51,6 +51,19 @@ class Activity{
         }
         
     }
+    function getAllTodayActivity(){
+        //
+        // get activities for a single contract
+        $activity = new activityModel();
+        $date = date('Y/m/d');
+        $res = $activity->getAllTodayActivityDB($date);
+
+        return $res;
+    }
+    function getProgressToday(){
+        // complete activties during today
+        
+    }
     function updateActivity(){
         //
     }

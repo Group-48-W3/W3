@@ -213,7 +213,7 @@
               <thead>
                 <th width="30%">Activity Name</th>
                 <th>Activity Description</th>
-                <th>Weight</th>
+                <th>Date</th>
                 <th>Complete</th>
                 <?php if($user_role==2){ ?>
                 <th>Edit</th>

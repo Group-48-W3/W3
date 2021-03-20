@@ -6,89 +6,148 @@
       exit;
     }		
     require_once('./../../controller/user/userController.php');
-    require_once('./../../controller/contract/contractController.php');
-    $con = new Contract();
-    $result = $con->getAllActiveContracts();
     require_once('header.php');
+    require_once('./../../controller/contract/contractController.php');
+    require_once('./../../controller/contract/activityController.php');
+    $con = new Contract();
+    $act = new Activity();
+    $user_role = $_SESSION['r_id'];	
+    static $done = 0;
+    //activity details
+    $act_details = $act->getAllTodayActivity();
+    // count activity
+    $count = mysqli_num_rows($act_details);
+    // activity mark
+    if(isset($_POST['act_done'])){
+        $act_id = $_POST['mark_done'];
+        $act = new Activity();
+        $act->setMarkActivity($act_id,$_SESSION['contract_id']);
+        
+    }
 ?>
 
 
 <!-- Content Starts -->
 <div class="container">
     <h1>Activities</h1>
+    <small>What is a Activity? Activity improves contract progress</small>
     <div class="row">
-        <div class="col-7">
-            <h3>Today Activities</h3>
-            <!-- Today Activity Table -->
-            <table>
-                <thead>
-                    <tr>
-                    <th>Contract</th>
-                    <th>Name</th>
-                    <th>Weight</th>
-                    <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <td data-label="Contract">Bentota 360 Hotel</td>
-                    <td data-label="Name">Beach Chairs</td>
-                    <td data-label="Weight">3 Units</td>
-                    <td data-label="Description">High Comfortable Chair Model for Hotels</td>
-                    </tr>
-                </tbody>
-            </table>
-            <hr>
-            <h3>Activity Log</h3>
-            <div class="form-group field">
-                <select class="form-field" name="contract" id="con">
-                    <?php
-                        $i=0;
-                        while($row_quo = mysqli_fetch_array($result)) {
-                    ?>
-                    <option value="<?php echo $row_quo["con_id"];?>"><?php echo $row_quo["con_name"];?></option>
-                    <?php
-                        $i++;
-                        }
-                        if($i==0){
-                            echo "No results ";
-                        }
-                    ?>
-                </select>
-                <label for="con" class="form-label">Select a contract to show activity logs of the contract</label>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                    <th>Date</th>
-                    <th>Contract</th>
-                    <th>Name</th>
-                    <th>Weight</th>
-                    <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td data-label="Date">2020-10-18</td>
-                        <td data-label="Contract">Bentota 360 Hotel</td>
-                        <td data-label="Name">Beach Chairs</td>
-                        <td data-label="Weight">3 Units</td>
-                        <td data-label="Description">High Comfortable Chair Model for Hotels</td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="col-sm">
+        <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+          <!-- <div class="card-header">Header</div> -->
+          <div class="card-body">
+            <h1 class="card-title"><?php echo $count; ?></h1>
+            <p class="card-text">Total Today Activity</p>
+          </div>
         </div>
-        <div class="col-3">
-            <div class="alert alert-dismissible alert-info">
-                <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
-                <strong>What is a Activity?</strong> Activity improves contract progress
-                <h5></h5>
+    </div>
+    <!--  -->
+    <div class="col-sm">
+        <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+          <!-- <div class="card-header">Header</div> -->
+          <div class="card-body">
+            <h1 class="card-title"><?php echo $done; ?></h1>
+            <p class="card-text">Done Activity</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-10">
+            <h2>Today Activities</h2>
+            <!-- Today Activity Table -->
+            <!-- Table Header -->
+            <br>
+            <!-- Table Header ends -->
+            <div class="row">
+            <div class="col">
+                <table class="data-table paginated">
+                <thead>
+                    <th width="30%">Activity Name</th>
+                    <th>Activity Description</th>
+                    <th>Weight</th>
+                    <th>Complete</th>
+                    <th>Contract</th>
+                    <?php if($user_role==2){ ?>
+                    <th>Edit</th>
+                    <?php } ?>
+                </thead>
+                <tbody>
+                    <?php
+                    $i=0;
+                    while($row_act = mysqli_fetch_array($act_details)) {    
+                    ?>
+                    <tr>
+                        <td data-label="Name"><?php echo $row_act["act_name"]; ?></td>
+                        <td data-label="Description"><?php echo $row_act["act_desc"]; ?></td>
+                        <td data-label="Budget"><?php echo $row_act["act_date"];?></td>
+                        
+                        <?php if($row_act["act_complete"] == TRUE){?>
+                        <?php $done++; ?>
+                        <td data-label="status">
+                        ✔️
+                        </td>
+                        <?php }else{ ?>
+                        <td data-label="status">
+                        ⌛
+                        </td>
+                        <?php } ?>
+                        <td data-label="Contract"><a href="./contractSinglePage.php?con_id=<?php echo $row_act['con_id']; ?>"><?php echo $row_act['con_id']; ?></a></td>
+                        <?php if($user_role<=2){ ?>
+                        
+                        <td data-label="Edit">
+                        <form method = "post" action="<?php echo $_SERVER['PHP_SELF']?>">
+                        <input type="hidden" name = "mark_done" value="<?php echo $row_act["act_id"]; ?>">
+                        <button type="submit" name="act_done" class="btn btn-success">&#x270E Mark</button>
+                        </form>  
+                        </td>
+                        <?php } ?>
+                    </tr>
+                    <?php
+                    $i++;
+                    }
+                    if($i==0){
+                    ?>
+                    <tr><td colspan="8"><center>No Activities Avaliable!</center></td></tr>
+                    <?php } ?>
+                </tbody>
+                </table>
             </div>
+            
+            <br>
         </div>
     </div>
 </div>
 <!-- Content Ends -->
+<!-- Pagination script -->
+<script>
+	$('table.paginated').each(function () {
+        var currentPage = 0;
+        var numPerPage = 5; // number of items 
+        var $table = $(this);
+        //var $tableBd = $(this).find("tbody");
 
+        $table.bind('repaginate', function () {
+            $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+        });
+        $table.trigger('repaginate');
+        var numRows = $table.find('tbody tr').length;
+        var numPages = Math.ceil(numRows / numPerPage);
+        var $pager = $('<div class="pager"></div>');
+        for (var page = 0; page < numPages; page++) {
+            $('<span class="page-number"></span>').text(page + 1).bind('click', {
+                newPage: page
+            }, function (event) {
+                currentPage = event.data['newPage'];
+                $table.trigger('repaginate');
+                $(this).addClass('active').siblings().removeClass('active');
+            }).appendTo($pager).addClass('clickable');
+        }
+        if (numRows > numPerPage) {
+            $pager.insertAfter($table).find('span.page-number:first').addClass('active');
+        }
+    });
+</script>
 <script>
     $('.count').each(function () {
         $(this).prop('Counter',0).animate({
