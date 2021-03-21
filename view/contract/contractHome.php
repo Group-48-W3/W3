@@ -135,10 +135,11 @@
     ?>
     <!-- Contract Item -->
     <?php
-        $res_act = $act->getProgressContract((int)$row["con_id"]);
-        //echo $res_act;
+        //$res_act = $act->getProgressContract((int)$row["con_id"]);
+        $res_act = round((int)$row['con_progress']); 
+        
     ?>
-    <?php if($res_act <=95){?>
+    <?php if( $res_act<=95){?>
     <div class="container card text-white bg-primary" onclick="location.href='./contractSinglePage.php?con_id=<?php echo $row["con_id"]; ?>';" style="cursor: pointer;">
       <br>
       <h4 style="margin: 0px"><?php echo $row["con_name"]; ?></h4>

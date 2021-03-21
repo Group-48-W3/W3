@@ -6,9 +6,33 @@
 		exit;
 	}		
     require_once('./../../controller/user/userController.php');
-    require_once('./../../controller/contract/contractController.php'); 
     require_once('./header.php');
+    require_once('./../../controller/contract/contractController.php'); 
+    require_once('./../../controller/contract/activityController.php');
 
+
+    $contract = new Contract();
+    $con_details = $contract->getAllActiveContracts();
+    
+    $count = mysqli_num_rows($contract->getAllActiveContracts());
+    
+    $i = 0;
+    $result = array();
+    while($res = mysqli_fetch_array($con_details)){
+        
+        $row[$i][0] = $res['con_id'];
+        $row[$i][1] = $res['con_name'];
+        $row[$i][2] = $res['con_progress'];
+
+        $result[] = array("label"=>$row[$i][1], "symbol"=>$row[$i][0],"y"=>$row[$i][2]);
+        $contract_progress_points = $contract->getAllProgressPointContract($row[$i][0]);
+
+        while($res2 = mysqli_fetch_array($contract_progress_points)){
+            echo $res2['con_id'].$res2['progress_date']." ".$res2['progress_val']."</br>";
+        }
+        
+        $i++;
+    }
 ?>
     <!-- Charts -->
     <div class="container">
@@ -21,6 +45,16 @@
                 </div>
                 <div class="col-4">
                     <div id="chartContainerpie" style="height:320px; width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <h3>Demo Overview</h3>
+        <div class="container" id="chart">
+            <div class="row">
+                
+                <div class="col-7">
+                    <div id="chartContainerpie2" style="height:320px; width: 100%;"></div>
                 </div>
             </div>
         </div>
@@ -46,6 +80,7 @@
         
     <br>
     <!-- Charts ends -->
+    
     <?php
         $dataPoints = array(
             array("x" => 946665000000, "y" => 3289000),
@@ -67,23 +102,38 @@
             array("x" => 1451586600000, "y" => 2140000)
         );
         
-        $dataPoints_pie = array( 
-            array("label"=>"Araliya", "symbol" => "A","y"=>46.6),
-            array("label"=>"KCC", "symbol" => "KCC","y"=>27.7),
-            array("label"=>"Bentota", "symbol" => "B","y"=>13.9),
-            array("label"=>"Euler", "symbol" => "E","y"=>5),
-        );
+        $dataPoints_pie = $result;
+        
+        $dataPoints_pie2 = $result;
     ?>
 
     <script>
         window.onload = function () {
         //////////////////////////////////////////////////////
+        //demo
+        // contract distribution
+        var chartpie = new CanvasJS.Chart("chartContainerpie2", {
+        theme: "dark2",
+        animationEnabled: true,
+        title: {
+            text: "Contract Distribution"
+        },
+        data: [{
+            type: "doughnut",
+            indexLabel: "{symbol} - {y}",
+            yValueFormatString: "#,##0.0\"%\"",
+            showInLegend: true,
+            legendText: "{label} : {y}",
+            dataPoints: <?php echo json_encode($dataPoints_pie2, JSON_NUMERIC_CHECK); ?>
+        }]
+        });
+        chartpie.render();
         // contract distribution
         var chartpie = new CanvasJS.Chart("chartContainerpie", {
         theme: "dark2",
         animationEnabled: true,
         title: {
-            text: "Contract Analysis"
+            text: "Contract Distribution"
         },
         data: [{
             type: "doughnut",
@@ -95,6 +145,7 @@
         }]
         });
         chartpie.render();
+        
         // contract burndown
         var chart = new CanvasJS.Chart("contractBurndown", {
             theme: "dark2",
@@ -121,7 +172,7 @@
                 yValueFormatString: "$#,##0",
                 xValueFormatString: "MMM YYYY",
                 dataPoints: [
-                    { x: new Date(2019, 2), y: 61000 },
+                    { x: new Date(2019, 2, 11), y: 61000 },
                     { x: new Date(2019, 3), y: 35000 },
                     { x: new Date(2019, 4), y: 30000 },
                     { x: new Date(2019, 5), y: 28400 },
@@ -141,7 +192,7 @@
                 name: "Bentota Beach",
                 yValueFormatString: "$#,##0",
                 dataPoints: [
-                    { x: new Date(2019, 2), y: 72100 },
+                    { x: new Date(2019,2,1), y: 72100 },
                     { x: new Date(2019, 3), y: 66000 },
                     { x: new Date(2019, 4), y: 60000 },
                     { x: new Date(2019, 5), y: 55000 },

@@ -75,6 +75,11 @@ class Contract{
         return $res;
 
     }
+    function getAllProgressPointContract($con_id){
+        $res = getAllProgressPointContractDB($con_id);
+
+        return $res;
+    }
     function updateContract($contract_id,$con_name,$con_start_date,$con_end_date,
     $con_location,$con_description,$con_payment,
     $c_id,$c_name,$c_address,$c_company,$c_mobile,$c_email){
