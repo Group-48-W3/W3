@@ -6,6 +6,7 @@
   require_once('./../../controller/contract/itemController.php');
   require_once('./search.php');
   $quo = new Quotation();
+  $item = new Item();
   $result = $quo->getAllQuotation();
 
   $a = $_SESSION['contract_id'];
@@ -18,6 +19,8 @@
     $_SESSION['con_id'] = $a;
     echo $a;
     echo $_SESSION['con_id'];
+
+    $item_details = $item->getAllItems();
   }
 
   if(isset($_POST['add_quotation'])){
@@ -47,22 +50,37 @@
   <h1>Add New Quotation</h1>  
   <!-- searching -->
   <?php if(($_SESSION['item_add']) == 'success'): ?>
-					<div class="alert alert-success" style="background-color: green;">
-						<a href="./user/userProfile.php" style="text-decoration: none; color: white;">Item added successfully</a>
-					</div>
+		<div class="alert alert-success" style="background-color: green;">
+			<a href="./user/userProfile.php" style="text-decoration: none; color: white;">Item added successfully</a>
+		</div>
 	<?php endif; ?>
   <!-- Form Starts -->
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
     <div class="form-group field">
-      <input type="text" class="form-field" name="q_itemno" id="q_itemno">
+      <!-- item id -->
+      <select class="form-field" name="q_itemno" id="q_itemno">
+        <?php
+        $i=0;
+          while($row2 = mysqli_fetch_array($item_details)) {
+        ?>
+        <option value="<?php echo $row2["item_id"];?>"><?php echo $row2["item_id"]." ".$row2["item_name"];?></option>
+        <?php
+          $i++;
+          }
+          if($i==0){
+            echo "No results ";
+          }
+        ?>
+      </select>
+      <!-- end item selection -->
       <label for="q_itemno" class="form-label">Furniture Item Code</label>
       <small id="" class="form-text text-muted">select the furniture item model</small>
-      <div id="output"></div>
       <!-- select items -->
       <h6 style="margin: 0x">If you haven't a furniture item code. Add a new item here</h6>
-      <!-- Add new Item to Quotation -->
-      <a class="btn btn-warning" onclick="document.getElementById('id01').style.display='block'">Add new Item</a>
+    <!-- Add new Item to Quotation -->
+    <a class="btn btn-warning" onclick="document.getElementById('id01').style.display='block'">Add new Item</a>  
     </div>
+    
     <div class="form-group field">
       <input type="text" class="form-field" id="q_name" name="quo_name">
       <label class="form-label">Quotation Name</label>
@@ -75,6 +93,10 @@
     <div class="form-group field">
       <input type="text" class="form-field" id="q_quantity" name="quo_quantity">
       <label class="form-label">Nominal Value(LKR)</label>
+    </div>
+    <div class="form-group field">
+      <input type="text" class="form-field" id="q_quan" name="quo_quan" value = "1">
+      <label class="form-label">Quantity</label>
     </div>
     <div class="form-group field">
       <input type="text" class="form-field" id="q_discount" name="quo_discount">
@@ -134,10 +156,6 @@
         <div class="form-group field">
           <input type="text" class="form-field" name="unit_price" id="unit_price">  
           <label for="unit_price" class="form-label">Unit Price</label>
-        </div>
-        <div class="form-group field">
-          <input type="file" class="form-field" id="image" name="image">
-          <label for="q_budget" class="form-label">Image</label>
         </div>
         
         <div class="clearfix right">
