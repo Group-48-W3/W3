@@ -27,7 +27,7 @@
         <select id="con_name" class="form-field" name="con_name">
             <option value="default">Select contract name</option>
             <?php
-              $list = mysqli_query($conn,"SELECT con_name FROM contract");
+              $list = mysqli_query($conn,"SELECT con_name FROM contract ORDER BY con_name");
               while ($row_ah = mysqli_fetch_assoc($list)) {
               ?>
               <option value="<?php echo $row_ah['con_name']; ?>"><?php echo $row_ah['con_name']; ?></option>
@@ -86,7 +86,7 @@
             if($i==0){
                 echo "No results ";
             }
-        ?>
+          ?>
       </table>
 
     </div>
