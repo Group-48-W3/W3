@@ -16,6 +16,12 @@
         $quo->updateQuotation($_SESSION['quotation_id'],$_POST['q_item'],$_POST['q_name'],$_POST['q_desc'],
         $_POST['q_budget'],$_POST['q_discount']);
     }
+    if(isset($_GET['del_id'])){
+        //echo "success";
+        //echo $_GET['con_id'];
+        $quo = new Quotation();
+        $quo->deleteQuotation($_GET['del_id'],$_GET['con_id']);
+    }
 ?>
 
 <div class="container">

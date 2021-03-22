@@ -49,5 +49,19 @@ class QuotationModel{
         }
         mysqli_close($conn);
 	}
+	function deleteQuotationDB($quo_id){
+		global $conn;
+		$sql = "delete from quotation where q_id = '$quo_id'";
+        if (mysqli_query($conn, $sql)) {
+            echo "Quotation deleted successfully !";
+			//$sql_quo = "delete from activity where q_id = '$quo_id'";
+
+            return 1;
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+            return 0;
+        }
+        mysqli_close($conn);
+	}
 }
 ?>

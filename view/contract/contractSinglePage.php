@@ -161,7 +161,7 @@
                     <?php if($user_role==2){ ?>
                     <td data-label="Edit">
                     <a href="./quotationSinglePage.php?q_id=<?php echo $row["q_id"]; ?>" class="btn btn-warning">&#x270E</a>
-                    <a class="btn btn-danger" href="./quotationSinglePage?del_id=<?php echo $row["q_id"]; ?>">&#x2716</a>
+                    <a class="btn btn-danger" href="./quotationSinglePage.php?del_id=<?php echo $row["q_id"]; ?>&con_id=<?php echo $_SESSION['contract_id'];?>">&#x2716</a>
                     </td>
                     
                     <?php } ?>

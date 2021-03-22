@@ -19,7 +19,7 @@ class Quotation{
         $activity = new activityModel();
         $res = $quotation->addQuotationDB($item_no,$name,$description,$budget,$quantity,$discount,$con_id);
         if($res){
-            $res1 = $activity->addActivityforQuotationDB($name,$con_id);
+            //$res1 = $activity->addActivityforQuotationDB($name,$con_id);
             header('location: ./contractSinglePage.php?con_id='.$con_id);
         }else{
             echo "Error on Model";
