@@ -56,20 +56,6 @@
 				</select>
 			</div>
 		</div>
-		<div class="col">
-			<div class="right">
-				<span>Sort By: </span>
-				<select name="" id="">
-					<option value="">Category</option>
-					<option value="">Price</option>
-					<option value="">Available Quantity</option>
-				</select>
-				<select name="" id="">
-					<option value="">ASC</option>
-					<option value="">DESC</option>
-				</select>
-			</div>
-		</div>
 	</div>
 	<br>
 	<div class="row">
@@ -141,10 +127,7 @@
           <input type="text" class="form-field" name="unit_price" id="unit_price">  
           <label for="unit_price" class="form-label">Unit Price</label>
         </div>
-        <div class="form-group field">
-          <input type="file" class="form-field" id="image" name="image">
-          <label for="q_budget" class="form-label">Image</label>
-        </div>
+        
 		<div class="clearfix right">
           <button type="button" class="btn btn-secondary" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
           <button type="submit" name="add_item" class="btn btn-primary">Add Item</button>
