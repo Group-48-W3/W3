@@ -66,7 +66,6 @@ class Activity{
         
     }
     function getAllTodayActivity(){
-        //
         // get activities for a single contract
         $activity = new activityModel();
         $date = date('Y/m/d');
@@ -74,15 +73,32 @@ class Activity{
 
         return $res;
     }
-    function getProgressToday(){
+    function getAllTodayDoneActivity(){
         // complete activties during today
-        
+        $activity = new activityModel();
+        $date = date('Y/m/d');
+        $res = $activity->getAllTodayDoneActivityDB($date);
+
+        return $res;
     }
-    function updateActivity(){
-        //
+    function updateActivity($act_name,$act_desc,$act_date,$act_complete){
+        //update an item
+        $activity = new activityModel();
+        if(!empty($act_name) && !empty($act_desc) && !empty($act_complete)){
+            //echo "on controller";
+            $res = $activity->updateActivity($act_name,$act_desc,$act_date,$act_complete);
+            if($res){
+                echo "activity updated successfully";
+                //header('location: ./itemUpdate.php?item_id='.$item_id);
+            }else{
+                echo "Error occured in updation, Please check for relevance of details";
+            }    
+        }else{
+            echo "Error on validation";
+        }
     }
 
-    function deleteActivity($id){
+    function deleteActivity($act_id){
         //
     }
 }

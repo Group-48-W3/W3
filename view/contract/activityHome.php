@@ -15,8 +15,10 @@
     static $done = 0;
     //activity details
     $act_details = $act->getAllTodayActivity();
+    $act_done_count = $act->getAllTodayDoneActivity();
     // count activity
     $count = mysqli_num_rows($act_details);
+    $done_count = mysqli_fetch_array($act_done_count);
     // activity mark
     if(isset($_POST['act_done'])){
         $act_id = $_POST['mark_done'];
@@ -46,7 +48,7 @@
         <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
           <!-- <div class="card-header">Header</div> -->
           <div class="card-body">
-            <h1 class="card-title"><?php echo $done; ?></h1>
+            <h1 class="card-title"><?php echo $done_count['res']; ?></h1>
             <p class="card-text">Done Activity</p>
           </div>
         </div>
@@ -65,7 +67,7 @@
                 <thead>
                     <th width="30%">Activity Name</th>
                     <th>Activity Description</th>
-                    <th>Weight</th>
+                    <th>Date</th>
                     <th>Complete</th>
                     <th>Contract</th>
                     <?php if($user_role==2){ ?>

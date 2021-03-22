@@ -99,6 +99,19 @@ class activityModel{
         }
         mysqli_close($conn);
     }
+    function getAllTodayDoneActivityDB($date){
+        global $conn;
+        $sql = "SELECT COUNT(act_id) as res from activity WHERE act_date='$date' AND act_complete='1'";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            //echo "activity retrived successfully !";
+            return $result;
+        
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+        }
+        mysqli_close($conn);
+    }
 }
 
 
