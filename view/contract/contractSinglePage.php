@@ -27,6 +27,8 @@
 
     $quo_details = $quo->getAllQuotationContract($_SESSION['contract_id']);
 
+    //$quo_value = 
+
     $act_details = $act->getActivityforContract($_SESSION['contract_id']);
 
     $progress = $act->getProgressContract($_SESSION['contract_id']);
@@ -159,7 +161,7 @@
                     <?php if($user_role==2){ ?>
                     <td data-label="Edit">
                     <a href="./quotationSinglePage.php?q_id=<?php echo $row["q_id"]; ?>" class="btn btn-warning">&#x270E</a>
-                    <a class="btn btn-danger" href="#">&#x2716</a>
+                    <a class="btn btn-danger" href="./quotationSinglePage?del_id=<?php echo $row["q_id"]; ?>">&#x2716</a>
                     </td>
                     
                     <?php } ?>

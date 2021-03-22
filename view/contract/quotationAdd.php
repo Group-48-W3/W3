@@ -15,6 +15,7 @@
   $result = $quo->getAllQuotation();
 
   $a = $_SESSION['contract_id'];
+  $page = 0;
 
   $_SESSION['item_add'] = 'none';
   
@@ -27,9 +28,14 @@
 
     $item_details = $item->getAllItems();
   }
+  if (isset($_POST['item_select'])) {
+    $_SESSION['item_id'] = $_POST['q_itemno'];
+    $page = 1;
+    $single_item = mysqli_fetch_array($item->getSingleItem($_SESSION['item_id']));
+  }
   
   if(isset($_POST['add_quotation'])){
-    $quo_itemno = $_POST['q_itemno'];
+    $quo_itemno = $_SESSION['item_id'];
     $quo_name = $_POST['quo_name'];
     $quo_description = $_POST['q_desc'];
     $quo_budget = $_POST['quo_budget'];
@@ -82,24 +88,26 @@
       <label for="q_itemno" class="form-label">Furniture Item Code</label>
       <small id="" class="form-text text-muted">select the furniture item model</small>
       <br>
-      
+      <button type="submit" class="btn btn-primary" name ="item_select">Select</button>
       <!-- select items -->
       <h6 style="margin: 0x">If you haven't a furniture item code. Add a new item here</h6>
     <!-- Add new Item to Quotation -->
     <a class="btn btn-warning" onclick="document.getElementById('id01').style.display='block'">Add new Item</a>  
     </div>
-    
+    </form>
+    <?php if($page !=0){ ?>
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
     <div class="form-group field">
       <input type="text" class="form-field" id="q_name" name="quo_name">
       <label class="form-label">Quotation Name</label>
       <small id="" class="form-text text-muted">Provide a suitable quotation name </small>
     </div>
     <div class="form-group field">
-      <input type="text" class="form-field" name="q_desc" id="quo_desc">  
+      <input type="text" class="form-field" name="q_desc" id="quo_desc" value="<?php echo $single_item['item_name']; ?>">  
       <label class="form-label">Quotation Description</label>
     </div>
     <div class="form-group field">
-      <input type="text" class="form-field" id="q_budget" name="quo_budget">
+      <input type="text" class="form-field" id="q_budget" name="quo_budget" value="<?php echo $single_item['unit_price'];?>">
       <label class="form-label">Budget(LKR Value in Item code)</label>
     </div>
     <div class="form-group field">
@@ -113,7 +121,9 @@
     <div class="right">
       <button type="submit" class="btn btn-primary" name ="add_quotation">Add Quotation</button>
     </div>
-  </form>
+    </form>
+    <?php } ?>
+    
   <!-- Form Ends -->
 </div> 
 <script type="text/javascript">

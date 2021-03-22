@@ -41,7 +41,11 @@
                     </div>
                     <div class="form-group field">
                         <input type="text" class="form-field" name="q_budget" id="itemPrice" value="<?php echo $row['q_budget'];?>">
-                        <label for="itemPrice" class="form-label">Weight</label>
+                        <label for="itemPrice" class="form-label">Budget</label>
+                    </div>
+                    <div class="form-group field">
+                        <input type="text" class="form-field" name="q_budget" id="itemPrice" value="<?php echo $row['q_quantity'];?>">
+                        <label for="itemPrice" class="form-label">Quantity</label>
                     </div>
                     <div class="form-group field">
                         <input type="text" class="form-field" name="q_discount" id="itemPrice" value="<?php echo $row['q_discount'];?>">
