@@ -22,21 +22,22 @@
   if (isset($_GET['quo_con_id'])) {
     $a = $_GET['quo_con_id'];
     $_SESSION['con_id'] = $a;
-    echo $a;
-    echo $_SESSION['con_id'];
+    //echo $a;
+    //echo $_SESSION['con_id'];
 
     $item_details = $item->getAllItems();
   }
-
+  
   if(isset($_POST['add_quotation'])){
     $quo_itemno = $_POST['q_itemno'];
     $quo_name = $_POST['quo_name'];
     $quo_description = $_POST['q_desc'];
-    $quo_quantity = $_POST['quo_quantity'];
+    $quo_budget = $_POST['quo_budget'];
+    $quo_quantity = $_POST['quo_quan'];
     $quo_discount = $_POST['quo_discount'];
     $con_id = $a;
     
-    $quo->addQuotation($quo_itemno,$quo_name,$quo_description,$quo_quantity,$quo_discount,$con_id);
+    $quo->addQuotation($quo_itemno,$quo_name,$quo_description,$quo_budget,$quo_quantity,$quo_discount,$con_id);
     
   }
 
@@ -68,7 +69,7 @@
         $i=0;
           while($row2 = mysqli_fetch_array($item_details)) {
         ?>
-        <option value="<?php echo $row2["item_id"];?>"><?php echo $row2["item_id"]." ".$row2["item_name"];?></option>
+        <option value="<?php echo $row2["item_id"];?>"><?php echo $row2["item_id"]." ".$row2["item_name"]." LKR: ".$row2['unit_price'];?></option>
         <?php
           $i++;
           }
@@ -80,6 +81,8 @@
       <!-- end item selection -->
       <label for="q_itemno" class="form-label">Furniture Item Code</label>
       <small id="" class="form-text text-muted">select the furniture item model</small>
+      <br>
+      
       <!-- select items -->
       <h6 style="margin: 0x">If you haven't a furniture item code. Add a new item here</h6>
     <!-- Add new Item to Quotation -->
@@ -96,8 +99,8 @@
       <label class="form-label">Quotation Description</label>
     </div>
     <div class="form-group field">
-      <input type="text" class="form-field" id="q_quantity" name="quo_quantity">
-      <label class="form-label">Nominal Value(LKR)</label>
+      <input type="text" class="form-field" id="q_budget" name="quo_budget">
+      <label class="form-label">Budget(LKR Value in Item code)</label>
     </div>
     <div class="form-group field">
       <input type="text" class="form-field" id="q_quan" name="quo_quan" value = "1">
@@ -170,7 +173,24 @@
       </form>
     </div>
     <!-- End Prompt Box -->
-    
+<script type="text/javascript">
+     // you need to fill this cities value getting data from city table of your DB
+cities = {
+    "Lagos": ["LagosCity1", "LagosCity2"],
+    "Abuja": ["AbujaCity1", "AbujaCity2", "AbujaCity3"],
+    "Rivers": ["RiversCity1", "RiversCity2", "RiversCity3"]
+}
+$(document).ready(function() {
+  $('#state').change(function() {
+       var state = $(this).val();
+    if(cities[state] && cities[state].length > 0)
+    $("#Scity").html('');
+     $.each(cities[state], function(i, city) {
+            $("<option>").attr("value", city).text(city).appendTo("#Scity");
+        });
+  });
+});
+</script>    
 <?php
   require_once('leftSidebar.php'); 
   require_once('footer.php'); 

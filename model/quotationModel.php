@@ -9,11 +9,11 @@ class QuotationModel{
 
 		return $result;
 	}
-	function addQuotationDB($item_no,$name,$description,$quantity,$discount,$con_id){
+	function addQuotationDB($item_no,$name,$description,$budget,$quantity,$discount,$con_id){
 		global $conn;
-		$sql = "insert into quotation VALUES ('','$item_no','$name','$description','$quantity','$discount','$con_id')";
+		$sql = "insert into quotation VALUES ('','$item_no','$name','$description','$budget','$quantity','$discount','$con_id')";
         if (mysqli_query($conn, $sql)) {
-            // echo "Item created successfully !";
+            echo "Quotation created successfully !";
             return 1;
         } else {
             echo "Error: " . $sql . " " . mysqli_error($conn);

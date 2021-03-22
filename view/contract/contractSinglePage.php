@@ -122,18 +122,7 @@
             </div>
           </div>
           <div class="col">
-            <div class="right">
-              <span>Sort By: </span>
-              <select name="" id="">
-                <option value="">Category</option>
-                <option value="">Price</option>
-                <option value="">Available Quantity</option>
-              </select>
-              <select name="" id="">
-                <option value="">ASC</option>
-                <option value="">DESC</option>
-              </select>
-            </div>
+            
           </div>
         </div>
         <br>
@@ -145,7 +134,7 @@
                 <th>Item Name</th>
                 <th width="30%">Description</th>
                 <th>Budget</th>
-                <th>Image</th>
+                <th>Quantity</th>
                 <th>Discount</th>
                 <?php if($user_role==2){ ?>
                 <th>Edit</th>
@@ -164,7 +153,7 @@
                     </td>
                     <td data-label="Description"><?php echo $row["q_desc"]; ?></td>
                     <td data-label="Budget"><?php echo $row["q_budget"];?></td>
-                    <td data-label="Image">Not Avaliable</td>
+                    <td data-label="Quantity"><?php echo $row["q_quantity"];?></td>
                     <td data-label="Discount"><?php echo $row["q_discount"]?></td>
                   
                     <?php if($user_role==2){ ?>
@@ -199,7 +188,7 @@
           <!-- Add new quotation -->
           <small class="form-text text-muted">Need to create a need one? click the following button</small>
           <div class="quotation">
-          <a class="btn btn-success" href="./quotationAdd.php?quo_con_id=<?php echo $row["con_id"]; ?>">Create a new Quotation</a>
+          <a class="btn btn-success" href="./quotationAdd.php?quo_con_id=<?php echo $_SESSION['contract_id']; ?>">Create a new Quotation</a>
           </div>
         </div>
         </form>
