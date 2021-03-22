@@ -112,6 +112,34 @@ class activityModel{
         }
         mysqli_close($conn);
     }
+    function updateActivityDB($act_id,$act_name,$act_desc,$act_date,$act_complete){
+        global $conn;
+        $sql = "UPDATE activity SET act_name='$act_name', act_desc='$act_desc', act_date='$act_date', act_complete='$act_complete' WHERE act_id='$act_id'";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            echo "activity update successfully !";
+            return 1;
+        
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+            return 0;
+        }
+        mysqli_close($conn);
+    }
+    function deleteActivityDB($act_id){
+        global $conn;
+        $sql = "delete activity WHERE act_id='$act_id'";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            //echo "activity retrived successfully !";
+            return 1;
+        
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+            return 0;
+        }
+        mysqli_close($conn);
+    }
 }
 
 

@@ -81,12 +81,12 @@ class Activity{
 
         return $res;
     }
-    function updateActivity($act_name,$act_desc,$act_date,$act_complete){
+    function updateActivity($act_id,$act_name,$act_desc,$act_date,$act_complete){
         //update an item
         $activity = new activityModel();
         if(!empty($act_name) && !empty($act_desc) && !empty($act_complete)){
             //echo "on controller";
-            $res = $activity->updateActivity($act_name,$act_desc,$act_date,$act_complete);
+            $res = $activity->updateActivityDB($act_id,$act_name,$act_desc,$act_date,$act_complete);
             if($res){
                 echo "activity updated successfully";
                 //header('location: ./itemUpdate.php?item_id='.$item_id);
@@ -99,7 +99,14 @@ class Activity{
     }
 
     function deleteActivity($act_id){
-        //
+        //delete an activity
+        $activity = new activityModel();
+        $res = $activity->deleteActivtyDB($act_id);
+        if($res){
+            echo "delete successsfully";
+        }else{
+            echo "delete unsuccessful";
+        }
     }
 }
 
