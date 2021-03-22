@@ -133,7 +133,7 @@
             theme: "dark2",
             animationEnabled: true,
             title:{
-                text: "Contract Burndown"
+                text: "Contract Progress Analysis"
             },
             axisY :{
                 includeZero: false,
@@ -218,7 +218,7 @@
                 type: "splineArea", 
                 showInLegend: true,
                 yValueFormatString: "#,##0",      
-                name: "Euler",
+                name: "Matrix Wood",
                 dataPoints: <?php echo json_encode($data_bucket[3], JSON_NUMERIC_CHECK); ?>
                 // [
                 //     { x: new Date(2019, 2), y: 27000 },

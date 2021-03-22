@@ -1,65 +1,51 @@
-/* My Progress Bar */
-(function($) {
-    /*
-     * Example 1:
-     *
-     * - no animation
-     * - custom gradient
-     *
-     * By the way - you may specify more than 2 colors for the gradient
-     */
-    $('.first.circle').circleProgress({
-      value: 0.35,
-      animation: false,
-      fill: {gradient: ['#ff1e41', '#ff5f43']}
-    });
-  
-    /*
-     * Example 2:
-     *
-     * - default gradient
-     * - listening to `circle-animation-progress` event and display the animation progress: from 0 to 100%
-     */
-    $('.second.circle').circleProgress({
-      value: 0.6
-    }).on('circle-animation-progress', function(event, progress) {
-      $(this).find('strong').html(Math.round(100 * progress) + '<i>%</i>');
-    });
-  
-    /*
-     * Example 3:
-     *
-     * - very custom gradient
-     * - listening to `circle-animation-progress` event and display the dynamic change of the value: from 0 to 0.8
-     */
-    $('.third.circle').circleProgress({
-      value: 0.75,
-      fill: {gradient: [['#0681c4', .5], ['#4ac5f8', .5]], gradientAngle: Math.PI / 4}
-    }).on('circle-animation-progress', function(event, progress, stepValue) {
-      $(this).find('strong').text(stepValue.toFixed(2).substr(1));
-    });
-  
-    /*
-     * Example 4:
-     *
-     * - solid color fill
-     * - custom start angle
-     * - custom line cap
-     * - dynamic value set
-     */
-    var c4 = $('.forth.circle');
-  
-    c4.circleProgress({
-      startAngle: -Math.PI / 4 * 3,
-      value: 0.5,
-      lineCap: 'round',
-      fill: {color: '#ffa500'}
-    });
-  
-    // Let's emulate dynamic value update
-    setTimeout(function() { c4.circleProgress('value', 0.7); }, 1000);
-    setTimeout(function() { c4.circleProgress('value', 1.0); }, 1100);
-    setTimeout(function() { c4.circleProgress('value', 0.5); }, 2100);
-  
-  })(jQuery);
-  
+alert('hi');
+(function ($) {
+	$.fn.loading = function () {
+		var DEFAULTS = {
+			backgroundColor: '#b3cef6',
+			progressColor: '#4b86db',
+			percent: 75,
+			duration: 2000
+		};	
+		
+		$(this).each(function () {
+			var $target  = $(this);
+
+			var opts = {
+			backgroundColor: $target.data('color') ? $target.data('color').split(',')[0] : DEFAULTS.backgroundColor,
+			progressColor: $target.data('color') ? $target.data('color').split(',')[1] : DEFAULTS.progressColor,
+			percent: $target.data('percent') ? $target.data('percent') : DEFAULTS.percent,
+			duration: $target.data('duration') ? $target.data('duration') : DEFAULTS.duration
+			};
+			// console.log(opts);
+	
+			$target.append('<div class="background"></div><div class="rotate"></div><div class="left"></div><div class="right"></div><div class=""><span>' + opts.percent + '%</span></div>');
+	
+			$target.find('.background').css('background-color', opts.backgroundColor);
+			$target.find('.left').css('background-color', opts.backgroundColor);
+			$target.find('.rotate').css('background-color', opts.progressColor);
+			$target.find('.right').css('background-color', opts.progressColor);
+	
+			var $rotate = $target.find('.rotate');
+			setTimeout(function () {	
+				$rotate.css({
+					'transition': 'transform ' + opts.duration + 'ms linear',
+					'transform': 'rotate(' + opts.percent * 3.6 + 'deg)'
+				});
+			},1);		
+
+			if (opts.percent > 50) {
+				var animationRight = 'toggle ' + (opts.duration / opts.percent * 50) + 'ms step-end';
+				var animationLeft = 'toggle ' + (opts.duration / opts.percent * 50) + 'ms step-start';  
+				$target.find('.right').css({
+					animation: animationRight,
+					opacity: 1
+				});
+				$target.find('.left').css({
+					animation: animationLeft,
+					opacity: 0
+				});
+			} 
+		});
+	}
+})(jQuery);

@@ -27,6 +27,8 @@
 
     $quo_details = $quo->getAllQuotationContract($_SESSION['contract_id']);
 
+    //$quo_value = 
+
     $act_details = $act->getActivityforContract($_SESSION['contract_id']);
 
     $progress = $act->getProgressContract($_SESSION['contract_id']);
@@ -77,15 +79,28 @@
   <div class="col-sm">
     <!-- Progress starts -->
     <h2>Progress Measures</h2>
-    <div class="circles">
-      <h5>Progess : <?php echo " ".$progress." %"?></h5>
-      
+    <div class="col-sm">
+      <h5>Progress : <?php echo " ".$progress." %"?></h5>
       <br>
-      <div class="third circle">
-        <strong></strong>
-        <!-- <span><br><?php echo $row["con_name"]." "; ?>progress</span> -->
-        
-      </div>
+      <!-- add progress bar -->
+      <?php if($progress >=50){ ?>
+        <svg class="radial-progress" data-percentage="<?php echo $progress;?>" viewBox="0 0 80 80">
+          <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+          <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136;"></circle>
+          <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)"><?php echo $progress?></text>
+        </svg>
+      <?php }else{?>
+        <!-- progress less than 50% -->
+        <svg class="radial-progress" data-percentage="<?php echo $progress;?>" viewBox="0 0 80 80">
+          <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+          <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136;"></circle>
+          <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)"><?php echo $progress?></text>
+        </svg>  
+      <?php }?>  
+      <!-- progress with js  -->
+      
+      <!-- ends -->
+    </div>
     </div>
     <!-- Progress ends -->
   </div>
@@ -109,18 +124,7 @@
             </div>
           </div>
           <div class="col">
-            <div class="right">
-              <span>Sort By: </span>
-              <select name="" id="">
-                <option value="">Category</option>
-                <option value="">Price</option>
-                <option value="">Available Quantity</option>
-              </select>
-              <select name="" id="">
-                <option value="">ASC</option>
-                <option value="">DESC</option>
-              </select>
-            </div>
+            
           </div>
         </div>
         <br>
@@ -132,7 +136,7 @@
                 <th>Item Name</th>
                 <th width="30%">Description</th>
                 <th>Budget</th>
-                <th>Image</th>
+                <th>Quantity</th>
                 <th>Discount</th>
                 <?php if($user_role==2){ ?>
                 <th>Edit</th>
@@ -147,17 +151,17 @@
                     <td data-label="Name"><?php echo $row["q_name"]; ?></td>
                     <td data-label="Name">
                     <!-- <a onclick="document.getElementById('item').style.display='block'"><?php echo $row["q_item"]; ?></a> -->
-                    <a href="./itemUpdate.php?item_id=<?php echo $row["q_item"]; ?>"><?php echo $row["q_item"]; ?></a>
+                    <a href="./itemUpdate.php?view=1&item_id=<?php echo $row["q_item"]; ?>"><?php echo $row["q_item"]; ?></a>
                     </td>
                     <td data-label="Description"><?php echo $row["q_desc"]; ?></td>
                     <td data-label="Budget"><?php echo $row["q_budget"];?></td>
-                    <td data-label="Image">Not Avaliable</td>
+                    <td data-label="Quantity"><?php echo $row["q_quantity"];?></td>
                     <td data-label="Discount"><?php echo $row["q_discount"]?></td>
                   
                     <?php if($user_role==2){ ?>
                     <td data-label="Edit">
                     <a href="./quotationSinglePage.php?q_id=<?php echo $row["q_id"]; ?>" class="btn btn-warning">&#x270E</a>
-                    <a class="btn btn-danger" href="#">&#x2716</a>
+                    <a class="btn btn-danger" href="./quotationSinglePage.php?del_id=<?php echo $row["q_id"]; ?>&con_id=<?php echo $_SESSION['contract_id'];?>">&#x2716</a>
                     </td>
                     
                     <?php } ?>
@@ -186,7 +190,7 @@
           <!-- Add new quotation -->
           <small class="form-text text-muted">Need to create a need one? click the following button</small>
           <div class="quotation">
-          <a class="btn btn-success" href="./quotationAdd.php?quo_con_id=<?php echo $row["con_id"]; ?>">Create a new Quotation</a>
+          <a class="btn btn-success" href="./quotationAdd.php?quo_con_id=<?php echo $_SESSION['contract_id']; ?>">Create a new Quotation</a>
           </div>
         </div>
         </form>
@@ -273,7 +277,7 @@
           </div>
           
           <div class="form-group">
-            <input type="text" class="form-field" name="act_date" id="activityDate" value="<?php echo date("Y/m/d");?>" disabled>  
+            <input type="text" class="form-field" name="act_date" id="activityDate" value="<?php echo date("Y/m/d");?>">  
             <label for="activityDate" class="form-label">Date</label>
             <small>Date is automatically generated by the system</small>
           </div>
@@ -386,6 +390,32 @@
             $pager.insertAfter($table).find('span.page-number:first').addClass('active');
         }
     });
+</script>
+<!-- script for progress -->
+<script>
+$('svg.radial-progress').each(function( index, value ) { 
+  $(this).find($('circle.complete')).removeAttr( 'style' );
+});
+$(window).scroll(function(){
+  $('svg.radial-progress').each(function( index, value ) { 
+    // If svg.radial-progress is approximately 25% vertically into the window when scrolling from the top or the bottom
+    if ( 
+        $(window).scrollTop() > $(this).offset().top - ($(window).height() * 0.75) &&
+        $(window).scrollTop() < $(this).offset().top + $(this).height() - ($(window).height() * 0.25)
+    ) {
+        // Get percentage of progress
+        percent = $(value).data('percentage');
+        // Get radius of the svg's circle.complete
+        radius = $(this).find($('circle.complete')).attr('r');
+        // Get circumference (2πr)
+        circumference = 2 * Math.PI * radius;
+        // Get stroke-dashoffset value based on the percentage of the circumference
+        strokeDashOffset = circumference - ((percent * circumference) / 100);
+        // Transition progress for 1.25 seconds
+        $(this).find($('circle.complete')).animate({'stroke-dashoffset': strokeDashOffset}, 1250);
+    }
+  });
+}).trigger('scroll');
 </script>
 <?php 
  require_once('leftSidebar.php'); 

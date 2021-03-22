@@ -14,7 +14,7 @@
 $con = new Contract();
 $item = new Item();
 
-
+$a = '';
 if(isset($_GET['item_id'])){
     $_SESSION['item_id'] = $_GET['item_id'];
 }
@@ -25,9 +25,18 @@ if(isset($_POST['update_item'])){
     $item->updateItem($_SESSION['item_id'],$_POST['item_name'],$_POST['item_cat'],$_POST['unit_price']);
 }
 
+if(isset($_GET['view'])){
+    $a = 'disabled';
+}
+    
 ?>
 <div class="container">
-<h2>Item Update</h2>
+<?php if($a != ''){ ?>
+    <h2>Item View</h2>
+<?php }else{ ?>
+    <h2>Item Update</h2>
+<?php }   
+?> 
 <div class="container">
 </div>
 <div class="container">
@@ -39,23 +48,29 @@ if(isset($_POST['update_item'])){
                 <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
                     <input type="hidden" name="item_id" value="<?php echo $row['item_id'];?>">
                     <div class="form-group field">
-                        <input type="text" class="form-field" name="item_name" id="itemName" value="<?php echo $row['item_name'];?>">
+                        <input type="text" class="form-field" name="item_name" id="itemName" value="<?php echo $row['item_name'];?>" <?php echo $a; ?>>
                         <label for="itemName" class="form-label">Item Name</label>
                     </div>
                     
                     <div class="form-group field">
-                        <input type="text" class="form-field" name="item_cat" id="itemDesc" value="<?php echo $row['item_category'];?>">
+                        <input type="text" class="form-field" name="item_cat" id="itemDesc" value="<?php echo $row['item_category'];?>" <?php echo $a; ?>>
                         <label for="itemDesc" class="form-label">Item Category</label>
                     </div>
                     <div class="form-group field">
-                        <input type="text" class="form-field" name="unit_price" id="itemPrice" value="<?php echo $row['unit_price'];?>">
+                        <input type="text" class="form-field" name="unit_price" id="itemPrice" value="<?php echo $row['unit_price'];?>" <?php echo $a; ?>>
                         <label for="itemPrice" class="form-label">Unit Price</label>
                     </div>
                     
                     <br>
-                    <div class="right">
+                    <?php if($a != ''){ ?>
+                        
+                    <?php }else{ ?>
+                        <div class="right">
                         <input type="submit" value="Update Item" name="update_item" class="btn btn-warning">
-                    </div>
+                        </div>
+                    <?php }   
+                    ?>
+                    
                 </form>
             </div>
         </div>

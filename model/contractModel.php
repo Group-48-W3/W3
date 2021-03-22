@@ -68,9 +68,7 @@ function updateContractProgressDB($progress,$con_id){
     $result = mysqli_query($conn, $sql);
     if ($result) {
         //echo "contract progress update successfully !";
-		$date = date("Y/m/d");
-		$progress_sql = "insert into contract_progress VALUES ('$con_id','$date','$progress',' ')";
-		mysqli_query($conn,$progress_sql);
+		
 	} else {
 		echo "Error: " . $sql . " " . mysqli_error($conn);
 	}
