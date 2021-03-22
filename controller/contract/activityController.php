@@ -45,6 +45,11 @@ class Activity{
          
         if($res2[0] !=0){
             $result = round(($res1[0]/$res2[0])*100);
+            // set the progress automatically here
+            $progress_val = round(($res1[0]/$res2[0])*100,2);
+            //$contract = new contractModel();
+            updateContractProgressDB($progress_val,$con_id);
+            // return the result;
             return $result;
         }else{
             return 0;

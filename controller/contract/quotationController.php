@@ -19,6 +19,7 @@ class Quotation{
         $activity = new activityModel();
         $res = $quotation->addQuotationDB($item_no,$name,$description,$quantity,$discount,$con_id);
         $res1 = $activity->addActivityforQuotationDB($name,$con_id);
+        header('location: ./contractSinglePage.php?con_id='.$con_id);
     }
     // get all quotations
     function getAllQuotation(){
