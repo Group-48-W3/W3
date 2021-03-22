@@ -31,8 +31,17 @@ class Activity{
     function setMarkActivity($act_id,$con_id){
         $activity = new activityModel();
         $res = $activity->setMarkActivityDB($act_id);
-
+        
         if($res){
+            $res1 = mysqli_fetch_array($activity->getProgressContractDB($con_id));
+            $res2 = mysqli_fetch_array($activity->getTotalActivityContractDB($con_id));
+            if($res2[0] !=0){
+                $result = round(($res1[0]/$res2[0])*100);
+                // set the progress automatically here
+                $progress_val = round(($res1[0]/$res2[0])*100,2);
+                $date = date('Y/m/d');
+                $activity->setContractProgressDB($con_id,$date,$progress_val);
+            }        
             header('location: ./contractSinglePage.php?con_id='.$con_id);
         }else{
             echo "Error on mark activity";

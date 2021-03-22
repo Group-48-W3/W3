@@ -86,6 +86,19 @@ class activityModel{
         }
         mysqli_close($conn);
     }
+    function setContractProgressDB($con_id,$date,$progress_val){
+        global $conn;
+        $sql = "insert into contract_progress VALUES ('','$con_id','$date','$progress_val','')";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            //echo "activity retrived successfully !";
+            return $result;
+        
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+        }
+        mysqli_close($conn);
+    }
 }
 
 
