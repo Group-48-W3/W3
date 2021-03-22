@@ -72,7 +72,7 @@ function updateIncomeDB($inc_id,$con_name, $inc_date, $inc_desc, $inc_amount)
 function totalIncomeDB()
 {
     global $conn;
-    $sql = "SELECT SUM(inc_amount) AS inc_amount FROM income WHERE inc_flag = 1";
+    $sql = "SELECT SUM(inc_amount) AS inc_amount FROM income WHERE inc_flag = 1 AND inc_date >= CURDATE() - INTERVAL 1 MONTH";
     $result = mysqli_query($conn, $sql);
     return $result;
 }

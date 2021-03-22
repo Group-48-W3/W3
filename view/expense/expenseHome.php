@@ -11,6 +11,18 @@ require_once('./../../controller/expense/incomeController.php');
   $income = new Income();
   $result = $income->totalIncome();
   $row = mysqli_fetch_array($result);
+
+  require_once('./../../controller/expense/expenseController.php');
+  //expense object
+  $payment = new Payment();
+  $result1 = $payment->tExpense();
+  $row1 = mysqli_fetch_array($result1);
+  $result2 = $payment->yExpense();
+  $row2 = mysqli_fetch_array($result2);
+  $result3 = $payment->wExpense();
+  $row3 = mysqli_fetch_array($result3);
+  $result4 = $payment->mExpense();
+  $row4 = mysqli_fetch_array($result4);
 include_once('header.php'); ?>
 
 <div class="container">
@@ -26,7 +38,7 @@ include_once('header.php'); ?>
     <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
       <!-- <div class="card-header">Header</div> -->
       <div class="card-body">
-        <h2 class="card-title">LKR: 2,150</h1>
+        <h2 class="card-title">LKR: <?php echo $row1["p_texpense"]; ?></h1>
         <p class="card-text">Today's expenses</p>
       </div>
     </div>
@@ -37,7 +49,7 @@ include_once('header.php'); ?>
      <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
       <!-- <div class="card-header">Header</div> -->
       <div class="card-body">
-        <h2 class="card-title">LKR: 1,850</h1>
+        <h2 class="card-title">LKR: <?php echo $row2["p_yexpense"]; ?></h1>
         <p class="card-text">Yesterday's expenses</p>
       </div>
     </div>
@@ -48,7 +60,7 @@ include_once('header.php'); ?>
     <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
       <!-- <div class="card-header">Header</div> -->
       <div class="card-body">
-        <h2 class="card-title">LKR: 9,700</h1>
+        <h2 class="card-title">LKR: <?php echo $row3["p_wexpense"]; ?></h1>
         <p class="card-text">Last 7 days expenses</p>
       </div>
     </div>
@@ -59,7 +71,7 @@ include_once('header.php'); ?>
     <div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
       <!-- <div class="card-header">Header</div> -->
       <div class="card-body">
-        <h2 id="value" class="card-title">LKR: 43,000</h1>
+        <h2 id="value" class="card-title">LKR:  <?php echo $row4["p_mexpense"]; ?></h1>
         <p class="card-text">Last 30 days expenses</p>
       </div>
     </div>

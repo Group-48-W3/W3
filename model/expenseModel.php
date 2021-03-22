@@ -195,10 +195,34 @@ function updateSalaryDB($p_id,$con_name, $emp_name, $p_date, $p_desc, $p_amount,
 	 mysqli_close($conn);
 }
 
-function totalIncomeDB()
+function tExpenseDB()
 {
     global $conn;
-    $sql = "SELECT SUM(inc_amount) AS inc_amount FROM income WHERE inc_flag = 1";
+    $sql = "SELECT SUM(p_amount) AS p_texpense FROM payment WHERE p_flag = 1 AND p_date = CURDATE()" ;
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
+function yExpenseDB()
+{
+    global $conn;
+    $sql = "SELECT SUM(p_amount) AS p_yexpense FROM payment WHERE p_flag = 1 AND p_date = CURDATE() - INTERVAL 1 DAY" ;
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
+function wExpenseDB()
+{
+    global $conn;
+    $sql = "SELECT SUM(p_amount) AS p_wexpense FROM payment WHERE p_flag = 1 AND p_date >= CURDATE() - INTERVAL 7 DAY" ;
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
+function mExpenseDB()
+{
+    global $conn;
+    $sql = "SELECT SUM(p_amount) AS p_mexpense FROM payment WHERE p_flag = 1 AND p_date >= CURDATE() - INTERVAL 1 MONTH" ;
     $result = mysqli_query($conn, $sql);
     return $result;
 }

@@ -185,9 +185,27 @@ class Payment
 
     }
 
-    function totalIncome()
+    function tExpense()
     {
-       $result = totalIncomeDB();
+       $result = tExpenseDB();
+       return $result;
+    }
+
+    function yExpense()
+    {
+       $result = yExpenseDB();
+       return $result;
+    }
+
+    function wExpense()
+    {
+       $result = wExpenseDB();
+       return $result;
+    }
+
+    function mExpense()
+    {
+       $result = mExpenseDB();
        return $result;
     }
 }
