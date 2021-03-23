@@ -90,8 +90,8 @@ class InvoiceModel{
     }
     public function deleteInvoiceDB($id){
         global $conn;
-		$sql = "DELETE FROM ".$this->invoiceOrderTable."WHERE invo_id = '".$id."'";
-		mysqli_query($conn, $sqlQuery);
+		$sql = "DELETE FROM ".$this->invoiceOrderTable." WHERE invo_id = '".$id."'";
+		mysqli_query($conn, $sql);
         if (mysqli_query($conn, $sql)) {
             echo "invoice delete successfully !";
             return 1;

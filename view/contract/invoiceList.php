@@ -21,7 +21,7 @@ $row = mysqli_fetch_array($invo_list);
 
 if(isset($_GET['delete_id'])){
   $id = $_GET['delete_id'];
-  //$invoice->deleteInvoice($id);
+  $invoice->deleteInvoice($id);
   //echo "perform delete".$id;
   $a = 2;
 }
