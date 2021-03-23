@@ -2,7 +2,6 @@
 require_once("./../../model/contractModel.php");
 require_once("./../../model/activityModel.php");
 
-
 class Activity{
     // activity constructor
     function __construct(){
@@ -39,7 +38,7 @@ class Activity{
                 $result = round(($res1[0]/$res2[0])*100);
                 // set the progress automatically here
                 $progress_val = round(($res1[0]/$res2[0])*100,2);
-                $date = date('Y/m/d');
+                $date = date('Y-m-d');
                 $activity->setContractProgressDB($con_id,$date,$progress_val);
             }        
             header('location: ./contractSinglePage.php?con_id='.$con_id);
@@ -68,7 +67,7 @@ class Activity{
     function getAllTodayActivity(){
         // get activities for a single contract
         $activity = new activityModel();
-        $date = date('Y/m/d');
+        $date = date('Y-m-d');
         $res = $activity->getAllTodayActivityDB($date);
 
         return $res;
@@ -76,7 +75,7 @@ class Activity{
     function getAllTodayDoneActivity(){
         // complete activties during today
         $activity = new activityModel();
-        $date = date('Y/m/d');
+        $date = date('Y-m-d');
         $res = $activity->getAllTodayDoneActivityDB($date);
 
         return $res;

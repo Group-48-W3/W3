@@ -19,7 +19,7 @@ class activityModel{
     function addActivityforQuotationDB($name,$q_id,$con_id){
         global $conn;
 
-        $date = date('Y/m/d');
+        $date = date('Y-m-d');
         
         $sql1 = "insert into activity VALUES ('','primary wood provision','$name','$date',FALSE,'$q_id','$con_id')";
         $sql2 = "insert into activity VALUES ('','item strcture','$name','$date',FALSE,'$q_id','$con_id')";
@@ -105,6 +105,20 @@ class activityModel{
         $result = mysqli_query($conn, $sql);
         if ($result) {
             //echo "activity retrived successfully !";
+            return $result;
+        
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+        }
+        mysqli_close($conn);
+    }
+    function getperiodActivityDB($con_id,$start_date,$end_date){
+        global $conn;
+        $sql = "select * from activity where act_date between '$start_date' and '$end_date' and con_id ='$con_id';";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            //echo "activity retrived successfully !";
+            //echo $sql;
             return $result;
         
         } else {
