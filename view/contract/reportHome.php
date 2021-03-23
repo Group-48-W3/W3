@@ -13,6 +13,12 @@
   $result = $con->getAllActiveContracts();
 
   if(isset($_POST['basic_report'])){
+    
+    
+    $_SESSION['rcon_name'] = $_POST['con_name'];
+    $_SESSION['rstart_date'] = $_POST['report_start_date'];
+    $_SESSION['rend_date'] = $_POST['report_end_date'];
+
     header('location: ./reportView.php');
 
   }
@@ -23,7 +29,7 @@
   <h1>Reports & Statistics</h1>
   <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
   <div class="form-group field">
-      <select class="form-field" name="contract" id="con">
+      <select class="form-field" name="con_name" id="con_name">
       <?php
         $i=0;
         while($row_quo = mysqli_fetch_array($result)) {

@@ -19,7 +19,7 @@ class activityModel{
     function addActivityforQuotationDB($name,$q_id,$con_id){
         global $conn;
 
-        $date = date('Y/m/d');
+        $date = date('Y-m-d');
         
         $sql1 = "insert into activity VALUES ('','primary wood provision','$name','$date',FALSE,'$q_id','$con_id')";
         $sql2 = "insert into activity VALUES ('','item strcture','$name','$date',FALSE,'$q_id','$con_id')";
@@ -96,6 +96,61 @@ class activityModel{
         
         } else {
             echo "Error: " . $sql . " " . mysqli_error($conn);
+        }
+        mysqli_close($conn);
+    }
+    function getAllTodayDoneActivityDB($date){
+        global $conn;
+        $sql = "SELECT COUNT(act_id) as res from activity WHERE act_date='$date' AND act_complete='1'";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            //echo "activity retrived successfully !";
+            return $result;
+        
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+        }
+        mysqli_close($conn);
+    }
+    function getperiodActivityDB($con_id,$start_date,$end_date){
+        global $conn;
+        $sql = "select * from activity where act_date between '$start_date' and '$end_date' and con_id ='$con_id';";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            //echo "activity retrived successfully !";
+            //echo $sql;
+            return $result;
+        
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+        }
+        mysqli_close($conn);
+    }
+    function updateActivityDB($act_id,$act_name,$act_desc,$act_date,$act_complete){
+        global $conn;
+        $sql = "UPDATE activity SET act_name='$act_name', act_desc='$act_desc', act_date='$act_date', act_complete='$act_complete' WHERE act_id='$act_id'";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            echo "activity update successfully !";
+            return 1;
+        
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+            return 0;
+        }
+        mysqli_close($conn);
+    }
+    function deleteActivityDB($act_id){
+        global $conn;
+        $sql = "delete activity WHERE act_id='$act_id'";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            //echo "activity retrived successfully !";
+            return 1;
+        
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+            return 0;
         }
         mysqli_close($conn);
     }
