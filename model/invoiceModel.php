@@ -73,6 +73,33 @@ class InvoiceModel{
         
         return $result;
     }
+    public function updateInvoiceDB($POST,$id){
+        global $conn;	
+		$sql = "
+				UPDATE ".$this->invoiceOrderTable." 
+				SET order_receiver_name = '".$POST['companyName']."', order_receiver_address= '".$POST['address']."', order_total_before_tax = '".$POST['subTotal']."', order_total_tax = '".$POST['taxAmount']."', order_tax_per = '".$POST['taxRate']."', order_total_after_tax = '".$POST['totalAftertax']."', order_amount_paid = '".$POST['amountPaid']."', order_total_amount_due = '".$POST['amountDue']."', note = '".$POST['notes']."' 
+				WHERE user_id = '".$POST['userId']."' AND order_id = '".$POST['invoiceId']."'";		
+		mysqli_query($conn, $sql);			
+		$this->deleteInvoiceItems($POST['invoiceId']);
+		for ($i = 0; $i < count($POST['productCode']); $i++) {			
+			$sql2 = "
+				INSERT INTO ".$this->invoiceOrderItemTable."(order_id, item_code, item_name, order_item_quantity, order_item_price, order_item_final_amount) 
+				VALUES ('".$POST['invoiceId']."', '".$POST['productCode'][$i]."', '".$POST['productName'][$i]."', '".$POST['quantity'][$i]."', '".$POST['price'][$i]."', '".$POST['total'][$i]."')";			
+			mysqli_query($conn, $sql2);			
+		}
+    }
+    public function deleteInvoiceDB($id){
+        global $conn;
+		$sql = "DELETE FROM ".$this->invoiceOrderTable."WHERE invo_id = '".$id."'";
+		mysqli_query($conn, $sqlQuery);
+        if (mysqli_query($conn, $sql)) {
+            echo "invoice delete successfully !";
+            return 1;
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+            return 0;
+        }		
+	}
 }
 
 ?>

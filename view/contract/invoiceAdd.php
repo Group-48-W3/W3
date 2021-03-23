@@ -49,11 +49,12 @@ if (isset($_GET['con_id'])) {
 }
 //
 if(isset($_POST['invoice_save'])){
-  if(!empty($_POST['c_id']) && $_POST['c_company'] && $_POST['c_client']) {	
+  if(!empty($_POST['c_id'])) {  	
     $invoice->saveInvoice($_POST);
-    header("location:invoicePrint.php");	
+	header("location:invoiceList.php");	
+    
   }else{
-    echo "Error on save invoice";
+	echo "Error on save invoice";
   }  
 }
 
@@ -107,16 +108,17 @@ if(isset($_POST['invoice_save'])){
               ?>
             </select>
 			<?php }else{ ?>
-			<input type="text" class="form-field" name="c_company" id="companyName" placeholder="Company Name" value="<?php echo $name; ?>" disabled>
+			<input type="hidden" class="form-field" name="c_id" id="c_id" value="<?php echo $_SESSION['contract_id']; ?>">	
+			<input type="text" class="form-field" name="c_company" id="companyName" placeholder="Company Name" value="<?php echo $name; ?>">
 			<?php } ?>		
             <label for="c_id" class="form-label">Contract Name</label>
           </div>
 			<div class="form-group">
-			<input type="text" class="form-field" name="c_company" id="companyName" placeholder="Company Name" autocomplete="off">
+			<input type="text" class="form-field" name="c_name" id="companyName" placeholder="Company Name" autocomplete="off">
             <label for="paymentType" class="form-label">company name</label>
 			</div>
 			<div class="form-group">
-			<textarea class="form-field" rows="3" name="c_client" id="address" placeholder="Address"></textarea>
+			<input type="text" class="form-field" name="c_client" id="client" placeholder="client">
             <label for="paymentType" class="form-label">client name</label>
 			</div>	
 			</div>
