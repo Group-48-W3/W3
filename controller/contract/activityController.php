@@ -80,6 +80,12 @@ class Activity{
 
         return $res;
     }
+    function getAllActivityCount(){
+        $activity = new ActivityModel();
+        $res = $activity->getAllActivityCountDB();
+
+        return $res;
+    }
     function updateActivity($act_id,$act_name,$act_desc,$act_date,$act_complete){
         //update an item
         $activity = new activityModel();
