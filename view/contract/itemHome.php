@@ -1,13 +1,37 @@
 <?php 
   session_start();
+  if(!isset($_SESSION['u_id'],$_SESSION['r_id']))
+  {
+    header('location:index.php?lmsg=true');
+    exit;
+  }
   require_once('./../../controller/user/userController.php'); 
   require_once('./header.php');
   require_once('./../../controller/contract/itemController.php');
   $item = new Item();
   $result= $item->getAllItems();
-  $user_role = $_SESSION['r_id'];	
-?>
+  $user_role = $_SESSION['r_id'];
+  
+  $_SESSION['delete_item'] = 'none';
 
+  if(isset($_GET['delete_id'])){
+	$item->deleteItem($_GET['delete_id']);
+  }
+
+  if(isset($_POST['add_item'])){
+	$item->addItem($_POST['item_name'],$_POST['item_category'],$_POST['unit_price']);
+  }
+
+?>
+<!-- Notification -->
+<?php set_time_limit(20); if(($_SESSION['delete_item']) == 'success'): ?>
+	
+<div class="alert alert-danger" style="background-color: red;">
+	<a href="./user/userProfile.php" style="text-decoration: none; color: white;">Item deleted successfully</a>
+</div>
+
+<?php $_SESSION['delete_item'] = 'none'; endif; ?>
+<!-- end of notification -->
 <div class="container"> 
   <h1>Item Home</h1>
   <h6>Item Home displays all the avaliable item model delivered by the business</h6>
@@ -32,32 +56,15 @@
 				</select>
 			</div>
 		</div>
-		<div class="col">
-			<div class="right">
-				<span>Sort By: </span>
-				<select name="" id="">
-					<option value="">Category</option>
-					<option value="">Price</option>
-					<option value="">Available Quantity</option>
-				</select>
-				<select name="" id="">
-					<option value="">ASC</option>
-					<option value="">DESC</option>
-				</select>
-			</div>
-		</div>
 	</div>
 	<br>
 	<div class="row">
-		<div class="col">
+		<div class="col-10">
 			<table class="data-table paginated">
 				<thead>
 					<th width="15%">Item Name</th>
-					<th width="40%">Category</th>
-					<th>Available Batches</th>
-					<th>Total Quantity</th>
-					
-					<th width="11%">Average Price</th>
+					<th width="30%">Category</th>
+					<th>Unit Price</th>
 					<?php if($user_role==2){ ?>
 					<th>Edit</th>
 					<?php } ?>
@@ -71,12 +78,14 @@
 						<tr>
 							<td data-label="Name"><?php echo $row["item_name"]; ?></td>
 							<td data-label="Description"><?php echo $row["item_category"]; ?></td>
-							<td data-label="Available Batches"></td>
 							<td data-label="Unit Price"><?php echo $row["unit_price"]?></td>
-							
-							<td data-label="Average Price">Rs. XXX</td>
+		
 							<?php if($user_role==2){ ?>
-							<td data-label="Edit"><a href="" class="btn btn-warning">&#x270E</a></td>
+							<td data-label="Edit">
+							
+							<a class="btn btn-warning" href="./itemUpdate.php?item_id=<?php echo $row['item_id'];?>" >&#x270E</a>
+							<a class="btn btn-danger" href="./itemHome.php?delete_id=<?php echo $row['item_id'];?>">&#x2716</a>
+							</td>
 							<?php } ?>
 						</tr>
 					<?php
@@ -118,17 +127,13 @@
           <input type="text" class="form-field" name="unit_price" id="unit_price">  
           <label for="unit_price" class="form-label">Unit Price</label>
         </div>
-        <div class="form-group field">
-          <input type="file" class="form-field" id="image" name="image">
-          <label for="q_budget" class="form-label">Image</label>
-        </div>
         
-        <div class="clearfix right">
+		<div class="clearfix right">
           <button type="button" class="btn btn-secondary" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
           <button type="submit" name="add_item" class="btn btn-primary">Add Item</button>
         </div>
-      </form>
-    </div>
+    </form>
+</div>
 <!-- End Prompt Box -->
 
 <script>

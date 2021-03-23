@@ -11,23 +11,35 @@
 
  if (isset($_GET['con_id'])){
     $this_contract = $_GET['con_id'];
+    
     $con = new Contract();
     $con_details = $con->getSingleActiveContract($_SESSION['contract_id']);
     
     $row = mysqli_fetch_array($con_details);
-    
-    $client_details = $con->getSingleClient($row['c_id']);
+    $_SESSION['client_id'] = $row['c_id'];
+    $client_details = $con->getSingleClient($_SESSION['client_id']);
 
     $row_client = mysqli_fetch_array($client_details);
+ }
+
+ // update contract validations
+ if (isset($_POST['contractUpdate'])){
+    $con = new Contract();
+    
+    $con_update = $con->updateContract($_SESSION['contract_id'],$_POST['con_name'],$_POST['con_start_date'],$_POST['con_end_date'],
+    $_POST['con_location'],$_POST['con_description'],$_POST['con_payment'],
+    $_SESSION['client_id'],$_POST['c_name'],$_POST['c_address'],$_POST['c_company'],$_POST['c_mobile'],$_POST['c_email']);
+    
  }
  ?>
 
 <div class="container">
-    <h1>Update Contract</h1>
+   <!-- <?php echo $_SESSION['contract_id']; ?> -->
+    <h2>Update Contract<?php echo " ".$row['con_name']; ?></h2>
     <!-- Contract details start -->
     <!-- Step 01 -->
     <h4>Step 01 : Update Contract Details</h4>
-      <form method="post" action="./../../controller/contract/contractController.php">
+      <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
         <div class="form-group field">
           <input type="text" class="form-field" name="con_name" id="con_name" value="<?php echo $row['con_name'];?>" required>
           <label for="con_name" class="form-label">Contract Name</label>

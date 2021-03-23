@@ -31,6 +31,7 @@ if (mysqli_num_rows($result) > 0) {
         <th>Action </th>
       </tr>
     </thead>
+    <!-- get details -->
     <?php
       $i=0;
       while($row = mysqli_fetch_array($result)) {
@@ -69,7 +70,7 @@ if (mysqli_num_rows($result) > 0) {
       <div class="col-sm"></div>
     </div>
   </div>
-
+  <!-- add new user -->
   <h2>Create New User Account</h2>
   <h6><strong>Notice : </strong>Making a user account allow to use the system in order to add/update/delete/search in certain user role are providing</h6>
   <form method="post" action="./../../controller/user/userController.php">

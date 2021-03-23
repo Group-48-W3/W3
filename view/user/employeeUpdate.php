@@ -16,7 +16,7 @@
 	require_once('../../controller/user/userController.php');
 	include_once('header.php');
 ?>
-<!--Body starts  -->
+<!--Body starts here -->
 <div class="container">
     <div class="row">
 		<div class="col-7">
