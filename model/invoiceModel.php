@@ -73,21 +73,45 @@ class InvoiceModel{
         
         return $result;
     }
-    public function updateInvoiceDB($POST,$id){
+    public function updateInvoiceDB($POST){
         global $conn;	
 		$sql = "
 				UPDATE ".$this->invoiceOrderTable." 
-				SET order_receiver_name = '".$POST['companyName']."', order_receiver_address= '".$POST['address']."', order_total_before_tax = '".$POST['subTotal']."', order_total_tax = '".$POST['taxAmount']."', order_tax_per = '".$POST['taxRate']."', order_total_after_tax = '".$POST['totalAftertax']."', order_amount_paid = '".$POST['amountPaid']."', order_total_amount_due = '".$POST['amountDue']."', note = '".$POST['notes']."' 
-				WHERE user_id = '".$POST['userId']."' AND order_id = '".$POST['invoiceId']."'";		
-		mysqli_query($conn, $sql);			
-		$this->deleteInvoiceItems($POST['invoiceId']);
-		for ($i = 0; $i < count($POST['productCode']); $i++) {			
-			$sql2 = "
-				INSERT INTO ".$this->invoiceOrderItemTable."(order_id, item_code, item_name, order_item_quantity, order_item_price, order_item_final_amount) 
-				VALUES ('".$POST['invoiceId']."', '".$POST['productCode'][$i]."', '".$POST['productName'][$i]."', '".$POST['quantity'][$i]."', '".$POST['price'][$i]."', '".$POST['total'][$i]."')";			
-			mysqli_query($conn, $sql2);			
-		}
+				SET date = '".date('Y-m-d')."', company_name= '".$POST['c_company']."', total_before_tax = '".$POST['subTotal']."', 
+                total_tax = '".$POST['taxAmount']."', tax_per = '".$POST['taxRate']."', total_after_tax = '".$POST['totalAftertax']."', 
+                amount_paid = '".$POST['amountPaid']."', amount_due = '".$POST['amountDue']."', note = '".$POST['notes']."' 
+				WHERE con_id = '".$POST['con_id']."' AND invo_id = '".$POST['invo_id']."'";		
+		
+        if(mysqli_query($conn, $sql)){
+            echo "invoice template updated successfully !";
+            $this->deleteInvoiceItems($POST['invo_id']);
+		    for ($i = 0; $i < count($POST['productCode']); $i++) {			
+			    $sql2 = "
+				INSERT INTO ".$this->invoiceOrderItemTable." 
+				VALUES ('','".$POST['invo_id']."', '".$POST['productCode'][$i]."', '".$POST['productName'][$i]."', '".$POST['quantity'][$i]."', '".$POST['price'][$i]."', '".$POST['total'][$i]."')";			
+			    if(mysqli_query($conn, $sql2)){
+                    echo "invoice item updated successfully !";
+                }else{
+                    echo "Error: " . $sql2 . " " . mysqli_error($conn);
+                }			
+		    }
+            return 1;
+        }else{
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+            return 0; 
+        }			
     }
+    public function deleteInvoiceItems($invoiceId){
+        global $conn;
+		$sql = "
+			DELETE FROM ".$this->invoiceOrderItemTable." 
+			WHERE invo_id = '".$invoiceId."'";
+		if(mysqli_query($conn, $sql)){
+            echo "all items replaced";
+        }else{
+            echo "replaced unsuccess";
+        }				
+	}
     public function deleteInvoiceDB($id){
         global $conn;
 		$sql = "DELETE FROM ".$this->invoiceOrderTable." WHERE invo_id = '".$id."'";

@@ -10,10 +10,10 @@
  require_once('./../../controller/contract/contractController.php'); 
  require_once('./../../controller/contract/invoiceController.php');
 
-// data importing
-$con = new Contract();
-$invoice = new Invoice();
-$con_details = $con->getAllActiveContracts();
+  // data importing
+  $con = new Contract();
+  $invoice = new Invoice();
+  $con_details = $con->getAllActiveContracts();
 
   $a = 0;
   $header = "W3 Contracts Pvt Ltd";
@@ -25,11 +25,17 @@ $con_details = $con->getAllActiveContracts();
 $invoice = new Invoice();
 if(!empty($_GET['update_id']) && $_GET['update_id']){
   $a = 1;
-  $invoiceValues = mysqli_fetch_array($invoice->getInvoice($_GET['update_id']));		
+  $con = new Contract();
+  $invoiceValues = mysqli_fetch_array($invoice->getInvoice($_GET['update_id']));
+  //echo $invoiceValues['con_id'];
+  $invo_id = $invoiceValues['invo_id'];
+  //echo $invo_id;		
+  $cond = mysqli_fetch_array($con->getSingleActiveContract($invoiceValues['con_id']));
 	$invoiceItems = $invoice->getInvoiceItems($_GET['update_id']);
 }
 if(isset($_POST['invoice_update'])){
-if(!empty($_POST['c_id']) && $_POST['c_company'] && !empty($_POST['c_client'])) {	
+
+if(!empty($_POST['con_id'])) {	
 	$invoice->updateInvoice($_POST);	
 	header("Location:invoiceList.php");	
 }
@@ -67,24 +73,9 @@ if(!empty($_POST['c_id']) && $_POST['c_company'] && !empty($_POST['c_client'])) 
 					<h3>To,</h3>
           <div class="form-group field">
           <!-- contract selection -->
-		  	<?php if($a != 1){ ?>
-            <select name="c_id" id="c_id" class="form-field">
-              <?php
-                $i=0;
-                while($row2 = mysqli_fetch_array($con_details)) {
-              ?>
-                <option value="<?php echo $row["con_id"];?>"><?php echo $row2["con_id"]." ".$row2["con_name"];?></option>
-              <?php
-                $i++;
-                }
-                if($i==0){
-                    echo "No results ";
-                }
-              ?>
-            </select>
-			<?php }else{ ?>
-			<input type="text" class="form-field" name="c_id" id="companyName" placeholder="Company Name" value="<?php echo $invoiceValues['con_id'];?>" disabled>
-			<?php } ?>		
+      <input type="hidden" name="con_id" value="<?php echo $cond['con_id'];?>">
+      <input type="hidden" name="invo_id" value="<?php echo $invo_id;?>">
+			<input type="text" class="form-field" name="c_name" id="companyName" placeholder="Company Name" value="<?php echo $cond['con_name'];?>" disabled>	
             <label for="c_id" class="form-label">Contract Name</label>
           </div>
 			<div class="form-group">
