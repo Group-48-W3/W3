@@ -26,14 +26,25 @@ class Invoice{
     function getInvoiceItems($invo_id){
         $invo = new InvoiceModel();
         $res = $invo->getInvoiceItemsDB($invo_id); 
-
         return $res;
     }
-    function updateInvoice(){
-
+    function updateInvoice($POST){
+        $invo = new InvoiceModel();
+        $res = $invo->updateInvoiceDB($POST);
+        if($res){
+            echo "Successfully update the invoice";
+        }else{
+            echo "Error occur in controller";
+        }
     }
-    function deleteInvoice(){
-
+    function deleteInvoice($id){
+        $invo = new InvoiceModel();
+        $res = $invo->deleteInvoiceDB($id);
+        if($res){
+            echo "Successfully delete the invoice";
+        }else{
+            echo "Error occur in controller";
+        }
     }
 }
 

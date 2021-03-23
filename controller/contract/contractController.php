@@ -58,11 +58,6 @@ class Contract{
         
         return $res;
     }
-    function getAllInactiveContracts(){
-        $res =  getAllInactiveContractsDB();
-        
-        return $res;
-    }
     function getSingleActiveContract($id){
         $res =  getSingleActiveContractDB($id);
         

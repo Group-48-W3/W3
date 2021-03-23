@@ -11,6 +11,7 @@
  require_once('./../../controller/contract/invoiceController.php');
 
 // data importing
+$a = 0;
 $con = new Contract();
 $invoice = new Invoice();
 $con_details = $con->getAllActiveContracts();
@@ -18,9 +19,21 @@ $con_details = $con->getAllActiveContracts();
 $invo_list = $invoice->getAllInvoice();
 $row = mysqli_fetch_array($invo_list);
 
+if(isset($_GET['delete_id'])){
+  $id = $_GET['delete_id'];
+  $invoice->deleteInvoice($id);
+  //echo "perform delete".$id;
+  $a = 2;
+}
+
 ?>
 
-<div class="container">		
+<div class="container">
+  <?php if($a == 2){?>
+    <div class="alert alert-danger" style="background-color: red;">
+			<a href="#" style="text-decoration: none; color: white;">Invoice Deleted successfully</a>
+		</div>
+  <?php }?>  
 	  <h2 class="title">Invoice List</h2>
 	  		  
       <table id="data-table" class="table table-condensed table-striped">
@@ -47,7 +60,7 @@ $row = mysqli_fetch_array($invo_list);
                 <td>'.$invoiceDetails["total_after_tax"].'</td>
                 <td><a class="btn btn-warning" href="invoicePrint.php?invo_id='.$invoiceDetails["invo_id"].'" title="Print Invoice">🖨️</a></td>
                 <td><a class="btn btn-warning" href="invoiceUpdate.php?update_id='.$invoiceDetails["invo_id"].'"  title="Edit Invoice">🔃</a></td>
-                <td><a class="btn btn-danger" href="#" id="'.$invoiceDetails["invo_id"].'" class="deleteInvoice"  title="Delete Invoice">❌</a></td>
+                <td><a class="btn btn-danger" href="./invoiceList.php?delete_id='.$invoiceDetails["invo_id"].'" class="deleteInvoice"  title="Delete Invoice">❌</a></td>
               </tr>
             ';
         }       
