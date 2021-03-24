@@ -86,6 +86,32 @@
     </tbody>
   </table>
 </div>
+<br>
+<div class="container">
+  <h3>Previous maintenance details</h3>
+  <table>
+    <thead>
+      <tr>
+        <th width="10%">Tool ID</th>
+        <th width="10%">Category</th>
+        <th width="15%">Maintaner</th>
+        <th width="30%">Reason</th>
+        <th width="20%">Date of pickup</th>
+        <th width="15%">Option</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-label="Item Code">MT4544f</td>
+        <td data-label="Item Code">Nail Gun</td>
+        <td data-label="Maintaner">Liyanage Workshop</td>
+        <td data-label="Cost Code">Failure in motor. Doesn't work when powered</td>
+        <td data-label="Date of Pickup">2021:01:23</td>
+        <td data-label="Option"><button class="btn btn-secondary" onclick="document.getElementById('remMn').style.display='block'">Remove from maintenance</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <!-- Prompt Boxes -->
 <div id="addMn" class="confirm-box">
