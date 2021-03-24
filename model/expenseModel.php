@@ -198,7 +198,7 @@ function updateSalaryDB($p_id,$con_name, $emp_name, $p_date, $p_desc, $p_amount,
 function tExpenseDB()
 {
     global $conn;
-    $sql = "SELECT SUM(p_amount) AS p_texpense FROM payment WHERE p_flag = 1 AND p_date = CURDATE()" ;
+    $sql = "SELECT SUM(p_amount) AS p_texpense FROM payment WHERE p_flag = 1 AND cat_id != 1 AND p_date = CURDATE()" ;
     $result = mysqli_query($conn, $sql);
     return $result;
 }
@@ -206,7 +206,7 @@ function tExpenseDB()
 function yExpenseDB()
 {
     global $conn;
-    $sql = "SELECT SUM(p_amount) AS p_yexpense FROM payment WHERE p_flag = 1 AND p_date = CURDATE() - INTERVAL 1 DAY" ;
+    $sql = "SELECT SUM(p_amount) AS p_yexpense FROM payment WHERE p_flag = 1 AND cat_id != 1 AND p_date = CURDATE() - INTERVAL 1 DAY" ;
     $result = mysqli_query($conn, $sql);
     return $result;
 }
@@ -214,7 +214,7 @@ function yExpenseDB()
 function wExpenseDB()
 {
     global $conn;
-    $sql = "SELECT SUM(p_amount) AS p_wexpense FROM payment WHERE p_flag = 1 AND p_date >= CURDATE() - INTERVAL 7 DAY" ;
+    $sql = "SELECT SUM(p_amount) AS p_wexpense FROM payment WHERE p_flag = 1 AND cat_id != 1 AND p_date >= CURDATE() - INTERVAL 7 DAY" ;
     $result = mysqli_query($conn, $sql);
     return $result;
 }
@@ -222,7 +222,7 @@ function wExpenseDB()
 function mExpenseDB()
 {
     global $conn;
-    $sql = "SELECT SUM(p_amount) AS p_mexpense FROM payment WHERE p_flag = 1 AND p_date >= CURDATE() - INTERVAL 1 MONTH" ;
+    $sql = "SELECT SUM(p_amount) AS p_mexpense FROM payment WHERE p_flag = 1 AND cat_id != 1 AND p_date >= CURDATE() - INTERVAL 1 MONTH" ;
     $result = mysqli_query($conn, $sql);
     return $result;
 }

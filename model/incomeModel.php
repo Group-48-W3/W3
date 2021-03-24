@@ -34,7 +34,7 @@ function getIncIdDB($inc_id)
 function viewIncomeDB()
 {
     global $conn;
-	$query = "select income.inc_id,income.con_id,contract.con_name,income.inc_date,income.inc_desc,income.inc_amount from income inner join contract on income.con_id = contract.con_id where income.inc_flag = 1";
+	$query = "select income.inc_id,income.con_id,contract.con_name,income.inc_date,income.inc_desc,income.inc_amount from income inner join contract on income.con_id = contract.con_id where income.inc_flag = 1 ORDER BY inc_date DESC";
     $result = mysqli_query($conn,$query);
     return $result;
 }
@@ -72,7 +72,7 @@ function updateIncomeDB($inc_id,$con_name, $inc_date, $inc_desc, $inc_amount)
 function totalIncomeDB()
 {
     global $conn;
-    $sql = "SELECT SUM(inc_amount) AS inc_amount FROM income WHERE inc_flag = 1 AND inc_date >= CURDATE() - INTERVAL 1 MONTH";
+    $sql = "SELECT SUM(inc_amount) AS inc_amount FROM income WHERE inc_flag = 1 AND EXTRACT(YEAR_MONTH FROM inc_date) = EXTRACT(YEAR_MONTH FROM CURDATE() - INTERVAL 1 MONTH)";
     $result = mysqli_query($conn, $sql);
     return $result;
 }

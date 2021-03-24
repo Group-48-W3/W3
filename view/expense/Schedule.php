@@ -4,13 +4,6 @@
     <div class="col">
       <h2>Scheduled Expenses</h2>
       <br>
-      <div id="myBtnContainer">
-        <button class="btn active btn-primary" onclick="filterSelection('all')"> Show all</button>
-        <button class="btn btn-primary" onclick="filterSelection('today')"> Today</button>
-        <button class="btn btn-primary" onclick="filterSelection('yesterday')"> Tomorrow</button>
-        <button class="btn btn-primary" onclick="filterSelection('30 days')"> Next Week</button>
-        <button class="btn btn-primary" onclick="filterSelection('status')"> Next Month</button>
-        </div>
       <!-- Show Expenses-->
       <table id="myTable">
           <thead>
