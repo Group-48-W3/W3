@@ -4,21 +4,14 @@
   <div class="row">
     <div class="col">
       <h2>Expenses</h2>
-      <br>
-      <div id="myBtnContainer">
-        <button class="btn active btn-primary" onclick="filterSelection('all')"> Show all</button>
-        <button class="btn btn-primary" onclick="filterSelection('cars')"> Today</button>
-        <button class="btn btn-primary" onclick="filterSelection('animals')"> Yesterday</button>
-        <button class="btn btn-primary" onclick="filterSelection('fruits')"> Last 30 days</button>
-        </div>
         <br>
         <div class="form-group field">
-          <input type="text" id="con_name" class="form-field">
-          <label for="con_name" class="form-label">Search by contract name</label>
+          <input type="text" id="contract-name" onkeyup="f1()" class="form-field">
+          <label for="contract-name" class="form-label">Search by contract name</label>
         </div>
         <br>
       <!-- Show Expenses-->
-      <table>
+      <table id="expense-filter">
           <thead>
               <tr>
                 <th>Contract's Name</th>
@@ -60,5 +53,27 @@
   </div>
 
 </div>
-
 <!-- Content Ends -->
+<script>
+function f1() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("contract-name");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("expense-filter");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText; 
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
