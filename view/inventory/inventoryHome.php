@@ -24,16 +24,16 @@ $user_role = $_SESSION['r_id'];
 		<div class="col-sm">
 			<div class="card text-white bg-info mb-3" style="max-width: 20rem;">
 				<div class="card-body">
-					<h1 class="card-title">5000 sq.ft</h1>
-					<p class="card-text">Wood Available</p>
+					<h1 class="card-title">10</h1>
+					<p class="card-text">Active Suppliers</p>
 				</div>
 			</div>
 		</div>
 		<div class="col-sm">
 			<div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
 				<div class="card-body">
-					<h1 class="card-title">45</h1>
-					<p class="card-text">Active Suppliers</p>
+					<h1 class="card-title"><?php echo $rawMaterial->getExpiredCount(); ?></h1>
+					<p class="card-text">Expired Raw Materials</p>
 				</div>
 			</div>
 		</div>
@@ -96,12 +96,43 @@ $user_role = $_SESSION['r_id'];
 					<th>Description</th>
 					<th>Re-Order Value</th>
 					<th>ABC Analysis</th>
+					<th>Edit</th>
 				</thead>
 				<tbody>
-					<td data-label="Category"></td>
-					<td data-label="Description"></td>
-					<td data-label="Re-Order Value"></td>
-					<td data-label="ABC Analysis"></td>
+					<?php
+					$i = 0;
+					$result = $tool->getAllToolCategory();
+					while ($row = mysqli_fetch_array($result)) {
+					?>
+						<tr onclick="window.location='toolDetails.php?tool=<?php echo $row['inv-code']; ?>';" class="row-link">
+							<td data-label="Category">
+								<?php echo $row["tool-name"]; ?>
+							</td>
+							<td data-label="Description">
+								<?php echo $row["inv-desc"]; ?>
+							</td>
+							<td data-label="Reorder Value">
+								<?php echo $row["min-qty"]; ?>
+							</td>
+							<td data-label="ABC Analysis">
+								<?php echo $row["abc-category"] ?>
+							</td>
+							<td data-label="Edit">
+								<a href="" class="btn btn-warning">&#x270E</a>
+							</td>
+						</tr>
+					<?php
+						$i++;
+					}
+					if ($i == 0) {
+					?>
+						<tr>
+							<td colspan="5">
+								<center>Sorry, No Results to Show!</center>
+							</td>
+						</tr>
+					<?php } ?>
+				</tbody>
 				</tbody>
 			</table>
 		</div>
@@ -157,10 +188,7 @@ $user_role = $_SESSION['r_id'];
 						$batch = $rawMaterial->getBatchDetails($row["inv-code"]);
 						$batchRow = mysqli_fetch_array($batch);
 					?>
-						<tr 
-						onclick="window.location='rawMaterialBatch.php?material=<?php echo $row['inv-code']; ?>';"
-						class="row-link"
-						>
+						<tr onclick="window.location='rawMaterialBatch.php?material=<?php echo $row['inv-code']; ?>';" class="row-link">
 							<td data-label="Name">
 								<?php echo $row["mat-name"]; ?>
 							</td>
@@ -171,12 +199,20 @@ $user_role = $_SESSION['r_id'];
 								<?php echo $batchRow["batch-count"] ?>
 							</td>
 							<td data-label="Total Quantity">
-								<?php echo $batchRow["total-amount"] ?>
+								<?php if ($batchRow["total-amount"]) {
+									echo $batchRow["total-amount"];
+								} else {
+									echo "No Data";
+								} ?>
 							</td>
 							<td data-label="Reorder Value">
 								<?php echo $row["min-qty"]; ?></td>
 							<td data-label="Average Price">
-								Rs. <?php echo $batchRow["avg-price"] ?>
+								<?php if ($batchRow["avg-price"]) {
+									echo "Rs." . $batchRow["avg-price"];
+								} else {
+									echo "No Data";
+								} ?>
 							</td>
 							<td data-label="Edit">
 								<a href="" class="btn btn-warning">&#x270E</a>
