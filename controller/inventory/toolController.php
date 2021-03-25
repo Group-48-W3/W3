@@ -18,7 +18,26 @@ if (isset($_POST['replenishTool'])) {
     $con = new Tool();
     $con->replenishTool();
 }
-
+if (isset($_POST['issueTool'])) {
+    $con = new Tool();
+    $con->issueTool();
+}
+if (isset($_POST['toolIssueConfirmed'])) {
+    $con = new Tool();
+    $con->issueToolConfirm();
+}
+if (isset($_POST['issueMachine'])) {
+    $con = new Tool();
+    $con->issueMachine();
+}
+if (isset($_POST['receiveTool'])) {
+    $con = new Tool();
+    $con->receiveTool();
+}
+if (isset($_POST['receiveMachine'])) {
+    $con = new Tool();
+    $con->receiveMachine();
+}
 class Tool
 {
     function __construct()
@@ -105,15 +124,47 @@ class Tool
         return $res;
     }
 
+    function getSingleToolCategory($inventoryCode)
+    {
+        $res =  selectToolCategory($inventoryCode);
+        if (mysqli_num_rows($res) > 0) {
+            $details = mysqli_fetch_array($res);
+            return $details;
+        }
+        return 0;
+    }
+
     function getTools($invCode)
     {
         $res = getToolsDB($invCode);
         return $res;
     }
 
+    function getSingleTool($toolID)
+    {
+        $res = getSingleToolDB($toolID);
+        if (mysqli_num_rows($res) > 0) {
+            $details = mysqli_fetch_array($res);
+            return $details;
+        }
+        return 0;
+    }
+
     function getMachines($invCode)
     {
         $res =  getMachinesDB($invCode);
+        return $res;
+    }
+
+    function getDistinctMachines($invCode)
+    {
+        $res =  getDistinctMachinesDB($invCode);
+        return $res;
+    }
+
+    function getMachineIDs($type)
+    {
+        $res = getMachineCodesByType($type);
         return $res;
     }
 
@@ -131,8 +182,90 @@ class Tool
         exit;
     }
 
+    function getAvailableQuantity($tool)
+    {
+        $res = getAvailableToolAmount($tool);
+        return $res;
+    }
+
     function issueTool()
     {
-        //to-do
+        $toolCategory = $_POST['toolCategory'];
+        $toolType = $_POST['toolId'];
+        $amount = $_POST['issueAmount'];
+        $employee = $_POST['toolEmployeeID'];
+
+        if (!empty($toolCategory) && !empty($toolType) && !empty($amount) && !empty($employee)) {
+            $available = getAvailableToolAmount($toolType);
+            $minStockLevel = getMinStockLevel($toolCategory);
+            if ($available > $amount) {
+                if ($minStockLevel <= $available - $amount) {
+                    issueTool($toolType, $amount, $employee);
+                } else {
+                    session_start();
+                    $_SESSION['toolCategory'] = $toolCategory;
+                    $_SESSION['toolType'] = $toolType;
+                    $_SESSION['toolAmount'] = $amount;
+                    $_SESSION['toolEmployee'] = $employee;
+                    $_SESSION['toolAvailable'] = $available;
+                    $_SESSION['minStockLevel'] = $minStockLevel;
+                    header('location:./../../view/inventory/issueSubmitTool.php');
+                    exit;
+                }
+            } else {
+                echo 'Not enough tools available';
+            }
+        } else {
+            echo 'All fields are required';
+        }
+        header('location:./../../view/inventory/issue.php#issueTool.php'); //redirection
+        exit;
+    }
+    function issueToolConfirm()
+    {
+        $toolType = $_POST['toolType'];
+        $amount = $_POST['amount'];
+        $employee = $_POST['employee'];
+        issueTool($toolType, $amount, $employee);
+        header('location:./../../view/inventory/issue.php#issueTool.php');
+    }
+    function issueMachine()
+    {
+        $machineCategory = $_POST['machineCategory'];
+        $machineType = $_POST['machineType'];
+        $machineID = $_POST['machineRegID'];
+        $employee = $_POST['machineEmployeeID'];
+        if (!empty($machineCategory) && !empty($machineType) && !empty($machineID) && !empty($employee)) {
+            issueMachineDB($machineID, $employee);
+            header('location:./../../view/inventory/issue.php#issueTool.php'); //redirection
+        } else {
+            echo 'All fields are required';
+        }
+        exit;
+    }
+    function getIssueDetails()
+    {
+        $res = getIssueDetailsDB();
+        return $res;
+    }
+
+    function getIssueDetailsOfMachines(){
+        $res = getMachineIssueDetailsDB();
+        return $res;
+    }
+
+    function receiveTool()
+    {
+        $issueID = $_POST['issueID'];
+        $receiveAmount = $_POST['receiveAmount'];
+        setToolReceived($issueID, $receiveAmount);
+        header('location:./../../view/inventory/issue.php#recentIssues');
+    }
+
+    function receiveMachine(){
+        $issueID = $_POST['issueID'];
+        $machineID = $_POST['machineID'];
+        setMachineReceived($issueID, $machineID);
+        header('location:./../../view/inventory/issue.php#recentIssues');
     }
 }

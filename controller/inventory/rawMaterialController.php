@@ -89,6 +89,14 @@ class RawMaterial
 
         if (!empty($replenishMaterialId) && !empty($replenishMaterialAmount) && !empty($replenishUnitPrice) && !empty($replenishLocation) && !empty($replenishPeriod) && !empty($replenishSupplier) && !empty($replenishDelivery)) {
             addNewBatch($replenishMaterialId, $replenishMaterialAmount, $replenishUnitPrice, $replenishLocation, $replenishPeriod, $replenishSupplier, $replenishDelivery);
+            session_start();
+            $_SESSION['replenishMaterialId'] = $replenishMaterialId;
+            $_SESSION['replenishMaterialAmount'] = $replenishMaterialAmount;
+            $_SESSION['replenishUnitPrice'] = $replenishUnitPrice;
+            $_SESSION['replenishPeriod'] = $replenishPeriod;
+            $_SESSION['replenishSupplier'] = $replenishSupplier;
+            $_SESSION['replenishDelivery'] = $replenishDelivery;
+            header('location:./../../view/inventory/goodRecieveNote.php');
         } else {
             echo 'All fields are required';
         }

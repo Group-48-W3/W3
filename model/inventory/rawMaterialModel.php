@@ -59,21 +59,7 @@ function addNewBatch($replenishMaterialId, $replenishMaterialAmount, $replenishU
     global $conn;
     $date = Date("Y-m-d");
     $sql = "INSERT INTO `raw-material-batch` (`added-date`, `end-date`, `unit-price`, `batch-quantity`, `stored-location`, `inv-code`, `delivered-by`, `supplier`) VALUES ('$date', '$replenishPeriod', '$replenishUnitPrice', '$replenishMaterialAmount', '$replenishLocation', '$replenishMaterialId', '$replenishDelivery', '$replenishSupplier')";
-
-    if (mysqli_query($conn, $sql)) {
-        echo "
-            <script>
-                if (confirm('New batch will be added to the stock when owner grants permission. Details have been recorded successfully!')) {
-                    window.location.replace(\"./../../view/inventory/goodRecieveNote.php\");
-                } else {
-                    window.location.replace(\"./../../view/inventory/goodRecieveNote.php\");
-                }
-            </script>
-            ";
-    } else {
-        echo "Error: " . $sql . " " . mysqli_error($conn);
-    }
-    mysqli_close($conn);
+    mysqli_query($conn, $sql);
 }
 
 function getBatchDetailsDB($inventoryCode)
