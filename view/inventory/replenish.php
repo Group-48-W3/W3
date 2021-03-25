@@ -113,7 +113,7 @@ require_once('header.php');
         </div>
         <div class="form-group field">
           <input class="form-field" id="reorderValue" name="materialReorderValue">
-          <label for="reorderValue" class="form-label">Re-Order Value (Minimum stock level)</label>
+          <label for="reorderValue" class="form-label">Minimum stock level (Re-Order Value)</label>
         </div>
         <div class="form-group field">
           <select id="abcRawMat" name="materialAbcCategory" class="form-field">
@@ -158,7 +158,7 @@ require_once('header.php');
         </div>
         <div class="form-group field">
           <input class="form-field" id="reorderValue" name="toolCatReorderValue">
-          <label for="reorderValue" class="form-label">Re-Order Value (Minimum stock level)</label>
+          <label for="reorderValue" class="form-label">Minimum stock level</label>
         </div>
         <div class="form-group field">
           <select name="abcTool" id="abcTool" class="form-field">
