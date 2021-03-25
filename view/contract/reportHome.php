@@ -11,15 +11,23 @@
   require_once('./../../controller/contract/contractController.php');
   $con = new Contract();
   $result = $con->getAllActiveContracts();
-
+  $type = '';
   if(isset($_POST['basic_report'])){
-    
-    
     $_SESSION['rcon_name'] = $_POST['con_name'];
     $_SESSION['rstart_date'] = $_POST['report_start_date'];
     $_SESSION['rend_date'] = $_POST['report_end_date'];
+    $type = 'basic_report';
 
-    header('location: ./reportView.php');
+    header('location: ./reportView.php?type='.$type);
+  }
+
+  if(isset($_POST['progress_report'])){
+    $_SESSION['rcon_name'] = $_POST['con_name'];
+    $_SESSION['rstart_date'] = $_POST['report_start_date'];
+    $_SESSION['rend_date'] = $_POST['report_end_date'];
+    $type = 'progress_report';
+
+    header('location: ./reportView.php?type='.$type);
 
   }
 
