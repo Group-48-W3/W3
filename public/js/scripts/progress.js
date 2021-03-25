@@ -1,4 +1,3 @@
-alert('hi');
 (function ($) {
 	$.fn.loading = function () {
 		var DEFAULTS = {
