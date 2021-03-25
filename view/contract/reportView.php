@@ -77,10 +77,7 @@
                 ?>
                   <tr>
                     <td data-label="Name"><?php echo $row["q_name"]; ?></td>
-                    <td data-label="Name">
-                    <!-- <a onclick="document.getElementById('item').style.display='block'"><?php echo $row["q_item"]; ?></a> -->
-                    <a href="./itemUpdate.php?view=1&item_id=<?php echo $row["q_item"]; ?>"><?php echo $row["q_item"]; ?></a>
-                    </td>
+                    <td data-label="Name"><?php echo $row["q_item"]; ?></td>
                     <td data-label="Description"><?php echo $row["q_desc"]; ?></td>
                     <td data-label="Budget"><?php echo $row["q_budget"];?></td>
                     <td data-label="Quantity"><?php echo $row["q_quantity"];?></td>
