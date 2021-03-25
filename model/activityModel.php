@@ -2,9 +2,9 @@
 require_once("./../../config/config.php");
 
 class activityModel{
-    function addActivityDB($act_name,$act_desc,$act_date,$con_id){
+    function addActivityDB($act_name,$act_desc,$act_date,$act_quo,$con_id){
         global $conn;
-        $sql = "insert into activity values ('','$act_name','$act_desc','$act_date',FALSE,'28','$con_id')";
+        $sql = "insert into activity values ('','$act_name','$act_desc','$act_date',FALSE,'$act_quo','$con_id')";
         $result = mysqli_query($conn, $sql);
         if ($result) {
             //echo "activity retrived successfully !";

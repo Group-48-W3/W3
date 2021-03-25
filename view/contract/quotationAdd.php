@@ -54,6 +54,7 @@
     $item_con = new Item();
 
     $item_con->addItem($item_name,$item_cat,$unit_price);
+    header('location: ./quotationAdd.php?quo_con_id='.$a);
     
   }
 ?>
