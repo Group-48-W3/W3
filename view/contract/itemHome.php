@@ -10,6 +10,7 @@
   require_once('./../../controller/contract/itemController.php');
   $item = new Item();
   $result= $item->getAllItems();
+  $count = mysqli_num_rows($result);
   $user_role = $_SESSION['r_id'];
   
   $_SESSION['delete_item'] = 'none';
@@ -35,7 +36,18 @@
 <!-- end of notification -->
 <div class="container"> 
   <h1>Item Home</h1>
-  <h6>Item Home displays all the avaliable item model delivered by the business</h6>
+  <div class="row">
+    <div class="col-sm">
+        <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+          <!-- <div class="card-header">Header</div> -->
+          <div class="card-body">
+            <h1 class="card-title"><?php echo $count; ?></h1>
+            <p class="card-text">Total Items</p>
+          </div>
+        </div>
+    </div>
+  </div>
+  <br> 
   <!-- Add a new Contract -->
   <h2 style="margin: 0px">Add a new Item</h2>
   <!-- Prompt Item for item adding -->
