@@ -32,15 +32,23 @@ body {
 }
 
 body::-webkit-scrollbar {
-  width: 0.25rem;
+  width: 0.5rem;
 }
 
 body::-webkit-scrollbar-track {
   background: #1e1e24;
+  --webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 10px;
 }
 
 body::-webkit-scrollbar-thumb {
   background: #6649b8;
+  border-radius: 10px;
+  --webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #7a57da;
 }
 
 a {
@@ -93,6 +101,19 @@ table{
 
 tr:nth-of-type(odd){
   background: #444;
+}
+
+.row-link {
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.row-link:hover {
+  filter: brightness(85%);
+}
+
+.row-link:active {
+  filter: brightness(100%);
 }
 
 th {
@@ -164,7 +185,7 @@ footer {
 		left: -9999px;
 	}
 	
-	tr { border: 1px solid #ccc; }
+  tr { border: 1px solid #ccc; }
 	
 	td { 
 		/* Behave  like a "row" */
