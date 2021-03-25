@@ -20,6 +20,7 @@
 
   if(isset($_POST['add_item'])){
 	$item->addItem($_POST['item_name'],$_POST['item_category'],$_POST['unit_price']);
+  header('location: ./itemHome.php');
   }
 
 ?>

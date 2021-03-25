@@ -30,16 +30,16 @@
 		</button>
 		<form name="myForm" id="registrationForm" method="POST" action="<?php echo $_SERVER['PHP_SELF']?>">
 			<label for="firstName">First Name</label>
-			<input type="text" name="first_name" placeholder="Type your First Name" id="firstName"/> 
+			<input type="text" name="first_name" placeholder="Type your First Name" autocomplete="off" id="firstName"/> 
 			
 			<label for="lastName">Last Name</label>
-			<input type="text" name="last_name" placeholder="Type your Last Name" id="lastName"/> 
+			<input type="text" name="last_name" placeholder="Type your Last Name" autocomplete="off" id="lastName"/> 
 			
 			<label for="emailAddress" >Email</label>
-			<input type="text" name="email" placeholder="Type your Email" id="emailAddress"/> 
+			<input type="text" name="email" placeholder="Type your Email" autocomplete="off" id="emailAddress"/> 
 			
 			<label for="phone" >Phone</label>
-			<input type="text" name="phone" placeholder="Type your Email" id="phone"/> 
+			<input type="text" name="phone" placeholder="Type your Email" autocomplete="off" id="phone"/> 
 			
 			<label for="password">Password</label>
 			<input type="password" name="password" placeholder="Type your Password" id="password"/>

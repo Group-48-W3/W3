@@ -26,11 +26,11 @@
 				<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 					<div class="form-group">
 						<label for="exampleInputEmail1">Email address</label>
-						<input class="form-control" id="exampleInputEmail1" name="email" type="email" placeholder="Enter Email" required>
+						<input class="form-control" id="exampleInputEmail1" name="email" type="email" placeholder="Enter Email" autocomplete="off" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">Password</label>
-						<input class="form-control" id="exampleInputPassword1" name="password" type="password" placeholder="Password" required>
+						<input class="form-control" id="exampleInputPassword1" name="password" type="password" autocomplete="off" placeholder="Password" required>
 						<a href="./view/login/login_password_change.php" style="text-decoration:none;" onclick="<?php $flag = 2;?>">Forget your password?</a>
 					</div>
 					<button class="btn btn-primary btn-block" type="submit" name="login">Login</button>
