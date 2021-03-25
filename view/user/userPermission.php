@@ -10,7 +10,7 @@ require_once('./../../controller/user/userController.php');
 require_once('./header.php');
 
 ?>
-
+<!---->
 <div class="container">
 <h1>Permissions</h1>
 <h4>Following Details will be Important to identify results and approving the notifications</h4>
@@ -34,6 +34,8 @@ require_once('./header.php');
     </tr>
     </thead>
     <tbody>
+
+    <!-- sample -->
     <tr>
         <td data-label="Permission">Delete</td>
         <td data-label="Description">Expense #12</td>  
@@ -46,6 +48,7 @@ require_once('./header.php');
             <a class="btn btn-danger" href="#">Decline</a>  
         </td>
     </tr>
+
     <tr>
         <td data-label="Permission">Accept</td>
         <td data-label="Description">New batch</td>  

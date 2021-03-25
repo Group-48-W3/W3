@@ -21,6 +21,13 @@
         return $result;
     }
 
+    function selectSupplier($supplierID){
+        global $conn;
+        $query = "SELECT * FROM `supplier` WHERE `sup-id`='$supplierID'";
+        $result = mysqli_query($conn,$query);
+        return $result;
+    }
+
     function selectActiveSuppliers(){
         global $conn;
         $query = "select * from supplier where `sup-status`=1";
@@ -41,4 +48,3 @@
             return 1;
         }
     }
-?>
