@@ -176,4 +176,16 @@ class RawMaterial
         $res = count(mysqli_fetch_array(getExpiredBatches()));
         return $res;
     }
+
+    function getReOrderCount(){
+        $res = getReOrderMaterials();
+        $i=0;
+        while($row = mysqli_fetch_array($res)){
+            $reOrdervalue = getReorderValue($row['inv-code']);
+            if($row['available'] < $reOrdervalue){
+                $i++;
+            }
+        }
+        return $i;
+    }
 }

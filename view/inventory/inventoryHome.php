@@ -9,10 +9,12 @@ if (!isset($_SESSION['u_id'], $_SESSION['r_id'])) {
 require_once('../../controller/user/userController.php');
 require_once('../../controller/inventory/rawMaterialController.php');
 require_once('../../controller/inventory/toolController.php');
+require_once('../../controller/inventory/maintenanceController.php');
 require_once('../../controller/inventory/supplierController.php');
 require_once('header.php');
 $rawMaterial = new RawMaterial();
 $tool = new Tool();
+$maintenance = new Maintenance();
 $supplier = new Supplier();
 $user_role = $_SESSION['r_id'];
 ?>
@@ -21,14 +23,6 @@ $user_role = $_SESSION['r_id'];
 <div class="container">
 	<h2>Quick Details</h2>
 	<div class="row">
-		<div class="col-sm">
-			<div class="card text-white bg-info mb-3" style="max-width: 20rem;">
-				<div class="card-body">
-					<h1 class="card-title">10</h1>
-					<p class="card-text">Active Suppliers</p>
-				</div>
-			</div>
-		</div>
 		<div class="col-sm">
 			<div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
 				<div class="card-body">
@@ -40,7 +34,7 @@ $user_role = $_SESSION['r_id'];
 		<div class="col-sm">
 			<div class="card text-white bg-success mb-3" style="max-width: 20rem;">
 				<div class="card-body">
-					<h1 class="card-title">0</h1>
+					<h1 class="card-title"><?php echo $rawMaterial->getReOrderCount(); ?></h1>
 					<p class="card-text">Need Re-order</p>
 				</div>
 			</div>
@@ -48,8 +42,16 @@ $user_role = $_SESSION['r_id'];
 		<div class="col-sm">
 			<div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
 				<div class="card-body">
-					<h1 id="value" class="card-title">2</h1>
+					<h1 id="value" class="card-title"><?php echo $maintenance->getMaintenanceCount(); ?></h1>
 					<p class="card-text">Under Maintenance</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm">
+			<div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+				<div class="card-body">
+					<h1 class="card-title"><?php echo $maintenance->getFinishedCount(); ?></h1>
+					<p class="card-text">Finished Maintenance</p>
 				</div>
 			</div>
 		</div>
