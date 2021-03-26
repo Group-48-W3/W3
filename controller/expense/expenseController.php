@@ -208,6 +208,12 @@ class Payment
        $result = mExpenseDB();
        return $result;
     }
+
+    function viewPaymentReport($con_name,$s_date,$e_date)
+    {
+        $result = viewPaymentReportDB($con_name,$s_date,$e_date);
+        return $result;
+    }
 }
 
 ?>
