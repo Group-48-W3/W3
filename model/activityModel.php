@@ -2,9 +2,9 @@
 require_once("./../../config/config.php");
 
 class activityModel{
-    function addActivityDB($act_name,$act_desc,$act_date,$con_id){
+    function addActivityDB($act_name,$act_desc,$act_date,$act_quo,$con_id){
         global $conn;
-        $sql = "insert into activity values ('','$act_name','$act_desc','$act_date',FALSE,'28','$con_id')";
+        $sql = "insert into activity values ('','$act_name','$act_desc','$act_date',FALSE,'$act_quo','$con_id')";
         $result = mysqli_query($conn, $sql);
         if ($result) {
             //echo "activity retrived successfully !";
@@ -89,6 +89,19 @@ class activityModel{
     function setContractProgressDB($con_id,$date,$progress_val){
         global $conn;
         $sql = "insert into contract_progress VALUES ('','$con_id','$date','$progress_val','')";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            //echo "activity retrived successfully !";
+            return $result;
+        
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+        }
+        mysqli_close($conn);
+    }
+    function getAllActivityCountDB(){
+        global $conn;
+        $sql = "SELECT COUNT(act_id) as res from activity";
         $result = mysqli_query($conn, $sql);
         if ($result) {
             //echo "activity retrived successfully !";

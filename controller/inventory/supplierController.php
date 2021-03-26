@@ -49,6 +49,11 @@
             return $res;
         }
 
+        function getSupplier($supplierID){
+            $res =  selectSupplier($supplierID);
+            return $res;
+        }
+
         function getActiveSuppliers(){
             $res =  selectActiveSuppliers();
             return $res;

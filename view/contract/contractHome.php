@@ -9,13 +9,26 @@
   require_once('./../../controller/contract/contractController.php');
   require_once('./../../controller/user/userController.php');
   require_once('./../../controller/contract/activityController.php');
+  require_once('./../../controller/contract/quotationController.php');
+  require_once('./../../controller/contract/invoiceController.php');
   require_once('header.php');
   $con = new Contract();
   $result = $con->getAllActiveContracts();
-  $res2 = $con->getAllInactiveContracts();
+  // box data
+  $box_data_1 = mysqli_num_rows($con->getAllActiveContracts());
 
   $act = new Activity();
-  
+
+  $box_data_2 = mysqli_fetch_array($act->getAllActivityCount());
+
+  $quo = new Quotation();
+
+  $box_data_3 = mysqli_num_rows($quo->getAllQuotation());
+
+  $invo = new Invoice();
+
+  $box_data_4 = mysqli_num_rows($invo->getAllInvoice());
+  // end box data
 ?>
 
   <div class="container">
@@ -28,7 +41,7 @@
         <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
           <!-- <div class="card-header">Header</div> -->
           <div class="card-body">
-            <h1 class="card-title">5</h1>
+            <h1 class="card-title"><?php echo $box_data_1;?></h1>
             <p class="card-text">Contracts</p>
           </div>
         </div>
@@ -39,7 +52,7 @@
         <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
           <!-- <div class="card-header">Header</div> -->
           <div class="card-body">
-            <h1 class="card-title">45</h1>
+            <h1 class="card-title"><?php echo $box_data_2['res'];?></h1>
             <p class="card-text">Activities</p>
           </div>
         </div>
@@ -50,7 +63,7 @@
         <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
           <!-- <div class="card-header">Header</div> -->
           <div class="card-body">
-            <h1 class="card-title">29</h1>
+            <h1 class="card-title"><?php echo $box_data_3;?></h1>
             <p class="card-text">Quotations</p>
           </div>
         </div>
@@ -61,7 +74,7 @@
         <div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
           <!-- <div class="card-header">Header</div> -->
           <div class="card-body">
-            <h1 id="value" class="card-title">4</h1>
+            <h1 id="value" class="card-title"><?php echo $box_data_4;?></h1>
             <p class="card-text">Invoices</p>
           </div>
         </div>
