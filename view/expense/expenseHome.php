@@ -80,6 +80,20 @@ include_once('header.php'); ?>
   </div>
   <!-- end of row -->
   <br>
+  <h3>Summary maintenance expense</h3>
+  <div class="row">
+    <!-- 1st card -->
+    <div class="col-3">
+      <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+      <!-- <div class="card-header">Header</div> -->
+        <div class="card-body">
+          <h2 class="card-title">LKR: <?php  ?></h1>
+          <p class="card-text">Last month maintenance cost and details</p>
+        </div>
+      </div>
+    </div>
+  </div> 
+   <br> 
   <h3>Summary income</h3>
   <div class="row">
     <!-- 1st card -->
