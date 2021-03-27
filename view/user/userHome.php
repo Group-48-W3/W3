@@ -2,13 +2,15 @@
 session_start();
 
 if(!isset($_SESSION['u_id'],$_SESSION['r_id']))
-	{
+{
 		header('location:index.php?lmsg=true');
 		exit;
-  }
+}
+
   require_once('../../controller/user/userController.php');
   include_once('header.php');		
-$res = getAll(); 
+  $time = time();
+  $res = getAll(); 
 ?>
 
 <div class="container">
@@ -81,13 +83,13 @@ $res = getAll();
             <tbody id="user_grid">
 			   <?php 
 			   $i=1;
-			   while($row=mysqli_fetch_assoc($res)){
+			   while($row=mysqli_fetch_array($res)){
 			   $status='Offline';
 			   $class="btn-danger";
-			  //  if($row['last_login']>$time){
-				// 	$status='Online';
-				// 	$class="btn-success";
-			  //  }
+			   if($row['last_login']>$time){
+					$status='Online';
+					$class="btn-success";
+			   }
 			   ?>	
                <tr>
                   <th scope="row"><?php echo $i?></th>
@@ -101,9 +103,12 @@ $res = getAll();
                     echo "Accountant";
                   }else if($row['r_id'] == 4){
                     echo "Stock Keeper";
+                  }else if($row['r_id'] == 5){
+                    echo "Manager";
                   }
                   ?>
                   </td>
+                  
                   <td><button type="button" class="btn <?php echo $class?>"><?php echo $status?></button></td>
                </tr>
 			   <?php 
@@ -116,7 +121,7 @@ $res = getAll();
 <script>
 		function updateUserStatus(){
 			jQuery.ajax({
-				url:'update_user_status.php',
+				url:'userUpdateStatus.php',
 				success:function(){
 					
 				}
@@ -125,7 +130,7 @@ $res = getAll();
 		
 		function getUserStatus(){
 			jQuery.ajax({
-				url:'get_user_status.php',
+				url:'userGetStatus.php',
 				success:function(result){
 					jQuery('#user_grid').html(result);
 				}

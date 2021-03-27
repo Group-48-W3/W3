@@ -103,5 +103,16 @@ function checkEmail($email){
 		return 0;
 	}
 }
+function updateUserStatus($uid,$time){
+	if($uid<=5){
+		updateUserStatusDB($uid,$time);
+	}else{
+		echo "error on update the user status";
+	}
+}
+function getUserStatus(){
+	$res = getAllUsers();
+	return $res;
+}
 
 ?>
