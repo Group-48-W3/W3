@@ -3,7 +3,7 @@ require_once("./../../config/config.php");
 
 function addContractDB($con_name,$con_start_date,$con_end_date,$con_location,$con_description,$con_status,$con_payment,$c_id){
     global $conn;
-    $sql = "insert into contract VALUES ('','$con_name','$con_start_date','$con_end_date','$con_location','$con_description','$con_status','$con_payment','',$c_id','2')";
+    $sql = "insert into contract VALUES ('','$con_name','$con_start_date','$con_end_date','$con_location','$con_description','$con_status','$con_payment','','$c_id','2')";
 	 if (mysqli_query($conn, $sql)) {
 		echo "contract created successfully !";
 		return 1;
