@@ -28,10 +28,7 @@ class MasterRep{
 class ProgressRep{
     //progress report class
 }
-class AccountRep{
-    //account report class
 
-}
 class InventoryRep{
     //inventory report class
 }

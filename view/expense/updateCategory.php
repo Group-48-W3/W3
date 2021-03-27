@@ -7,14 +7,20 @@ if(!isset($_SESSION['u_id'],$_SESSION['r_id']))
 	}
     require_once('./../../controller/expense/categoryController.php');
     if (isset($_GET['updateid'])) {
-        $cat = new Category();
-        $cat_details = $cat->getCatId($_GET['updateid']);
 
-        $row = mysqli_fetch_array($cat_details);
+        if($_GET['updateid'] != 1) {
+            $cat = new Category();
+            $cat_details = $cat->getCatId($_GET['updateid']);
+            $row = mysqli_fetch_array($cat_details);
+        } else {
+            header('HTTP/1.1 403 Forbidden');
+        }
+
     }
     require_once('../../controller/user/userController.php');
 ?>
 
+<?php if($_GET['updateid'] != 1): ?>
 <?php include_once('header.php'); ?>
       
     <!-- Content Starts -->
@@ -50,4 +56,6 @@ if(!isset($_SESSION['u_id'],$_SESSION['r_id']))
 <?php
   require_once('leftSidebar.php'); 
   require_once('footer.php'); 
-?>	
+?>
+}
+<?php endif ?>
