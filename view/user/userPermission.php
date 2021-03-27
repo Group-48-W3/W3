@@ -12,7 +12,7 @@ require_once('./header.php');
 ?>
 <!---->
 <div class="container">
-<h1>Permissions</h1>
+<h1>Permissions & Roles</h1>
 <h4>Following Details will be Important to identify results and approving the notifications</h4>
 <ul>
     <li>Role ID #1 - Admin</li>
