@@ -3,9 +3,10 @@ require_once("./../../config/config.php");
 
 function addContractDB($con_name,$con_start_date,$con_end_date,$con_location,$con_description,$con_status,$con_payment,$c_id){
     global $conn;
+	//$uid = $_SESSION['u_id'];
     $sql = "insert into contract VALUES ('','$con_name','$con_start_date','$con_end_date','$con_location','$con_description','$con_status','$con_payment','','$c_id','2')";
 	 if (mysqli_query($conn, $sql)) {
-		echo "contract created successfully !";
+		//echo "contract created successfully !";
 		return 1;
 	 } else {
 		echo "Error: " . $sql . " " . mysqli_error($conn);
@@ -139,7 +140,9 @@ function updateClientDB($c_id,$c_name,$c_address,$c_company,$c_mobile,$c_email){
 }
 function deleteContractDB($id){
 	global $conn;
-	$query = "delete from contract where con_id = ".$id;
+	//$query = "delete from contract where con_id = ".$id;
+	// flagging the data
+	$query = "update contract SET status = 'Inactive' where con_id = $id";
 	$result = mysqli_query($conn, $query);
     if ($result) {
         return 1;

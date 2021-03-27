@@ -34,7 +34,13 @@ class Contract{
         $c_id = getClientIdDB($c_name);
         $con = addContractDB($con_name,$con_start_date,$con_end_date,$con_location,$con_description,$con_status,$con_payment,$c_id);
         if($con && $client){
-           echo '<script>alert("Successfully Add Contract")</script>'; 
+           //echo '<script>alert("Successfully Add Contract")</script>';
+            $to_email = $c_email;
+			$subject = "Thank You for Engage with W3 Contracts";
+			$body =  "you have made a new furniture contract with us. Your Contract Name is "." ".$con_name;
+			$headers = "From: w3contracts@gmail.com";
+			
+			$sendMail = mail($to_email, $subject, $body, $headers); 
         }
         
         $id = $this->getContractIdByName($con_name);

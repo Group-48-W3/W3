@@ -18,6 +18,7 @@
     
     $i = 0;
     $result = array();
+    $category = array();
     $data_bucket = array();
     while($res = mysqli_fetch_array($con_details)){
         
@@ -41,6 +42,7 @@
         //echo $data_bucket[$i][0]['label']."</br>";
         $i++;
     }
+    
 ?>
     <!-- Charts -->
     <div class="container">

@@ -68,7 +68,7 @@
 				$_SESSION['sender_mail'] = $to_email;
 
 				$sendMail = mail($to_email, $subject, $body, $headers);
-				echo "hi";
+				//echo "hi";
 			}else{
 				//unsuccess email
 				$_SESSION['u_message'] = 'error2';
