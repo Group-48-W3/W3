@@ -17,7 +17,7 @@ require_once('header.php');
 <div class="container">
   <h2>Available Batches</h2>
   
-  <table>
+  <table class="data-table paginated">
     <thead>
       <tr>
         <th>Batch ID</th>

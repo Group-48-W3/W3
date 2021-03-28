@@ -31,6 +31,7 @@ $user_role = $_SESSION['r_id'];
 				</div>
 			</div>
 		</div>
+
 		<div class="col-sm">
 			<div class="card text-white bg-success mb-3" style="max-width: 20rem;">
 				<div class="card-body">
@@ -40,20 +41,24 @@ $user_role = $_SESSION['r_id'];
 			</div>
 		</div>
 		<div class="col-sm">
-			<div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
-				<div class="card-body">
-					<h1 id="value" class="card-title"><?php echo $maintenance->getMaintenanceCount(); ?></h1>
-					<p class="card-text">Under Maintenance</p>
+			<a href="maintenance.php">
+				<div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
+					<div class="card-body">
+						<h1 id="value" class="card-title"><?php echo $maintenance->getMaintenanceCount(); ?></h1>
+						<p class="card-text">Under Maintenance</p>
+					</div>
 				</div>
-			</div>
+			</a>
 		</div>
 		<div class="col-sm">
-			<div class="card text-white bg-info mb-3" style="max-width: 20rem;">
-				<div class="card-body">
-					<h1 class="card-title"><?php echo $maintenance->getFinishedCount(); ?></h1>
-					<p class="card-text">Finished Maintenance</p>
+			<a href="maintenance.php">
+				<div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+					<div class="card-body">
+						<h1 class="card-title"><?php echo $maintenance->getFinishedCount(); ?></h1>
+						<p class="card-text">Finished Maintenance</p>
+					</div>
 				</div>
-			</div>
+			</a>
 		</div>
 	</div>
 </div>

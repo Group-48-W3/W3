@@ -173,7 +173,7 @@ class RawMaterial
 
     function getExpiredCount()
     {
-        $res = count(mysqli_fetch_array(getExpiredBatches()));
+        $res = mysqli_num_rows(getExpiredBatches());
         return $res;
     }
 

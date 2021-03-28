@@ -41,7 +41,7 @@ class Maintenance
     function getMaintenanceCount()
     {
         if (mysqli_num_rows(getMachinesInMaintenance()) > 0) {
-            $res = count(mysqli_fetch_array(getMachinesInMaintenance()));
+            $res = mysqli_num_rows(getMachinesInMaintenance());
             return $res;
         } else {
             return 0;

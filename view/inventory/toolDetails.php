@@ -18,7 +18,7 @@ require_once('header.php');
 <div class="container">
   <h2>Available Tools</h2>
   
-  <table>
+  <table class="data-table paginated">
     <thead>
       <tr>
         <th>Description</th>
@@ -60,7 +60,7 @@ require_once('header.php');
 <div class="container">
   <h2>Available Machines</h2>
   
-  <table>
+  <table class="data-table paginated">
     <thead>
       <tr>
         <th>Registered ID</th>

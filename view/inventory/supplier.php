@@ -50,7 +50,7 @@
 </div>
 <br>
 <div class="container">
-  <h2>Active Suppliers</h2>
+  <h2>Current Suppliers</h2>
  
   <table class="data-table paginated">
     <thead>
@@ -59,6 +59,7 @@
         <th width="20%">Email</th>
         <th width="10%">Telephone</th>
         <th width="25%">Address</th>
+        <th>Category</th>
       </tr>
     </thead>
     <tbody>
@@ -71,6 +72,13 @@
         <td data-label="Email"><?php echo $row["sup-email"]; ?></td>
         <td data-label="Telephone"><?php echo $row["sup-mobile"]; ?></td>
         <td data-label="Address"><?php echo $row["sup-address"]; ?></td>
+        <td data-label="Category"><?php if ($row["category"] == 0) {
+															echo "Both";
+														} else if ($row["category"] == 1) {
+															echo "Raw Material";
+														} else if ($row["category"] == 2) {
+															echo "Tool";
+														} ?></td>
       </tr>
       <?php
           $i++;
