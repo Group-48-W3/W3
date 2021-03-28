@@ -14,6 +14,7 @@
   require_once('header.php');
   $con = new Contract();
   $result = $con->getAllActiveContracts();
+  $result2 = $con->getAllActiveContracts();
   // box data
   $box_data_1 = mysqli_num_rows($con->getAllActiveContracts());
 
@@ -144,15 +145,12 @@
     <?php
       $i=0;
       while($row = mysqli_fetch_array($result)) {
-
     ?>
     <!-- Contract Item -->
     <?php
-        //$res_act = $act->getProgressContract((int)$row["con_id"]);
         $res_act = round((int)$row['con_progress']); 
-        
     ?>
-    <?php if( $res_act<=95){?>
+    <?php if($res_act<=99){?>
     <div class="container card text-white bg-primary" onclick="location.href='./contractSinglePage.php?con_id=<?php echo $row["con_id"]; ?>';" style="cursor: pointer;">
       <br>
       <h4 style="margin: 0px"><?php echo $row["con_name"]; ?></h4>
@@ -167,11 +165,22 @@
       <br>
     </div>
     <!-- Contract Item Ends -->
-    <?php }else{?>
-    <!-- content -->
+    <?php }?>
+    <?php }?>
+    <!-- Finish Contract starts -->
     <h2>Finished Contracts</h2>
     <p>Contracts that are finished already</p>
     <!-- Database Results -->
+    
+    <?php
+      $i=0;
+      while($row = mysqli_fetch_array($result2)) {
+    ?>
+    <!-- Contract Item -->
+    <?php
+        $res_act = round((int)$row['con_progress']); 
+    ?>
+    <?php if($res_act >=95){?>
     <!-- Contract Item -->
     <div class="container card text-white bg-primary" onclick="location.href='./contractSinglePage.php?con_id=<?php echo $row["con_id"]; ?>'"  style="cursor: pointer;">
       <br>
@@ -187,12 +196,12 @@
     <br>
     </div>
     <!-- end content -->
-    <?php }?>
+    <?php } ?>
     <?php
       $i++;
       }
       if($i==0){
-          echo "No results ";
+         echo "No results ";
       }
     ?> 
    

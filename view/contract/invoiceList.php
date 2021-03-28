@@ -25,7 +25,7 @@ if(isset($_GET['delete_id'])){
   //echo "perform delete".$id;
   $a = 2;
 }
-
+//echo $_SERVER["DOCUMENT_ROOT"];
 ?>
 
 <div class="container">

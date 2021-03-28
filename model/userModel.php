@@ -100,5 +100,27 @@ function updateAccountDB($email, $pass, $id)
 	}
 	mysqli_close($conn);
 }
+function updateUserStatusDB($uid,$time){
+	global $conn;
+	$sql = "update user set last_login ='" . $time . "' where u_id ='" . $uid . "'";
+	if (mysqli_query($conn, $sql)) {
+		echo "user status changes successfully !";
+	} else {
+		echo "Error: " . $sql . " " . mysqli_error($conn);
+	}
+	mysqli_close($conn);
+}
+function getAllUserRolesDB(){
+	global $conn;
+	$sql = "select * FROM role";
+	$res = mysqli_query($conn, $sql); 
+	if ($res) {
+		//echo "user status changes successfully !";
+		return $res;
+	} else {
+		echo "Error: " . $sql . " " . mysqli_error($conn);
+	}
+	mysqli_close($conn);
+}
 
 ?>

@@ -2,3 +2,8 @@
 2020.10.30 18:44:05 INFO  time: initialize in 1.6s
 2020.10.30 18:44:09 WARN  no build tool detected in workspace 'C:\xampp\htdocs\W3-1'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
 2020.10.31 01:30:33 INFO  shutting down Metals
+[0m2021.03.27 20:21:48 INFO  Started: Metals version 0.10.0 in workspace 'C:\xampp\htdocs\W3-1' for client vscode 1.54.3.[0m
+[0m2021.03.27 20:21:49 INFO  time: initialize in 1.37s[0m
+[0m2021.03.27 20:21:54 WARN  resetting database: C:\xampp\htdocs\W3-1\.metals\metals.h2.db[0m
+[0m2021.03.27 20:21:56 WARN  Build server is not auto-connectable.[0m
+[0m2021.03.27 20:21:56 WARN  no build tool detected in workspace 'C:\xampp\htdocs\W3-1'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m

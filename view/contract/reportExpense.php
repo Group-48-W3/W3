@@ -12,7 +12,7 @@
   require_once('./../../controller/contract/reportController.php');
   require_once('./../../controller/expense/expenseController.php');
   require_once('./../../controller/contract/invoiceController.php');
-  require_once('./../../controller/contract/incomeController.php');
+  require_once('./../../controller/expense/incomeController.php');
   
   $report = new MasterRep();
   $res = $report->conDetails($_SESSION['rcon_name'],$_SESSION['rstart_date'],$_SESSION['rend_date']);
@@ -29,9 +29,30 @@
   $res4 = $income->viewIncomeReport($_SESSION['rcon_name'],$_SESSION['rstart_date'],$_SESSION['rend_date']);
   $res4_data = mysqli_fetch_array($res4);
 
-  $url ='http://localhost/W3-1/view/contract/reportExpense.php'; 
+?>
+<?php
+require_once('pdfcrowd.php');
 
-  $img = 'logo.png'; 
+try
+{
+    // create the API client instance
+    $client = new \Pdfcrowd\HtmlToPdfClient("demo", "ce544b6ea52a5621fb9d55f8b542d14d");
+
+    // run the conversion and write the result to a file
+    $client->convertStringToFile("<html>
+  <body>
+    Hello World!
+  </body>
+</html>", "result.pdf");
+}
+catch(\Pdfcrowd\Error $why)
+{
+    // report the error
+    error_log("Pdfcrowd Error: {$why}\n");
+
+    // rethrow or handle the exception
+    throw $why;
+}
 
 ?>
 

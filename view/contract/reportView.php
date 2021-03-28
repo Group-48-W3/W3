@@ -14,30 +14,38 @@
   //echo $_SESSION['rcon_name']." ".$_SESSION['rstart_date']." ".$_SESSION['rend_date'];
   $report = new MasterRep();
   if($_GET['type'] == 'basic_report'){
-  $rep = 1;  
-  $res = $report->conDetails($_SESSION['rcon_name'],$_SESSION['rstart_date'],$_SESSION['rend_date']);
-  $res_data = mysqli_fetch_array($res);
-  //client details
-  $res2 = $report->clientDetails($res_data['c_id']);
-  $res2_data = mysqli_fetch_array($res2);
-  //quotation details
-  $res3 = $report->quotationDetails($_SESSION['rcon_name']);
-  //$res3_data = mysqli_fetch_array($res3);
-  $res4 = $report->activityDetails($_SESSION['rcon_name'],$_SESSION['rstart_date'],$_SESSION['rend_date']);
+    $rep = 1;  
+    $res = $report->conDetails($_SESSION['rcon_name'],$_SESSION['rstart_date'],$_SESSION['rend_date']);
+    $res_data = mysqli_fetch_array($res);
+    //client details
+    $res2 = $report->clientDetails($res_data['c_id']);
+    $res2_data = mysqli_fetch_array($res2);
+    //quotation details
+    $res3 = $report->quotationDetails($_SESSION['rcon_name']);
+    //$res3_data = mysqli_fetch_array($res3);
+    $res4 = $report->activityDetails($_SESSION['rcon_name'],$_SESSION['rstart_date'],$_SESSION['rend_date']);
   }  
   if($_GET['type'] == 'progress_report'){
     $rep = 2;
     $con = new Contract();
     $res1 = $con->getAllActiveContracts();
   }
+  if($_GET['type'] == 'account_report'){
+    $rep = 3;
 
+  }
+  if($_GET['type'] == 'storage_report'){
+    $rep = 4;
+  }
+  
 ?>
 
 <div class="container">
 <h2>Report View</h2>
 </div>
 <?php if($rep == 1){?>
-<div class="container" style="border-style: solid">
+<div class="container" id="chart">
+<div class="container col-11" style="border-style: solid" id="chart_report">
 		  <h4>Master Report <?php echo $res_data['con_name']; ?></h4>
       <div class="row">
       <div class="container col-4" style="border-style: solid">
@@ -192,9 +200,23 @@
       <br>
   <!-- data 1 ends -->
 </div>
+</div>
 <?php }?>
 <!-- Progress Report ends -->
-<?php
-  require_once('leftSidebarReport.php'); 
-  require_once('footer.php'); 
-?>
+<!-- Start of Account Report -->
+<?php if($rep == 3){?>
+  <div class="container" style="border-style: solid">
+  <h2>Account Report</h2>
+  </div>
+<?php }?>
+<!-- Account Report ends -->
+<!-- Start of Storage Report -->
+<?php if($rep == 4){?>
+  <div class="container" style="border-style: solid">
+  <h2>Stock Report</h2>
+  </div>
+
+<?php }?>
+<!-- End of Stroage report -->
+
+

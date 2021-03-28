@@ -147,7 +147,7 @@ if(isset($_POST['invoice_save'])){
 							<td><input class="itemRow" type="checkbox"></td>
 							<td><input type="text" name="productCode[]" id="<?php echo "productCode_".$j; ?>" value="<?php echo $i + 1; ?>" class="form-control" autocomplete="off"></td>
 							<td><input type="text" name="productName[]" id="<?php echo "productName_".$j; ?>" value="<?php echo $quo['q_name']; ?>" class="form-control" autocomplete="off"></td>			
-							<td><input type="number" name="quantity[]" id="<?php echo "quantity_".$j; ?>" value="<?php echo 1; ?>" class="form-control quantity" autocomplete="off"></td>
+							<td><input type="number" name="quantity[]" id="<?php echo "quantity_".$j; ?>" value="<?php echo (int)$quo['q_quantity']; ?>" class="form-control quantity" autocomplete="off"></td>
 							<td><input type="number" name="price[]" id="<?php echo "price_".$j; ?>" value="<?php echo $quo['q_budget']; ?>" class="form-control price" autocomplete="off"></td>
 							<td><input type="number" name="total[]" id="<?php echo "total_".$j; ?>" class="form-control total" autocomplete="off"></td>
 							</tr>

@@ -24,7 +24,7 @@ namespace Dompdf;
  */
 interface Canvas
 {
-    function __construct($paper = "letter", $orientation = "portrait", Dompdf $dompdf = null);
+    function __construct($paper = "letter", $orientation = "portrait", Dompdf $dompdf);
 
     /**
      * @return Dompdf
@@ -129,26 +129,6 @@ interface Canvas
      * Ends the last clipping shape
      */
     function clipping_end();
-
-    /**
-     * Writes text at the specified x and y coordinates on every page
-     *
-     * The strings '{PAGE_NUM}' and '{PAGE_COUNT}' are automatically replaced
-     * with their current values.
-     *
-     * See {@link Style::munge_color()} for the format of the color array.
-     *
-     * @param float  $x
-     * @param float  $y
-     * @param string $text       the text to write
-     * @param string $font       the font file to use
-     * @param float  $size       the font size, in points
-     * @param array  $color
-     * @param float  $word_space word spacing adjustment
-     * @param float  $char_space char spacing adjustment
-     * @param float  $angle      angle to write the text at, measured CW starting from the x-axis
-     */
-    public function page_text($x, $y, $text, $font, $size, $color = [0, 0, 0], $word_space = 0.0, $char_space = 0.0, $angle = 0.0);
 
     /**
      * Save current state
@@ -282,7 +262,7 @@ interface Canvas
      * @param float $width
      * @param array $style
      */
-    function arc($x, $y, $r1, $r2, $astart, $aend, $color, $width, $style = []);
+    function arc($x, $y, $r1, $r2, $astart, $aend, $color, $width, $style = array());
 
     /**
      * Writes text at the specified x and y coordinates
@@ -298,7 +278,7 @@ interface Canvas
      * @param float $char_space char spacing adjustment
      * @param float $angle angle
      */
-    function text($x, $y, $text, $font, $size, $color = [0, 0, 0], $word_space = 0.0, $char_space = 0.0, $angle = 0.0);
+    function text($x, $y, $text, $font, $size, $color = array(0, 0, 0), $word_space = 0.0, $char_space = 0.0, $angle = 0.0);
 
     /**
      * Add a named destination (similar to <a name="foo">...</a> in html)
@@ -408,7 +388,7 @@ interface Canvas
      *
      * @return void
      */
-    function set_default_view($view, $options = []);
+    function set_default_view($view, $options = array());
 
     /**
      * @param string $script
@@ -430,7 +410,7 @@ interface Canvas
      * @param string $filename The filename to present to the browser.
      * @param array $options Associative array: 'compress' => 1 or 0 (default 1); 'Attachment' => 1 or 0 (default 1).
      */
-    function stream($filename, $options = []);
+    function stream($filename, $options = array());
 
     /**
      * Returns the PDF as a string.
@@ -438,5 +418,5 @@ interface Canvas
      * @param array $options Associative array: 'compress' => 1 or 0 (default 1).
      * @return string
      */
-    function output($options = []);
+    function output($options = array());
 }
