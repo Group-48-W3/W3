@@ -12,13 +12,19 @@
   $con = new Contract();
   $result = $con->getAllActiveContracts();
   $type = '';
+  $_SESSION['error'] = '';
   if(isset($_POST['basic_report'])){
-    $_SESSION['rcon_name'] = $_POST['con_name'];
-    $_SESSION['rstart_date'] = $_POST['report_start_date'];
-    $_SESSION['rend_date'] = $_POST['report_end_date'];
-    $type = 'basic_report';
-
-    header('location: ./reportView.php?type='.$type);
+    if($_POST['report_start_date']< $_POST['report_end_date']){
+      $_SESSION['rcon_name'] = $_POST['con_name'];
+      $_SESSION['rstart_date'] = $_POST['report_start_date'];
+      $_SESSION['rend_date'] = $_POST['report_end_date'];
+      $type = 'basic_report';
+      header('location: ./reportView.php?type='.$type);
+    }else{
+      //echo "Date selection is incorrect: Start Date should less than End Date";
+      $_SESSION['error'] = 'success';
+    }  
+    
   }
 
   if(isset($_POST['progress_report'])){
@@ -32,7 +38,15 @@
   }
 
 ?>
-
+<!-- Notification -->
+<?php if(($_SESSION['error']) == 'success'): ?>
+	
+  <div class="alert alert-danger" style="background-color: red;">
+    <a href="./user/userProfile.php" style="text-decoration: none; color: white;">Date selection is incorrect: Start Date should less than End Date</a>
+  </div>
+  
+  <?php $_SESSION['delete_item'] = 'none'; endif; ?>
+<!-- end of notification -->
 <div class="container">
   <h1>Reports & Statistics</h1>
   <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">

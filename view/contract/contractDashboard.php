@@ -218,8 +218,8 @@
                 type: "splineArea", 
                 showInLegend: true,
                 yValueFormatString: "#,##0",      
-                name: "Matrix Wood",
-                dataPoints: <?php echo json_encode($data_bucket[3], JSON_NUMERIC_CHECK); ?>
+                name: "Dharamarathne Road",
+                dataPoints: <?php echo json_encode($data_bucket[5], JSON_NUMERIC_CHECK); ?>
             },
             ]
         });
@@ -246,7 +246,7 @@
             type: "spline",
             markerSize: 5,
             xValueFormatString: "YYYY",
-            yValueFormatString: "$#,##0.##",
+            yValueFormatString: "LKR #,##0.##",
             xValueType: "dateTime",
             dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
         }]
