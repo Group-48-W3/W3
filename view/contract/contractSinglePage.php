@@ -10,7 +10,8 @@
   require_once('./../../controller/contract/contractController.php');
   require_once('./../../controller/contract/quotationController.php');
   require_once('./../../controller/contract/activityController.php');
-  $user_role = $_SESSION['r_id'];	
+  $user_role = $_SESSION['r_id'];
+  //echo $user_role; 	
   if (isset($_GET['con_id'])) {
     $con = new Contract();
     $quo = new Quotation();
@@ -139,7 +140,7 @@
                 <th>Budget</th>
                 <th>Quantity</th>
                 <th>Discount</th>
-                <?php if($user_role==2){ ?>
+                <!-- <?php if($user_role<=5){ ?> -->
                 <th>Edit</th>
                 <?php } ?>
               </thead>
@@ -159,7 +160,7 @@
                     <td data-label="Quantity"><?php echo $row["q_quantity"];?></td>
                     <td data-label="Discount"><?php echo $row["q_discount"]?></td>
                   
-                    <?php if($user_role==2){ ?>
+                    <?php if($user_role<=5 ){ ?>
                     <td data-label="Edit">
                     <a href="./quotationSinglePage.php?q_id=<?php echo $row["q_id"]; ?>" class="btn btn-warning">&#x270E</a>
                     <a class="btn btn-danger" href="./quotationSinglePage.php?del_id=<?php echo $row["q_id"]; ?>&con_id=<?php echo $_SESSION['contract_id'];?>">&#x2716</a>
