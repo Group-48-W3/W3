@@ -53,7 +53,6 @@ require_once('header.php');
     </script>
   </div>
 </div>
-<br>
 <div class="container">
   <h3>Machines in maintenance</h3>
   <table>

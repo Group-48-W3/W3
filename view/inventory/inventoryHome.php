@@ -98,7 +98,7 @@ $user_role = $_SESSION['r_id'];
 					<th>Description</th>
 					<th>Re-Order Value</th>
 					<th>ABC Analysis</th>
-					<th>Edit</th>
+					<!--<th>Edit</th>-->
 				</thead>
 				<tbody>
 					<?php
@@ -119,9 +119,9 @@ $user_role = $_SESSION['r_id'];
 							<td data-label="ABC Analysis">
 								<?php echo $row["abc-category"] ?>
 							</td>
-							<td data-label="Edit">
+							<!--<td data-label="Edit">
 								<a href="" class="btn btn-warning">&#x270E</a>
-							</td>
+							</td>-->
 						</tr>
 					<?php
 						$i++;
@@ -180,7 +180,7 @@ $user_role = $_SESSION['r_id'];
 					<th>Total Quantity</th>
 					<th>Reorder Value</th>
 					<th width="11%">Average Price</th>
-					<th>Edit</th>
+					<!--<th>Edit</th>-->
 				</thead>
 				<tbody>
 					<?php
@@ -216,9 +216,11 @@ $user_role = $_SESSION['r_id'];
 									echo "No Data";
 								} ?>
 							</td>
+							<!--
 							<td data-label="Edit">
 								<a href="" class="btn btn-warning">&#x270E</a>
 							</td>
+							-->
 						</tr>
 					<?php
 						$i++;
@@ -284,7 +286,7 @@ $user_role = $_SESSION['r_id'];
 					<th>Address</th>
 					<th>Status</th>
 					<th>Added On</th>
-					<?php if ($user_role == 2) { ?>
+					<?php if ($user_role == 3) { ?>
 						<th>Edit</th>
 					<?php } ?>
 				</thead>
@@ -305,7 +307,7 @@ $user_role = $_SESSION['r_id'];
 														echo "Inactive";
 													} ?></td>
 							<td data-label="Added On"><?php echo $row["sup-created-on"]; ?></td>
-							<?php if ($user_role == 2) { ?>
+							<?php if ($user_role == 3) { ?>
 								<td>
 									<a href="" class="btn btn-warning">&#x270E</a>
 								</td>
