@@ -19,7 +19,13 @@ class Activity{
             echo "Error on add activity";
         }           
     }
-    
+    function getAllUndone(){
+        //get all undone
+        $activity = new activityModel();
+        $res = $activity->getAllUndoneDB();
+
+        return $res;
+    }
     function getActivityforContract($con_id){ 
         // get activities for a single contract
         $activity = new activityModel();
@@ -41,7 +47,8 @@ class Activity{
                 $date = date('Y-m-d');
                 $activity->setContractProgressDB($con_id,$date,$progress_val);
             }        
-            header('location: ./contractSinglePage.php?con_id='.$con_id);
+            //header('location: ./contractSinglePage.php?con_id='.$con_id);
+            header('location: ./activityHome.php');
         }else{
             echo "Error on mark activity";
         }    
