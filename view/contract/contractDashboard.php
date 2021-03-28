@@ -142,6 +142,8 @@
         // contract distribution
         var chartpie = new CanvasJS.Chart("chartContainerpie", {
         theme: "dark2",
+        exportFileName: "Contract Distribution",
+        exportEnabled: true,
         animationEnabled: true,
         title: {
             text: "Contract Distribution"
@@ -160,6 +162,8 @@
         // contract burndown
         var chart = new CanvasJS.Chart("contractBurndown", {
             theme: "dark2",
+            exportFileName: "Contract Progress Distribution",
+            exportEnabled: true,
             animationEnabled: true,
             title:{
                 text: "Contract Progress Analysis"
@@ -219,7 +223,7 @@
                 showInLegend: true,
                 yValueFormatString: "#,##0",      
                 name: "Dharamarathne Road",
-                dataPoints: <?php echo json_encode($data_bucket[5], JSON_NUMERIC_CHECK); ?>
+                dataPoints: <?php echo json_encode($data_bucket[3], JSON_NUMERIC_CHECK); ?>
             },
             ]
         });
@@ -228,6 +232,8 @@
         // revenue distribution 
         var chart = new CanvasJS.Chart("chartContainer", {
         theme: "dark2",
+        exportFileName: "Revenue Distribution",
+        exportEnabled: true,
         animationEnabled: true,
         title:{
             text: "Company Revenue by Year"
@@ -257,7 +263,7 @@
         // Monthly Expense via category
         var chart = new CanvasJS.Chart("monthExpenseCtaegory", {
             theme: "dark2",
-            exportFileName: "Doughnut Chart",
+            exportFileName: "Expense Distribution",
             exportEnabled: true,
             animationEnabled: true,
             title:{
@@ -297,6 +303,8 @@
         
         var chart = new CanvasJS.Chart("quotationDistribution", {
             animationEnabled: true,
+            exportFileName: "Quotation Distribution",
+            exportEnabled: true,
             theme: "dark2", // "light1", "light2", "dark1", "dark2"
             title:{
                 text: "Quotation Value Estimation by Contracts"
@@ -316,6 +324,8 @@
         // Income Distribution
         var chart = new CanvasJS.Chart("incomeDistribution", {
             animationEnabled: true,
+            exportFileName: "Income Distribution",
+            exportEnabled: true,
             theme: "dark2", // "light1", "light2", "dark1", "dark2"
             title:{
                 text: "Income Distribution"
