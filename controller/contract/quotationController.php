@@ -40,6 +40,11 @@ class Quotation{
         return $res;
         
     }
+    function getQuotationTotContract(){
+        $quotation = new QuotationModel();
+        $res =  $quotation->getQuotationTotContractDB();
+        return $res;
+    }
     function getSingleQuotation($q_id){
         // to be implemented
         $quotation = new QuotationModel();
@@ -68,5 +73,6 @@ class Quotation{
             echo "problem having deleting the quotation";
         }
     }
+    
 }
 ?>

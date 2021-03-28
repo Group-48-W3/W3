@@ -16,6 +16,7 @@
     $inovice = new Invoice();
     $quotation = new Quotation();
     $con_details = $contract->getAllActiveContracts();
+    
     $invo_details = $inovice->getIncomebyContract();
     $quo_details = $quotation->getQuotationTotContract();
 
@@ -48,21 +49,26 @@
         $i++;
     }
     $dataPoints_pie = $result;
-    //echo "graph plot";
+    
     $invoice = array();
     $i = 0;
+    //income distribution
     while($res2 = mysqli_fetch_array($invo_details)){
          $roww[$i][0] = $res2['company_name'];
          $roww[$i][1] = $res2['income'];
          $invoice[] = array("y"=>$roww[$i][1],"label"=>$roww[$i][0]);
          $i++;
     }
-    
+    //quotation distribution
+    $quo_value = array();
+    while($res3 = mysqli_fetch_array($quo_details)){
+        $single_con = mysqli_fetch_array($contract->getSingleActiveContract($res3['q_con_id']));
+        $quo_value[] = array("y"=>$res3['value'],"label"=>$single_con['con_name']);
+    }
     /// revenue distribution
+    /// one year chnages through 3.1536*10^10 change of x = 60*60*24*365
+    $year_change = 31536000000;
     $dataPoints = array(
-            // array("x" => 2009*365*24*60*60, "y" => 3289000),
-            // array("x" => 2010*365*24*60*60, "y" => 3830000),
-            // array("x" => 2011*365*24*60*60, "y" => 2009000),
             array("x" => 1041359400000, "y" => 2840000),
             array("x" => 1072895400000, "y" => 2396000),
             array("x" => 1104517800000, "y" => 1613000),
@@ -76,7 +82,12 @@
             array("x" => 1356978600000, "y" => 3026000),
             array("x" => 1388514600000, "y" => 2394000),
             array("x" => 1420050600000, "y" => 1872000),
-            array("x" => 1451586600000, "y" => 2140000)
+            array("x" => 1451586600000, "y" => 2140000),
+            array("x" => 1483122600000, "y" => 5460000),
+            array("x" => 1483122600000+1*$year_change, "y" => 4460000),
+            array("x" => 1483122600000+2*$year_change, "y" => 5060000),
+            array("x" => 1483122600000+3*$year_change, "y" => 6060000),
+            array("x" => 1483122600000+4*$year_change, "y" => 6160000),
     );
         
     
@@ -288,17 +299,17 @@
             animationEnabled: true,
             theme: "dark2", // "light1", "light2", "dark1", "dark2"
             title:{
-                text: "Income Distribution"
+                text: "Quotation Value Estimation by Contracts"
             },
             axisY: {
-                title: "Income in LKR"
+                title: "Value in LKR"
             },
             data: [{        
                 type: "column",  
                 showInLegend: true, 
                 legendMarkerColor: "grey",
-                legendText: "Item Count",
-                dataPoints: <?php echo json_encode($invoice, JSON_NUMERIC_CHECK); ?>
+                legendText: "Quotation Value",
+                dataPoints: <?php echo json_encode($quo_value, JSON_NUMERIC_CHECK); ?>
             }]
         });
         chart.render();

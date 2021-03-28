@@ -49,6 +49,13 @@ class QuotationModel{
 		return $result;
 
 	}
+	function getQuotationTotContractDB(){
+		global $conn;
+		$query = "select q_con_id, sum(q_budget*q_quantity) as value from quotation group by q_con_id";
+		$result = mysqli_query($conn,$query);
+
+		return $result;
+	}
 	function updateQuotationDB($quo_id,$q_item,$q_name,$q_desc,$q_budget,$q_discount){
 		global $conn;
 		$sql = "update quotation SET q_item='$q_item',q_name='$q_name',q_desc='$q_desc', q_budget='$q_budget', q_discount='$q_discount'
