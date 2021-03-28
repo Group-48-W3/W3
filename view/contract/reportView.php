@@ -37,7 +37,8 @@
 <h2>Report View</h2>
 </div>
 <?php if($rep == 1){?>
-<div class="container" style="border-style: solid">
+<div class="container" id="chart">
+<div class="container col-11" style="border-style: solid" id="chart_report">
 		  <h4>Master Report <?php echo $res_data['con_name']; ?></h4>
       <div class="row">
       <div class="container col-4" style="border-style: solid">
@@ -192,9 +193,6 @@
       <br>
   <!-- data 1 ends -->
 </div>
+</div>
 <?php }?>
 <!-- Progress Report ends -->
-<?php
-  require_once('leftSidebarReport.php'); 
-  require_once('footer.php'); 
-?>

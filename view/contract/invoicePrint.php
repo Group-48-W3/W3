@@ -19,8 +19,6 @@ if(!empty($_GET['invo_id']) && $_GET['invo_id']) {
 	$invoiceValues = mysqli_fetch_array($invoice->getInvoice($_GET['invo_id']));		
 	$invoiceItems = $invoice->getInvoiceItems($_GET['invo_id']);
     
-    $row = mysqli_fetch_array($invoiceItems);
-    
 }
 $invoiceDate = date("d/M/Y", strtotime($invoiceValues['date']));
 
@@ -110,10 +108,11 @@ require_once 'dompdf/autoload.inc.php';
 Dompdf\Autoloader::register();
 use Dompdf\Dompdf;
 $dompdf = new Dompdf();
-$dompdf->loadHtml($html);
+//$dompdf->loadHtml($html);
+$dompdf ->loadHtml($html);
 $dompdf->setPaper('A4', 'landscape');
 $dompdf->render();
-$dompdf->stream($filename, array("Attachment"=>0));
+$dompdf->stream($filename, array("Attachment" => 1));
 
 $output = $dompdf->output();
 file_put_contents("$filename", $output);

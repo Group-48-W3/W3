@@ -30,6 +30,31 @@
   $res4_data = mysqli_fetch_array($res4);
 
 ?>
+<?php
+require_once('pdfcrowd.php');
+
+try
+{
+    // create the API client instance
+    $client = new \Pdfcrowd\HtmlToPdfClient("demo", "ce544b6ea52a5621fb9d55f8b542d14d");
+
+    // run the conversion and write the result to a file
+    $client->convertStringToFile("<html>
+  <body>
+    Hello World!
+  </body>
+</html>", "result.pdf");
+}
+catch(\Pdfcrowd\Error $why)
+{
+    // report the error
+    error_log("Pdfcrowd Error: {$why}\n");
+
+    // rethrow or handle the exception
+    throw $why;
+}
+
+?>
 
 <div class="container">
 <h2>Report View</h2>
