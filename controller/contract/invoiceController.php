@@ -46,6 +46,12 @@ class Invoice{
             echo "Error occur in controller";
         }
     }
+    function getIncomebyContract(){
+        $invo = new InvoiceModel();
+        $res = $invo->getIncomebyContractDB();
+        
+        return $res;
+    }
 }
 
 
