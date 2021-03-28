@@ -1,13 +1,18 @@
-<?php 
-	session_start();
-	
-	if(!isset($_SESSION['u_id'],$_SESSION['r_id'])){
-		header('location:index.php?lmsg=true');
-		exit;
-	}		
-	
-	require_once('../../controller/user/userController.php');
-  require_once('header.php');
+<?php
+session_start();
+
+if (!isset($_SESSION['u_id'], $_SESSION['r_id'])) {
+  header('location:index.php?lmsg=true');
+  exit;
+}
+
+require_once('../../controller/user/userController.php');
+require_once('../../controller/inventory/toolController.php');
+require_once('../../controller/inventory/maintenanceController.php');
+$tool = new Tool();
+$maintenance = new Maintenance();
+
+require_once('header.php');
 ?>
 
 <h2>Maintenance</h2>
@@ -16,73 +21,118 @@
   <div class="search">
     <div class="search-text">
       <div class="form-group field">
-        <input class="form-field" id="search">
-        <label for="search" class="form-label">Search tool/machine</label>
+        <input class="form-field" id="searchMachineText" name="searchMachineText" autocomplete="off" required>
+        <label for="searchMachineText" class="form-label">Search tool/machine</label>
       </div>
     </div>
-    <div class="search-button">
-        <svg 
-          aria-hidden="true" 
-          focusable="false" 
-          data-prefix="fas" 
-          data-icon="search" 
-          class="svg-inline--fa fa-search fa-w-16" 
-          role="img" 
-          xmlns="http://www.w3.org/2000/svg" 
-          viewBox="0 0 512 512">
-          <path 
-            fill="currentColor" 
-            d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
-          </path>
-        </svg>
-    </div>
-    <div class="search-result">
-      <table>
-        <thead>
-          <tr>
-            <th>Registered ID</th>
-            <th>Category</th>
-            <th>Image</th>
-            <th>Manufacturer</th>
-            <th width="15%">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td data-label="Registered ID"><i>Tool ID</i></td>
-            <td data-label="Category"><i>Tool Category</i></td>
-            <td data-label="Image"><i>Image of Tool</i></td>
-            <td data-label="Manufacturer"><i>Manufacturer</i></td>
-            <td data-label="Action"><button class="btn btn-secondary" onclick="document.getElementById('addMn').style.display='block'">+ Add to maintenance</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <div id="searchResult" class="search-result"></div>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#searchMachineText").keyup(function() {
+          var machine = $(this).val();
+          if (machine != "") {
+            $.ajax({
+              url: './search.php',
+              method: 'POST',
+              data: {
+                machine: machine
+              },
+              success: function(data) {
+                $('#searchResult').html(data);
+                $('#searchResult').css('display', 'block');
+                $("#search").focusin(function() {
+                  $('#searchResult').css('display', 'block');
+                });
+              }
+            });
+          } else {
+            $('#searchResult').css('display', 'none');
+          }
+        });
+      });
+    </script>
   </div>
 </div>
 <br>
 <div class="container">
-  <h3>Items in maintenance</h3>
+  <h3>Machines in maintenance</h3>
   <table>
     <thead>
       <tr>
-        <th width="10%">Tool ID</th>
-        <th width="10%">Category</th>
+        <th width="10%">Machine ID</th>
+        <th width="10%">Description</th>
         <th width="15%">Maintaner</th>
-        <th width="30%">Reason</th>
-        <th width="20%">Date of pickup</th>
+        <th width="20%">Reason</th>
+        <th width="15%">Added date</th>
+        <th width="15%">Date of pickup</th>
         <th width="15%">Option</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td data-label="Item Code">MT4544f</td>
-        <td data-label="Item Code">Nail Gun</td>
-        <td data-label="Maintaner">Liyanage Workshop</td>
-        <td data-label="Cost Code">Failure in motor. Doesn't work when powered</td>
-        <td data-label="Date of Pickup">2021:01:23</td>
-        <td data-label="Option"><button class="btn btn-secondary" onclick="document.getElementById('remMn').style.display='block'">Remove from maintenance</button></td>
-      </tr>
+      <?php
+      $i = 0;
+      $result = $maintenance->getMaintenanceDetails();
+      while ($row = mysqli_fetch_array($result)) {
+        $boxID = "rm" . $row['reg-id'];
+      ?>
+        <tr>
+          <td data-label="Registered ID"><?php echo $row['reg-id'] ?></td>
+          <td data-label="Description"><?php echo $row['machine-desc'] ?></td>
+          <td data-label="Maintaner"><?php echo $row['maintenance-by'] ?></td>
+          <td data-label="Reason"><?php echo $row['reason'] ?></td>
+          <td data-label="Added date"><?php echo $row['added-date'] ?></td>
+          <td data-label="Date of Pickup"><?php echo $row['pickup-date'] ?></td>
+          <td data-label="Option">
+            <div id="<?php echo $boxID ?>" class="confirm-box">
+              <div class="right" style="margin-right:25px;">
+                <span onclick="document.getElementById('<?php echo $boxID ?>').style.display='none'" class="close" title="Close Modal">&times;</span>
+              </div>
+              <form method="post" action="../../controller/inventory/maintenanceController.php">
+                <h1>Are you sure?</h1>
+                <p>You are about to remove this tool from maintenance. Please enter the following deatails</p>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-10">
+                      <div class="form-group field">
+                        <input class="form-field" id="cost" name="cost">
+                        <label for="cost" class="form-label">Cost for maintenance</label>
+                      </div>
+                      <div class="form-group field">
+                        <input class="form-field" id="receivedDate" name="receivedDate" type="date">
+                        <script>
+                          document.getElementById('receivedDate').value = new Date().toDateInputValue();
+                        </script>
+                        <label for="receivedDate" class="form-label">Received Date</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix right">
+                  <input type="hidden" name="machineID" value="<?php echo $row['machine-id'] ?>">
+                  <input type="hidden" name="maintenanceID" value="<?php echo $row['maintenance-id'] ?>">
+                  <button type="button" class="btn btn-secondary" onclick="document.getElementById('<?php echo $boxID ?>').style.display='none'">
+                    Cancel
+                  </button>
+                  <button type="submit" name="removeMaintenance" class="btn btn-warning">Remove from maintenance</button>
+                </div>
+              </form>
+            </div>
+            <button class="btn btn-secondary" onclick="document.getElementById('<?php echo $boxID ?>').style.display='block'">
+              Remove from maintenance
+            </button>
+          </td>
+        </tr>
+      <?php
+        $i++;
+      }
+      if ($i == 0) {
+      ?>
+        <tr>
+          <td colspan="7">
+            <center>No machine is currently in maintanence</center>
+          </td>
+        </tr>
+      <?php } ?>
     </tbody>
   </table>
 </div>
@@ -92,93 +142,50 @@
   <table>
     <thead>
       <tr>
-        <th width="10%">Tool ID</th>
-        <th width="10%">Category</th>
-        <th width="15%">Maintaner</th>
-        <th width="30%">Reason</th>
-        <th width="20%">Date of pickup</th>
-        <th width="15%">Option</th>
+        <th>Tool ID</th>
+        <th>Category</th>
+        <th>Maintaner</th>
+        <th>Reason</th>
+        <th>Cost</th>
+        <th>Added Date</th>
+        <th>Expected Date</th>
+        <th>Received Date</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td data-label="Item Code">MT4544f</td>
-        <td data-label="Item Code">Nail Gun</td>
-        <td data-label="Maintaner">Liyanage Workshop</td>
-        <td data-label="Cost Code">Failure in motor. Doesn't work when powered</td>
-        <td data-label="Date of Pickup">2021:01:23</td>
-        <td data-label="Option"><button class="btn btn-secondary" onclick="document.getElementById('remMn').style.display='block'">Remove from maintenance</button></td>
-      </tr>
+      <?php
+      $i = 0;
+      $result = $maintenance->getPreviousMaintenance();
+      while ($row = mysqli_fetch_array($result)) {
+      ?>
+        <tr>
+          <td data-label="Registered ID"><?php echo $row['reg-id'] ?></td>
+          <td data-label="Description"><?php echo $row['machine-desc'] ?></td>
+          <td data-label="Maintaner"><?php echo $row['maintenance-by'] ?></td>
+          <td data-label="Reason"><?php echo $row['reason'] ?></td>
+          <td data-label="Cost"><?php echo $row['cost'] ?></td>
+          <td data-label="Added date"><?php echo $row['added-date'] ?></td>
+          <td data-label="Expected Date"><?php echo $row['pickup-date'] ?></td>
+          <td data-label="Received Date">
+            <?php echo $row['received-date'] ?>
+          </td>
+        </tr>
+      <?php
+        $i++;
+      }
+      if ($i == 0) {
+      ?>
+        <tr>
+          <td colspan="8">
+            <center>Sorry, No results to show!</center>
+          </td>
+        </tr>
+      <?php } ?>
     </tbody>
   </table>
 </div>
 
-<!-- Prompt Boxes -->
-<div id="addMn" class="confirm-box">
-  <div class="right" style="margin-right:25px;">
-    <span onclick="document.getElementById('addMn').style.display='none'" class="close" title="Close Modal">&times;</span>
-  </div>
-  <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
-    <h1>Add to maintenance</h1>
-    <p>You are about to add this tool to maintenance. Please enter the following deatils</p>
-    <div class="container">
-      <div class="row">
-        <div class="col-10">
-          <div class="form-group field">
-            <input class="form-field" id="reason" name="reason">
-            <label for="reason" class="form-label">Reason for maintenance</label>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-10">
-          <div class="form-group field">
-            <input class="form-field" id="maintainer" name="maintainer">
-            <label for="maintainer" class="form-label">Details of maintainer</label>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-10">
-          <div class="form-group field">
-            <input type="date" class="form-field" id="pickup" name="pickup">
-            <label for="pickup" class="form-label">Expected pickup date</label>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="clearfix right">
-      <button type="button" class="btn btn-secondary" onclick="document.getElementById('addMn').style.display='none'">Cancel</button>
-      <button type="submit" name="addMaintenance" class="btn btn-warning">Add to mainteance</button>
-    </div>
-  </form>
-</div>
-<div id="remMn" class="confirm-box">
-  <div class="right" style="margin-right:25px;">
-    <span onclick="document.getElementById('remMn').style.display='none'" class="close" title="Close Modal">&times;</span>
-  </div>
-  <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
-  <h1>Are you sure?</h1>
-  <p>You are about to remove this tool from maintenance. Please enter the following deatails</p>
-  <div class="container">
-    <div class="row">
-      <div class="col-10">
-        <div class="form-group field">
-          <input class="form-field" id="cost" name="cost">
-          <label for="cost" class="form-label">Cost for maintenance</label>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="clearfix right">
-    <button type="button" class="btn btn-secondary" onclick="document.getElementById('remMn').style.display='none'">Cancel</button>
-    <button type="submit" name="delete_con" class="btn btn-warning">Remove from maintenance</button>
-  </div>
-  </form>
-</div>
-<!-- End Prompt Boxes -->
-
 <?php
-  require_once('leftSidebar.php'); 
-  require_once('footer.php'); 
-?>	
+require_once('leftSidebar.php');
+require_once('footer.php');
+?>
