@@ -40,8 +40,8 @@ $result = getAllUserRoles();
           <td data-label="First Name"><?php echo $row["r_name"]; ?></td>
           <td data-label="Last Name"><?php echo $row["r_desc"]; ?></td>
           <td data-label="Action">
-            <a class="btn btn-warning" href="./userUpdate.php?updateid=<?php echo $row["u_id"]; ?>">&#x270E</a>
-            <a class="btn btn-danger" href="./../../controller/user/userController.php?userid=<?php echo $row["u_id"]; ?>">&#x2716</a>  
+            <a class="btn btn-warning" href="./userUpdate.php?updateid=<?php echo $row["r_id"]; ?>">&#x270E</a>
+            <a class="btn btn-danger" href="./../../controller/user/userController.php?userid=<?php echo $row["r_id"]; ?>">&#x2716</a>  
           </td>
       </tr>
     <?php
@@ -51,7 +51,23 @@ $result = getAllUserRoles();
     </tbody>
 </table>
 <!-- end of  -->
-
+<div class="container col-8">
+<h3>Create New User Role</h3>
+<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+    <div class="form-group field">
+      <input type="text" class="form-field" id="first_name" name="role_name">
+      <label for="first_name" class="form-label">Role Name</label>
+    </div>
+    
+    <div class="form-group field">
+      <input type="text" class="form-field" id="last_name" name="role_description">
+      <label for="last_name" class="form-label">Role Description</label>
+    </div>
+    <div class="right">
+		  <input class="btn btn-primary" type="submit" name="roledetails" value="Submit">
+    </div>
+</form>
+</div>
 </div>
 
 <?php
