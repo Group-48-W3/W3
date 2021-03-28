@@ -89,7 +89,7 @@ class Tool
         } else {
             echo 'All fields are required';
         }
-        header('location:./../../view/inventory/replenish.php'); //redirection
+        header('location:./../../view/inventory/replenish.php#addTool'); //redirection
         exit;
     }
 
@@ -113,7 +113,7 @@ class Tool
         } else {
             echo 'All fields are required';
         }
-        header('location:./../../view/inventory/replenish.php'); //redirection
+        header('location:./../../view/inventory/replenish.php#addTool'); //redirection
         exit;
     }
 

@@ -60,36 +60,7 @@ $user_role = $_SESSION['r_id'];
 <br>
 <div class="container ">
 	<h2>Tools and Machines</h2>
-	<div class="row">
-		<div class="col">
-			<div class="left">
-				<span>Show: </span>
-				<select name="" id="" class="" width="15px">
-					<option value="">5 records</option>
-					<option value="">10 records</option>
-					<option value="">25 records</option>
-					<option value="">50 records</option>
-				</select>
-			</div>
-		</div>
-		<div class="col">
-			<div class="right">
-				<span>Sort By: </span>
-				<select name="" id="">
-					<option value="">Category</option>
-					<option value="">Price</option>
-					<option value="">Available Quantity</option>
-					<option value="">Manufacturer</option>
-					<option value="">Status</option>
-				</select>
-				<select name="" id="">
-					<option value="">ASC</option>
-					<option value="">DESC</option>
-				</select>
-			</div>
-		</div>
-	</div>
-	<br>
+
 	<div class="row">
 		<div class="col">
 			<table class="data-table paginated">
@@ -142,34 +113,7 @@ $user_role = $_SESSION['r_id'];
 	<br>
 
 	<h2>Raw Materials</h2>
-	<div class="row">
-		<div class="col">
-			<div class="left">
-				<span>Show: </span>
-				<select name="" id="rmViewRows" class="" width="15px">
-					<option value="5">5 records</option>
-					<option value="10">10 records</option>
-					<option value="25">25 records</option>
-					<option value="50">50 records</option>
-				</select>
-			</div>
-		</div>
-		<div class="col">
-			<div class="right">
-				<span>Sort By: </span>
-				<select name="" id="">
-					<option value="">Category</option>
-					<option value="">Price</option>
-					<option value="">Available Quantity</option>
-				</select>
-				<select name="" id="">
-					<option value="">ASC</option>
-					<option value="">DESC</option>
-				</select>
-			</div>
-		</div>
-	</div>
-	<br>
+
 	<div class="row">
 		<div class="col">
 			<table class="data-table paginated">
@@ -248,34 +192,7 @@ $user_role = $_SESSION['r_id'];
 
 
 	<h2>Suppliers</h2>
-	<div class="row">
-		<div class="col">
-			<div class="left">
-				<span>Show: </span>
-				<select name="" id="" class="" width="15px">
-					<option value="">5 records</option>
-					<option value="">10 records</option>
-					<option value="">25 records</option>
-					<option value="">50 records</option>
-				</select>
-			</div>
-		</div>
-		<div class="col">
-			<div class="right">
-				<span>Sort By: </span>
-				<select name="" id="">
-					<option value="">Name</option>
-					<option value="">Status</option>
-					<option value="">Added Date</option>
-				</select>
-				<select name="" id="">
-					<option value="">ASC</option>
-					<option value="">DESC</option>
-				</select>
-			</div>
-		</div>
-	</div>
-	<br>
+
 	<div class="row">
 		<div class="col">
 			<table class="data-table paginated">
@@ -285,7 +202,7 @@ $user_role = $_SESSION['r_id'];
 					<th>Telephone</th>
 					<th>Address</th>
 					<th>Status</th>
-					<th>Added On</th>
+					<th>Category</th>
 					<?php if ($user_role == 3) { ?>
 						<th>Edit</th>
 					<?php } ?>
@@ -306,7 +223,13 @@ $user_role = $_SESSION['r_id'];
 													} else {
 														echo "Inactive";
 													} ?></td>
-							<td data-label="Added On"><?php echo $row["sup-created-on"]; ?></td>
+							<td data-label="Category"><?php if ($row["category"] == 0) {
+															echo "Both";
+														} else if ($row["category"] == 1) {
+															echo "Raw Material";
+														} else if ($row["category"] == 2) {
+															echo "Tool";
+														} ?></td>
 							<?php if ($user_role == 3) { ?>
 								<td>
 									<a href="" class="btn btn-warning">&#x270E</a>
