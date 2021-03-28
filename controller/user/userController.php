@@ -114,5 +114,9 @@ function getUserStatus(){
 	$res = getAllUsers();
 	return $res;
 }
+function getAllUserRoles(){
+	$res = getAllUserRolesDB();
+	return $res;
+}
 
 ?>

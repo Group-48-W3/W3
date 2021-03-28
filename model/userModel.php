@@ -110,5 +110,17 @@ function updateUserStatusDB($uid,$time){
 	}
 	mysqli_close($conn);
 }
+function getAllUserRolesDB(){
+	global $conn;
+	$sql = "select * FROM role";
+	$res = mysqli_query($conn, $sql); 
+	if ($res) {
+		//echo "user status changes successfully !";
+		return $res;
+	} else {
+		echo "Error: " . $sql . " " . mysqli_error($conn);
+	}
+	mysqli_close($conn);
+}
 
 ?>

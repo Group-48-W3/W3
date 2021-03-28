@@ -9,61 +9,48 @@ if(!isset($_SESSION['u_id'],$_SESSION['r_id']))
 require_once('./../../controller/user/userController.php');
 require_once('./header.php');
 
+$result = getAllUserRoles();
+
+
 ?>
-<!---->
+<!--start of role view-->
 <div class="container">
-<h1>Permissions & Roles</h1>
-<h4>Following Details will be Important to identify results and approving the notifications</h4>
-<ul>
-    <li>Role ID #1 - Admin</li>
-    <li>Role ID #2 - Owner</li>
-    <li>Role ID #3 - Accountant</li>
-    <li>Role ID #4 - Stock Keeper</li>
-</ul>
+<h2>Roles Management</h2>
+<h5>Role management inside the system environment</h5>
+</div>
 
-<table>
+<div class="container"> 
+<table class="data-table">
     <thead>
-    <tr>
-        <th>Permission</th>
-        <th>Description</th>  
-        <th>Module</th>
-        <th>User ID</th>
-        <th>Role ID</th>
-        <th>UserName</th>
-        <th>Action</th>
-    </tr>
+      <tr>
+        <th>Role ID</th>  
+        <th>Role Name</th>
+        <th>Role Description</th>
+        <th>Action </th>
+      </tr>
     </thead>
+    <!-- get details -->
+    <?php
+      $i=0;
+      while($row = mysqli_fetch_array($result)) {
+    ?>
     <tbody>
-
-    <!-- sample -->
-    <tr>
-        <td data-label="Permission">Delete</td>
-        <td data-label="Description">Expense #12</td>  
-        <td data-label="Module">Expense</td>
-        <td data-label="User ID">3</td>
-        <td data-label="Role ID">3</td>
-        <td data-label="UserName">Supun</td>
-        <td data-label="Action">
-            <a class="btn btn-success" href="#">Approve</a>
-            <a class="btn btn-danger" href="#">Decline</a>  
-        </td>
-    </tr>
-
-    <tr>
-        <td data-label="Permission">Accept</td>
-        <td data-label="Description">New batch</td>  
-        <td data-label="Module">Inventory</td>
-        <td data-label="User ID">4</td>
-        <td data-label="Role ID">4</td>
-        <td data-label="UserName">Udara</td>
-        <td data-label="Action">
-            <a class="btn btn-success" href="#">Approve</a>
-            <a class="btn btn-danger" href="#">Decline</a>  
-        </td>
-    </tr>
+      <tr>
+          <td data-label="User ID"><?php echo $row["r_id"]; ?></td>
+          <td data-label="First Name"><?php echo $row["r_name"]; ?></td>
+          <td data-label="Last Name"><?php echo $row["r_desc"]; ?></td>
+          <td data-label="Action">
+            <a class="btn btn-warning" href="./userUpdate.php?updateid=<?php echo $row["u_id"]; ?>">&#x270E</a>
+            <a class="btn btn-danger" href="./../../controller/user/userController.php?userid=<?php echo $row["u_id"]; ?>">&#x2716</a>  
+          </td>
+      </tr>
+    <?php
+      $i++;
+      }
+    ?>
     </tbody>
-    
 </table>
+<!-- end of  -->
 
 </div>
 

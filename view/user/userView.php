@@ -19,7 +19,7 @@ $result = getAll();
 if (mysqli_num_rows($result) > 0) {
 ?>
 <div class="container"> 
-  <h3>System Users</h3>
+  <h2>System Users</h2>
   <table class="data-table">
     <thead>
       <tr>
