@@ -16,47 +16,10 @@ require_once('header.php');
 ?>
 
 <h2>Maintenance</h2>
-<div class="container">
-  <h3>Add tool/machine to maintenance</h3>
-  <div class="search">
-    <div class="search-text">
-      <div class="form-group field">
-        <input class="form-field" id="searchMachineText" name="searchMachineText" autocomplete="off" required>
-        <label for="searchMachineText" class="form-label">Search tool/machine</label>
-      </div>
-    </div>
-    <div id="searchResult" class="search-result"></div>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $("#searchMachineText").keyup(function() {
-          var machine = $(this).val();
-          if (machine != "") {
-            $.ajax({
-              url: './search.php',
-              method: 'POST',
-              data: {
-                machine: machine
-              },
-              success: function(data) {
-                $('#searchResult').html(data);
-                $('#searchResult').css('display', 'block');
-                $("#search").focusin(function() {
-                  $('#searchResult').css('display', 'block');
-                });
-              }
-            });
-          } else {
-            $('#searchResult').css('display', 'none');
-          }
-        });
-      });
-    </script>
-  </div>
-</div>
-<br>
+
 <div class="container">
   <h3>Machines in maintenance</h3>
-  <table>
+  <table  class="data-table paginated">
     <thead>
       <tr>
         <th width="10%">Machine ID</th>
@@ -139,7 +102,7 @@ require_once('header.php');
 <br>
 <div class="container">
   <h3>Previous maintenance details</h3>
-  <table>
+  <table class="data-table paginated">
     <thead>
       <tr>
         <th>Tool ID</th>
@@ -183,6 +146,44 @@ require_once('header.php');
       <?php } ?>
     </tbody>
   </table>
+</div>
+<br><hr>
+<div class="container">
+  <h3>Add tool/machine to maintenance</h3>
+  <div class="search">
+    <div class="search-text">
+      <div class="form-group field">
+        <input class="form-field" id="searchMachineText" name="searchMachineText" autocomplete="off" required>
+        <label for="searchMachineText" class="form-label">Search tool/machine</label>
+      </div>
+    </div>
+    <div id="searchResult" class="search-result"></div>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#searchMachineText").keyup(function() {
+          var machine = $(this).val();
+          if (machine != "") {
+            $.ajax({
+              url: './search.php',
+              method: 'POST',
+              data: {
+                machine: machine
+              },
+              success: function(data) {
+                $('#searchResult').html(data);
+                $('#searchResult').css('display', 'block');
+                $("#search").focusin(function() {
+                  $('#searchResult').css('display', 'block');
+                });
+              }
+            });
+          } else {
+            $('#searchResult').css('display', 'none');
+          }
+        });
+      });
+    </script>
+  </div>
 </div>
 
 <?php

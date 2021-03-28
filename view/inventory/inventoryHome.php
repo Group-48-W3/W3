@@ -31,6 +31,7 @@ $user_role = $_SESSION['r_id'];
 				</div>
 			</div>
 		</div>
+
 		<div class="col-sm">
 			<div class="card text-white bg-success mb-3" style="max-width: 20rem;">
 				<div class="card-body">
@@ -40,56 +41,31 @@ $user_role = $_SESSION['r_id'];
 			</div>
 		</div>
 		<div class="col-sm">
-			<div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
-				<div class="card-body">
-					<h1 id="value" class="card-title"><?php echo $maintenance->getMaintenanceCount(); ?></h1>
-					<p class="card-text">Under Maintenance</p>
+			<a href="maintenance.php">
+				<div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
+					<div class="card-body">
+						<h1 id="value" class="card-title"><?php echo $maintenance->getMaintenanceCount(); ?></h1>
+						<p class="card-text">Under Maintenance</p>
+					</div>
 				</div>
-			</div>
+			</a>
 		</div>
 		<div class="col-sm">
-			<div class="card text-white bg-info mb-3" style="max-width: 20rem;">
-				<div class="card-body">
-					<h1 class="card-title"><?php echo $maintenance->getFinishedCount(); ?></h1>
-					<p class="card-text">Finished Maintenance</p>
+			<a href="maintenance.php">
+				<div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+					<div class="card-body">
+						<h1 class="card-title"><?php echo $maintenance->getFinishedCount(); ?></h1>
+						<p class="card-text">Finished Maintenance</p>
+					</div>
 				</div>
-			</div>
+			</a>
 		</div>
 	</div>
 </div>
 <br>
 <div class="container ">
 	<h2>Tools and Machines</h2>
-	<div class="row">
-		<div class="col">
-			<div class="left">
-				<span>Show: </span>
-				<select name="" id="" class="" width="15px">
-					<option value="">5 records</option>
-					<option value="">10 records</option>
-					<option value="">25 records</option>
-					<option value="">50 records</option>
-				</select>
-			</div>
-		</div>
-		<div class="col">
-			<div class="right">
-				<span>Sort By: </span>
-				<select name="" id="">
-					<option value="">Category</option>
-					<option value="">Price</option>
-					<option value="">Available Quantity</option>
-					<option value="">Manufacturer</option>
-					<option value="">Status</option>
-				</select>
-				<select name="" id="">
-					<option value="">ASC</option>
-					<option value="">DESC</option>
-				</select>
-			</div>
-		</div>
-	</div>
-	<br>
+
 	<div class="row">
 		<div class="col">
 			<table class="data-table paginated">
@@ -98,7 +74,7 @@ $user_role = $_SESSION['r_id'];
 					<th>Description</th>
 					<th>Re-Order Value</th>
 					<th>ABC Analysis</th>
-					<th>Edit</th>
+					<!--<th>Edit</th>-->
 				</thead>
 				<tbody>
 					<?php
@@ -119,9 +95,9 @@ $user_role = $_SESSION['r_id'];
 							<td data-label="ABC Analysis">
 								<?php echo $row["abc-category"] ?>
 							</td>
-							<td data-label="Edit">
+							<!--<td data-label="Edit">
 								<a href="" class="btn btn-warning">&#x270E</a>
-							</td>
+							</td>-->
 						</tr>
 					<?php
 						$i++;
@@ -142,34 +118,7 @@ $user_role = $_SESSION['r_id'];
 	<br>
 
 	<h2>Raw Materials</h2>
-	<div class="row">
-		<div class="col">
-			<div class="left">
-				<span>Show: </span>
-				<select name="" id="rmViewRows" class="" width="15px">
-					<option value="5">5 records</option>
-					<option value="10">10 records</option>
-					<option value="25">25 records</option>
-					<option value="50">50 records</option>
-				</select>
-			</div>
-		</div>
-		<div class="col">
-			<div class="right">
-				<span>Sort By: </span>
-				<select name="" id="">
-					<option value="">Category</option>
-					<option value="">Price</option>
-					<option value="">Available Quantity</option>
-				</select>
-				<select name="" id="">
-					<option value="">ASC</option>
-					<option value="">DESC</option>
-				</select>
-			</div>
-		</div>
-	</div>
-	<br>
+
 	<div class="row">
 		<div class="col">
 			<table class="data-table paginated">
@@ -180,7 +129,7 @@ $user_role = $_SESSION['r_id'];
 					<th>Total Quantity</th>
 					<th>Reorder Value</th>
 					<th width="11%">Average Price</th>
-					<th>Edit</th>
+					<!--<th>Edit</th>-->
 				</thead>
 				<tbody>
 					<?php
@@ -216,9 +165,11 @@ $user_role = $_SESSION['r_id'];
 									echo "No Data";
 								} ?>
 							</td>
+							<!--
 							<td data-label="Edit">
 								<a href="" class="btn btn-warning">&#x270E</a>
 							</td>
+							-->
 						</tr>
 					<?php
 						$i++;
@@ -246,34 +197,7 @@ $user_role = $_SESSION['r_id'];
 
 
 	<h2>Suppliers</h2>
-	<div class="row">
-		<div class="col">
-			<div class="left">
-				<span>Show: </span>
-				<select name="" id="" class="" width="15px">
-					<option value="">5 records</option>
-					<option value="">10 records</option>
-					<option value="">25 records</option>
-					<option value="">50 records</option>
-				</select>
-			</div>
-		</div>
-		<div class="col">
-			<div class="right">
-				<span>Sort By: </span>
-				<select name="" id="">
-					<option value="">Name</option>
-					<option value="">Status</option>
-					<option value="">Added Date</option>
-				</select>
-				<select name="" id="">
-					<option value="">ASC</option>
-					<option value="">DESC</option>
-				</select>
-			</div>
-		</div>
-	</div>
-	<br>
+
 	<div class="row">
 		<div class="col">
 			<table class="data-table paginated">
@@ -283,8 +207,8 @@ $user_role = $_SESSION['r_id'];
 					<th>Telephone</th>
 					<th>Address</th>
 					<th>Status</th>
-					<th>Added On</th>
-					<?php if ($user_role == 2) { ?>
+					<th>Category</th>
+					<?php if ($user_role == 3) { ?>
 						<th>Edit</th>
 					<?php } ?>
 				</thead>
@@ -304,8 +228,14 @@ $user_role = $_SESSION['r_id'];
 													} else {
 														echo "Inactive";
 													} ?></td>
-							<td data-label="Added On"><?php echo $row["sup-created-on"]; ?></td>
-							<?php if ($user_role == 2) { ?>
+							<td data-label="Category"><?php if ($row["category"] == 0) {
+															echo "Both";
+														} else if ($row["category"] == 1) {
+															echo "Raw Material";
+														} else if ($row["category"] == 2) {
+															echo "Tool";
+														} ?></td>
+							<?php if ($user_role == 3) { ?>
 								<td>
 									<a href="" class="btn btn-warning">&#x270E</a>
 								</td>

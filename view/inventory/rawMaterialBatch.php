@@ -16,37 +16,8 @@ require_once('header.php');
 <h1> Batch Details of <i><?php echo $_GET['material'] ?></i></h1>
 <div class="container">
   <h2>Available Batches</h2>
-  <div class="row">
-    <div class="col">
-      <div class="left">
-        <span>Show: </span>
-        <select name="" id="" class="" width="15px">
-          <option value="">10 records</option>
-          <option value="">25 records</option>
-          <option value="">50 records</option>
-          <option value="">100 records</option>
-        </select>
-      </div>
-    </div>
-    <div class="col">
-      <div class="right">
-        <span>Sort By: </span>
-        <select name="" id="">
-          <option value="">Added Date</option>
-          <option value="">Expiry Date</option>
-          <option value="">Available Quantity</option>
-          <option value="">Stored Location</option>
-          <option value="">Supplier</option>
-        </select>
-        <select name="" id="">
-          <option value="">ASC</option>
-          <option value="">DESC</option>
-        </select>
-      </div>
-    </div>
-  </div>
-  <br>
-  <table>
+  
+  <table class="data-table paginated">
     <thead>
       <tr>
         <th>Batch ID</th>
