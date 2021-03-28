@@ -90,6 +90,12 @@ class Income
        $result = totalIncomeDB();
        return $result;
     }
+
+    function viewIncomeReport($con_name,$s_date,$e_date)
+    {
+        $result = viewIncomeReportDB($con_name,$s_date,$e_date);
+        return $result;
+    }
 }
 
 ?>

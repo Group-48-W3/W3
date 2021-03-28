@@ -14,6 +14,8 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet"/>
   <script type="text/javascript" src="./../../public/js/scripts/main.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script> 
+  <script type="text/javascript" src="./../../public/js/scripts/invoice.js"></script>  
+  <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>  
 </head>
 <!-- Temp code  -->
 <style>
@@ -43,30 +45,28 @@
   }
   /* Progress styles */
   svg.radial-progress {
-      height: auto;
-      max-width: 200px;
-      padding: 1em;
-      transform: rotate(-90deg);
-      width: 100%;
-  }
-  svg.radial-progress circle {
-      fill: rgba(0,0,0,0);
-      stroke: #fff;
-      stroke-dashoffset: 219.91148575129; /* Circumference */
-      stroke-width: 10;
-  }
-  svg.radial-progress circle.incomplete {
-      opacity: 0.25;
-  }
-  svg.radial-progress circle.complete {
-      stroke-dasharray: 219.91148575129; /* Circumference */
-  }
-  svg.radial-progress text {
-      fill: #fff;
-      font: 400 1em/1 'Oswald', sans-serif;
-      text-anchor: middle;
+    height: auto;
+    max-width: 200px;
+    padding: 1em;
+    transform: rotate(-90deg);
+    width: 100%;
   }
 
+  svg.radial-progress circle {
+    fill: rgba(0,0,0,0);
+    stroke: #a2ed56;
+    stroke-dashoffset: 219.91148575129; 
+    stroke-width: 10;
+  }
+
+  svg.radial-progress circle.incomplete { opacity: 0.25; }
+
+  svg.radial-progress circle.complete { stroke-dasharray: 219.91148575129; }
+
+  svg.radial-progress text {
+    fill: #fff;
+    text-anchor: middle;
+  }
   /*** COLORS ***/
   /* Primary */
   svg.radial-progress:nth-of-type(6n+1) circle {

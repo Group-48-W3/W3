@@ -75,8 +75,8 @@ $result = $employee->getAllEmployee();
             <label for="emp_name" class="form-label">Name</label>
         </div>
         <div class="form-group field">
-            <input type="text" class="form-field" name="emp_dob" id="emp_dob">
-            <label for="emp_dob" class="form-label">DOB</label>
+          <input class="form-field" id="emp_dob" name="emp_dob" type="date">
+          <label for="emp_dob" class="form-label">DOB</label>
         </div>
 
         <div class="form-group field">

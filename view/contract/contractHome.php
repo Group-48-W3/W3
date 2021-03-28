@@ -8,10 +8,27 @@
 	}		
   require_once('./../../controller/contract/contractController.php');
   require_once('./../../controller/user/userController.php');
+  require_once('./../../controller/contract/activityController.php');
+  require_once('./../../controller/contract/quotationController.php');
+  require_once('./../../controller/contract/invoiceController.php');
   require_once('header.php');
   $con = new Contract();
   $result = $con->getAllActiveContracts();
-  $res2 = $con->getAllInactiveContracts();
+  // box data
+  $box_data_1 = mysqli_num_rows($con->getAllActiveContracts());
+
+  $act = new Activity();
+
+  $box_data_2 = mysqli_fetch_array($act->getAllActivityCount());
+
+  $quo = new Quotation();
+
+  $box_data_3 = mysqli_num_rows($quo->getAllQuotation());
+
+  $invo = new Invoice();
+
+  $box_data_4 = mysqli_num_rows($invo->getAllInvoice());
+  // end box data
 ?>
 
   <div class="container">
@@ -24,7 +41,7 @@
         <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
           <!-- <div class="card-header">Header</div> -->
           <div class="card-body">
-            <h1 class="card-title">5</h1>
+            <h1 class="card-title"><?php echo $box_data_1;?></h1>
             <p class="card-text">Contracts</p>
           </div>
         </div>
@@ -35,7 +52,7 @@
         <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
           <!-- <div class="card-header">Header</div> -->
           <div class="card-body">
-            <h1 class="card-title">45</h1>
+            <h1 class="card-title"><?php echo $box_data_2['res'];?></h1>
             <p class="card-text">Activities</p>
           </div>
         </div>
@@ -46,7 +63,7 @@
         <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
           <!-- <div class="card-header">Header</div> -->
           <div class="card-body">
-            <h1 class="card-title">29</h1>
+            <h1 class="card-title"><?php echo $box_data_3;?></h1>
             <p class="card-text">Quotations</p>
           </div>
         </div>
@@ -57,7 +74,7 @@
         <div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
           <!-- <div class="card-header">Header</div> -->
           <div class="card-body">
-            <h1 id="value" class="card-title">4</h1>
+            <h1 id="value" class="card-title"><?php echo $box_data_4;?></h1>
             <p class="card-text">Invoices</p>
           </div>
         </div>
@@ -130,58 +147,55 @@
 
     ?>
     <!-- Contract Item -->
+    <?php
+        //$res_act = $act->getProgressContract((int)$row["con_id"]);
+        $res_act = round((int)$row['con_progress']); 
+        
+    ?>
+    <?php if( $res_act<=95){?>
     <div class="container card text-white bg-primary" onclick="location.href='./contractSinglePage.php?con_id=<?php echo $row["con_id"]; ?>';" style="cursor: pointer;">
       <br>
       <h4 style="margin: 0px"><?php echo $row["con_name"]; ?></h4>
       <h6 style="margin: 0px"><?php echo $row["con_desc"]; ?></h6>
       <h6 style="margin: 0px">Start Date :<?php echo $row["startdate"]; ?>Upto End date : <?php echo $row["enddate"]; ?></h6>
       <h6 style="margin: 0px"><?php echo $row["location"]; ?></h6>
+      <h6 style="margin: 0px">Progress : <?php echo " ".$res_act." %"; ?></h6>
       <div class="progress">
-        <progress id="contract" value="32" max="100"> 32% </progress>
+      <progress id="contract" value="<?php echo $res_act; ?>" max="100"> </progress> 
       </div>
       <p style="text-align:right;"><?php echo $row["status"]; ?></p>
       <br>
     </div>
     <!-- Contract Item Ends -->
+    <?php }else{?>
+    <!-- content -->
+    <h2>Finished Contracts</h2>
+    <p>Contracts that are finished already</p>
+    <!-- Database Results -->
+    <!-- Contract Item -->
+    <div class="container card text-white bg-primary" onclick="location.href='./contractSinglePage.php?con_id=<?php echo $row["con_id"]; ?>'"  style="cursor: pointer;">
+      <br>
+      <h4 style="margin: 0px"><?php echo $row["con_name"]; ?></h4>
+      <h6 style="margin: 0px"><?php echo $row["con_desc"]; ?></h6>
+      <h6 style="margin: 0px">Start Date :<?php echo $row["startdate"]; ?>Upto End date : <?php echo $row["enddate"]; ?></h6>
+      <h6 style="margin: 0px"><?php echo $row["location"]; ?></h6>
+      <h6 style="margin: 0px">Progress : <?php echo " ".$res_act." %"; ?></h6>
+      <div class="progress">
+      <progress id="contract" value="<?php echo $res_act; ?>" max="100"></progress>
+      </div>
+    <p style="text-align:right;"><?php echo $row["status"]; ?></p>
+    <br>
+    </div>
+    <!-- end content -->
+    <?php }?>
     <?php
       $i++;
       }
       if($i==0){
           echo "No results ";
       }
-    ?>
-  </div> 
-  <div class="container">
-  <h2>Finished Contracts</h2>
-  <p>Contracts that are finished already</p>
-  <!-- Database Results -->
-  <?php
-      $j=0;
-      while($row2 = mysqli_fetch_array($res2)) {
-
-    ?>
-    <!-- Contract Item -->
-    <div class="container card text-white bg-primary" onclick="location.href='./contractSinglePage.php?con_id=<?php echo $row2["con_id"]; ?>'"  style="cursor: pointer;">
-      <br>
-      <h4 style="margin: 0px"><?php echo $row2["con_name"]; ?></h4>
-      <h6 style="margin: 0px"><?php echo $row2["con_desc"]; ?></h6>
-      <h6 style="margin: 0px">Start Date :<?php echo $row2["startdate"]; ?>Upto End date : <?php echo $row["enddate"]; ?></h6>
-      <h6 style="margin: 0px"><?php echo $row2["location"]; ?></h6>
-      <div class="progress">
-        <progress id="contract" value="93" max="100"> 93% </progress>
-      </div>
-      <p style="text-align:right;"><?php echo $row2["status"]; ?></p>
-      <br>
-    </div>
-    <!-- Contract Item Ends -->
-    <?php
-      $j++;
-      }
-      if($j==0){
-          echo "No results ";
-      }
-    ?>
-  </div> 
+    ?> 
+   
   </div>
   
   <script>

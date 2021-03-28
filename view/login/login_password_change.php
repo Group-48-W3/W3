@@ -115,7 +115,7 @@
 							<div class="row">
 							<label for="exampleInputEmail1">Email address</label>
 								<div class="col-9">
-									<input class="form-control" name="sender_email" type="email" placeholder="Enter Email" required>
+									<input class="form-control" name="sender_email" type="email" placeholder="Enter Email" autocomplete="off" required>
 								</div>
 								<div class="col-3">
 									<button class="btn-small" type="submit" name="code_send">Send</button>
@@ -128,7 +128,7 @@
 						<div class="row">
 							<label for="exampleInputPassword1">Verification Code</label>
 							<div class="col-9">
-								<input class="form-control" name="code_verify" type="text" placeholder="Verification code" required>
+								<input class="form-control" name="code_verify" type="text" placeholder="Verification code" autocomplete="off" required>
 							</div>
 							<div class="col-3">
 								<button class="btn-small" type="submit" name="auth_user">Verify</button>

@@ -4,7 +4,7 @@ require_once("./../../config/config.php");
 function addCategoryDB($cat_name, $cat_desc, $cat_type)
 {
     global $conn;
-    $sql = "insert into category (cat_name, cat_desc, cat_type) Values ('$cat_name','$cat_desc','$cat_type')";
+    $sql = "insert into category (cat_name, cat_desc, cat_type, cat_flag) Values ('$cat_name','$cat_desc','$cat_type',1)";
      if (mysqli_query($conn, $sql)) 
      {
 		echo "category added successfully !";
@@ -30,7 +30,7 @@ function getCatIdDB($cat_id)
 function viewCategoryDB()
 {
     global $conn;
-	$query = "select * from category";
+	$query = "select * from category WHERE cat_flag = 1";
 	$result = mysqli_query($conn,$query);
 
 	return $result;
