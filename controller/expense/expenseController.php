@@ -214,6 +214,12 @@ class Payment
         $result = viewPaymentReportDB($con_id,$s_date,$e_date);
         return $result;
     }
+
+    function maintenanceCost()
+    {
+        $result = maintenanceCostDB();
+        return $result;
+    }
 }
 
 ?>

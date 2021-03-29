@@ -215,7 +215,7 @@ function issueMachineDB($machineID, $employee)
 function getIssueDetailsDB()
 {
     global $conn;
-    $sql = "SELECT `issue-tool`.*, `employee`.`emp_name`, `tool-detailed`.`description` FROM `issue-tool`, `employee`, `tool-detailed` WHERE `tool-detailed`.`tool-id` = `issue-tool`.`tool-id` AND `employee`.`emp_id`= `issue-tool`.`emp-id`";
+    $sql = "SELECT `issue-tool`.*, `employee`.`emp_name`, `tool-detailed`.`description` FROM `issue-tool`, `employee`, `tool-detailed` WHERE `tool-detailed`.`tool-id` = `issue-tool`.`tool-id` AND `employee`.`emp_id`= `issue-tool`.`emp-id` ORDER BY `issue-tool`.`issue-date` DESC, `issue-tool`.`receive-qty` ASC";
     $res = mysqli_query($conn, $sql);
     return $res;
 }
@@ -223,7 +223,7 @@ function getIssueDetailsDB()
 function getMachineIssueDetailsDB()
 {
     global $conn;
-    $sql = "SELECT `issue-machine`.*, `employee`.`emp_name`, `machine-detailed`.`machine-desc`, `machine-detailed`.`reg-id` FROM `issue-machine`, `employee`, `machine-detailed` WHERE `machine-detailed`.`machine-id` = `issue-machine`.`machine-id` AND `employee`.`emp_id`= `issue-machine`.`emp-id`";
+    $sql = "SELECT `issue-machine`.*, `employee`.`emp_name`, `machine-detailed`.`machine-desc`, `machine-detailed`.`reg-id` FROM `issue-machine`, `employee`, `machine-detailed` WHERE `machine-detailed`.`machine-id` = `issue-machine`.`machine-id` AND `employee`.`emp_id`= `issue-machine`.`emp-id` ORDER BY `issue-machine`.`issue-date` DESC, `issue-machine`.`received-date` ASC";
     $res = mysqli_query($conn, $sql);
     return $res;
 }
