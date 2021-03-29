@@ -77,16 +77,11 @@ function totalIncomeDB()
     return $result;
 }
 
-function viewIncomeReportDB($con_name,$s_date,$e_date)
+function viewIncomeReportDB($con_id,$s_date,$e_date)
 {
     global $conn;
 
-    $sql1 = "SELECT con_id FROM contract WHERE con_name = '$con_name'";
-    $res1 = mysqli_query($conn,$sql1);
-    $result1 = mysqli_fetch_array($res1);
-    $con_id = $result1['con_id'];
-
-    $query = "SELECT inc.desc,inc.date,inc.amount from income where inc_flag = 1 AND con_id = '$con_id'  inc_date BETWEEN '$s_date' AND '$e_date'";
+    $query = " select * from income where inc_date between '$s_date' and '$e_date' and con_id = '$con_id'";
     $result = mysqli_query($conn,$query);
     return $result;
 

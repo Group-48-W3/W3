@@ -38,17 +38,18 @@
     $rep = 3;
     $res = $report->conDetails($_SESSION['rcon_name'],$_SESSION['rstart_date'],$_SESSION['rend_date']);
     $res_data = mysqli_fetch_array($res);
+    $con_id = $res_data['con_id'];
     //client details
     $res2 = $report->clientDetails($res_data['c_id']);
     $res2_data = mysqli_fetch_array($res2);
 
     $payment = new Payment();
-    $res3 = $payment->viewPaymentReport($_SESSION['rcon_name'],$_SESSION['rstart_date'],$_SESSION['rend_date']);
-    $res3_data = mysqli_fetch_array($res3);
+    $res3 = $payment->viewPaymentReport($con_id,$_SESSION['rstart_date'],$_SESSION['rend_date']);
+    //$res3_data = mysqli_fetch_array($res3);
 
     $income = new Income();
-    $res4 = $income->viewIncomeReport($_SESSION['rcon_name'],$_SESSION['rstart_date'],$_SESSION['rend_date']);
-    $res4_data = mysqli_fetch_array($res4);
+    $res4 = $income->viewIncomeReport($con_id,$_SESSION['rstart_date'],$_SESSION['rend_date']);
+    //$res4_data = mysqli_fetch_array($res4);
   }
   if($_GET['type'] == 'storage_report'){
     $rep = 4;
@@ -59,6 +60,7 @@
 
 <div class="container">
 <h2>Report View</h2>
+<a href="./reportHome.php" class="btn-btn-primary"> <- Back To Report Home</a>
 </div>
 <?php if($rep == 1){?>
 <div class="container" id="chart">
@@ -178,6 +180,7 @@
 <?php if($rep == 2){?>
   <div class="container" style="border-style: solid">
   <h2>Progress Report</h2>
+  <h5><?php echo "From : ".$_SESSION['rstart_date']." To: ".$_SESSION['rend_date'];?></h5>
   <!-- data 1 -->
   <!-- quotation -->
   <div class="container col-10" style="border-style: solid">
@@ -216,7 +219,7 @@
         <br>
       </div>
       <br>
-  <!-- data 1 ends -->
+<!-- data 1 ends -->
 </div>
 </div>
 <?php }?>
@@ -225,6 +228,7 @@
 <?php if($rep == 3){?>
   <div class="container" style="border-style: solid">
   <h2>Account Report</h2>
+  <h5><?php echo "From : ".$_SESSION['rstart_date']." To: ".$_SESSION['rend_date'];?></h5>
   <!-- report content starts -->
   <div class="row">
       <div class="container col-4" style="border-style: solid">
@@ -250,23 +254,23 @@
           <div class="col">
             <table class="data-table paginated">
               <thead>
-                <th>Expense Category</th>
                 <th>Date</th>
-                <th>Payment Type</th>
+                <th>Type</th>
                 <th>Description</th>
-                <th>Amount(LKR)</th>  
+                <th>Status</th>
+                <th>Amount</th>
               </thead>
               <tbody>
                 <?php
                   $i=0;
-                  while($row = mysqli_fetch_array($res3)) {    
+                  while($row2 = mysqli_fetch_array($res3)) {    
                 ?>
                   <tr>
-                    <td data-label="cat_name"><?php echo $res3_data["cat_name"]; ?></td>
-                    <td data-label="p_date"><?php echo $res3_data["p_date"]; ?></td>
-                    <td data-label="p_type"><?php echo $res3_data["p_type"]; ?></td>
-                    <td data-label="p_desc"><?php echo $res3_data["p_desc"]; ?></td>
-                    <td data-label="p_amount"><?php echo $res3_data["p_amount"]; ?></td>
+                    <td data-label="cat_name"><?php echo $row2["p_date"]; ?></td>
+                    <td data-label="p_date"><?php echo $row2["p_type"]; ?></td>
+                    <td data-label="p_type"><?php echo $row2["p_desc"]; ?></td>
+                    <td data-label="p_desc"><?php echo $row2["p_status"]; ?></td>
+                    <td data-label="p_amount"><?php echo $row2["p_amount"]; ?></td>
                   </tr>
                 <?php
                   $i++;
@@ -289,9 +293,9 @@
           <div class="col">
             <table class="data-table paginated">
               <thead>
-                <th>Description</th>
                 <th>Date</th>
-                <th>Amount(LKR)</th>  
+                <th>Description</th>
+                <th>Amount</th>  
               </thead>
               <tbody>
                 <?php
@@ -299,8 +303,8 @@
                   while($row = mysqli_fetch_array($res4)) {    
                 ?>
                   <tr>
-                    <td data-label="inc_desc"><?php echo $res4_data["inc_desc"]; ?></td>
-                    <td data-label="inc_date"><?php echo $res4_data["inc_date"]; ?></td>
+                    <td data-label="inc_desc"><?php echo $row["inc_date"]; ?></td>
+                    <td data-label="inc_date"><?php echo $res4_data["inc_desc"]; ?></td>
                     <td data-label="inc_amount"><?php echo $res4_data["inc_amount"]; ?></td>
                   </tr>
                 <?php
@@ -326,7 +330,7 @@
 <?php if($rep == 4){?>
   <div class="container" style="border-style: solid">
   <h2>Stock Report</h2>
-  
+  <h5><?php echo "From : ".$_SESSION['rstart_date']." To: ".$_SESSION['rend_date'];?></h5>
   </div>
 
 <?php }?>

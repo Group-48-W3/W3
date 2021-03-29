@@ -91,9 +91,9 @@ class Income
        return $result;
     }
 
-    function viewIncomeReport($con_name,$s_date,$e_date)
+    function viewIncomeReport($con_id,$s_date,$e_date)
     {
-        $result = viewIncomeReportDB($con_name,$s_date,$e_date);
+        $result = viewIncomeReportDB($con_id,$s_date,$e_date);
         return $result;
     }
 }
