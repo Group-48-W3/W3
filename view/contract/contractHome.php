@@ -89,9 +89,9 @@
       
       <div class="col-sm">
         <!-- Add a new Contract -->
-        <h2 style="margin: 0px">Add a new Contract</h2>
+        <h2 style="margin: 0px">Add a New Contract</h2>
         <small>Add new contract for the business environment</small><br>
-        <a class="btn btn-primary" href="./contractAdd.php">Add New Contract</a>
+        <a class="btn btn-primary" href="./contractAdd.php">+ New Contract</a>
         <!-- End add contract -->
       </div>
       <div class="col-sm">
