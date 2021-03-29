@@ -48,7 +48,7 @@ class Activity{
                 $activity->setContractProgressDB($con_id,$date,$progress_val);
             }        
             //header('location: ./contractSinglePage.php?con_id='.$con_id);
-            header('location: ./activityHome.php');
+            header('location: ./contractSinglePage.php?con_id='.$con_id);
         }else{
             echo "Error on mark activity";
         }    
