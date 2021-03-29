@@ -239,9 +239,6 @@ function viewPaymentReportDB($con_name,$s_date,$e_date)
     $query = "SELECT category.cat_name,payment.p_amount,payment.p_date,payment.p_type,payment.p_desc from payment inner join category on payment.cat_id = category.cat_id where payment.p_flag = 1 AND payment.p_status = 'Paid' AND category.cat_id != 1 AND p_date BETWEEN '$s_date' AND '$e_date' AND payment.con_id = '$con_id'";
     $result = mysqli_query($conn,$query);
     return $result;
-
-
-
 }
 
 ?>
