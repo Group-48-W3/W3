@@ -48,6 +48,9 @@ if (isset($_GET['con_id'])) {
     $progress = $act->getProgressContract($_SESSION['contract_id']);
 }
 //
+if (!isset($_GET['con_id'])) {
+	header('location: invoiceList.php');
+}
 if(isset($_POST['invoice_save'])){
   if(!empty($_POST['c_id'])) {  	
     $invoice->saveInvoice($_POST);

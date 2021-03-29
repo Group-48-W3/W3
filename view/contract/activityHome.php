@@ -32,7 +32,7 @@
 <!-- Content Starts -->
 <div class="container">
     <!-- box starts -->
-    <h1>Activities</h1>
+    <h1>Activity Home</h1>
     <small>What is a Activity? Activity improves contract progress</small>
     <div class="row">
         <div class="col-sm">

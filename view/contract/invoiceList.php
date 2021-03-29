@@ -69,7 +69,7 @@ if(isset($_GET['delete_id'])){
 </div>
 
 <div class="container">
-    <h1>Print Invoice</h1>
+    <h2>Print Invoice</h2>
     <h6>View of the printable invoice</h6>
     <img src="./../../public/img/invo.jpg" alt="Invoice">
 </div>
