@@ -209,9 +209,9 @@ class Payment
        return $result;
     }
 
-    function viewPaymentReport($con_name,$s_date,$e_date)
+    function viewPaymentReport($con_id,$s_date,$e_date)
     {
-        $result = viewPaymentReportDB($con_name,$s_date,$e_date);
+        $result = viewPaymentReportDB($con_id,$s_date,$e_date);
         return $result;
     }
 

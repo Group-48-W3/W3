@@ -48,6 +48,7 @@
         //echo $data_bucket[$i][0]['label']."</br>";
         $i++;
     }
+    //echo $j;
     $dataPoints_pie = $result;
     
     $invoice = array();
@@ -136,8 +137,6 @@
     <!-- Charts ends -->
     <script>
     window.onload = function () {
-        //////////////////////////////////////////////////////
-        // contract distribution
         
         // contract distribution
         var chartpie = new CanvasJS.Chart("chartContainerpie", {
@@ -224,6 +223,13 @@
                 yValueFormatString: "#,##0",      
                 name: "Dharamarathne Road",
                 dataPoints: <?php echo json_encode($data_bucket[3], JSON_NUMERIC_CHECK); ?>
+            },
+            {
+                type: "splineArea", 
+                showInLegend: true,
+                yValueFormatString: "#,##0",      
+                name: "Maharagama Residence",
+                dataPoints: <?php echo json_encode($data_bucket[5], JSON_NUMERIC_CHECK); ?>
             },
             ]
         });

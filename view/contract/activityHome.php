@@ -25,48 +25,46 @@
     if(isset($_POST['act_done'])){
         $act_id = $_POST['mark_done'];
         $act = new Activity();
-        $act->setMarkActivity($act_id,$_SESSION['contract_id']);    
+        $act->setMarkActivity($act_id,$_SESSION['contract_id']);
+        header('location: activityHome.php');    
     }
 ?>
 <!-- Content Starts -->
 <div class="container">
-    <h1>Activities</h1>
+    <!-- box starts -->
+    <h1>Activity Home</h1>
     <small>What is a Activity? Activity improves contract progress</small>
     <div class="row">
-    <div class="col-sm">
-        <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
-          <!-- <div class="card-header">Header</div> -->
-          <div class="card-body">
-            <h1 class="card-title"><?php echo $count; ?></h1>
-            <p class="card-text">Total Today Activity</p>
-          </div>
+        <div class="col-sm">
+            <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+            <div class="card-body">
+                <h1 class="card-title"><?php echo $count; ?></h1>
+                <p class="card-text">Total Today Activity</p>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+            <div class="card-body">
+                <h1 class="card-title"><?php echo $done_count['res']; ?></h1>
+                <p class="card-text">Done Activity</p>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
+            <div class="card-body">
+                <h1 class="card-title"><?php echo $undone_count; ?></h1>
+                <p class="card-text">All UnDone Activity</p>
+            </div>
+            </div>
+        </div>
         </div>
     </div>
-    <!--  -->
-    <div class="col-sm">
-        <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
-          <!-- <div class="card-header">Header</div> -->
-          <div class="card-body">
-            <h1 class="card-title"><?php echo $done_count['res']; ?></h1>
-            <p class="card-text">Done Activity</p>
-          </div>
-        </div>
-      </div>
-    <div class="col-sm">
-        <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
-          <!-- <div class="card-header">Header</div> -->
-          <div class="card-body">
-            <h1 class="card-title"><?php echo $undone_count; ?></h1>
-            <p class="card-text">All UnDone Activity</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
+    <!-- box ends -->
     <div class="row">
-        <div class="col-10">
+        <div class="col-sm">
             <h2>Today Activities</h2>
-            <!-- Today Activity Table -->
             <!-- Table Header -->
             <br>
             <!-- Table Header ends -->
@@ -124,11 +122,12 @@
                 </tbody>
                 </table>
             </div>
-            
             <br>
         </div>
+    <div>
+    <div class="row">
         <!-- start of undone all actiivity -->
-        <div class="col-11">
+        <div class="col-sm">
             <h2>All Undone Activities</h2>
             <!-- Today Activity Table -->
             <!-- Table Header -->
@@ -191,6 +190,7 @@
             <br>
         </div>
         <!-- end of undone activity -->
+    </div>
 </div>
 <!-- Content Ends -->
 <script>

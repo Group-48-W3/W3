@@ -20,7 +20,7 @@ class Contract{
         $con_end_date = $_POST['con_end_date'];
         $con_location = $_POST['con_location'];
         $con_description = $_POST['con_description'];
-        $con_status = $_POST['con_status'];
+        $con_status = "Active";
         $con_payment = $_POST['con_payment'];
         // client
         $c_name = $_POST['c_name'];
