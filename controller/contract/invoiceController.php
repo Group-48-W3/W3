@@ -28,6 +28,12 @@ class Invoice{
         $res = $invo->getInvoiceItemsDB($invo_id); 
         return $res;
     }
+    function getIncomebyContract(){
+        $invo = new InvoiceModel();
+        $res = $invo->getIncomebyContractDB();
+        
+        return $res;
+    }
     function updateInvoice($POST){
         $invo = new InvoiceModel();
         $res = $invo->updateInvoiceDB($POST);
@@ -46,6 +52,7 @@ class Invoice{
             echo "Error occur in controller";
         }
     }
+    
 }
 
 

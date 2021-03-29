@@ -21,7 +21,7 @@ if(isset($_POST['noticeMsg']))
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1>Admin/Owner Notices</h1>
+            <h1>Public notices</h1>
             <p>Admin or Owner can push messages into the dashboard which is important to the all users</p>
             <h6>Here you can draft your message according to the format provided</h6>
             <form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
@@ -45,7 +45,7 @@ if(isset($_POST['noticeMsg']))
             </form>
         </div>
         <div class="col">
-            <h1>Admin/Owner Messages</h1>
+            <h1>Role based Messages</h1>
             <p>Admin or Owner can push messages into the specifically for a user role to notify some details</p>
             <h6>Input your details and select and press Push Notifcation into the User</h6>
             <form action="">

@@ -34,6 +34,15 @@
           <input type="text" id="supAddress" name="supAddress" class="form-field">
           <label for="supAddress" class="form-label">Address</label>
       </div>
+      <div class="form-group field">
+          <select class="form-field" id="supplierCat" name="supplierCat">
+            <option value="" selected disabled>Select from list</option>
+            <option value="1">Raw Materials</option>
+            <option value="2">Tools</option>
+            <option value="0">Both</option>
+          </select>
+          <label for="supplierCat" class="form-label">Category</label>
+        </div>
       <div class="right">
           <input type="submit" class="btn btn-primary" value="Add Supplier" name="addSupplier">
       </div>
@@ -41,35 +50,8 @@
 </div>
 <br>
 <div class="container">
-  <h2>Active Suppliers</h2>
-  <div class="row">
-		<div class="col">
-			<div class="left">
-				<span>Show: </span>
-				<select name="" id="" class="" width="15px">
-					<option value="">5 records</option>
-					<option value="">10 records</option>
-					<option value="">25 records</option>
-					<option value="">50 records</option>
-				</select>
-			</div>
-		</div>
-		<div class="col">
-			<div class="right">
-				<span>Sort By: </span>
-				<select name="" id="">
-					<option value="">Name</option>
-					<option value="">Status</option>
-					<option value="">Added Date</option>
-				</select>
-				<select name="" id="">
-					<option value="">ASC</option>
-					<option value="">DESC</option>
-				</select>
-			</div>
-		</div>
-	</div>
-  <br>
+  <h2>Current Suppliers</h2>
+ 
   <table class="data-table paginated">
     <thead>
       <tr>
@@ -77,6 +59,7 @@
         <th width="20%">Email</th>
         <th width="10%">Telephone</th>
         <th width="25%">Address</th>
+        <th>Category</th>
       </tr>
     </thead>
     <tbody>
@@ -89,6 +72,13 @@
         <td data-label="Email"><?php echo $row["sup-email"]; ?></td>
         <td data-label="Telephone"><?php echo $row["sup-mobile"]; ?></td>
         <td data-label="Address"><?php echo $row["sup-address"]; ?></td>
+        <td data-label="Category"><?php if ($row["category"] == 0) {
+															echo "Both";
+														} else if ($row["category"] == 1) {
+															echo "Raw Material";
+														} else if ($row["category"] == 2) {
+															echo "Tool";
+														} ?></td>
       </tr>
       <?php
           $i++;

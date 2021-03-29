@@ -166,7 +166,6 @@ td, th, tr {
   background-image-resolution: inherit;
   background-position: inherit;
   background-repeat: inherit;
-  background-size: inherit;
 }
 
 /* caption inherits from table not table-outer */
@@ -218,7 +217,6 @@ td {
 th {
   display: table-cell;
   vertical-align: inherit;
-  text-align: center;
   font-weight: bold;
   padding: 1px;
 }

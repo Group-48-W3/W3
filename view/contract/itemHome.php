@@ -26,7 +26,7 @@
 
 ?>
 <!-- Notification -->
-<?php set_time_limit(20); if(($_SESSION['delete_item']) == 'success'): ?>
+<?php if(($_SESSION['delete_item']) == 'success'): ?>
 	
 <div class="alert alert-danger" style="background-color: red;">
 	<a href="./user/userProfile.php" style="text-decoration: none; color: white;">Item deleted successfully</a>
@@ -57,19 +57,6 @@
 </div>    
 <!-- New Component for item Table -->
 <div class="container ">
-	<div class="row">
-		<div class="col">
-			<div class="left">
-				<span>Show: </span>
-				<select name="" id="rmViewRows" class="" width="15px">
-					<option value="5">5 records</option>
-					<option value="10">10 records</option>
-					<option value="25">25 records</option>
-					<option value="50">50 records</option>
-				</select>
-			</div>
-		</div>
-	</div>
 	<br>
 	<div class="row">
 		<div class="col-10">

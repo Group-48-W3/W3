@@ -19,6 +19,16 @@
     left: 1rem;
     width: 1.5rem;
     min-width: 1.5rem;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    filter: brightness(85%);
+}
+
+.search-button:active {
+    filter: brightness(70%);
 }
 
 .search-result {

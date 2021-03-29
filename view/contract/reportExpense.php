@@ -12,7 +12,7 @@
   require_once('./../../controller/contract/reportController.php');
   require_once('./../../controller/expense/expenseController.php');
   require_once('./../../controller/contract/invoiceController.php');
-  require_once('./../../controller/contract/incomeController.php');
+  require_once('./../../controller/expense/incomeController.php');
   
   $report = new MasterRep();
   $res = $report->conDetails($_SESSION['rcon_name'],$_SESSION['rstart_date'],$_SESSION['rend_date']);
@@ -28,10 +28,6 @@
   $income = new Income();
   $res4 = $income->viewIncomeReport($_SESSION['rcon_name'],$_SESSION['rstart_date'],$_SESSION['rend_date']);
   $res4_data = mysqli_fetch_array($res4);
-
-  $url ='http://localhost/W3-1/view/contract/reportExpense.php'; 
-
-  $img = 'logo.png'; 
 
 ?>
 

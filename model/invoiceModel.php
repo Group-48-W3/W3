@@ -124,6 +124,19 @@ class InvoiceModel{
             return 0;
         }		
 	}
+    public function getIncomebyContractDB(){
+        global $conn;
+		$sql = "select company_name,sum(amount_paid) as income from invoice group by con_id";
+		$res = mysqli_query($conn, $sql);
+        if ($res) {
+            //echo "invoice incomes get successfully !";
+            
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+            return 0;
+        }
+        return $res;
+    }
 }
 
 ?>

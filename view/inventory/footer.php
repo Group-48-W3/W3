@@ -1,7 +1,7 @@
 
  <!-- /.content-wrapper-->
 <br><br>
-    <footer>
+    <footer id="footerBlock">
       <center>Done By : Team48 of 16th Batch University of Colombo School of Computing</center>
         <center>
         <small>Copyright © <a href="">W3 Contracts - Willorawatta</a></small>

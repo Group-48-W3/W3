@@ -16,6 +16,7 @@
   <link href="./../../public/css/styles/style.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet"/>
   <script type="text/javascript" src="./../../public/js/scripts/main.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <style>
 #nav-temp ul {

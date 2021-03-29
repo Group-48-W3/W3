@@ -46,6 +46,19 @@ class activityModel{
         }
         mysqli_close($conn);
     }
+    function getAllUndoneDB(){
+        global $conn;
+        $sql = "select * from activity WHERE act_complete = 0 ";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            //echo "activity retrived successfully !";
+            return $result;
+        
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+        }
+        mysqli_close($conn);
+    }
     function setMarkActivityDB($act_id){
         global $conn;
         $sql = "update activity SET act_complete = TRUE WHERE act_id = '$act_id'";
