@@ -235,4 +235,12 @@ function viewPaymentReportDB($con_id,$s_date,$e_date)
     return $result;
 }
 
+function maintenanceCostDB()
+{
+    global $conn;
+    $sql = "SELECT SUM(cost) AS cost FROM maintenance";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
 ?>

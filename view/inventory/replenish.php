@@ -66,10 +66,11 @@ require_once('header.php');
             $i = 0;
             $result = $supplier->getActiveSuppliers();
             while ($row = mysqli_fetch_array($result)) {
+              if($row['category']==0 || $row['category']==1){
             ?>
               <option value="<?php echo $row["sup-id"]; ?>"><?php echo $row["sup-name"]; ?></option>
             <?php
-              if ($i == 0) {
+              }if ($i == 0) {
                 $i++;
               }
             }
@@ -142,6 +143,7 @@ require_once('header.php');
   <button class="tablinks" onclick="openTab(event, 'newSubMachine')">New Machine</button>
 </div>
 
+<a name="addTool"></a>
 <!-- Adding Tools -->
 <div id="newToolCategory" class="tabcontent">
   <h2>Add new tool category</h2>
@@ -222,10 +224,11 @@ require_once('header.php');
             $i = 0;
             $result = $supplier->getActiveSuppliers();
             while ($row = mysqli_fetch_array($result)) {
+              if($row['category']==0 || $row['category']==2){
             ?>
               <option value="<?php echo $row["sup-id"]; ?>"><?php echo $row["sup-name"]; ?></option>
             <?php
-              if ($i == 0) {
+              }if ($i == 0) {
                 $i++;
               }
             }
@@ -297,10 +300,11 @@ require_once('header.php');
           $i = 0;
           $suppliers = $supplier->getActiveSuppliers();
           while ($supplierRow = mysqli_fetch_array($suppliers)) {
+            if($supplierRow['category']==0 || $supplierRow['category']==2){
           ?>
             <option value="<?php echo $supplierRow["sup-id"]; ?>"><?php echo $supplierRow["sup-name"]; ?></option>
           <?php
-            if ($i == 0) {
+            }if ($i == 0) {
               $i++;
             }
           }

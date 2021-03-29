@@ -156,3 +156,10 @@ function getExpiredBatches()
     $result = mysqli_query($conn, $sql);
     return $result;
 }
+
+function getReOrderMaterials(){
+    global $conn;
+    $sql = "SELECT SUM(`batch-quantity`) AS `available`, `inv-code` FROM `raw-material-batch` GROUP BY `inv-code`";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
