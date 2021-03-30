@@ -28,6 +28,12 @@ class Invoice{
         $res = $invo->getInvoiceItemsDB($invo_id); 
         return $res;
     }
+    function getIncomebyContract(){
+        $invo = new InvoiceModel();
+        $res = $invo->getIncomebyContractDB();
+        
+        return $res;
+    }
     function updateInvoice($POST){
         $invo = new InvoiceModel();
         $res = $invo->updateInvoiceDB($POST);
@@ -41,11 +47,12 @@ class Invoice{
         $invo = new InvoiceModel();
         $res = $invo->deleteInvoiceDB($id);
         if($res){
-            echo "Successfully delete the invoice";
+            //echo "Successfully delete the invoice";
         }else{
             echo "Error occur in controller";
         }
     }
+    
 }
 
 

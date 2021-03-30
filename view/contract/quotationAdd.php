@@ -60,7 +60,7 @@
 ?>
 
 <div class="container"> 
-  <h1>Add New Quotation</h1>  
+  <h1>Create New Quotation</h1>  
   <!-- searching -->
   <?php if(($_SESSION['item_add']) == 'success'): ?>
 		<div class="alert alert-success" style="background-color: green;">
@@ -68,6 +68,8 @@
 		</div>
 	<?php endif; ?>
   <!-- Form Starts -->
+  <?php if($page !=1){ ?>
+  <h2>Item Selection</h2>
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
     <div class="form-group field">
       <!-- item id -->
@@ -96,7 +98,10 @@
     <a class="btn btn-warning" onclick="document.getElementById('id01').style.display='block'">Add new Item</a>  
     </div>
     </form>
+    <?php } ?>
     <?php if($page !=0){ ?>
+    <h2>Item Selection ✅</h2>
+    <h2>Create New Quotation</h2>
     <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
     <div class="form-group field">
       <input type="text" class="form-field" id="q_name" name="quo_name">

@@ -23,6 +23,8 @@ require_once('./../../controller/expense/incomeController.php');
   $row3 = mysqli_fetch_array($result3);
   $result4 = $payment->mExpense();
   $row4 = mysqli_fetch_array($result4);
+  $result5 = $payment->maintenanceCost();
+  $row5 = mysqli_fetch_array($result5);
 include_once('header.php'); ?>
 
 <div class="container">
@@ -87,8 +89,8 @@ include_once('header.php'); ?>
       <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
       <!-- <div class="card-header">Header</div> -->
         <div class="card-body">
-          <h2 class="card-title">LKR: <?php  ?></h1>
-          <p class="card-text">Last month maintenance cost and details</p>
+          <h2 class="card-title">LKR: <?php echo $row5["cost"]; ?></h1>
+          <p class="card-text">Maintenance cost</p>
         </div>
       </div>
     </div>
@@ -108,6 +110,7 @@ include_once('header.php'); ?>
     </div>
     <!-- end card 1 -->
   </div>
+
 
 </div>  
 

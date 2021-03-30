@@ -8,9 +8,9 @@
   require_once('./../../controller/user/userController.php'); 
   require_once('./header.php');
   require_once('./../../controller/contract/contractController.php');
-?>
 
-<?php include_once('header.php'); ?>
+  
+?>
 
 <!-- Content Starts -->
 <div class="container">
@@ -41,10 +41,10 @@
           <input type="text" class="form-field" name="con_description" id="con_description" required>
           <label for="con_description" class="form-label">Description</label>
         </div>
-        <div class="form-group field">
+        <!-- <div class="form-group field">
         <label class="form-label">Status</label><br>
           <input type="radio" name="con_status" value="Active">Active
-        </div>
+        </div> -->
         <div class="form-group field">
           <input type="text" class="form-field" name="con_payment" id="con_payment" required>
           <label for="con_payment" class="form-label">Payment Method</label>
@@ -87,7 +87,7 @@
         <h5>Step 04 :- Activity Selection</h5>
       </div>
       <div class="alert alert-dismissible alert-warning">
-        <strong>Please add a correct status!</strong>
+        <strong>Please add a correct client email!</strong>
         <h5>Page 01 :- Step 01 & Step 02</h5>
         <h5>Page 02 :- Step 03 & Step 04</h5>
         <h5>Already Finished</h5>

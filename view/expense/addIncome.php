@@ -75,8 +75,8 @@
                 <td data-label="Type"><?php echo $row["inc_desc"]; ?></td>
                 <td data-label="Type"><?php echo $row["inc_amount"]; ?></td>
                 <td>
-                    <a class="btn btn-warning" href="./updateIncome.php?updateid=<?php echo $row["inc_id"]; ?>">Update</a>
-                    <a class="btn btn-danger" href="./../../controller/expense/incomeController.php?deleteid=<?php echo $row["inc_id"]; ?>">Delete</a>
+                    <a class="btn btn-warning" href="./updateIncome.php?updateid=<?php echo $row["inc_id"]; ?>">&#x270E</a>
+                    <a class="btn btn-danger" href="./../../controller/expense/incomeController.php?deleteid=<?php echo $row["inc_id"]; ?>">&#x2716</a>
                 </td>
               </tr>
           </tbody>

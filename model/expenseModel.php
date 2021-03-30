@@ -227,21 +227,20 @@ function mExpenseDB()
     return $result;
 }
 
-function viewPaymentReportDB($con_name,$s_date,$e_date)
+function viewPaymentReportDB($con_id,$s_date,$e_date)
 {
     global $conn;
-
-    $sql1 = "SELECT con_id FROM contract WHERE con_name = '$con_name'";
-    $res1 = mysqli_query($conn,$sql1);
-    $result1 = mysqli_fetch_array($res1);
-    $con_id = $result1['con_id'];
-
-    $query = "SELECT category.cat_name,payment.p_amount,payment.p_date,payment.p_type,payment.p_desc from payment inner join category on payment.cat_id = category.cat_id where payment.p_flag = 1 AND payment.p_status = 'Paid' AND category.cat_id != 1 AND p_date BETWEEN '$s_date' AND '$e_date' AND payment.con_id = '$con_id'";
+    $query = "select * from payment where p_date between '$s_date' and '$e_date' and con_id = $con_id";
     $result = mysqli_query($conn,$query);
     return $result;
+}
 
-
-
+function maintenanceCostDB()
+{
+    global $conn;
+    $sql = "SELECT SUM(cost) AS cost FROM maintenance";
+    $result = mysqli_query($conn, $sql);
+    return $result;
 }
 
 ?>

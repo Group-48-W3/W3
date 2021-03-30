@@ -9,15 +9,22 @@
     require_once('./header.php');
     require_once('./../../controller/contract/contractController.php'); 
     require_once('./../../controller/contract/activityController.php');
-
+    require_once('./../../controller/contract/invoiceController.php');
+    require_once('./../../controller/contract/quotationController.php');
 
     $contract = new Contract();
+    $inovice = new Invoice();
+    $quotation = new Quotation();
     $con_details = $contract->getAllActiveContracts();
     
+    $invo_details = $inovice->getIncomebyContract();
+    $quo_details = $quotation->getQuotationTotContract();
+
     $count = mysqli_num_rows($contract->getAllActiveContracts());
     
     $i = 0;
     $result = array();
+    
     $data_bucket = array();
     while($res = mysqli_fetch_array($con_details)){
         
@@ -41,6 +48,50 @@
         //echo $data_bucket[$i][0]['label']."</br>";
         $i++;
     }
+    //echo $j;
+    $dataPoints_pie = $result;
+    
+    $invoice = array();
+    $i = 0;
+    //income distribution
+    while($res2 = mysqli_fetch_array($invo_details)){
+         $roww[$i][0] = $res2['company_name'];
+         $roww[$i][1] = $res2['income'];
+         $invoice[] = array("y"=>$roww[$i][1],"label"=>$roww[$i][0]);
+         $i++;
+    }
+    //quotation distribution
+    $quo_value = array();
+    while($res3 = mysqli_fetch_array($quo_details)){
+        $single_con = mysqli_fetch_array($contract->getSingleActiveContract($res3['q_con_id']));
+        $quo_value[] = array("y"=>$res3['value'],"label"=>$single_con['con_name']);
+    }
+    /// revenue distribution
+    /// one year chnages through 3.1536*10^10 change of x = 60*60*24*365
+    $year_change = 31536000000;
+    $dataPoints = array(
+            array("x" => 1041359400000, "y" => 2840000),
+            array("x" => 1072895400000, "y" => 2396000),
+            array("x" => 1104517800000, "y" => 1613000),
+            array("x" => 1136053800000, "y" => 1821000),
+            array("x" => 1167589800000, "y" => 2000000),
+            array("x" => 1199125800000, "y" => 1397000),
+            array("x" => 1230748200000, "y" => 2506000),
+            array("x" => 1262284200000, "y" => 6704000),
+            array("x" => 1293820200000, "y" => 5704000),
+            array("x" => 1325356200000, "y" => 4009000),
+            array("x" => 1356978600000, "y" => 3026000),
+            array("x" => 1388514600000, "y" => 2394000),
+            array("x" => 1420050600000, "y" => 1872000),
+            array("x" => 1451586600000, "y" => 2140000),
+            array("x" => 1483122600000, "y" => 5460000),
+            array("x" => 1483122600000+1*$year_change, "y" => 4460000),
+            array("x" => 1483122600000+2*$year_change, "y" => 5060000),
+            array("x" => 1483122600000+3*$year_change, "y" => 6060000),
+            array("x" => 1483122600000+4*$year_change, "y" => 6160000),
+    );
+        
+    
 ?>
     <!-- Charts -->
     <div class="container">
@@ -71,48 +122,27 @@
         </div>
         <!-- Body ends -->
         <br>
-        <h3>Inventory Overview</h3>
+        <h3>Quotation Overview</h3>
         <div class="container" id="chart">
-            <div id="itemDistribution" style="height: 370px;"></div></div>
+            <div id="quotationDistribution" style="height: 370px;">
+            </div>
         </div>
-        
+        <h3>Income Overview</h3>
+        <div class="container" id="chart">
+            <div id="incomeDistribution" style="height: 370px;">
+            </div>
+        </div>
+    </div>    
     <br>
     <!-- Charts ends -->
-    
-    <?php
-        $dataPoints = array(
-            array("x" => 946665000000, "y" => 3289000),
-            array("x" => 978287400000, "y" => 3830000),
-            array("x" => 1009823400000, "y" => 2009000),
-            array("x" => 1041359400000, "y" => 2840000),
-            array("x" => 1072895400000, "y" => 2396000),
-            array("x" => 1104517800000, "y" => 1613000),
-            array("x" => 1136053800000, "y" => 1821000),
-            array("x" => 1167589800000, "y" => 2000000),
-            array("x" => 1199125800000, "y" => 1397000),
-            array("x" => 1230748200000, "y" => 2506000),
-            array("x" => 1262284200000, "y" => 6704000),
-            array("x" => 1293820200000, "y" => 5704000),
-            array("x" => 1325356200000, "y" => 4009000),
-            array("x" => 1356978600000, "y" => 3026000),
-            array("x" => 1388514600000, "y" => 2394000),
-            array("x" => 1420050600000, "y" => 1872000),
-            array("x" => 1451586600000, "y" => 2140000)
-        );
-        
-        $dataPoints_pie = $result;
-    ?>
-
     <script>
-        window.onload = function () {
-        //////////////////////////////////////////////////////
-        //demo
-        // contract distribution
-        
+    window.onload = function () {
         
         // contract distribution
         var chartpie = new CanvasJS.Chart("chartContainerpie", {
         theme: "dark2",
+        exportFileName: "Contract Distribution",
+        exportEnabled: true,
         animationEnabled: true,
         title: {
             text: "Contract Distribution"
@@ -131,6 +161,8 @@
         // contract burndown
         var chart = new CanvasJS.Chart("contractBurndown", {
             theme: "dark2",
+            exportFileName: "Contract Progress Distribution",
+            exportEnabled: true,
             animationEnabled: true,
             title:{
                 text: "Contract Progress Analysis"
@@ -154,22 +186,7 @@
                 name: "Araliya",
                 yValueFormatString: "#,##0",
                 xValueFormatString: "MMM YYYY",
-                dataPoints: <?php echo json_encode($data_bucket[0], JSON_NUMERIC_CHECK); ?>
-                    //[ 
-                    // { x: new Date(2019, 2), y: 61000 },
-                    // { x: new Date(2019, 3), y: 35000 },
-                    // { x: new Date(2019, 4), y: 30000 },
-                    // { x: new Date(2019, 5), y: 28400 },
-                    // { x: new Date(2019, 6), y: 25900 },
-                    // { x: new Date(2019, 7), y: 23000 },
-                    // { x: new Date(2019, 8), y: 20200 },
-                    // { x: new Date(2019, 9), y: 18000 },
-                    // { x: new Date(2019, 10), y: 16500 },
-                    // { x: new Date(2019, 11), y: 14800 },
-                    // { x: new Date(2020, 0),  y: 11900 },
-                    // { x: new Date(2020, 1),  y: 9000 }
-                    //]
-                
+                dataPoints: <?php echo json_encode($data_bucket[0], JSON_NUMERIC_CHECK); ?>    
             },
             
             {
@@ -178,20 +195,6 @@
                 name: "Bentota Beach",
                 yValueFormatString: "#,##0",
                 dataPoints: <?php echo json_encode($data_bucket[1], JSON_NUMERIC_CHECK); ?>
-                // [
-                //     { x: new Date(2019, 2), y: 72100 },
-                //     { x: new Date(2019, 3), y: 66000 },
-                //     { x: new Date(2019, 4), y: 60000 },
-                //     { x: new Date(2019, 5), y: 55000 },
-                //     { x: new Date(2019, 6), y: 49000 },
-                //     // { x: new Date(2019, 7), y: 21000 },
-                //     // { x: new Date(2019, 8), y: 22000 },
-                //     // { x: new Date(2019, 9), y: 25000 },
-                //     // { x: new Date(2019, 10), y: 23000 },
-                //     // { x: new Date(2019, 11), y: 25000 },
-                //     // { x: new Date(2017, 0), y: 26000 },
-                //     // { x: new Date(2017, 1), y: 25000 }
-                // ]
             },
             {
                 type: "splineArea", 
@@ -218,20 +221,15 @@
                 type: "splineArea", 
                 showInLegend: true,
                 yValueFormatString: "#,##0",      
-                name: "Matrix Wood",
+                name: "Dharamarathne Road",
                 dataPoints: <?php echo json_encode($data_bucket[3], JSON_NUMERIC_CHECK); ?>
-                // [
-                //     { x: new Date(2019, 2), y: 27000 },
-                //     { x: new Date(2019, 3), y: 24500 },
-                //     { x: new Date(2019, 4), y: 22000 },
-                //     { x: new Date(2019, 5), y: 19800 },
-                //     { x: new Date(2019, 6), y: 16000 },
-                //     { x: new Date(2019, 7), y: 14000 },
-                //     { x: new Date(2019, 8), y: 11500 },
-                //     { x: new Date(2019, 9), y: 10000 },
-                //     { x: new Date(2019, 10), y: 8500 },
-                //     { x: new Date(2019, 11), y: 5400 },
-                // ]
+            },
+            {
+                type: "splineArea", 
+                showInLegend: true,
+                yValueFormatString: "#,##0",      
+                name: "Maharagama Residence",
+                dataPoints: <?php echo json_encode($data_bucket[5], JSON_NUMERIC_CHECK); ?>
             },
             ]
         });
@@ -240,6 +238,8 @@
         // revenue distribution 
         var chart = new CanvasJS.Chart("chartContainer", {
         theme: "dark2",
+        exportFileName: "Revenue Distribution",
+        exportEnabled: true,
         animationEnabled: true,
         title:{
             text: "Company Revenue by Year"
@@ -258,7 +258,7 @@
             type: "spline",
             markerSize: 5,
             xValueFormatString: "YYYY",
-            yValueFormatString: "$#,##0.##",
+            yValueFormatString: "LKR #,##0.##",
             xValueType: "dateTime",
             dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
         }]
@@ -269,7 +269,7 @@
         // Monthly Expense via category
         var chart = new CanvasJS.Chart("monthExpenseCtaegory", {
             theme: "dark2",
-            exportFileName: "Doughnut Chart",
+            exportFileName: "Expense Distribution",
             exportEnabled: true,
             animationEnabled: true,
             title:{
@@ -305,36 +305,51 @@
             }
             e.chart.render();
         }
-        // Item Distribution
+        //Quotation Distribution
         
-            var chart = new CanvasJS.Chart("itemDistribution", {
-                animationEnabled: true,
-                theme: "dark2", // "light1", "light2", "dark1", "dark2"
-                title:{
-                    text: "Inventory Distribution"
-                },
-                axisY: {
-                    title: "Inventory Graph"
-                },
-                data: [{        
-                    type: "column",  
-                    showInLegend: true, 
-                    legendMarkerColor: "grey",
-                    legendText: "Item Count",
-                    dataPoints: [      
-                        { y: 300878, label: "Furniture " },
-                        { y: 266455,  label: "Glue" },
-                        { y: 169709,  label: "Blade" },
-                        { y: 158400,  label: "Nuts and bolts 2mm" },
-                        { y: 142503,  label: "Paint" },
-                        { y: 101500, label: "Waterbase" },
-                        { y: 97800,  label: "JAT" },
-                        { y: 80000,  label: "Locks and Handles" }
-                    ]
-                }]
-            });
-            chart.render(); 
-        }
+        var chart = new CanvasJS.Chart("quotationDistribution", {
+            animationEnabled: true,
+            exportFileName: "Quotation Distribution",
+            exportEnabled: true,
+            theme: "dark2", // "light1", "light2", "dark1", "dark2"
+            title:{
+                text: "Quotation Value Estimation by Contracts"
+            },
+            axisY: {
+                title: "Value in LKR"
+            },
+            data: [{        
+                type: "column",  
+                showInLegend: true, 
+                legendMarkerColor: "grey",
+                legendText: "Quotation Value",
+                dataPoints: <?php echo json_encode($quo_value, JSON_NUMERIC_CHECK); ?>
+            }]
+        });
+        chart.render();
+        // Income Distribution
+        var chart = new CanvasJS.Chart("incomeDistribution", {
+            animationEnabled: true,
+            exportFileName: "Income Distribution",
+            exportEnabled: true,
+            theme: "dark2", // "light1", "light2", "dark1", "dark2"
+            title:{
+                text: "Income Distribution"
+            },
+            axisY: {
+                title: "Income in LKR"
+            },
+            data: [{        
+                type: "column",  
+                showInLegend: true, 
+                legendMarkerColor: "grey",
+                legendText: "Item Count",
+                dataPoints: <?php echo json_encode($invoice, JSON_NUMERIC_CHECK); ?>
+            }]
+        });
+        chart.render(); 
+    }
+        
     </script>
     
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>

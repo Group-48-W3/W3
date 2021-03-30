@@ -17,7 +17,7 @@ if (isset($_GET['userid'])) {
     deleteUser($_GET['userid']);
 }
 if (isset($_POST['userUpdateDetails'])) {
-    updateUser($_GET['userid']);
+    updateUser($_POST['userid']);
 }
 //////////// class functions//////////////
 function addUser(){
@@ -46,9 +46,7 @@ function addUser(){
 		echo 'All fields are required';
 	}
 	header('location:./../../view/user/userView.php');
-	exit;
-	
-	 
+	//exit;	 
 }
 //get all users
 function getAll(){
@@ -65,6 +63,19 @@ function getSingleUser($id){
 //update a user
 function updateUser($id){
 	// update a particular user
+	$user_id = $_POST['user_id'];
+	echo $user_id;
+	$user_role = $_POST['r_id'];
+	
+	if(!empty($user_id) && !empty($user_role)){
+		if(updateUserDB($user_id,$user_role)){
+			echo "update success";
+		}	
+	}else{
+		echo 'All fields are required';
+	}
+	//echo "<script>alert('user updated successfully');</script>";
+	header('location:./../../view/user/userUpdate.php?updateid='.$user_id);
 	
 	exit;
 }
@@ -102,6 +113,21 @@ function checkEmail($email){
 	}else{
 		return 0;
 	}
+}
+function updateUserStatus($uid,$time){
+	if($uid<=5){
+		updateUserStatusDB($uid,$time);
+	}else{
+		echo "error on update the user status";
+	}
+}
+function getUserStatus(){
+	$res = getAllUsers();
+	return $res;
+}
+function getAllUserRoles(){
+	$res = getAllUserRolesDB();
+	return $res;
 }
 
 ?>

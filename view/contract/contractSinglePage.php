@@ -10,7 +10,8 @@
   require_once('./../../controller/contract/contractController.php');
   require_once('./../../controller/contract/quotationController.php');
   require_once('./../../controller/contract/activityController.php');
-  $user_role = $_SESSION['r_id'];	
+  $user_role = $_SESSION['r_id'];
+  //echo $user_role; 	
   if (isset($_GET['con_id'])) {
     $con = new Contract();
     $quo = new Quotation();
@@ -57,64 +58,65 @@
 ?>
 
 <div class="container">
-<h1>Contract <?php echo " ".$row["con_name"]; ?></h1>
-<div class="row">
-  <div class="col-sm">
-    <!-- Contract Section -->
-    <h2>Step 01 : Contract Details</h2>
-    <h5>Contract :  <?php echo $row["con_name"]; ?></h5>
-    <h5>Description    : <?php echo $row["con_desc"]; ?></h5>
-    <h5>Location       : <?php echo $row["location"]; ?></h5>
-    <h5>Payment Method : <?php echo $row["payment_method"]; ?></h5>
-    <br>
-    <!-- Client Section -->
-    <h2>Step 02 : Client Details</h2>
-    <h5>Name : <?php echo $row_client["c_name"]; ?></h5>
-    <h5>Company : <?php echo $row_client["c_company"]; ?></h5>
-    <h5>Address : <?php echo $row_client["c_address"]; ?></h5>
-    <h5>Email : <?php echo $row_client["c_email"]; ?></h5>
-    <h5>Contact : <?php echo $row_client["c_mobile"]; ?></h5>
+    <h1>Contract <?php echo " ".$row["con_name"]; ?></h1>
+    <div class="row">
+      <div class="col-sm">
+        <!-- Contract Section -->
+        <h2>Step 01 : Contract Details</h2>
+        <h5>Contract :  <?php echo $row["con_name"]; ?></h5>
+        <h5>Description    : <?php echo $row["con_desc"]; ?></h5>
+        <h5>Location       : <?php echo $row["location"]; ?></h5>
+        <h5>Payment Method : <?php echo $row["payment_method"]; ?></h5>
+        <br>
+        <!-- Client Section -->
+        <h2>Step 02 : Client Details</h2>
+        <h5>Name : <?php echo $row_client["c_name"]; ?></h5>
+        <h5>Company : <?php echo $row_client["c_company"]; ?></h5>
+        <h5>Address : <?php echo $row_client["c_address"]; ?></h5>
+        <h5>Email : <?php echo $row_client["c_email"]; ?></h5>
+        <h5>Contact : <?php echo $row_client["c_mobile"]; ?></h5>
 
-    <br>
+        <br>
+      </div>
+      <div class="col-sm">
+        <!-- Progress starts -->
+        <h2>Progress Measures</h2>
+        <div class="col-sm">
+          <h5>Progress : <?php echo " ".$progress." %"?></h5>
+          <br>
+          <!-- add progress bar -->
+          <?php if($progress >=50){ ?>
+            <svg class="radial-progress" data-percentage="<?php echo $progress;?>" viewBox="0 0 80 80">
+              <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+              <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136;"></circle>
+              <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)"><?php echo $progress?></text>
+            </svg>
+          <?php }else{?>
+            <!-- progress less than 50% -->
+            <svg class="radial-progress" data-percentage="<?php echo $progress;?>" viewBox="0 0 80 80">
+              <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+              <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136;"></circle>
+              <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)"><?php echo $progress?></text>
+            </svg>  
+          <?php }?>  
+          <!-- progress with js  -->
+          
+          <!-- ends -->
+        </div>
+        </div>
+        <!-- Progress ends -->
+      </div>
   </div>
-  <div class="col-sm">
-    <!-- Progress starts -->
-    <h2>Progress Measures</h2>
-    <div class="col-sm">
-      <h5>Progress : <?php echo " ".$progress." %"?></h5>
-      <br>
-      <!-- add progress bar -->
-      <?php if($progress >=50){ ?>
-        <svg class="radial-progress" data-percentage="<?php echo $progress;?>" viewBox="0 0 80 80">
-          <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-          <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136;"></circle>
-          <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)"><?php echo $progress?></text>
-        </svg>
-      <?php }else{?>
-        <!-- progress less than 50% -->
-        <svg class="radial-progress" data-percentage="<?php echo $progress;?>" viewBox="0 0 80 80">
-          <circle class="incomplete" cx="40" cy="40" r="35"></circle>
-          <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136;"></circle>
-          <text class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)"><?php echo $progress?></text>
-        </svg>  
-      <?php }?>  
-      <!-- progress with js  -->
-      
-      <!-- ends -->
-    </div>
-    </div>
-    <!-- Progress ends -->
-  </div>
-</div>
+    <!-- end of contract section -->
+  <div class="container">
     <hr>
     <!-- Quotation details -->
     <h2>Step 03 : Quotation Details</h2>
-    <div class="container">
-      <div id="currentQuo">
-        <h2>Current Quotation</h2>
+    <h2>Current Quotation</h2>
+    <div class="container" id="currentQuo">
       <!-- Quotation Table -->
       <!-- New Component for item Table -->
-      <div class="container ">
+      <div class="" id="viewQuo">
         <div class="row">
           <div class="col">
             <div class="left">
@@ -123,9 +125,6 @@
                 <option value="5">5 records</option>
               </select>
             </div>
-          </div>
-          <div class="col">
-            
           </div>
         </div>
         <br>
@@ -139,7 +138,7 @@
                 <th>Budget</th>
                 <th>Quantity</th>
                 <th>Discount</th>
-                <?php if($user_role==2){ ?>
+                <!-- <?php if($user_role<=5){ ?> -->
                 <th>Edit</th>
                 <?php } ?>
               </thead>
@@ -159,7 +158,7 @@
                     <td data-label="Quantity"><?php echo $row["q_quantity"];?></td>
                     <td data-label="Discount"><?php echo $row["q_discount"]?></td>
                   
-                    <?php if($user_role==2){ ?>
+                    <?php if($user_role<=5 ){ ?>
                     <td data-label="Edit">
                     <a href="./quotationSinglePage.php?q_id=<?php echo $row["q_id"]; ?>" class="btn btn-warning">&#x270E</a>
                     <a class="btn btn-danger" href="./quotationSinglePage.php?del_id=<?php echo $row["q_id"]; ?>&con_id=<?php echo $_SESSION['contract_id'];?>">&#x2716</a>
@@ -193,11 +192,10 @@
           <div class="quotation">
           <a class="btn btn-success" href="./quotationAdd.php?quo_con_id=<?php echo $_SESSION['contract_id']; ?>">Create a new Quotation</a>
           </div>
-        </div>
-        </form>
-    </div>
+      </div>
     <hr>
     <!-- Quotation Details ends -->
+    </div>
     <!-- Activity Details -->
     <h2>Step 04 : Activity Details</h2>
     <div class="container">

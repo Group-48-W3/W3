@@ -19,7 +19,7 @@ $result = getAll();
 if (mysqli_num_rows($result) > 0) {
 ?>
 <div class="container"> 
-  <h3>System Users</h3>
+  <h2>System Users</h2>
   <table class="data-table">
     <thead>
       <tr>
@@ -82,6 +82,7 @@ if (mysqli_num_rows($result) > 0) {
         <option value="2">Owner</option>
         <option value="3">Accountant</option>
         <option value="4">Stockkeeper</option>
+        <option value="5">Manager</option>
       </select>
     </div>
 

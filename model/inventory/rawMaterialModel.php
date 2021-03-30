@@ -163,3 +163,9 @@ function getReOrderMaterials(){
     $result = mysqli_query($conn, $sql);
     return $result;
 }
+function getAllIssueRawMaterialContractDB($id){
+    global $conn;
+    $sql = "select * from `issue-raw-material` where contract = '$id'";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
