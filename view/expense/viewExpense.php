@@ -36,8 +36,8 @@
                 <td data-label="p_type"><?php echo $row["p_type"]; ?></td>
                 <td data-label="p_desc"><?php echo $row["p_desc"]; ?></td>
                 <td>
-                      <a class="btn btn-warning" href="./updateExpense.php?updateid=<?php echo $row["p_id"]; ?>">Update</a>
-                      <a class="btn btn-danger" href="./../../controller/expense/expenseController.php?deleteid=<?php echo $row["p_id"]; ?>">Delete</a>
+                      <a class="btn btn-warning" href="./updateExpense.php?updateid=<?php echo $row["p_id"]; ?>">&#x270E</a>
+                      <a class="btn btn-danger" href="./../../controller/expense/expenseController.php?deleteid=<?php echo $row["p_id"]; ?>">&#x2716</a>
                 </td>
               </tr>
           </tbody>

@@ -47,7 +47,7 @@ class Invoice{
         $invo = new InvoiceModel();
         $res = $invo->deleteInvoiceDB($id);
         if($res){
-            echo "Successfully delete the invoice";
+            //echo "Successfully delete the invoice";
         }else{
             echo "Error occur in controller";
         }

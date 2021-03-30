@@ -13,6 +13,7 @@
   require_once('./../../controller/expense/expenseController.php');
   require_once('./../../controller/contract/invoiceController.php');
   require_once('./../../controller/expense/incomeController.php');
+  require_once('./../../controller/inventory/rawMaterialController.php');
   
   
   //echo $_SESSION['rcon_name']." ".$_SESSION['rstart_date']." ".$_SESSION['rend_date'];
@@ -53,7 +54,12 @@
   }
   if($_GET['type'] == 'storage_report'){
     $rep = 4;
-    
+    $raw = new RawMaterial();
+    $res = $report->conDetails($_SESSION['rcon_name'],$_SESSION['rstart_date'],$_SESSION['rend_date']);
+    $res_data = mysqli_fetch_array($res);
+    $con_id = $res_data['con_id'];
+    $res1 = $raw->getAllIssueRawMaterialContract($con_id);
+
   }
   
 ?>
@@ -331,6 +337,45 @@
   <div class="container" style="border-style: solid">
   <h2>Stock Report</h2>
   <h5><?php echo "From : ".$_SESSION['rstart_date']." To: ".$_SESSION['rend_date'];?></h5>
+  <!-- Stock issues -->
+  <div class="container col-10" style="border-style: solid">
+    <h5>Raw Material Issue Details</h5>
+        <div class="row">
+          <div class="col">
+            <table class="data-table paginated">
+              <thead>
+                <th>Date</th>
+                <th>Inv Code</th>
+                <th>Quantity</th>
+                <th>Emp_id</th>
+              </thead>
+              <tbody>
+                <?php
+                  $i=0;
+                  while($row2 = mysqli_fetch_array($res1)) {    
+                ?>
+                  <tr>
+                    <td data-label="cat_name"><?php echo $row2["date"]; ?></td>
+                    <td data-label="p_date"><?php echo $row2["inv-code"]; ?></td>
+                    <td data-label="p_type"><?php echo $row2["quantity"]; ?></td>
+                    <td data-label="p_desc"><?php echo $row2["employee"]; ?></td>
+                  </tr>
+                <?php
+                  $i++;
+                  }
+                  if($i==0){
+                ?>
+                <tr><td colspan="8"><center>No Expenses Avaliable!</center></td></tr>
+                <?php } ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <br>
+      </div>
+  <br>
+  <!-- Stock issues finishes -->
+  <p><?php echo "Created: ".date("Y/m/d")." At ".date("h:i:sa") ?></p>
   </div>
 
 <?php }?>

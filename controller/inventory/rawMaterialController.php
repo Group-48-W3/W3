@@ -188,4 +188,9 @@ class RawMaterial
         }
         return $i;
     }
+    // to retrive the data for storage report
+    function getAllIssueRawMaterialContract($id){
+        $res = getAllIssueRawMaterialContractDB($id);
+        return $res;
+    }
 }
