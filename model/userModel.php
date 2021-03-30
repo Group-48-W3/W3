@@ -14,7 +14,7 @@ function addUserDB($user_role, $first_name, $last_name, $email, $password)
 {
 	// echo("This add user function");
 	global $conn;
-	$sql = "insert into user VALUES ('','$user_role','$first_name','$last_name','$email','$password')";
+	$sql = "insert into user VALUES ('','$user_role','$first_name','$last_name','$email','$password','0')";
 	if (mysqli_query($conn, $sql)) {
 		echo "New record created successfully !";
 	} else {

@@ -46,7 +46,7 @@ function addUser(){
 		echo 'All fields are required';
 	}
 	header('location:./../../view/user/userView.php');
-	exit;	 
+	//exit;	 
 }
 //get all users
 function getAll(){
