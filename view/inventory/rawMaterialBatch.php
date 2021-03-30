@@ -28,6 +28,7 @@ require_once('header.php');
         <th>Stored Location</th>
         <th>Delivered By</th>
         <th>Supplier</th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
@@ -50,6 +51,9 @@ require_once('header.php');
           <td><?php echo $row["stored-location"] ?></td>
           <td><?php echo $row["delivered-by"] ?></td>
           <td><?php echo $row["sup-name"] ?></td>
+          <td data-label="Edit">
+								<a class="btn btn-warning" href="./batchUpdate.php?batch_id=<?php echo $row['batch-id']; ?>">&#x270E</a>
+							</td>
         </tr>
       <?php
         if ($i == 0) {

@@ -74,7 +74,7 @@ $user_role = $_SESSION['r_id'];
 					<th>Description</th>
 					<th>Re-Order Value</th>
 					<th>ABC Analysis</th>
-					<!--<th>Edit</th>-->
+					<th>Edit</th>
 				</thead>
 				<tbody>
 					<?php
@@ -95,9 +95,9 @@ $user_role = $_SESSION['r_id'];
 							<td data-label="ABC Analysis">
 								<?php echo $row["abc-category"] ?>
 							</td>
-							<!--<td data-label="Edit">
-								<a href="" class="btn btn-warning">&#x270E</a>
-							</td>-->
+							<td data-label="Edit">
+								<a class="btn btn-warning" href="./toolCatUpdate.php?tool_id=<?php echo $row['inv-code']; ?>">&#x270E</a>
+							</td>
 						</tr>
 					<?php
 						$i++;
@@ -129,7 +129,7 @@ $user_role = $_SESSION['r_id'];
 					<th>Total Quantity</th>
 					<th>Reorder Value</th>
 					<th width="11%">Average Price</th>
-					<!--<th>Edit</th>-->
+					<th>Edit</th>
 				</thead>
 				<tbody>
 					<?php
@@ -165,11 +165,9 @@ $user_role = $_SESSION['r_id'];
 									echo "No Data";
 								} ?>
 							</td>
-							<!--
 							<td data-label="Edit">
-								<a href="" class="btn btn-warning">&#x270E</a>
+								<a class="btn btn-warning" href="./materialCatUpdate.php?mat_id=<?php echo $row['inv-code']; ?>">&#x270E</a>
 							</td>
-							-->
 						</tr>
 					<?php
 						$i++;
@@ -193,8 +191,6 @@ $user_role = $_SESSION['r_id'];
 		echo "No results ";
 	}
 	?>
-
-
 
 	<h2>Suppliers</h2>
 

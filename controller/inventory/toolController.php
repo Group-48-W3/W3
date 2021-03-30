@@ -38,6 +38,18 @@ if (isset($_POST['receiveMachine'])) {
     $con = new Tool();
     $con->receiveMachine();
 }
+if (isset($_POST['updateToolCategry'])) {
+    $con = new Tool();
+    $con->updateToolCategry();
+}
+if (isset($_POST['updateTool'])) {
+    $con = new Tool();
+    $con->updateTool();
+}
+if (isset($_POST['updateMachine'])) {
+    $con = new Tool();
+    $con->updateMachine();
+}
 class Tool
 {
     function __construct()
@@ -48,7 +60,6 @@ class Tool
     {
         //
     }
-
     function addToolCategory()
     {
         $toolName = $_POST['toolCatName'];
@@ -69,7 +80,6 @@ class Tool
         header('location:./../../view/inventory/replenish.php#newtool'); //redirection
         exit;
     }
-
     function addNewTool()
     {
         $toolInvCode = $_POST['toolCategory'];
@@ -92,7 +102,6 @@ class Tool
         header('location:./../../view/inventory/replenish.php#addTool'); //redirection
         exit;
     }
-
     function addNewMachine()
     {
         $machineInvCode = $_POST['machineCategory'];
@@ -116,14 +125,12 @@ class Tool
         header('location:./../../view/inventory/replenish.php#addTool'); //redirection
         exit;
     }
-
     // select all tool categories from db
     function getAllToolCategory()
     {
         $res =  selectAllToolCategories();
         return $res;
     }
-
     function getSingleToolCategory($inventoryCode)
     {
         $res =  selectToolCategory($inventoryCode);
@@ -133,13 +140,11 @@ class Tool
         }
         return 0;
     }
-
     function getTools($invCode)
     {
         $res = getToolsDB($invCode);
         return $res;
     }
-
     function getSingleTool($toolID)
     {
         $res = getSingleToolDB($toolID);
@@ -149,25 +154,30 @@ class Tool
         }
         return 0;
     }
-
     function getMachines($invCode)
     {
         $res =  getMachinesDB($invCode);
         return $res;
     }
-
+    function getSingleMachine($machineId)
+    {
+        $res = getSingleMachineDB($machineId);
+        if (mysqli_num_rows($res) > 0) {
+            $details = mysqli_fetch_array($res);
+            return $details;
+        }
+        return 0;
+    }
     function getDistinctMachines($invCode)
     {
         $res =  getDistinctMachinesDB($invCode);
         return $res;
     }
-
     function getMachineIDs($type)
     {
         $res = getMachineCodesByType($type);
         return $res;
     }
-
     function replenishTool()
     {
         $toolId = $_POST['replenishToolId'];
@@ -181,13 +191,11 @@ class Tool
         header('location:./../../view/inventory/replenish.php'); //redirection
         exit;
     }
-
     function getAvailableQuantity($tool)
     {
         $res = getAvailableToolAmount($tool);
         return $res;
     }
-
     function issueTool()
     {
         $toolCategory = $_POST['toolCategory'];
@@ -248,12 +256,11 @@ class Tool
         $res = getIssueDetailsDB();
         return $res;
     }
-
-    function getIssueDetailsOfMachines(){
+    function getIssueDetailsOfMachines()
+    {
         $res = getMachineIssueDetailsDB();
         return $res;
     }
-
     function receiveTool()
     {
         $issueID = $_POST['issueID'];
@@ -261,11 +268,60 @@ class Tool
         setToolReceived($issueID, $receiveAmount);
         header('location:./../../view/inventory/issue.php#recentIssues');
     }
-
-    function receiveMachine(){
+    function receiveMachine()
+    {
         $issueID = $_POST['issueID'];
         $machineID = $_POST['machineID'];
         setMachineReceived($issueID, $machineID);
         header('location:./../../view/inventory/issue.php#recentIssues');
+    }
+    function updateToolCategry()
+    {
+        $tName = $_POST['tName'];
+        $tDesc = $_POST['tDesc'];
+        $tMinQty = $_POST['tMinQty'];
+        $abc = $_POST['abc'];
+        $toolId = $_POST['toolId'];
+        updateToolCategryDB($tName, $tDesc, $tMinQty, $abc, $toolId);
+        echo "<script>
+        if (confirm('Tool Category Updated Successfully!')) {
+            window.location.replace(\"./../../view/inventory/inventoryHome.php\");
+        } else {
+            window.location.replace(\"./../../view/inventory/inventoryHome.php\");
+        }</script>";
+        exit;
+    }
+    function updateTool()
+    {
+        $tName = $_POST['tName'];
+        $tQty = $_POST['tQty'];
+        $tLoc = $_POST['tLoc'];
+        $toolId = $_POST['toolId'];
+        $invCode = $_POST['invCode'];
+        updateToolDB($tName, $tQty, $tLoc, $toolId);
+        echo "<script>
+        if (confirm('Tool Updated Successfully!')) {
+            window.location.replace(\"./../../view/inventory/toolDetails.php?tool=" . $invCode . "\");
+        } else {
+            window.location.replace(\"./../../view/inventory/toolDetails.php?tool=" . $invCode . "\");
+        }</script>";
+        exit;
+    }
+    function updateMachine()
+    {
+        $mName = $_POST['mName'];
+        $mDesc = $_POST['mDesc'];
+        $mLoc = $_POST['mLoc'];
+        $mPrice = $_POST['mPrice'];
+        $toolId = $_POST['machineId'];
+        $invCode = $_POST['invCode'];
+        updateMachineDB($mName, $mDesc, $mLoc, $mPrice, $toolId);
+        echo "<script>
+        if (confirm('Machine Updated Successfully!')) {
+            window.location.replace(\"./../../view/inventory/toolDetails.php?tool=" . $invCode . "\");
+        } else {
+            window.location.replace(\"./../../view/inventory/toolDetails.php?tool=" . $invCode . "\");
+        }</script>";
+        exit;
     }
 }

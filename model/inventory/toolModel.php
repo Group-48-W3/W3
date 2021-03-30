@@ -92,6 +92,14 @@ function getSingleToolDB($tool)
     return $result;
 }
 
+function getSingleMachineDB($machineId)
+{
+    global $conn;
+    $query = "SELECT * FROM `machine-detailed` WHERE `machine-id`='$machineId'";
+    $result = mysqli_query($conn, $query);
+    return $result;
+}
+
 // Get machines
 function getMachinesDB($invCode)
 {
@@ -245,7 +253,22 @@ function setMachineReceived($issueID, $machineID)
     mysqli_query($conn, $sql2);
 }
 
-function updateTool()
+function updateToolCategryDB($tName, $tDesc, $tMinQty, $abc, $toolId)
 {
     global $conn;
+    $sql = "UPDATE `tool-category` SET `inv-desc` = '$tDesc', `tool-name` = '$tName', `min-qty` = '$tMinQty', `abc-category` = '$abc' WHERE `inv-code` = '$toolId'";
+    mysqli_query($conn, $sql);
+}
+
+function updateToolDB($tName, $tQty, $tLoc, $toolId)
+{
+    global $conn;
+    $sql = "UPDATE `tool-detailed` SET `description` = '$tName', `tool-qty` = '$tQty', `tool-location` = '$tLoc' WHERE `tool-id` = '$toolId'";
+    mysqli_query($conn, $sql);
+}
+function updateMachineDB($mName, $mDesc, $mLoc, $mPrice, $toolId)
+{
+    global $conn;
+    $sql = "UPDATE `machine-detailed` SET `reg-id` = '$mName', `machine-desc` = '$mDesc', `machine-location` = '$mLoc', `price` = '$mPrice' WHERE `machine-id` = '$toolId'";
+    mysqli_query($conn, $sql);
 }
