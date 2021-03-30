@@ -24,6 +24,7 @@ if(isset($_GET['delete_id'])){
   $invoice->deleteInvoice($id);
   //echo "perform delete".$id;
   $a = 2;
+  //header('location: invoiceList.php');
 }
 //echo $_SERVER["DOCUMENT_ROOT"];
 ?>

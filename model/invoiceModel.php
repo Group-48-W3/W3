@@ -117,7 +117,7 @@ class InvoiceModel{
 		$sql = "DELETE FROM ".$this->invoiceOrderTable." WHERE invo_id = '".$id."'";
 		mysqli_query($conn, $sql);
         if (mysqli_query($conn, $sql)) {
-            echo "invoice delete successfully !";
+            //echo "invoice delete successfully !";
             return 1;
         } else {
             echo "Error: " . $sql . " " . mysqli_error($conn);

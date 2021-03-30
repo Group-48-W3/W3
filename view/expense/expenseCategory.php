@@ -65,8 +65,8 @@ require_once('../../controller/user/userController.php');
                 <td data-label="Desc"><?php echo $row["cat_desc"]; ?></td>
                 <td data-label="Type"><?php echo $row["cat_type"]; ?></td>
                 <td>
-                    <a class="btn btn-warning" href="./updateCategory.php?updateid=<?php echo $row["cat_id"]; ?>">Update</a>
-                    <a class="btn btn-danger" href="./../../controller/expense/categoryController.php?deleteid=<?php echo $row["cat_id"]; ?>">Delete</a>
+                    <a class="btn btn-warning" href="./updateCategory.php?updateid=<?php echo $row["cat_id"]; ?>">&#x270E</a>
+                    <a class="btn btn-danger" href="./../../controller/expense/categoryController.php?deleteid=<?php echo $row["cat_id"]; ?>">&#x2716</a>
                 </td>
               </tr>
           </tbody>
