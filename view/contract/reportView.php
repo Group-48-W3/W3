@@ -365,7 +365,7 @@
                   }
                   if($i==0){
                 ?>
-                <tr><td colspan="8"><center>No Expenses Avaliable!</center></td></tr>
+                <tr><td colspan="8"><center>No Inventory Avaliable!</center></td></tr>
                 <?php } ?>
               </tbody>
             </table>

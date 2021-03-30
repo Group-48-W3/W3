@@ -6,6 +6,7 @@ if(!isset($_SESSION['u_id'],$_SESSION['r_id']))
 		exit;
 	}		
 require_once('./../../controller/user/userController.php');
+include_once('header.php'); 
 require_once('./../../controller/expense/incomeController.php');
   //income object
   $income = new Income();
@@ -13,6 +14,7 @@ require_once('./../../controller/expense/incomeController.php');
   $row = mysqli_fetch_array($result);
 
   require_once('./../../controller/expense/expenseController.php');
+  require_once('./../../controller/contract/invoiceController.php');
   //expense object
   $payment = new Payment();
   $result1 = $payment->tExpense();
@@ -25,7 +27,14 @@ require_once('./../../controller/expense/incomeController.php');
   $row4 = mysqli_fetch_array($result4);
   $result5 = $payment->maintenanceCost();
   $row5 = mysqli_fetch_array($result5);
-include_once('header.php'); ?>
+
+  //get invoice data
+  $invo = new Invoice();
+  $result6 = $invo->getAllInvoiceIncomewithinMonth();
+  $res6 = mysqli_fetch_array($result6);
+  
+  $final_income = (int)$row["inc_amount"] + (int)$res6['total'];
+?>
 
 <div class="container">
     <div class="alert alert-dismissible alert-warning">
@@ -103,7 +112,7 @@ include_once('header.php'); ?>
     <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
       <!-- <div class="card-header">Header</div> -->
       <div class="card-body">
-        <h2 class="card-title">LKR: <?php echo $row["inc_amount"]; ?></h1>
+        <h2 class="card-title">LKR: <?php echo $final_income; ?></h1>
         <p class="card-text">Last month all incomes</p>
       </div>
     </div>

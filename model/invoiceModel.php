@@ -137,6 +137,16 @@ class InvoiceModel{
         }
         return $res;
     }
+    public function getAllInvoiceIncomewithinMonthDB($date){
+        global $conn;
+        $sql = "select sum(amount_paid) as total from invoice where date between (CURRENT_DATE() - INTERVAL 1 MONTH) and CURRENT_DATE()";
+        $res = mysqli_query($conn,$sql);
+        if($res){
+            return $res;
+        }else{
+            return 0;
+        }
+    }
 }
 
 ?>

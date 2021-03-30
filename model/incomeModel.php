@@ -84,9 +84,6 @@ function viewIncomeReportDB($con_id,$s_date,$e_date)
     $query = " select * from income where inc_date between '$s_date' and '$e_date' and con_id = '$con_id'";
     $result = mysqli_query($conn,$query);
     return $result;
-
-
-
 }
 
 ?>
