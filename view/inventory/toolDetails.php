@@ -14,10 +14,10 @@ if (isset($_GET['tool'])) {
 require_once('header.php');
 ?>
 <a href="inventoryHome.php">&#8592 Back to Home</a>
-<h1> Batch Details of <i><?php echo $_GET['tool'] ?></i></h1>
+<h1> Tool and Machine Details of <i><?php echo $_GET['tool'] ?></i></h1>
 <div class="container">
   <h2>Available Tools</h2>
-  
+
   <table class="data-table paginated">
     <thead>
       <tr>
@@ -27,6 +27,7 @@ require_once('header.php');
         <th>In Use</th>
         <th>Available Quantity</th>
         <th>Store Location</th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
@@ -43,6 +44,9 @@ require_once('header.php');
           <td><?php echo $toolRow["tool-qty"] - $available ?></td>
           <td><?php echo $available ?></td>
           <td><?php echo $toolRow["tool-location"] ?></td>
+          <td data-label="Edit">
+            <a class="btn btn-warning" href="./toolUpdate.php?tool_id=<?php echo $toolRow['tool-id']; ?>">&#x270E</a>
+          </td>
         </tr>
       <?php
         if ($i == 0) {
@@ -59,7 +63,7 @@ require_once('header.php');
 
 <div class="container">
   <h2>Available Machines</h2>
-  
+
   <table class="data-table paginated">
     <thead>
       <tr>
@@ -71,6 +75,7 @@ require_once('header.php');
         <th>Delivered By</th>
         <th>Added Date</th>
         <th>Current Status</th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
@@ -93,6 +98,9 @@ require_once('header.php');
               } else if ($machineRow["status"] == 2) {
                 echo "<a href='maintenance.php'>In Maintenance</a>";
               } ?></td>
+          <td data-label="Edit">
+            <a class="btn btn-warning" href="./machineUpdate.php?machine_id=<?php echo $machineRow['machine-id']; ?>">&#x270E</a>
+          </td>
         </tr>
       <?php
         if ($i == 0) {

@@ -1,12 +1,7 @@
 
  <!-- /.content-wrapper-->
 <br><br>
-    <footer id="footerBlock">
-      <center>Done By : Team48 of 16th Batch University of Colombo School of Computing</center>
-        <center>
-        <small>Copyright © <a href="">W3 Contracts - Willorawatta</a></small>
-        </center>
-    </footer>
+    
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fa fa-angle-up"></i>
