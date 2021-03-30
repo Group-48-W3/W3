@@ -52,11 +52,11 @@ if(!isset($_SESSION['u_id'],$_SESSION['r_id']))
     <!-- end card 3 -->
     <!-- 4th card  -->
     <div class="col-sm">
-    <div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
+    <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
       <!-- <div class="card-header">Header</div> -->
       <div class="card-body">
-        <h1 id="value" class="card-title">8</h1>
-        <p class="card-text">Permissions</p>
+        <h1 id="value" class="card-title">5</h1>
+        <p class="card-text">Roles</p>
       </div>
     </div>
     </div>

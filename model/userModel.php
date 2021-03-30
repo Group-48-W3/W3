@@ -14,7 +14,7 @@ function addUserDB($user_role, $first_name, $last_name, $email, $password)
 {
 	// echo("This add user function");
 	global $conn;
-	$sql = "insert into user VALUES ('','$user_role','$first_name','$last_name','$email','$password')";
+	$sql = "insert into user VALUES ('','$user_role','$first_name','$last_name','$email','$password','0')";
 	if (mysqli_query($conn, $sql)) {
 		echo "New record created successfully !";
 	} else {
@@ -52,9 +52,6 @@ function getSingleUserDB($id)
 
 	return $result;
 }
-
-
-
 function deleterUserById($id)
 {
 	global $conn;
@@ -97,6 +94,20 @@ function updateAccountDB($email, $pass, $id)
 		echo "account changes successfully !";
 	} else {
 		echo "Error: " . $sql . " " . mysqli_error($conn);
+	}
+	mysqli_close($conn);
+}
+function updateUserDB($user_id,$user_role){
+	global $conn;
+
+	$sql = "update user set r_id = '$user_role' where u_id = '$user_id'";
+	if (mysqli_query($conn, $sql)) {
+		echo "user update changes successfully !";
+		echo $sql;
+		return 1;
+	} else {
+		echo "Error: " . $sql . " " . mysqli_error($conn);
+		return 0;
 	}
 	mysqli_close($conn);
 }

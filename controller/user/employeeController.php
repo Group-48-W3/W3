@@ -88,7 +88,7 @@ class Employee{
         }else{
             echo 'All fields are required';
         }
-        echo "<script>alert('user updated successfully');</script>";
+        echo "<script>alert('employee updated successfully');</script>";
         header('location:./../../view/user/employeeView.php');
         
         exit;
