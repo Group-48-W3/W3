@@ -28,7 +28,6 @@ require_once('header.php');
     <div id="result" class="search-result"></div>
     <script type="text/javascript">
       $(document).ready(function() {
-        document.getElementById("footerBlock").style.display = "none";
         $("#searchText").keyup(function() {
           var anything = $(this).val();
           if (anything != "") {

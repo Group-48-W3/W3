@@ -3,27 +3,31 @@
 require_once("./../../model/inventory/rawMaterialModel.php");
 
 if (isset($_POST['addNewRawMaterialCategory'])) {
-    // echo "condition";
     $con = new RawMaterial();
     $con->addRawMaterialCategory();
 }
 
 if (isset($_POST['replenishRawMaterial'])) {
-    // echo "condition";
     $con = new RawMaterial();
     $con->replenishRawMaterial();
 }
 
 if (isset($_POST['issueRawMaterial'])) {
-    // echo "condition";
     $con = new RawMaterial();
     $con->issueRawMaterial();
 }
 
 if (isset($_POST['issueConfirmed'])) {
-    // echo "condition";
     $con = new RawMaterial();
     $con->issueAndInform();
+}
+if (isset($_POST['updateMatCategory'])) {
+    $con = new RawMaterial();
+    $con->updateCategory();
+}
+if (isset($_POST['updateBatch'])) {
+    $con = new RawMaterial();
+    $con->updateBatch();
 }
 
 class RawMaterial
@@ -71,6 +75,16 @@ class RawMaterial
         return $res;
     }
 
+    function getRawMaterialCategory($matId)
+    {
+        $res =  selectRawMaterialCategoryDB($matId);
+        if (mysqli_num_rows($res) > 0) {
+            $details = mysqli_fetch_array($res);
+            return $details;
+        }
+        return 0;
+    }
+
     function getMaterialName($material)
     {
         $res =  mysqli_fetch_array(getSingleMaterial($material));
@@ -114,6 +128,16 @@ class RawMaterial
     {
         $res = getAllBatchDetailsWhere($inventoryCode);
         return $res;
+    }
+
+    function getSingleBatchDetails($batch)
+    {
+        $res = getSingleBatchDetailsWhere($batch);
+        if (mysqli_num_rows($res) > 0) {
+            $details = mysqli_fetch_array($res);
+            return $details;
+        }
+        return 0;
     }
 
     function issueRawMaterial()
@@ -177,20 +201,49 @@ class RawMaterial
         return $res;
     }
 
-    function getReOrderCount(){
+    function getReOrderCount()
+    {
         $res = getReOrderMaterials();
-        $i=0;
-        while($row = mysqli_fetch_array($res)){
+        $i = 0;
+        while ($row = mysqli_fetch_array($res)) {
             $reOrdervalue = getReorderValue($row['inv-code']);
-            if($row['available'] < $reOrdervalue){
+            if ($row['available'] < $reOrdervalue) {
                 $i++;
             }
         }
         return $i;
     }
-    // to retrive the data for storage report
-    function getAllIssueRawMaterialContract($id){
-        $res = getAllIssueRawMaterialContractDB($id);
-        return $res;
+    function updateCategory()
+    {
+        $mName = $_POST['mName'];
+        $mDesc = $_POST['mDesc'];
+        $mMinQty = $_POST['mMinQty'];
+        $abc = $_POST['abc'];
+        $matId = $_POST['matId'];
+        updateMatCatDB($mName, $mDesc, $mMinQty, $abc, $matId);
+        echo "<script>
+        if (confirm('Raw Material Category Updated Successfully!')) {
+            window.location.replace(\"./../../view/inventory/inventoryHome.php\");
+        } else {
+            window.location.replace(\"./../../view/inventory/inventoryHome.php\");
+        }</script>";
+        exit;
+    }
+    function updateBatch()
+    {
+        $bLoc = $_POST['bLoc'];
+        $bDate = $_POST['bDate'];
+        $bQty = $_POST['bQty'];
+        $bPrice = $_POST['bPrice'];
+        $batchId = $_POST['batchId'];
+        $inv = $_POST['invCode'];
+        updateBatchDB($batchId, $bLoc, $bDate, $bQty, $bPrice);
+        echo "<script>
+        if (confirm('Raw Material Batch Updated Successfully!')) {
+            window.location.replace(\"./../../view/inventory/rawMaterialBatch.php?material=" . $inv . "\");
+        } else {
+            window.location.replace(\"./../../view/inventory/rawMaterialBatch.php?material=" . $inv . "\");
+        }</script>";
+        exit;
     }
 }

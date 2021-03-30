@@ -45,6 +45,14 @@ function selectAllRawMaterialCategories()
     return $result;
 }
 
+function selectRawMaterialCategoryDB($matId)
+{
+    global $conn;
+    $query = "select * from `raw-material-category` where `inv-code`='$matId'";
+    $result = mysqli_query($conn, $query);
+    return $result;
+}
+
 function getSingleMaterial($material)
 {
     global $conn;
@@ -75,6 +83,14 @@ function getAllBatchDetailsWhere($inventoryCode)
 {
     global $conn;
     $sql = "SELECT `raw-material-batch`.*, `supplier`.`sup-name` FROM `raw-material-batch` INNER JOIN `supplier` ON `raw-material-batch`.`supplier` = `supplier`.`sup-id` AND `raw-material-batch`.`inv-code`= '$inventoryCode' ORDER BY `added-date`";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
+function getSingleBatchDetailsWhere($batch)
+{
+    global $conn;
+    $sql = "select * from `raw-material-batch` where `batch-id` = '$batch'";
     $result = mysqli_query($conn, $sql);
     return $result;
 }
@@ -141,7 +157,8 @@ function finishIssue($material, $quantity, $contract, $employee)
     mysqli_close($conn);
 }
 
-function getRawMaterialIssues(){
+function getRawMaterialIssues()
+{
     global $conn;
     $sql = "SELECT `i`.`date`, `r`.`mat-name`, `i`.`quantity`, `e`.`emp_name`, `c`.`con_name` FROM `issue-raw-material` AS `i`, `raw-material-category` AS `r`, `employee` AS `e`, `contract` AS `c`WHERE `c`.`con_id` = `i`.`contract` AND `e`.`emp_id` = `i`.`employee` AND `r`.`inv-code` = `i`.`inv-code` ORDER BY `i`.`date` DESC";
     $res = mysqli_query($conn, $sql);
@@ -157,15 +174,22 @@ function getExpiredBatches()
     return $result;
 }
 
-function getReOrderMaterials(){
+function getReOrderMaterials()
+{
     global $conn;
     $sql = "SELECT SUM(`batch-quantity`) AS `available`, `inv-code` FROM `raw-material-batch` GROUP BY `inv-code`";
     $result = mysqli_query($conn, $sql);
     return $result;
 }
-function getAllIssueRawMaterialContractDB($id){
+function updateMatCatDB($mName, $mDesc, $mMinQty, $abc, $matId)
+{
     global $conn;
-    $sql = "select * from `issue-raw-material` where contract = '$id'";
-    $result = mysqli_query($conn, $sql);
-    return $result;
+    $sql = "UPDATE `raw-material-category` SET `inv-desc` = '$mDesc', `mat-name` = '$mName', `min-qty` = '$mMinQty', `abc-category` = '$abc' WHERE `inv-code` = '$matId'";
+    mysqli_query($conn, $sql);
+}
+function updateBatchDB($batchId, $bLoc, $bDate, $bQty, $bPrice)
+{
+    global $conn;
+    $sql = "UPDATE `raw-material-batch` SET `end-date` = '$bDate', `stored-location` = '$bLoc', `batch-quantity` = '$bQty', `unit-price` = '$bPrice' WHERE `batch-id` = '$batchId'";
+    mysqli_query($conn, $sql);
 }

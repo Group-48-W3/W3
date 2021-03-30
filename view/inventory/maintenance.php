@@ -149,12 +149,12 @@ require_once('header.php');
 </div>
 <br><hr>
 <div class="container">
-  <h3>Add tool/machine to maintenance</h3>
+  <h3>Add machine to maintenance</h3>
   <div class="search">
     <div class="search-text">
       <div class="form-group field">
         <input class="form-field" id="searchMachineText" name="searchMachineText" autocomplete="off" required>
-        <label for="searchMachineText" class="form-label">Search tool/machine</label>
+        <label for="searchMachineText" class="form-label">Search machine</label>
       </div>
     </div>
     <div id="searchResult" class="search-result"></div>
