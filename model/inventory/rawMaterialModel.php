@@ -193,3 +193,9 @@ function updateBatchDB($batchId, $bLoc, $bDate, $bQty, $bPrice)
     $sql = "UPDATE `raw-material-batch` SET `end-date` = '$bDate', `stored-location` = '$bLoc', `batch-quantity` = '$bQty', `unit-price` = '$bPrice' WHERE `batch-id` = '$batchId'";
     mysqli_query($conn, $sql);
 }
+function getAllIssueRawMaterialContractDB($id){
+    global $conn;
+    $sql = "select * from `issue-raw-material` where contract = '$id'";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}

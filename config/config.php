@@ -3,7 +3,7 @@
 	define("HOST","localhost");
 	define("DB_USER","root");
 	define("DB_PASS","");
-	define("DB_NAME","w3expense");
+	define("DB_NAME","w3dbcon");
 	
 	// create connection mysqli
 	$conn = mysqli_connect(HOST,DB_USER,DB_PASS,DB_NAME);

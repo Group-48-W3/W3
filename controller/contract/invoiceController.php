@@ -52,7 +52,14 @@ class Invoice{
             echo "Error occur in controller";
         }
     }
-    
+    function getAllInvoiceIncomewithinMonth(){
+        $invo = new InvoiceModel();
+        $date = date('Y-m-d');
+        $res = $invo->getAllInvoiceIncomewithinMonthDB($date);
+        
+        return $res;
+
+    }
 }
 
 
