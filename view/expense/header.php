@@ -36,7 +36,7 @@
     
     <li class="top-item top-item-last">
       <div class="top-link">
-        <a href="../dashboard.php" class="top-link">
+        <a href="./dashboard.php" class="top-link">
           <svg 
             aria-hidden="true" 
             focusable="false"
