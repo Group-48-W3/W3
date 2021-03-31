@@ -24,10 +24,18 @@ class InvoiceModel{
 		INSERT INTO ".$this->invoiceOrderTable." 
 		VALUES (' ','".
         date("Y-m-d")."', '".$POST['c_company']."', '".$POST['subTotal']."', '".$POST['taxAmount']."', '".$POST['taxRate']."', '".$POST['totalAftertax']."', '".$POST['amountPaid']."', '".$POST['amountDue']."', '".$POST['notes']."', '".$POST['c_id']."')";		
-		
         
         if (mysqli_query($conn, $sql)) {
             //echo "invoice created successfully !";
+            //avoid logical errors in issuing invoices
+            // total amount paid cannot exceeds total quotation estimation
+            $val1 = "select sum(q_budget*q_quantity) as sum from quotation where q_con_id = '".$_POST['c_id']."'";
+            $val2 = "select sum(amount_paid) as sum from invoice where con_id = '".$_POST['c_id']."'";
+            //ends
+            $value1 = mysqli_fetch_array(mysqli_query($conn,$val1));
+            $value2 = mysqli_fetch_array(mysqli_query($conn,$val2));
+
+            if((int)$value1['sum'] >= (int)$value2['sum']){
             $mid_sql = "select invo_id from invoice ORDER BY invo_id DESC LIMIT 1";
             $res = mysqli_fetch_array(mysqli_query($conn, $mid_sql));
             for ($i = 0; $i < count($POST['productCode']); $i++) {
@@ -41,6 +49,10 @@ class InvoiceModel{
                 }
             }
             return 1;
+            }else{
+                echo "Logical error on adding invoice, subtotal greater than the quotation values";
+                return 0;
+            }
          } else {
             echo "Error: " . $sql . " " . mysqli_error($conn);
             return 0;
