@@ -47,7 +47,7 @@
             <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
             <div class="card-body">
                 <h1 class="card-title"><?php echo $done_count['res']; ?></h1>
-                <p class="card-text">Done Activity</p>
+                <p class="card-text">Completed Activity</p>
             </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
             <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
             <div class="card-body">
                 <h1 class="card-title"><?php echo $undone_count; ?></h1>
-                <p class="card-text">All UnDone Activity</p>
+                <p class="card-text">All Uncompleted Activity</p>
             </div>
             </div>
         </div>
