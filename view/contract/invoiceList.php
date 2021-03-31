@@ -44,6 +44,7 @@ if(isset($_GET['delete_id'])){
             <th>Create Date</th>
             <th>Customer Name</th>
             <th>Invoice Total</th>
+            <th>Amount Paid</th>
             <th>Print</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -59,6 +60,7 @@ if(isset($_GET['delete_id'])){
                 <td>'.$invoiceDate.'</td>
                 <td>'.$invoiceDetails["company_name"].'</td>
                 <td>'.$invoiceDetails["total_after_tax"].'</td>
+                <td>'.$invoiceDetails["amount_paid"].'</td>
                 <td><a class="btn btn-warning" href="invoicePrint.php?invo_id='.$invoiceDetails["invo_id"].'" title="Print Invoice">🖨️</a></td>
                 <td><a class="btn btn-warning" href="invoiceUpdate.php?update_id='.$invoiceDetails["invo_id"].'"  title="Edit Invoice">🔃</a></td>
                 <td><a class="btn btn-danger" href="./invoiceList.php?delete_id='.$invoiceDetails["invo_id"].'" class="deleteInvoice"  title="Delete Invoice">❌</a></td>

@@ -24,6 +24,7 @@ class QuotationModel{
 	}
 	function addQuotationDB($item_no,$name,$description,$budget,$quantity,$discount,$con_id){
 		global $conn;
+		$budget = (int)$budget*(1 - ((int)$discount)/100);
 		$sql = "insert into quotation VALUES ('','$item_no','$name','$description','$budget','$quantity','$discount','$con_id')";
         if (mysqli_query($conn, $sql)) {
             echo "Quotation created successfully !";
