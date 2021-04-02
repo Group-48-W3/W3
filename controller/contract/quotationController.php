@@ -13,11 +13,11 @@ class Quotation{
         // include the abstract data input for the functions
     }
     // add quotation controller function
-    function addQuotation($item_no,$name,$description,$budget,$quantity,$discount,$con_id){
+    function addQuotation($item_no,$name,$description,$budget,$quantity,$discount,$discount_desc,$con_id){
         // add a new quotation
         $quotation = new QuotationModel();
         $activity = new activityModel();
-        $res = $quotation->addQuotationDB($item_no,$name,$description,$budget,$quantity,$discount,$con_id);
+        $res = $quotation->addQuotationDB($item_no,$name,$description,$budget,$quantity,$discount,$discount_desc,$con_id);
         if($res){
             $quo_id = mysqli_fetch_array($quotation->lastIndexDB());
             $res1 = $activity->addActivityforQuotationDB($name,$quo_id['q_id'],$con_id);
@@ -51,10 +51,10 @@ class Quotation{
         $res =  $quotation->getSingleQuotationDB($q_id);
         return $res;
     }
-    function updateQuotation($quo_id,$q_item,$q_name,$q_desc,$q_budget,$q_discount){
+    function updateQuotation($quo_id,$q_item,$q_name,$q_desc,$q_budget,$q_discount,$q_discount_desc){
         // 
         $quotation = new QuotationModel();
-        $res = $quotation->updateQuotationDB($quo_id,$q_item,$q_name,$q_desc,$q_budget,$q_discount);
+        $res = $quotation->updateQuotationDB($quo_id,$q_item,$q_name,$q_desc,$q_budget,$q_discount,$q_discount_desc);
         if($res){
             echo "quotation update successfully";
             header('location: ./quotationSinglePage.php?q_id='.$quo_id);

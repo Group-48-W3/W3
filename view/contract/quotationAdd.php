@@ -41,9 +41,10 @@
     $quo_budget = $_POST['quo_budget'];
     $quo_quantity = $_POST['quo_quan'];
     $quo_discount = $_POST['quo_discount'];
+    $quo_discount_desc = $_POST['quo_discount_desc'];
     $con_id = $a;
     
-    $quo->addQuotation($quo_itemno,$quo_name,$quo_description,$quo_budget,$quo_quantity,$quo_discount,$con_id);
+    $quo->addQuotation($quo_itemno,$quo_name,$quo_description,$quo_budget,$quo_quantity,$quo_discount,$quo_discount_desc,$con_id);
     
   }
 
@@ -121,8 +122,12 @@
       <label class="form-label">Quantity</label>
     </div>
     <div class="form-group field">
-      <input type="text" class="form-field" id="q_discount" name="quo_discount">
+      <input type="text" class="form-field" id="q_discount" name="quo_discount" value ="0">
       <label class="form-label">Discount(%)</label>
+    </div>
+    <div class="form-group field">
+      <input type="text" class="form-field" id="q_discount_desc" name="quo_discount_desc">
+      <label class="form-label">Discount Description</label>
     </div>
     <div class="right">
       <button type="submit" class="btn btn-primary" name ="add_quotation">Add Quotation</button>

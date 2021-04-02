@@ -22,10 +22,10 @@ class QuotationModel{
         }
         mysqli_close($conn);
 	}
-	function addQuotationDB($item_no,$name,$description,$budget,$quantity,$discount,$con_id){
+	function addQuotationDB($item_no,$name,$description,$budget,$quantity,$discount,$discount_desc,$con_id){
 		global $conn;
 		$budget = (int)$budget*(1 - ((int)$discount)/100);
-		$sql = "insert into quotation VALUES ('','$item_no','$name','$description','$budget','$quantity','$discount','$con_id')";
+		$sql = "insert into quotation VALUES ('','$item_no','$name','$description','$budget','$quantity','$discount','$discount_desc','$con_id')";
         if (mysqli_query($conn, $sql)) {
             echo "Quotation created successfully !";
             return 1;
@@ -57,9 +57,9 @@ class QuotationModel{
 
 		return $result;
 	}
-	function updateQuotationDB($quo_id,$q_item,$q_name,$q_desc,$q_budget,$q_discount){
+	function updateQuotationDB($quo_id,$q_item,$q_name,$q_desc,$q_budget,$q_discount,$discount_desc){
 		global $conn;
-		$sql = "update quotation SET q_item='$q_item',q_name='$q_name',q_desc='$q_desc', q_budget='$q_budget', q_discount='$q_discount'
+		$sql = "update quotation SET q_item='$q_item',q_name='$q_name',q_desc='$q_desc', q_budget='$q_budget', q_discount='$q_discount', q_discount_desc='$discount_desc'
 		WHERE q_id = '$quo_id'";
         if (mysqli_query($conn, $sql)) {
             // echo "Item created successfully !";
