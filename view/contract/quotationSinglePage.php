@@ -14,7 +14,7 @@
     if(isset($_POST['update_quotation'])){
         $quo = new Quotation();
         $quo->updateQuotation($_SESSION['quotation_id'],$_POST['q_item'],$_POST['q_name'],$_POST['q_desc'],
-        $_POST['q_budget'],$_POST['q_discount']);
+        $_POST['q_budget'],$_POST['q_discount'],$_POST['q_discount_desc']);
     }
     if(isset($_GET['del_id'])){
         //echo "success";
@@ -56,6 +56,10 @@
                     <div class="form-group field">
                         <input type="text" class="form-field" name="q_discount" id="itemPrice" value="<?php echo $row['q_discount'];?>">
                         <label for="itemPrice" class="form-label">Discount</label>
+                    </div>
+                    <div class="form-group field">
+                        <input type="text" class="form-field" name="q_discount_desc" id="itemPrice" value="<?php echo $row['q_discount_desc'];?>">
+                        <label for="itemPrice" class="form-label">Discount Description</label>
                     </div>
                     <br>
                     <div class="right">
