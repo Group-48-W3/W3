@@ -23,6 +23,11 @@
 			<h3>Employeee Information to Update</h3>
 			<form method="post" action="./../../controller/user/employeeController.php">
 				<div class="form-group field">
+					<input type="hidden" class="form-field" id="emp_id" name="emp_id" value="<?php echo $row["emp_id"]; ?>">
+					<input type="text" class="form-field"  value="<?php echo $row["emp_id"]; ?>" disabled>
+					<label for="emp_id" class="form-label">Employee ID</label>
+				</div>
+				<div class="form-group field">
 					<input type="text" class="form-field" id="emp_nic" name="emp_nic" value="<?php echo $row["nic"]; ?>">
 					<label for="emp_nic" class="form-label">NIC</label>
 				</div>

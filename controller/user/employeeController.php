@@ -68,6 +68,7 @@ class Employee{
     }
     function updateEmployee(){
         //update the employee
+        $emp_id = $_POST['emp_id'];
         $emp_nic = $_POST['emp_nic'];
         $emp_name = $_POST['emp_name'];
         $emp_dob = $_POST['emp_dob'];
@@ -80,15 +81,12 @@ class Employee{
             $row = mysqli_fetch_array($result);
             $id = $row['emp_id'];
             //nic must be unique
-            if(getNICEmployee($emp_nic)==0){
-                    updateEmployeeDB($id,$emp_nic,$emp_name,$emp_dob,$emp_address,$emp_contact,$emp_type);
-            }else{
-                echo '<script>alert("NIC must be unique")</script>';
-            }	
+            updateEmployeeDB($emp_id,$emp_nic,$emp_name,$emp_dob,$emp_address,$emp_contact,$emp_type);
+            	
         }else{
             echo 'All fields are required';
         }
-        echo "<script>alert('employee updated successfully');</script>";
+        //echo "<script>alert('employee updated successfully');</script>";
         header('location:./../../view/user/employeeView.php');
         
         exit;
