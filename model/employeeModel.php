@@ -61,7 +61,7 @@ function updateEmployeeDB($id,$emp_nic,$emp_name,$emp_dob,$emp_address,$emp_cont
 	$sql = "update employee SET nic='".$emp_nic."',emp_name='".$emp_name."',dob='".$emp_dob."',emp_address='".$emp_address."',contact_num='".$emp_contact."',emp_type='".$emp_type."' WHERE emp_id='".$id."'";
 
 	if (mysqli_query($conn, $sql)) {
-		//echo "<script>alert('user updated successfully');</script>";
+		echo $sql;
 	} else {
 		echo "Error updating record: " . mysqli_error($conn);
 	}

@@ -5,9 +5,7 @@
    header('location:index.php?lmsg=true');
    exit;
  }		
- require_once('./../../controller/user/userController.php'); 
  require_once('./../../controller/contract/contractController.php'); 
- require_once('./header.php');
  require_once('./../../controller/contract/invoiceController.php');
 
 // data importing
@@ -15,106 +13,70 @@ $con = new Contract();
 $invoice = new Invoice();
 
 if(!empty($_GET['invo_id']) && $_GET['invo_id']) {
-	echo $_GET['invo_id'];
+	//echo $_GET['invo_id'];
 	$invoiceValues = mysqli_fetch_array($invoice->getInvoice($_GET['invo_id']));		
 	$invoiceItems = $invoice->getInvoiceItems($_GET['invo_id']);
     
 }
 $invoiceDate = date("d/M/Y", strtotime($invoiceValues['date']));
 
-$html = '';
-$html .= '
-    
-    <table width="100%" border="1" cellpadding="5" cellspacing="0">
-	<tr>
-	<td colspan="2" align="center" style="font-size:18px"><b>Invoice</b></td>
-	</tr>
-	<tr>
-	<td colspan="2">
-	<table width="100%" cellpadding="5">
-	<tr>
-	<td width="65%">
-	To,<br />
-	<b>RECEIVER (BILL TO)</b><br />
-	Name : '.$invoiceValues['company_name'].'<br /> 
-	Billing Address : '.$invoiceValues['company_name'].'<br />
-	</td>
-	<td width="35%">         
-	Invoice No. : '.$invoiceValues['invo_id'].'<br />
-	Invoice Date : '.$invoiceDate.'<br />
-	</td>
-	</tr>
-	</table>
-	<br />
-	<table width="100%" border="1" cellpadding="5" cellspacing="0">
-	<tr>
-	<th align="left">Sr No.</th>
-	<th align="left">Item Code</th>
-	<th align="left">Item Name</th>
-	<th align="left">Quantity</th>
-	<th align="left">Price</th>
-	<th align="left">Actual Amt.</th> 
-	</tr>';
-     
-    $a = 0;
-      
-    while($invoiceItem = mysqli_fetch_array($invoiceItems)) {
-        $count = 0;
-        $a++;
-	    $html .= '
-	    <tr>
-	        <td align="left">'.$a.'</td>
-	        <td align="left">'.$invoiceItem["item_id"].'</td>
-	        <td align="left">'.$invoiceItem["item_name"].'</td>
-	        <td align="left">'.$invoiceItem["item_quantity"].'</td>
-	        <td align="left">'.$invoiceItem["item_price"].'</td>
-	        <td align="left">'.$invoiceItem["item_final_amount"].'</td>   
-	    </tr>';
-        $count++;
-    }
-$html .= '
-	<tr>
-	<td align="right" colspan="5"><b>Sub Total</b></td>
-	<td align="left"><b>'.$invoiceValues['total_before_tax'].'</b></td>
-	</tr>
-	<tr>
-	<td align="right" colspan="5"><b>Tax Rate :</b></td>
-	<td align="left">'.$invoiceValues['tax_per'].'</td>
-	</tr>
-	<tr>
-	<td align="right" colspan="5">Tax Amount: </td>
-	<td align="left">'.$invoiceValues['total_tax'].'</td>
-	</tr>
-	<tr>
-	<td align="right" colspan="5">Total: </td>
-	<td align="left">'.$invoiceValues['total_after_tax'].'</td>
-	</tr>
-	<tr>
-	<td align="right" colspan="5">Amount Paid:</td>
-	<td align="left">'.$invoiceValues['amount_paid'].'</td>
-	</tr>
-	<tr>
-	<td align="right" colspan="5"><b>Amount Due:</b></td>
-	<td align="left">'.$invoiceValues['amount_due'].'</td>
-	</tr>';
-$html .= '
-	</table>
-	</td>
-	</tr>
-	</table>';
-// create pdf of invoice	
-$filename = 'Invoice-'.$invoiceValues['invo_id'].'.pdf';
-require_once 'dompdf/autoload.inc.php';
-Dompdf\Autoloader::register();
-use Dompdf\Dompdf;
-$dompdf = new Dompdf();
-//$dompdf->loadHtml($html);
-$dompdf ->loadHtml($html);
-$dompdf->setPaper('A4', 'landscape');
-$dompdf->render();
-$dompdf->stream($filename, array("Attachment" => 1));
+require('./fpdf/fpdf.php');
 
-$output = $dompdf->output();
-file_put_contents("$filename", $output);
+$pdf = new FPDF('P','mm','A4');
+// Column headings
+$header = array('ID', 'Name', 'Qty', 'Unit Price','Final Amount');
+// Data loading
+//$data = $pdf->LoadData();
+$pdf->AddPage();
+$pdf->SetFont('Arial','B',12);
+$pdf->Cell(40,10,'',0);
+$pdf->Image('logo.png',91,6,30,'C');
+$pdf->Ln();
+$pdf->Cell(50,10,'Invoice DataSheet',0,1,'L');
+$pdf->Ln();
+//print table settings
+//receiver address
+$pdf->Cell(100,5,'Invoice To: ',0);
+$pdf->Ln();
+$pdf->Cell(100,5,'Name : '.$invoiceValues['company_name'],0);
+$pdf->Ln();
+$pdf->Cell(100,5,'Address : '.$invoiceValues['company_name'],0);
+$pdf->Ln();
+$pdf->Cell(100,5,'Invoice No : '.$invoiceValues['invo_id'],0);
+$pdf->Ln();
+$pdf->Cell(100,5,'Invoice Date : '.$invoiceDate,0);
+$pdf->Ln();
+$pdf->SetFont('Arial','B',10);
+$w = array(10, 65, 20, 40, 40);
+// Header
+for($i=0;$i<count($header);$i++){
+	$pdf->Cell($w[$i],7,$header[$i],1,0,'C');
+}
+$pdf->Ln();
+
+while($invoiceItem = mysqli_fetch_array($invoiceItems)){
+  $pdf->Cell($w[0],7,$invoiceItem["item_id"],1,0,'C');
+  $pdf->Cell($w[1],7,$invoiceItem["item_name"],1,0,'C');
+  $pdf->Cell($w[2],7,$invoiceItem["item_quantity"],1,0,'C');
+  $pdf->Cell($w[3],7,$invoiceItem["item_price"],1,0,'C');
+  $pdf->Cell($w[4],7,$invoiceItem["item_final_amount"],1,0,'C');
+  $pdf->Ln();
+}
+$pdf->Ln();
+$pdf->SetFont('Arial','B',12);
+$pdf->Cell($w[1],7,'Sub total : '.$invoiceValues['total_before_tax'],0,'L');
+$pdf->Ln();
+$pdf->Cell($w[1],7,'Tax rate  : '.$invoiceValues['tax_per'].' %',0,'L');
+$pdf->Ln();
+$pdf->Cell($w[1],7,'Tax Amount : '.$invoiceValues['total_tax'],0,'L');
+$pdf->Ln();
+$pdf->Cell($w[1],7,'Total : '.$invoiceValues['total_after_tax'],0,'L');
+$pdf->Ln();
+$pdf->Cell($w[1],7,'Amount Paid : '.$invoiceValues['amount_paid'],0,'L');
+$pdf->Ln();
+$pdf->Cell($w[1],7,'Amount Due : '.$invoiceValues['amount_due'],0,'L');
+$pdf->Ln();
+//$pdf->ImprovedTable($header,$data);
+$pdf->Output();
 
 ?> 
