@@ -47,7 +47,8 @@ $result = $employee->getAllEmployee();
                 <td data-label="Action">
                 <!-- notation ? parameter = value  -->
                 <a class="btn btn-warning" href="./employeeUpdate.php?updateid=<?php echo $row["emp_id"]; ?>">&#x270E</a>
-                <a class="btn btn-danger" href="./../../controller/user/employeeController.php?deleteid=<?php echo $row["nic"]; ?>">&#x2716</a>
+                <!-- delete has disabled due to restrict issues -->
+                <!-- <a class="btn btn-danger" href="./../../controller/user/employeeController.php?deleteid=<?php echo $row["nic"]; ?>">&#x2716</a> -->
                 </td>
             </tr>
         </tbody>
