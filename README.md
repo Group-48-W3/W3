@@ -1,9 +1,9 @@
 # W3
-contract management system for the w3 Pvt.Ltd.
+Complete Contract Management system for the W3 Pvt.Ltd.
 
-### Main Functionality
+### Main Functionality (Sub-Systems)
 
 - Contract Management with Quotation and Activities
-- Graphical Representation about progress of contracts
-
-Team48
+- Expense Management with API capabiltiy
+- Inventory Management for managing the elasiticity of demand/supply
+- Dashboard with Graphical Representations on progress of contracts/inventory/expense
