@@ -107,8 +107,7 @@ $result = $employee->getAllEmployee();
 	</form>
     </div>
     </div>
-    </div>
-    
+    </div>  
 </div>
 
 <?php

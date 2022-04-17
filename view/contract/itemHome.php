@@ -53,7 +53,7 @@
   <!-- Prompt Item for item adding -->
   <a class="btn btn-primary" onclick="document.getElementById('id01').style.display='block'">+ Add new Item</a>
   <h2>Item Gallery</h2>
-  
+
 </div>    
 <!-- New Component for item Table -->
 <div class="container ">
@@ -62,7 +62,7 @@
 		<div class="col-10">
 			<table class="data-table paginated">
 				<thead>
-					<th width="15%">Item Name</th>
+					<th width="40%">Item Name</th>
 					<th width="30%">Category</th>
 					<th>Unit Price</th>
 					<?php if($user_role==2){ ?>
@@ -72,8 +72,7 @@
 				<tbody>
 					<?php
 						$i=0;
-						while($row = mysqli_fetch_array($result)) {
-							
+						while($row = mysqli_fetch_array($result)) {		
 					?>
 						<tr>
 							<td data-label="Name"><?php echo $row["item_name"]; ?></td>
@@ -83,7 +82,7 @@
 							<?php if($user_role==2){ ?>
 							<td data-label="Edit">
 							
-							<a class="btn btn-warning" href="./itemUpdate.php?item_id=<?php echo $row['item_id'];?>" >&#x270E</a>
+							<a class="btn btn-warning" href="./itemUpdate.php?item_id=<?php echo $row['item_id'];?>">&#x270E</a>
 							<a class="btn btn-danger" href="./itemHome.php?delete_id=<?php echo $row['item_id'];?>">&#x2716</a>
 							</td>
 							<?php } ?>
@@ -127,8 +126,7 @@
           <input type="text" class="form-field" name="unit_price" id="unit_price">  
           <label for="unit_price" class="form-label">Unit Price</label>
         </div>
-        
-		<div class="clearfix right">
+		    <div class="clearfix right">
           <button type="button" class="btn btn-secondary" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
           <button type="submit" name="add_item" class="btn btn-primary">Add Item</button>
         </div>
